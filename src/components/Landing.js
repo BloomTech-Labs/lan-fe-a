@@ -27,8 +27,8 @@ const LandingContainer = styled.div`
 
         button {
             padding: 12px 48px;
-            // background: linear-gradient(to right, #00c6ff, #0072ff);
-            background: linear-gradient(to right, #FF512F, #DD2476);
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            // background: linear-gradient(to right, #FF512F, #DD2476);
             border: none;
             border-radius: 3px;
             font-family: 'Quicksand', sans-serif;
