@@ -70,8 +70,12 @@ const LandingContainer = styled.div`
                 }
             }
 
-            .instead {
-                margin-bottom: 12px;
+            button:last-of-type {
+                margin-bottom: 8px;
+            }
+
+            .terms {
+                margin-bottom: 16px;
                 font-size: 0.875rem;
                 color: #ffffff;
 
@@ -85,7 +89,7 @@ const LandingContainer = styled.div`
                 }
             }
 
-            .terms {
+            .instead {
                 font-size: 0.875rem;
                 color: #ffffff;
 
@@ -111,7 +115,7 @@ const Landing = () => {
                         <img src={viewee} alt='viewee logo' />
                         <h1>viewee</h1>
                     </div>
-                    <p className='description'>Answer, view, and post job interview questions</p>
+                    <p className='description'>Prepare for tech interviews with viewee! Browse an array of questions fellow Lambda School students have received during interviews. View input from career coaches and how other students would answer. Post questions you have received and how you responded for critique.</p>
                 </div>
 
                 <div className='right-section'>
@@ -127,8 +131,8 @@ const Landing = () => {
                         <img src={twitter} alt='twitter logo' />
                         Continue with Twitter
                     </button>
-                    <p className='instead'>Register with a username and password <Link to='/register'>instead</Link>.</p>
                     <p className='terms'>By continuing, you agree to our <Link to='/termsofservice'>Terms of Service</Link> and <Link to='/privacypolicy'>Privacy Policy</Link>.</p>
+                    <p className='instead'>Register with a username and password <Link to='/register'>instead</Link>.</p>
                 </div>
             </div>
         </LandingContainer>
