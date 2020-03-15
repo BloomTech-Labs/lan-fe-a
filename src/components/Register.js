@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import viewee from '../img/viewee.png';
 
 const RegisterContainer = styled.div`
     margin: 32px 0;
@@ -13,6 +14,12 @@ const RegisterContainer = styled.div`
         width: 90%;
         display: flex;
         flex-direction: column;
+
+        img {
+            height: 32px;
+            width: 32px;
+            margin-bottom: 12px;
+        }
 
         h2 {
             margin-bottom: 24px;
@@ -40,7 +47,7 @@ const RegisterContainer = styled.div`
         button {
             padding: 10px;
             margin: 12px 0 8px;
-            background: linear-gradient(to right, #00c6ff, #0072ff);
+            background: linear-gradient(to right, #0072ff, #00c6ff);
             border: none;
             border-radius: 3px;
             font-family: 'Nunito', sans-serif;
@@ -50,7 +57,7 @@ const RegisterContainer = styled.div`
             cursor: pointer;
 
             :hover {
-                opacity: 0.75;
+                opacity: 0.5;
             }
         }
 
@@ -61,6 +68,11 @@ const RegisterContainer = styled.div`
 
             a {
                 color: #ffffff;
+                transition: 0.25s;
+
+                :hover {
+                    opacity: 0.5;
+                }
             }
         }
 
@@ -70,19 +82,24 @@ const RegisterContainer = styled.div`
 
             a {
                 color: #ffffff;
+                transition: 0.25s;
+
+                :hover {
+                    opacity: 0.5;
+                }
             }
         }
     }
 
-    @media(min-width: 375px) {
-        height: calc(90vh - 72px);
+    @media(min-width: 360px) {
+        height: 90vh;
         margin: 0;
     }
 `
 
 const Register = () => {
     const [input, setInput] = useState({
-        email: '',
+        // email: '',
         username: '',
         password: ''
     });
@@ -101,16 +118,17 @@ const Register = () => {
     return (
         <RegisterContainer>
             <form onSubmit={onSubmit} autoComplete='off' spellCheck='false'>
+                <img src={viewee} alt='viewee logo' />
                 <h2>Register to start viewing, answering, and posting tech interview questions!</h2>
 
-                <label htmlFor='email'>Email</label>
-                <input name='email' type='email' value={input.email} onChange={onChange} />
+                {/* <label htmlFor='email'>Email</label>
+                <input name='email' type='email' value={input.email} onChange={onChange} placeholder='Enter an email' /> */}
 
                 <label htmlFor='username'>Username</label>
-                <input name='username' type='text' value={input.username} onChange={onChange} />
+                <input name='username' type='text' value={input.username} onChange={onChange} placeholder='Enter a username' />
 
                 <label htmlFor='password'>Password</label>
-                <input name='password' type='password' value={input.password} onChange={onChange} />
+                <input name='password' type='password' value={input.password} onChange={onChange} placeholder='Enter a password' />
 
                 <button type='submit'>Submit</button>
 

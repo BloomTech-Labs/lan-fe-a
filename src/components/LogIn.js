@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import viewee from '../img/viewee.png';
 
 const LogInContainer = styled.div`
-    height: calc(90vh - 72px);
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,6 +14,12 @@ const LogInContainer = styled.div`
         width: 90%;
         display: flex;
         flex-direction: column;
+
+        img {
+            height: 32px;
+            width: 32px;
+            margin-bottom: 12px;
+        }
 
         h2 {
             margin-bottom: 24px;
@@ -40,7 +47,7 @@ const LogInContainer = styled.div`
         button {
             padding: 10px;
             margin: 12px 0 8px;
-            background: linear-gradient(to right, #00c6ff, #0072ff);
+            background: linear-gradient(to right, #0072ff, #00c6ff);
             border: none;
             border-radius: 3px;
             font-family: 'Nunito', sans-serif;
@@ -50,7 +57,7 @@ const LogInContainer = styled.div`
             cursor: pointer;
 
             :hover {
-                opacity: 0.75;
+                opacity: 0.5;
             }
         }
 
@@ -60,6 +67,11 @@ const LogInContainer = styled.div`
 
             a {
                 color: #ffffff;
+                transition: 0.25s;
+
+                :hover {
+                    opacity: 0.5;
+                }
             }
         }
     }
@@ -85,13 +97,14 @@ const LogIn = () => {
     return (
         <LogInContainer>
             <form onSubmit={onSubmit} autoComplete='off' spellCheck='false'>
-                <h2>Log In</h2>
+                <img src={viewee} alt='viewee logo' />
+                <h2>Log in to your account</h2>
 
                 <label htmlFor='username'>Username</label>
-                <input name='username' type='text' value={input.username} onChange={onChange} />
+                <input name='username' type='text' value={input.username} onChange={onChange} placeholder='Enter your username' />
 
                 <label htmlFor='password'>Password</label>
-                <input name='password' type='password' value={input.password} onChange={onChange} />
+                <input name='password' type='password' value={input.password} onChange={onChange} placeholder='Enter your password' />
 
                 <button type='submit'>Submit</button>
 
