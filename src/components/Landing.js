@@ -7,12 +7,18 @@ import facebook from '../img/facebook.png';
 import twitter from '../img/twitter.png';
 
 const LandingContainer = styled.div`
-    .container {
-        width: 90%;
-        margin: 0 auto;
+    max-width: 1024px;
+    height: 100vh;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 
+    .left-section-container {
         .left-section {
-            height: 50vh;
+            max-width: 372.6px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -30,6 +36,7 @@ const LandingContainer = styled.div`
 
                 h1 {
                     font-size: 2rem;
+                    font-weight: 600;
                     color: #ffffff;
                 }
             }
@@ -39,10 +46,22 @@ const LandingContainer = styled.div`
                 color: #ffffff;
             }
         }
+    }
 
+    .right-section-container {
         .right-section {
+            max-width: 372.6px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+
+            h2 {
+                margin-bottom: 24px;
+                font-size: 1.75rem;
+                font-weight: 600;
+                color: #ffffff;
+            }
 
             button {
                 padding: 10px;
@@ -104,12 +123,33 @@ const LandingContainer = styled.div`
             }
         }
     }
+
+    @media(min-width: 1024px) {
+        width: auto;
+        flex-direction: row;
+
+        .left-section-container {
+            width: 50%;
+
+            .left-section {
+                height: 90vh;
+            }
+        }
+
+        .right-section-container {
+            width: 50%;
+
+           .right-section {
+                height: 90vh;
+           }
+        }
+    }
 `
 
 const Landing = () => {
     return (
         <LandingContainer>
-            <div className='container'>
+            <div className='left-section-container'>
                 <div className='left-section'>
                     <div className='logo-and-name'>
                         <img src={viewee} alt='viewee logo' />
@@ -117,8 +157,10 @@ const Landing = () => {
                     </div>
                     <p className='description'>Prepare for tech interviews with viewee! Browse an array of questions fellow Lambda School students have received during interviews. View input from career coaches and how other students would answer. Post questions you have received and how you responded for critique.</p>
                 </div>
-
+            </div>
+            <div className='right-section-container'>
                 <div className='right-section'>
+                    <h2>Get Started</h2>
                     <button className='google-button'>
                         <img src={google} alt='google logo' />
                         Continue with Google
