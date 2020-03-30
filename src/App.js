@@ -1,18 +1,20 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import landing from './components/common/landing';
-import register from './components/authentication/register';
-import logIn from './components/authentication/logIn';
-import success from './components/authentication/success';
+import { Switch, Route } from 'react-router-dom';
+import Landing from './components/common/landing';
+import Register from './components/authentication/register';
+import LogIn from './components/authentication/logIn';
+import Success from './components/authentication/success';
+import PageNotFound from './components/common/pageNotFound';
 
 const App = () => {
 	return (
-		<div>
-			<Route exact path='/' component={landing}/>
-			<Route path='/login' component={logIn}/>
-			<Route path='/register' component={register}/>
-			<Route path='/success' component={success}/>
-		</div>
+		<Switch>
+			<Route exact path='/' component={Landing} />
+			{/* <Route path='/login' component={logIn} /> */}
+			{/* <Route path='/register' component={register} /> */}
+			<Route path='/success' component={Success} />
+			<Route component={PageNotFound} />
+		</Switch>
 	);
 };
 
