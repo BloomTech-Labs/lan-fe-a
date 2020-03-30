@@ -1,18 +1,17 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
-import Header from './components/Header';
-import Landing from './components/Landing';
-import FAQ from './components/FAQ';
-import Register from './components/Register';
-import LogIn from './components/LogIn';
+import { Route } from 'react-router-dom';
+import landing from './components/common/landing';
+import register from './components/authentication/register';
+import logIn from './components/authentication/logIn';
+import success from './components/authentication/success';
 
 const App = () => {
 	return (
 		<div>
-			<Route exact path='/' component={Landing}/>
-			<Route path='/login' component={LogIn}/>
-			<Route path='/register' component={Register}/>
-			<Route path='/faq' component={FAQ}/>
+			<Route exact path='/' component={landing}/>
+			<Route path='/login' component={logIn}/>
+			<Route path='/register' component={register}/>
+			<Route path='/success' component={success}/>
 		</div>
 	);
 };

@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import viewee from '../img/viewee.png';
 
 const LogInContainer = styled.div`
     height: 90vh;
@@ -75,43 +72,6 @@ const LogInContainer = styled.div`
             }
         }
     }
-`
+`;
 
-const LogIn = () => {
-    const [input, setInput] = useState({
-        username: '',
-        password: ''
-    });
-
-    const onChange = event => {
-        setInput({
-            ...input,
-            [event.target.name]: event.target.value
-        });
-    };
-
-    const onSubmit = event => {
-        event.preventDefault();
-    };
-    
-    return (
-        <LogInContainer>
-            <form onSubmit={onSubmit} autoComplete='off' spellCheck='false'>
-                <img src={viewee} alt='viewee logo' />
-                <h2>Log in to your account</h2>
-
-                <label htmlFor='username'>Username</label>
-                <input name='username' type='text' value={input.username} onChange={onChange} placeholder='Enter your username' />
-
-                <label htmlFor='password'>Password</label>
-                <input name='password' type='password' value={input.password} onChange={onChange} placeholder='Enter your password' />
-
-                <button type='submit'>Submit</button>
-
-                <p className='prompt'>Don't have an account? Register <Link to='/register'>here</Link>.</p>
-            </form>
-        </LogInContainer>
-    );
-};
-
-export default LogIn;
+export default LogInContainer;
