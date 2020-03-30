@@ -40,7 +40,7 @@ const Landing = () => {
                         </button>
                     </a>
                     <p className='terms'>By continuing, you agree to our <Link to='/termsofservice'>Terms of Service</Link> and <Link to='/privacypolicy'>Privacy Policy</Link>.</p>
-                    <p className='instead'>Register with a username and password <Link to='/register'>instead</Link>.</p>
+                    {/* <p className='instead'>Register with a username and password <Link to='/register'>instead</Link>.</p> */}
                 </div>
             </div>
         </LandingContainer>
