@@ -21,7 +21,7 @@ export const logOut = history => dispatch => {
         .then(response => {
             localStorage.removeItem('id');
             localStorage.removeItem('display_name');
-            history.push('/');
+            history.push('/welcome');
         })
         .catch(error => console.log(error));
 };
