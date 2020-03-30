@@ -15,7 +15,7 @@ const Landing = () => {
                         <img src={viewee} alt='viewee logo' />
                         <h1>viewee</h1>
                     </div>
-                    <p className='description'>Prepare for tech interviews with viewee! Browse an array of questions fellow Lambda School students have received during interviews. View input from career coaches and how other students would answer. Post questions you have received and how you responded for critique.</p>
+                    <p className='description'>Prepare for tech interviews with viewee! Browse an array of questions fellow Lambda School students have received during interviews, view input from career coaches and how other students would answer, and post questions you have received and how you responded for critique.</p>
                 </div>
             </div>
             <div className='right-section-container'>
