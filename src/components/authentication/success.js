@@ -9,9 +9,9 @@ const Success = props => {
 
     return (
         <SuccessContainer>
-            <img src={loadingicon} alt='loading icon' onClick={() => props.logOut(props.history)} />
+            <img src={loadingicon} alt='loading icon' />
         </SuccessContainer>
     );
 };
 
-export default connect(null, { success, logOut })(Success);
+export default connect(null, { success })(Success);
