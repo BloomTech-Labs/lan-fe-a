@@ -10,7 +10,7 @@ export const success = history => dispatch => {
             if (response.data.user.track === null) {
                 history.push('/onboarding');
             } else {
-                history.push('/dashboard');
+                history.push('/');
             };
         })
         .catch(error => console.log(error));
@@ -24,4 +24,8 @@ export const logOut = history => dispatch => {
             history.push('/welcome');
         })
         .catch(error => console.log(error));
+};
+
+export const setTrack = (track, token) => dispatch => {
+    return axios.put('http://localhost:5000/api/auth/track', { track: track , token: token });
 };

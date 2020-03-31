@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { setTrack } from '../../actions';
 import OnboardingContainer from './styles/onboardingStyle';
 
 const Onboarding = props => {
@@ -37,13 +39,17 @@ const Onboarding = props => {
     const onSubmit = () => {
         if (!tracks.find(item => item.value === true)) {
             setError('No track chosen');
-        }
+        } else {
+            props.setTrack(tracks.find(item => item.value === true).track, null)
+                .then(response => props.history.push('/'))
+                .catch(error => setError(error.response.data.message));
+        };
     };
 
     return (
         <OnboardingContainer tracks={tracks}>
             <h1>{localStorage.getItem('display_name')}, what track are you in?</h1>
-            <p className='instructions'>The questions and replies that you post will automatically be tagged with the track you are in. If you are just browsing or not in any cohort, choose None.</p>
+            <p className='instructions'>The questions and replies that you post will automatically be tagged with the track you are in. If you are not in any cohort, choose None. If you are a career coach, choose I'm a career coach.</p>
             <div className='tracks'>
                 <button className='track' onClick={() => onClick('WEB')}>Web Development</button>
                 <button className='track' onClick={() => onClick('DS')}>Data Science</button>
@@ -61,4 +67,4 @@ const Onboarding = props => {
     );
 };
 
-export default Onboarding;
+export default connect(null, { setTrack })(Onboarding);
