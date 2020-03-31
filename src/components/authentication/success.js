@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { success, logOut } from '../../actions';
+import { success } from '../../actions';
 import SuccessContainer from './styles/successStyle';
 import loadingicon from '../../img/loading-icon.png';
 
