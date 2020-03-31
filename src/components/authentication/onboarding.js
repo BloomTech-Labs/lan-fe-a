@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setTrack } from '../../actions';
+import { setUser, setTrack } from '../../actions';
 import OnboardingContainer from './styles/onboardingStyle';
 
 const Onboarding = props => {
@@ -32,6 +32,14 @@ const Onboarding = props => {
     ]);
     const [error, setError] = useState('');
 
+    useEffect(() => {
+        props.setUser();
+    }, []);
+
+    useEffect(() => {
+        setTracks(tracks.map(item => item.track === props.user.track ? { ...item, value: true } : { ...item, value: false }))
+    }, [props.user]);
+
     const onClick = track => {
         setTracks(tracks.map(item => item.track === track ? { ...item, value: true } : { ...item, value: false }));
     };
@@ -49,7 +57,7 @@ const Onboarding = props => {
 
     return (
         <OnboardingContainer tracks={tracks}>
-            <h1>{localStorage.getItem('display_name')}, what track are you in?</h1>
+            <h1>{props.user.displayName}, what track are you in?</h1>
             <p className='instructions'>The questions and replies that you post will automatically be tagged with the track you are in. If you are not in any cohort, choose None. If you are a career coach, choose I'm a career coach.</p>
             <div className='tracks'>
                 <button className='track' onClick={() => onClick('WEB')}>Web Development</button>
@@ -68,4 +76,10 @@ const Onboarding = props => {
     );
 };
 
-export default connect(null, { setTrack })(Onboarding);
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    };
+};
+
+export default connect(mapStateToProps, { setUser, setTrack })(Onboarding);
