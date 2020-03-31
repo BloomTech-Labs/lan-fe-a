@@ -42,7 +42,8 @@ const Onboarding = props => {
         } else {
             props.setTrack(tracks.find(item => item.value === true).track, null)
                 .then(response => props.history.push('/'))
-                .catch(error => setError(error.response.data.message));
+                .catch(error => console.log(error));
+                // error.response.data.message
         };
     };
 

@@ -25,7 +25,7 @@ const CareerCoach = props => {
     return (
         <CareerCoachContainer>
             <h1>Enter your viewee token</h1>
-            <p className='instructions'>As a career coach, your questions and replies will be prioritized.</p>
+            <p className='instructions'>As a career coach, your replies to questions will be prioritized.</p>
             <form onSubmit={onSubmit} autoComplete='off' spellCheck='false'>
                 <input type='text' name='input' placeholder='Enter your viewee token' value={input} onChange={onChange} />
                 <p className='error'>{error}</p>
