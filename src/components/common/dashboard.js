@@ -1,9 +1,18 @@
 import React from 'react';
+import Header from './header';
+import styled from 'styled-components';
 
-const Dashboard = () => {
+const DashBoardContainer = styled.div`
+
+`;
+
+const Dashboard = props => {
     return (
         <>
-            <h1>Dashboard</h1>
+            <Header history={props.history} />
+            {/* <DashBoardContainer>
+                <button>Post a question</button>
+            </DashBoardContainer> */}
         </>
     );
 };

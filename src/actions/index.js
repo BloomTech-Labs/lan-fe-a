@@ -29,7 +29,7 @@ export const setTrack = (track, token) => dispatch => {
 };
 
 export const setUser = () => dispatch => {
-    return axios.get('http://localhost:5000/api/auth/user')
+    axios.get('http://localhost:5000/api/auth/user')
         .then(response => dispatch({ type: 'SET_USER', payload: response.data.user }))
         .catch(error => console.log(error));
 };
