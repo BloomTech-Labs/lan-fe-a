@@ -6,6 +6,7 @@ import Landing from './components/common/landing';
 import Success from './components/authentication/success';
 import Onboarding from './components/authentication/onboarding';
 import CareerCoach from './components/authentication/careerCoach';
+import Post from './components/common/post';
 import Error from './components/authentication/error';
 import PageNotFound from './components/common/pageNotFound';
 
@@ -17,7 +18,8 @@ const App = () => {
 			<Route path='/success' component={Success} />
 			<PrivateRoute exact path='/onboarding' component={Onboarding} />
 			<PrivateRoute exact path='/onboarding/careercoach' component={CareerCoach} />
-			<Route path='/error' component={Error} />
+			<PrivateRoute exact path='/post' component={Post} />
+			<PrivateRoute path='/error' component={Error} />
 			<Route component={PageNotFound} />
 		</Switch>
 	);

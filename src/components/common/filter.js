@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import FilterContainer from './styles/filterStyle';
-import Select from 'react-select';
 
 const Filter = props => {
     const [tracks, setTracks] = useState([
