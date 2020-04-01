@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { setUser, logOut } from '../../actions';
 import HeaderContainer from './styles/headerStyle';
 import viewee from '../../img/viewee.png';
-import Select from 'react-select';
 
 const Header = props => {
     const [input, setInput] =  useState('');
