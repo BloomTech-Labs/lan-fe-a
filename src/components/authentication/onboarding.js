@@ -5,30 +5,12 @@ import OnboardingContainer from './styles/onboardingStyle';
 
 const Onboarding = props => {
     const [tracks, setTracks] = useState([
-        {
-            track: 'WEB',
-            value: false
-        },
-        {
-            track: 'DS',
-            value: false
-        },
-        {
-            track: 'iOS',
-            value: false
-        },
-        {
-            track: 'UX',
-            value: false
-        },
-        {
-            track: 'AND',
-            value: false
-        },
-        {
-            track: 'None',
-            value: false
-        }
+        { track: 'WEB', value: false },
+        { track: 'DS', value: false },
+        { track: 'iOS', value: false },
+        { track: 'UX', value: false },
+        { track: 'AND', value: false },
+        { track: 'None', value: false}
     ]);
     const [error, setError] = useState('');
 

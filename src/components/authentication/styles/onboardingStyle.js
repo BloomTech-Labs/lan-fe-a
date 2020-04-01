@@ -114,14 +114,14 @@ const OnboardingContainer = styled.div`
         cursor: pointer;
 
         i {
-            margin-left: 8px;
+            margin-left: 4px;
             font-size: 0.75rem;
             transition: 0.25s;
         }
 
         :hover {
             i {
-                margin-left: 16px;
+                margin-left: 8px;
             }
         }
     }
