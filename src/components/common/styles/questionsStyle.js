@@ -23,17 +23,16 @@ const QuestionsContainer = styled.div`
         }
 
         .right {
-            .name {
+            .display-name {
+                margin-bottom: 4px;
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #ffffff;
+            }
+
+            .tags {
                 margin-bottom: 4px;
                 display: flex;
-                align-items: center;
-
-                .display-name {
-                    margin-right: 8px;
-                    font-size: 0.875rem;
-                    font-weight: 500;
-                    color: #ffffff;
-                }
 
                 button {
                     padding: 2px 4px;
@@ -56,7 +55,7 @@ const QuestionsContainer = styled.div`
             }
 
             .answer {
-                margin-bottom: 4px;
+                margin-bottom: 8px;
                 font-size: 0.875rem;
                 font-weight: 500;
                 color: #ffffff;
@@ -66,7 +65,7 @@ const QuestionsContainer = styled.div`
                 display: flex;
 
                 p {
-                    margin-right: 8px;
+                    margin-right: 12px;
                     font-size: 0.875rem;
                     font-weight: 500;
                     color: #ffffff;
@@ -76,6 +75,12 @@ const QuestionsContainer = styled.div`
                     }
                 }
             }
+        }
+        cursor: pointer;
+        transition: 0.25s;
+
+        :hover {
+            opacity: 0.5;
         }
     }
 
