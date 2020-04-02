@@ -3,6 +3,26 @@ import styled from 'styled-components';
 const QuestionsContainer = styled.div`
     width: 90%;
     margin: 0 auto;
+
+    .no-posts-found {
+        height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+
+            i {
+                margin-right: 8px;
+                font-size: 0.875rem;
+            }
+        }
+    }
     
     .question-card {
         padding: 16px;
