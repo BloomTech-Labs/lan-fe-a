@@ -26,14 +26,14 @@ const QuestionsContainer = styled.div`
     
     .question-card {
         padding: 16px;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
         background-color: #2c2f33;
         border-radius: 3px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         display: flex;
 
         .left {
-            margin-right: 12px;
+            margin-right: 8px;
 
             img {
                 height: 32px;
@@ -85,7 +85,7 @@ const QuestionsContainer = styled.div`
                 display: flex;
 
                 p {
-                    margin-right: 12px;
+                    margin-right: 16px;
                     font-size: 0.875rem;
                     font-weight: 500;
                     color: #ffffff;

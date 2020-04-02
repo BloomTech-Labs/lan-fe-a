@@ -12,14 +12,14 @@ const FilterContainer = styled.div`
         align-items: center;
 
         .filter {
-            margin-right: 12px;
+            margin-right: 8px;
             font-size: 0.75rem;
             font-weight: 500;
             color: #ffffff;
         }
     
         select {
-            margin-right: 24px;
+            margin-right: 16px;
             background-color: #23272a;
             border: none;
             font-family: 'Nunito', sans-serif;
@@ -116,7 +116,7 @@ const FilterContainer = styled.div`
 
     .post-a-question {
         padding: 8px 16px;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
         background: linear-gradient(to right, #0072ff, #00c6ff);
         border: none;
         border-radius: 3px;

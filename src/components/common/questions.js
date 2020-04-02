@@ -4,8 +4,6 @@ import { fetchPosts } from '../../actions';
 import QuestionsContainer from './styles/questionsStyle';
 
 const Questions = props => {
-    useEffect(() => props.fetchPosts(), []);
-
     return (
         <QuestionsContainer>
             {props.posts.length > 0 ? (

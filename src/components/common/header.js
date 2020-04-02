@@ -8,8 +8,6 @@ const Header = props => {
     const [input, setInput] =  useState('');
     const [hamburgerMenu, setHamburgerMenu] = useState(false);
 
-    useEffect(() => props.fetchUser(), []);
-
     const onChange = event => {
         setInput(event.target.value);
     };

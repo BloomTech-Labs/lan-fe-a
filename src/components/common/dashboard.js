@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { fetchUser, fetchPosts } from '../../actions';
 import Header from './header';
 import Filter from './filter';
 import Questions from './questions';
@@ -7,6 +8,11 @@ import DashboardContainer from './styles/dashboardStyle';
 import loadingicon from '../../img/loading-icon.png';
  
 const Dashboard = props => {
+    useEffect(() => {
+        props.fetchUser();
+        props.fetchPosts();
+    }, []);
+    
     return (
         <DashboardContainer>
             {props.fetchingUser || props.fetchingPosts ? (
@@ -32,4 +38,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, { fetchUser, fetchPosts })(Dashboard);
