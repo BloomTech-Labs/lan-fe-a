@@ -23,6 +23,10 @@ const QuestionsContainer = styled.div`
             }
         }
     }
+
+    a {
+        text-decoration: none;
+    }
     
     .question-card {
         padding: 16px;
@@ -31,6 +35,8 @@ const QuestionsContainer = styled.div`
         border-radius: 3px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         display: flex;
+        cursor: pointer;
+        z-index: 9997;
 
         .left {
             margin-right: 8px;
@@ -39,6 +45,12 @@ const QuestionsContainer = styled.div`
                 height: 32px;
                 width: 32px;
                 border-radius: 50%;
+                transition: 0.25s;
+                z-index: 9998;
+
+                :hover {
+                    opacity: 0.5;
+                }
             }
         }
 
@@ -48,6 +60,12 @@ const QuestionsContainer = styled.div`
                 font-size: 0.875rem;
                 font-weight: 500;
                 color: #ffffff;
+                transition: 0.25s;
+                z-index: 9998;
+
+                :hover {
+                    opacity: 0.5;
+                }
             }
 
             .tags {
@@ -64,6 +82,7 @@ const QuestionsContainer = styled.div`
                     font-size: 0.75rem;
                     font-weight: 600;
                     color: #ffffff;
+                    cursor: pointer;
                 }
             }
 
@@ -100,12 +119,6 @@ const QuestionsContainer = styled.div`
                     }
                 }
             }
-        }
-        cursor: pointer;
-        transition: 0.25s;
-
-        :hover {
-            opacity: 0.5;
         }
     }
 
