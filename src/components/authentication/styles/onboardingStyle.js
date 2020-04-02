@@ -17,7 +17,7 @@ const OnboardingContainer = styled.div`
     }
     
     .instructions {
-        margin-bottom: 32px;
+        margin-bottom: 16px;
         font-size: 1rem;
         font-weight: 500;
         color: #ffffff;
@@ -26,8 +26,8 @@ const OnboardingContainer = styled.div`
 
     .tracks {
         .track {
-            margin-right: 12px;
-            margin-bottom: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
             padding: 10px 32px;
             border-radius: 3px;
             font-family: 'Nunito', sans-serif;
@@ -138,7 +138,7 @@ const OnboardingContainer = styled.div`
         }
 
         button {
-            margin-left: 12px;
+            margin-left: 16px;
             padding: 10px 32px;
             background: linear-gradient(to right, #0072ff, #00c6ff);
             border: none;
