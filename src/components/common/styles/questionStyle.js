@@ -12,7 +12,6 @@ const QuestionContainer = styled.div`
         border-radius: 3px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         display: flex;
-        cursor: pointer;
 
         .left {
             img {
@@ -41,25 +40,21 @@ const QuestionContainer = styled.div`
                 }
             }
 
-            .tags {
+            .labels {
                 margin-bottom: 4px;
                 display: flex;
 
                 button {
-                    padding: 2px 4px;
-                    margin-right: 8px;
-                    background-color: #ea4335;
+                    padding: 1px 2px;
+                    margin-right: 4px;
+                    background-color: #1da1f2;
                     border: none;
                     border-radius: 3px;
                     font-family: 'Nunito', sans-serif;
                     font-size: 0.75rem;
-                    font-weight: 600;
+                    font-weight: 700;
                     color: #ffffff;
                     cursor: pointer;
-                }
-
-                button:last-child {
-                    background-color: #7b16ff;
                 }
             }
 
@@ -79,6 +74,7 @@ const QuestionContainer = styled.div`
 
             .activity {
                 display: flex;
+                align-items: center;
 
                 p {
                     margin-right: 16px;

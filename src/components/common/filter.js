@@ -25,12 +25,14 @@ const Filter = props => {
 
                 <label htmlFor='filter'>FILTER</label>
                 <select name='filter' value={input.filter} onChange={onChange}>
-                    <option value='All'>All</option>
+                    <option value='All'>All tracks</option>
                     <option value='WEB'>WEB</option>
                     <option value='DS'>DS</option>
                     <option value='iOS'>iOS</option>
                     <option value='UX'>UX</option>
                     <option value='AND'>AND</option>
+                    <option value='Screening'>Screening</option>
+                    <option value='Technical'>Technical</option>
                 </select>
             </div>
 
