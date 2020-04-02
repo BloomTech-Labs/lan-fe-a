@@ -63,6 +63,13 @@ const PostContainer = styled.div`
             }
         }
 
+        .error {
+            margin-top: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #ea4335;
+        }
+
         label {
             margin: 16px 0 4px;
             font-size: 1rem;
@@ -91,7 +98,6 @@ const PostContainer = styled.div`
             max-width: 100%;
             height: 288px;
             padding: 10px;
-            margin-bottom: 24px;
             background-color: #2c2f33;
             border: none;
             border-radius: 3px;
@@ -106,6 +112,7 @@ const PostContainer = styled.div`
         }
 
         .buttons {
+            margin-top: 32px;
             display: flex;
             justify-content: flex-end;
 
@@ -124,11 +131,18 @@ const PostContainer = styled.div`
     
                 i {
                     margin-right: 4px;
-                    font-size: 0.75rem;
+                    font-size: 0.875rem;
                 }
     
                 :hover {
                     opacity: 0.5;
+                }
+            }
+
+            button:last-of-type {
+                i {
+                    margin-right: 0px;
+                    margin-left: 4px;
                 }
             }
         }

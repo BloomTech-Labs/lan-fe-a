@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { postQuestion } from '../../actions';
 import Header from './header';
 import PostContainer from './styles/postStyle';
 
@@ -32,36 +34,29 @@ const Post = props => {
         event.preventDefault();
         if (!categories.find(item => item.value === true)) {
             setError({
-                ...error,
-                checkbox: 'Please choose a category'
-            });
-        } else if (categories.find(item => item.value === true)) {
-            setError({
-                ...error,
-                checkbox: ''
+                checkbox: 'Please select a category',
+                question: '',
+                answer: ''
             });
         } else if (input.question === '') {
             setError({
-                ...error,
-                question: 'Please enter a question'
-            });
-        } else if (input.question !== '') {
-            setError({
-                ...error,
-                question: ''
+                checkbox: '',
+                question: 'Please enter a question',
+                answer: ''
             });
         } else if (input.answer === '') {
             setError({
-                ...error,
+                checkbox: '',
+                question: '',
                 answer: 'Please enter an answer'
             });
-        } else if (input.answer !== '') {
+        } else {
             setError({
-                ...error,
+                checkbox: '',
+                question: '',
                 answer: ''
             });
-        } else {
-
+            props.postQuestion(input.question, input.answer, props.user.track, categories.find(item => item.value === true).category, props.history);
         };
     };
 
@@ -80,13 +75,15 @@ const Post = props => {
 
                     <label>Question</label>
                     <input type='text' name='question' placeholder='Enter the question' value={input.question} onChange={onChange} />
+                    {error.question && <p className='error'>{error.question}</p>}
 
                     <label>Text</label>
                     <textarea type='text' name='answer' placeholder='Explain how you answered and any other thoughts' value={input.answer} onChange={onChange} />
+                    {error.answer && <p className='error'>{error.answer}</p>}
                     
                     <div className='buttons'>
                         <button type='button' onClick={() => props.history.push('/')}><i className='fas fa-times'></i>Cancel</button>
-                        <button type='submit'><i className='fas fa-check'></i>Submit</button>
+                        <button type='submit'>Submit<i className='fas fa-check'></i></button>
                     </div>
                 </form>
             </PostContainer>
@@ -94,4 +91,10 @@ const Post = props => {
     );
 };
 
-export default Post;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    };
+};
+
+export default connect(mapStateToProps, { postQuestion })(Post);
