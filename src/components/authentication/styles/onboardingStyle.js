@@ -29,6 +29,7 @@ const OnboardingContainer = styled.div`
             margin-right: 8px;
             margin-bottom: 8px;
             padding: 10px 32px;
+            border: 1px solid #1da1f2;
             border-radius: 3px;
             font-family: 'Nunito', sans-serif;
             font-size: 1rem;
@@ -39,52 +40,47 @@ const OnboardingContainer = styled.div`
         }
 
         .track:nth-child(1) {
-            background: ${props => props.tracks[0].value ? '#ea4335' : 'none'};
-            border: 1px solid #ea4335;
-            color: ${props => props.tracks[0].value ? '#ffffff' : '#ea4335'};
+            background: ${props => props.tracks[0].value ? '#1da1f2' : 'none'};
+            color: ${props => props.tracks[0].value ? '#ffffff' : '#1da1f2'};
 
             :hover {
-                background-color: #ea4335;
+                background-color: #1da1f2;
                 color: #ffffff;
             }
         }
 
         .track:nth-child(2) {
-            background: ${props => props.tracks[1].value ? '#ff9900' : 'none'};
-            border: 1px solid #ff9900;
-            color: ${props => props.tracks[1].value ? '#23272a' : '#ff9900'};
+            background: ${props => props.tracks[1].value ? '#1da1f2' : 'none'};
+            color: ${props => props.tracks[1].value ? '#ffffff' : '#1da1f2'};
 
             :hover {
-                background-color: #ff9900;
-                color: #23272a;
+                background-color: #1da1f2;
+                color: #ffffff;
             }
         }
 
         .track:nth-child(3) {
-            background: ${props => props.tracks[2].value ? '#fbbc05' : 'none'};
-            border: 1px solid #fbbc05;
-            color: ${props => props.tracks[2].value ? '#23272a' : '#fbbc05'};
+            background: ${props => props.tracks[2].value ? '#1da1f2' : 'none'};
+            color: ${props => props.tracks[2].value ? '#ffffff' : '#1da1f2'};
 
             :hover {
-                background-color: #fbbc05;
-                color: #23272a;
+                background-color: #1da1f2;
+                color: #ffffff;
             }
         }
 
         .track:nth-child(4) {
-            background: ${props => props.tracks[3].value ? '#34a853' : 'none'};
-            border: 1px solid #34a853;
-            color: ${props => props.tracks[3].value ? '#ffffff' : '#34a853'};
+            background: ${props => props.tracks[3].value ? '#1da1f2' : 'none'};
+            color: ${props => props.tracks[3].value ? '#ffffff' : '#1da1f2'};
 
             :hover {
-                background-color: #34a853;
+                background-color: #1da1f2;
                 color: #ffffff;
             }
         }
 
         .track:nth-child(5) {
             background: ${props => props.tracks[4].value ? '#1da1f2' : 'none'};
-            border: 1px solid #1da1f2;
             color: ${props => props.tracks[4].value ? '#ffffff' : '#1da1f2'};
 
             :hover {
@@ -94,20 +90,19 @@ const OnboardingContainer = styled.div`
         }
 
         .track:nth-child(6) {
-            background: ${props => props.tracks[5].value ? '#ffffff' : 'none'};
-            border: 1px solid #ffffff;
-            color: ${props => props.tracks[5].value ? '#23272a' : '#ffffff'};
+            background: ${props => props.tracks[5].value ? '#1da1f2' : 'none'};
+            color: ${props => props.tracks[5].value ? '#ffffff' : '#1da1f2'};
 
             :hover {
-                background-color: #ffffff;
-                color: #23272a;
+                background-color: #1da1f2;
+                color: #ffffff;
             }
         }
     }
 
     .career-coach {
         margin-bottom: 32px;
-        font-size: 1rem;
+        font-size: 0.875rem;
         font-weight: 500;
         color: #ffffff;
         display: inline;
@@ -115,7 +110,7 @@ const OnboardingContainer = styled.div`
 
         i {
             margin-left: 4px;
-            font-size: 0.75rem;
+            font-size: 0.625rem;
             transition: 0.25s;
         }
 
@@ -140,7 +135,7 @@ const OnboardingContainer = styled.div`
         button {
             margin-left: 16px;
             padding: 10px 32px;
-            background: linear-gradient(to right, #0072ff, #00c6ff);
+            background-color: #1da1f2;
             border: none;
             border-radius: 3px;
             font-family: 'Nunito', sans-serif;

@@ -14,9 +14,7 @@ const Onboarding = props => {
     ]);
     const [error, setError] = useState('');
 
-    useEffect(() => {
-        props.fetchUser();
-    }, []);
+    useEffect(() => props.fetchUser(), []);
 
     useEffect(() => {
         setTracks(tracks.map(item => item.track === props.user.track ? { ...item, value: true } : { ...item, value: false }))
@@ -55,6 +53,7 @@ const Onboarding = props => {
                 <button onClick={onSubmit}>Continue<i className='fas fa-chevron-right'></i></button>
             </div>
         </OnboardingContainer>
+        // loader when fetching user
     );
 };
 
