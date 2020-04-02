@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import LandingContainer from './styles/landingStyle';
 import viewee from '../../img/viewee.png';
@@ -7,9 +7,15 @@ import facebook from '../../img/facebook.png';
 import twitter from '../../img/twitter.png';
 import loadingicon from '../../img/loading-icon.png';
 
-const Landing = () => {
+const Landing = props => {
     const [fetching, setFetching] = useState(false);
     
+    useEffect(() => {
+        if (localStorage.getItem('id')) {
+            props.history.push('/');
+        };
+    }, []);
+
     return (
         <LandingContainer>
             {fetching ? (
