@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const DashboardContainer = styled.div`
     .loading {
-        height: 80vh;
+        height: 85vh;
         display: flex;
         flex-direction: column;
         justify-content: center;

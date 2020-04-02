@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const LandingContainer = styled.div`
-    max-width: 1024px;
     height: 100vh;
     width: 90%;
     margin: 0 auto;
@@ -51,7 +50,7 @@ const LandingContainer = styled.div`
             justify-content: center;
 
             h2 {
-                margin-bottom: 24px;
+                margin-bottom: 16px;
                 font-size: 1.75rem;
                 font-weight: 600;
                 color: #ffffff;
@@ -126,7 +125,7 @@ const LandingContainer = styled.div`
     }
 
     @media(min-width: 1024px) {
-        width: auto;
+        width: 972.8px;
         flex-direction: row;
 
         .left-section-container {

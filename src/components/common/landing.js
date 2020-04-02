@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import LandingContainer from './styles/landingStyle';
 import viewee from '../../img/viewee.png';
 import google from '../../img/google.png';
@@ -15,7 +15,7 @@ const Landing = () => {
                         <img src={viewee} alt='viewee logo' />
                         <h1>viewee</h1>
                     </div>
-                    <p className='description'>Prepare for tech interviews with viewee! Browse an array of questions fellow Lambda School students have received during interviews, view input from career coaches and how other students would answer, and post questions you have received and how you responded for critique.</p>
+                    <p className='description'>Prepare for tech interviews with viewee! Browse an array of questions fellow Lambda School students have received during interviews, view input from career coaches and how other students would answer, and post questions you have received and how you responded for feedback.</p>
                 </div>
             </div>
             <div className='right-section-container'>
@@ -39,7 +39,8 @@ const Landing = () => {
                             Continue with Twitter
                         </button>
                     </a>
-                    <p className='terms'>By continuing, you agree to our <Link to='/termsofservice'>Terms of Service</Link> and <Link to='/privacypolicy'>Privacy Policy</Link>.</p>
+                    <p className='terms'>By continuing, you agree to viewee's Terms and Privacy Policy.</p>
+                    {/* <p className='terms'>By continuing, you agree to our <Link to='/termsofservice'>Terms of Service</Link> and <Link to='/privacypolicy'>Privacy Policy</Link>.</p> */}
                     {/* <p className='instead'>Register with a username and password <Link to='/register'>instead</Link>.</p> */}
                 </div>
             </div>
