@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, logOut } from '../../actions';
 import HeaderContainer from './styles/headerStyle';

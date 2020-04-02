@@ -24,7 +24,7 @@ const Dashboard = props => {
                 <>
                     <Header history={props.history} />
                     <Filter history={props.history} />
-                    <Questions />
+                    <Questions history={props.history} />
                 </>
             )}
         </DashboardContainer>

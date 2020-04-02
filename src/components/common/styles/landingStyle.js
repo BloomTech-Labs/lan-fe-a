@@ -89,43 +89,43 @@ const LandingContainer = styled.div`
 
             .social-media-link {
                 text-decoration: none;
-                
-                button {
-                    width: 100%;
-                    padding: 10px;
-                    margin-bottom: 12px;
-                    background-color: #2c2f33;
-                    border: none;
-                    border-radius: 3px;
-                    font-family: 'Nunito', sans-serif;
-                    font-size: 1rem;
-                    color: #ffffff;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    cursor: pointer;
-                    transition: 0.25s;
 
-                    img {
-                        margin-right: 8px;
-                        height: 24px;
-                        width: 24px;
-                    }
-
-                    :hover {
-                        opacity: 0.5;
+                :last-of-type {
+                    button {
+                        margin-bottom: 8px;
                     }
                 }
             }
+                
+            button {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 12px;
+                background-color: #2c2f33;
+                border: none;
+                border-radius: 3px;
+                font-family: 'Nunito', sans-serif;
+                font-size: 1rem;
+                color: #ffffff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                transition: 0.25s;
 
-            .social-media-link:last-of-type {
-                button {
-                    margin-bottom: 8px;
+                img {
+                    margin-right: 8px;
+                    height: 24px;
+                    width: 24px;
+                }
+
+                :hover {
+                    opacity: 0.5;
                 }
             }
 
             .terms {
-                margin-bottom: 16px;
+                // margin-bottom: 16px;
                 font-size: 0.875rem;
                 color: #ffffff;
 
