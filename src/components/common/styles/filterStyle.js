@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const FilterContainer = styled.div`
     width: 90%;
     margin: 0 auto;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     display: flex;
     flex-direction: column-reverse;
 
@@ -115,7 +115,7 @@ const FilterContainer = styled.div`
     }
 
     .post-a-question {
-        padding: 10px;
+        padding: 8px 16px;
         margin-bottom: 12px;
         background: linear-gradient(to right, #0072ff, #00c6ff);
         border: none;

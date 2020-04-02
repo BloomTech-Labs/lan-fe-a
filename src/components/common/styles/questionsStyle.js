@@ -72,6 +72,11 @@ const QuestionsContainer = styled.div`
 
                     i {
                         margin-right: 4px;
+                        transition: 0.1s;
+                    }
+
+                    .fa-thumbs-up:active {
+                        transform: scale(1.25);
                     }
                 }
             }

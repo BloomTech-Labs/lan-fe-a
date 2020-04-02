@@ -48,6 +48,10 @@ const HeaderContainer = styled.div`
             font-family: 'Nunito', sans-serif;
             font-size: 1rem;
             color: #ffffff;
+
+            ::placeholder {
+                color: dimgray;
+            }
         }
 
         button {
@@ -60,7 +64,7 @@ const HeaderContainer = styled.div`
 
             i {
                 font-size: 1rem;
-                color: lightgray;
+                color: dimgray;
                 transition: 0.25s;
             }
 

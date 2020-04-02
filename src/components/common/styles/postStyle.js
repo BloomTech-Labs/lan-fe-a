@@ -8,7 +8,7 @@ const PostContainer = styled.div`
 
     h2 {
         padding-bottom: 8px;
-        margin-bottom: 16px;
+        margin-bottom: 8px;
         border-bottom: 1px solid #2c2f33;
         font-size: 1.25rem;
         font-weight: 700;
@@ -19,7 +19,52 @@ const PostContainer = styled.div`
         display: flex;
         flex-direction: column;
 
+        .category {
+            margin-bottom: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .checkboxes {
+            button {
+                padding: 8px 16px;
+                margin-right: 8px;
+                border: none;
+                border-radius: 3px;
+                font-family: 'Nunito', sans-serif;
+                font-size: 0.875rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: 0.25s;
+                outline: none;
+            }
+
+            button:nth-child(1) {
+                background: ${props => props.categories[0].value ? '#7b16ff' : 'none'};
+                border: 1px solid #7b16ff;
+                color: ${props => props.categories[0].value ? '#ffffff' : '#7b16ff'};
+    
+                :hover {
+                    background-color: #7b16ff;
+                    color: #ffffff;
+                }
+            }
+
+            button:nth-child(2) {
+                background: ${props => props.categories[1].value ? '#ea0b8c' : 'none'};
+                border: 1px solid #ea0b8c;
+                color: ${props => props.categories[1].value ? '#ffffff' : '#ea0b8c'};
+    
+                :hover {
+                    background-color: #ea0b8c;
+                    color: #ffffff;
+                }
+            }
+        }
+
         label {
+            margin: 16px 0 4px;
             font-size: 1rem;
             font-weight: 500;
             color: #ffffff;
@@ -27,7 +72,6 @@ const PostContainer = styled.div`
 
         input {
             padding: 10px;
-            margin-bottom: 12px;
             background-color: #2c2f33;
             border: none;
             border-radius: 3px;
@@ -35,9 +79,15 @@ const PostContainer = styled.div`
             font-size: 1rem;
             font-weight: 500;
             color: #ffffff;
+
+            ::placeholder {
+                color: dimgray;
+            }
         }
 
         textarea {
+            min-height: 44px;
+            min-width: 100%;
             max-width: 100%;
             height: 288px;
             padding: 10px;
@@ -49,6 +99,10 @@ const PostContainer = styled.div`
             font-size: 1rem;
             font-weight: 500;
             color: #ffffff;
+
+            ::placeholder {
+                color: dimgray;
+            }
         }
 
         .buttons {
