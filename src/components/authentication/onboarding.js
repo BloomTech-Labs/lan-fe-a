@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setUser, setTrack } from '../../actions';
+import { fetchUser, setTrack } from '../../actions';
 import OnboardingContainer from './styles/onboardingStyle';
 
 const Onboarding = props => {
@@ -15,7 +15,7 @@ const Onboarding = props => {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        props.setUser();
+        props.fetchUser();
     }, []);
 
     useEffect(() => {
@@ -64,4 +64,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { setUser, setTrack })(Onboarding);
+export default connect(mapStateToProps, { fetchUser, setTrack })(Onboarding);

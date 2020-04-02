@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setUser, logOut } from '../../actions';
+import { fetchUser, logOut } from '../../actions';
 import HeaderContainer from './styles/headerStyle';
 import viewee from '../../img/viewee.png';
 
@@ -8,7 +8,7 @@ const Header = props => {
     const [input, setInput] =  useState('');
     const [hamburgerMenu, setHamburgerMenu] = useState(false);
 
-    useEffect(() => props.setUser(), []);
+    useEffect(() => props.fetchUser(), []);
 
     const onChange = event => {
         setInput(event.target.value);
@@ -32,7 +32,7 @@ const Header = props => {
                 <input type='text' placeholder='Search for a question' value={input} onChange={onChange} />
                 <button type='submit'><i className='fas fa-search'></i></button>
             </form>
-            
+
             <img className='profile-picture' src={props.user.profilePicture} alt='profile picture' onClick={() => setHamburgerMenu(!hamburgerMenu)} />
 
             {hamburgerMenu && <div className='dropdown'>
@@ -49,4 +49,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { setUser, logOut })(Header);
+export default connect(mapStateToProps, { fetchUser, logOut })(Header);
