@@ -2,33 +2,36 @@ import React, { useState } from 'react';
 import FilterContainer from './styles/filterStyle';
 
 const Filter = props => {
-    const [tracks, setTracks] = useState([
-        { track: 'All', value: false},
-        { track: 'WEB', value: false },
-        { track: 'DS', value: false },
-        { track: 'iOS', value: false },
-        { track: 'UX', value: false },
-        { track: 'AND', value: false }
-    ]);
+    const [input, setInput] = useState({
+        sort: 'Recent',
+        filter: 'All'
+    });
+
+    const onChange = event => {
+        setInput({
+            ...input,
+            [event.target.name]: event.target.value
+        });
+    };
 
     return (
-        <FilterContainer tracks={tracks}>
+        <FilterContainer>
             <div className='filters'>
-                <p className='filter'>SORT</p>
-                <select>
-                    <option>Recent</option>
-                    <option>Popular</option>
+                <label htmlFor='sort'>SORT</label>
+                <select name='sort' value={input.sort} onChange={onChange}>
+                    <option value='Recent'>Recent</option>
+                    <option value='Popular'>Popular</option>
                 </select>
 
-                <p className='filter'>FILTER</p>
-                <div className='tracks'>
-                    <button className='track'>All</button>
-                    <button className='track'>WEB</button>
-                    <button className='track'>DS</button>
-                    <button className='track'>iOS</button>
-                    <button className='track'>UX</button>
-                    <button className='track'>AND</button>
-                </div>
+                <label htmlFor='filter'>FILTER</label>
+                <select name='filter' value={input.filter} onChange={onChange}>
+                    <option value='All'>All</option>
+                    <option value='WEB'>WEB</option>
+                    <option value='DS'>DS</option>
+                    <option value='iOS'>iOS</option>
+                    <option value='UX'>UX</option>
+                    <option value='AND'>AND</option>
+                </select>
             </div>
 
             <button className='post-a-question' onClick={() => props.history.push('/post')}><i className='fas fa-plus'></i>Post a question</button>

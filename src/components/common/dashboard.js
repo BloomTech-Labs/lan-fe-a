@@ -11,6 +11,7 @@ const Dashboard = props => {
     useEffect(() => {
         props.fetchUser();
         props.fetchPosts();
+        // ?
     }, []);
     
     return (
