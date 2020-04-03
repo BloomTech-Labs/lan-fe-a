@@ -31,7 +31,7 @@ const CareerCoachContainer = styled.div`
         input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             background-color: #2c2f33;
             border: none;
             border-radius: 3px;
@@ -47,13 +47,13 @@ const CareerCoachContainer = styled.div`
         }
 
         .buttons {
-            margin-top: 32px;
+            margin-top: 28px;
             display: flex;
             justify-content: flex-end;
     
             button {
                 padding: 10px 32px;
-                background: linear-gradient(to right, #0072ff, #00c6ff);
+                background-color: #1da1f2;
                 border: none;
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;
@@ -74,7 +74,7 @@ const CareerCoachContainer = styled.div`
             }
 
             button:last-child {
-                margin-left: 12px;
+                margin-left: 8px;
                 
                 i {
                     margin-right: 0;

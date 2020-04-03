@@ -67,7 +67,7 @@ const Post = props => {
                 <h2>Post a question</h2>
                 <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
                     <p className='category'>Category</p>
-                    <div className='checkboxes'>
+                    <div className='categories'>
                         <button type='button' onClick={() => toggleCategory('Screening')}>Screening</button>
                         <button type='button' onClick={() => toggleCategory('Technical')}>Technical</button>
                     </div>

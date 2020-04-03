@@ -84,7 +84,7 @@ const QuestionContainer = styled.div`
 
                     i {
                         margin-right: 4px;
-                        transition: 2s;
+                        transition: 0.1s;
                     }
 
                     .fa-thumbs-up:active {

@@ -26,11 +26,11 @@ const PostContainer = styled.div`
             color: #ffffff;
         }
 
-        .checkboxes {
+        .categories {
             button {
                 padding: 8px 16px;
                 margin-right: 8px;
-                border: none;
+                border: 1px solid #1da1f2;
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;
                 font-size: 0.875rem;
@@ -41,23 +41,21 @@ const PostContainer = styled.div`
             }
 
             button:nth-child(1) {
-                background: ${props => props.categories[0].value ? '#7b16ff' : 'none'};
-                border: 1px solid #7b16ff;
-                color: ${props => props.categories[0].value ? '#ffffff' : '#7b16ff'};
+                background: ${props => props.categories[0].value ? '#1da1f2' : 'none'};
+                color: ${props => props.categories[0].value ? '#ffffff' : '#1da1f2'};
     
                 :hover {
-                    background-color: #7b16ff;
+                    background-color: #1da1f2;
                     color: #ffffff;
                 }
             }
 
             button:nth-child(2) {
-                background: ${props => props.categories[1].value ? '#ea0b8c' : 'none'};
-                border: 1px solid #ea0b8c;
-                color: ${props => props.categories[1].value ? '#ffffff' : '#ea0b8c'};
+                background: ${props => props.categories[1].value ? '#1da1f2' : 'none'};
+                color: ${props => props.categories[1].value ? '#ffffff' : '#1da1f2'};
     
                 :hover {
-                    background-color: #ea0b8c;
+                    background-color: #1da1f2;
                     color: #ffffff;
                 }
             }
@@ -117,9 +115,9 @@ const PostContainer = styled.div`
             justify-content: flex-end;
 
             button {
-                padding: 10px 32px;
-                margin-left: 12px;
-                background: linear-gradient(to right, #0072ff, #00c6ff);
+                padding: 10px 16px;
+                margin-left: 8px;
+                background-color: #1da1f2;
                 border: none;
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;

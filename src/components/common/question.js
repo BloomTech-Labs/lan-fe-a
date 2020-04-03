@@ -20,7 +20,7 @@ const Question = props => {
                         <p className='question'>{props.post.question}</p>
                         <p className='answer'>{props.post.answer}</p>
                         <div className='activity'>
-                            <p><i className='far fa-thumbs-up'></i>{props.post.likes}</p>
+                            <Link to='/'><p><i className='far fa-thumbs-up'></i>{props.post.likes}</p></Link>
                             <p><i className='far fa-comment'></i>{props.post.comments}</p>
                         </div>
                     </div>
