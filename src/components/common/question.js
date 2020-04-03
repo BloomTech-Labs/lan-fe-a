@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import QuestionContainer from './styles/questionStyle';
+import moment from 'moment';
 
 const Question = props => {
     // timestamp
@@ -12,7 +13,10 @@ const Question = props => {
                         <Link to={`/user/${props.post.user_id}`}><img src={props.post.profile_picture} alt='profile icon' /></Link>
                     </div>
                     <div className='right'>
-                        <Link to={`/user/${props.post.user_id}`}><p className='display-name'>{props.post.display_name}</p></Link>
+                        <div className='display-name-and-timestamp'>
+                            <Link to={`/user/${props.post.user_id}`}><p className='display-name'>{props.post.display_name}</p></Link>
+                            <p className='timestamp'>{moment(props.post.created_at).fromNow()}</p>
+                        </div>
                         <div className='labels'>
                             <button>{props.post.track}</button>
                             <button>{props.post.category.toUpperCase()}</button>

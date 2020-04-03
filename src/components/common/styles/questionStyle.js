@@ -28,15 +28,29 @@ const QuestionContainer = styled.div`
         }
 
         .right {
-            .display-name {
+            .display-name-and-timestamp {
                 margin-bottom: 4px;
-                font-size: 0.875rem;
-                font-weight: 500;
-                color: #ffffff;
-                transition: 0.25s;
+                display: flex;
+                align-items: center;
 
-                :hover {
-                    opacity: 0.5;
+                .display-name {
+                    margin-right: 8px;
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    color: #ffffff;
+                    transition: 0.25s;
+    
+                    :hover {
+                        opacity: 0.5;
+                    }
+                }
+
+                .timestamp {
+                    font-size: 0.625rem;
+                    font-weight: 500;
+                    color: #ffffff;
+                    display: flex;
+                    align-items: center;
                 }
             }
 
