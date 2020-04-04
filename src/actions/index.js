@@ -54,3 +54,9 @@ export const fetchPosts = () => dispatch => {
         .then(response => dispatch({ type: 'SET_POSTS', payload: response.data }))
         .catch(error => console.log(error))
 };
+
+export const fetchPost = postID => dispatch => {
+    axios.post(`http://localhost:5000/api/post/${postID}`)
+        .then(response => dispatch({ type: 'SET_CURRENT_POST', payload: response.data }))
+        .catch(error => console.log(error));
+};

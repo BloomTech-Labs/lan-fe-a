@@ -34,7 +34,7 @@ const CreatePostContainer = styled.div`
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;
                 font-size: 0.875rem;
-                font-weight: 500;
+                font-weight: 600;
                 cursor: pointer;
                 transition: 0.25s;
                 outline: none;

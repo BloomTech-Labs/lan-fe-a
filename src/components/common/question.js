@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import QuestionContainer from './styles/questionStyle';
 import moment from 'moment';
+import QuestionContainer from './styles/questionStyle';
 
 const Question = props => {
-    // timestamp
     return (
         <QuestionContainer post={props.post}>
             <Link to={`/post/${props.post.id}`}>

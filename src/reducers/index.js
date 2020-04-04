@@ -2,7 +2,8 @@ const initialState = {
     user: {},
     fetchingUser: false,
     posts: [],
-    fetchingPosts: false
+    fetchingPosts: false,
+    currentPost: {}
 };
 
 export const reducer = (state = initialState, action) => {
@@ -31,6 +32,12 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 fetchingPosts: true
+            };
+
+        case 'SET_CURRENT_POST':
+            return {
+                ...state,
+                currentPost: action.payload
             };
         
         default:

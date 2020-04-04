@@ -49,8 +49,6 @@ const QuestionContainer = styled.div`
                     font-size: 0.625rem;
                     font-weight: 500;
                     color: #ffffff;
-                    display: flex;
-                    align-items: center;
                 }
             }
 
