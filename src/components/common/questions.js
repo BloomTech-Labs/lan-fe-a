@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions';
-import { Link } from 'react-router-dom';
 import Question from './question';
 import QuestionsContainer from './styles/questionsStyle';
 

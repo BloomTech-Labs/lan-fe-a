@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
+import Loader from './loader';
 import LandingContainer from './styles/landingStyle';
 import viewee from '../../img/viewee.png';
 import google from '../../img/google.png';
 import facebook from '../../img/facebook.png';
 import twitter from '../../img/twitter.png';
-import loadingicon from '../../img/loading-icon.png';
 
 const Landing = props => {
     const [fetching, setFetching] = useState(false);
@@ -17,14 +17,9 @@ const Landing = props => {
     }, []);
 
     return (
-        <LandingContainer>
-            {fetching ? (
-                <div className='loading'>
-                    <img src={loadingicon} alt='loading-icon' />
-                    <p>Wakey wakey server!</p>
-                </div>
-            ) : (
-                <>
+        <>
+            {fetching ? <Loader /> : (
+                <LandingContainer>
                     <div className='left-section-container'>
                         <div className='left-section'>
                             <div className='logo-and-name'>
@@ -60,9 +55,9 @@ const Landing = props => {
                             {/* <p className='instead'>Register with a username and password <Link to='/register'>instead</Link>.</p> */}
                         </div>
                     </div>
-                </>
+                </LandingContainer>
             )}
-        </LandingContainer>
+        </>
     );
 };
 

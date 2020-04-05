@@ -53,7 +53,6 @@ const Onboarding = props => {
                 <button onClick={onSubmit}>Continue<i className='fas fa-chevron-right'></i></button>
             </div>
         </OnboardingContainer>
-        // loader when fetching user
     );
 };
 
