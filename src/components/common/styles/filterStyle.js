@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const FilterContainer = styled.div`
     width: 90%;
     margin: 0 auto;
+    margin-top: 32px;
     margin-bottom: 16px;
     display: flex;
     flex-direction: column-reverse;

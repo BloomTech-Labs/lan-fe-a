@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const QuestionContainer = styled.div`
     a {
         text-decoration: none;
+        color: #ffffff;
     }
 
     .question-card {

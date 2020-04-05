@@ -63,3 +63,9 @@ export const fetchPost = postID => dispatch => {
 export const setSearch = search => dispatch => {
     dispatch({ type: 'SET_SEARCH', payload: search });
 };
+
+export const like = postID => dispatch => {
+    axios.get(`http://localhost:5000/api/like/${postID}`)
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+};

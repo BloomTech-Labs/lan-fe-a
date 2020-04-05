@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { like } from '../../actions';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import QuestionContainer from './styles/questionStyle';
@@ -23,7 +25,7 @@ const Question = props => {
                         <p className='question'>{props.post.question}</p>
                         <p className='answer'>{props.post.answer}</p>
                         <div className='activity'>
-                            <Link to='/'><p><i className='far fa-thumbs-up'></i>{props.post.likes}</p></Link>
+                            <p><Link to='/' onClick={() => props.like(props.post.id)}><i className='far fa-thumbs-up'></i></Link>{props.post.likes}</p>
                             <p><i className='far fa-comment'></i>{props.post.comments}</p>
                         </div>
                     </div>
@@ -33,4 +35,4 @@ const Question = props => {
     );
 };
 
-export default Question;
+export default connect(null, { like })(Question);
