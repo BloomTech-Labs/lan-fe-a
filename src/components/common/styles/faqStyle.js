@@ -1,35 +1,42 @@
 import styled from 'styled-components';
 
 const FAQContainer = styled.div`
-    margin: 32px 0;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 32px;
+    margin-bottom: 64px;
 
-    .container {
-        width: 90%;
-        margin: 0 auto;
-        color: white;
+    h2 {
+        margin-bottom: 32px;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #ffffff;
+    }
 
-        h2 {
-            margin-bottom: 16px;
-            font-size: 1.75rem;
-            font-weight: 700;
-            text-align: center;
+    .question {
+        margin-bottom: 4px;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #ffffff;
+    }
+    
+    .answer {
+        margin-bottom: 32px;
+        font-size: 1rem;
+        font-weight: 300;
+        color: #ffffff;
+
+        a {
+            color: #ffffff;
         }
+    }
 
-        .question {
-            margin-bottom: 4px;
-            font-size: 1rem;
-            font-weight: 600;
-        }
+    @media (min-width: 768px) {
+        width: 95%;
+    }
 
-        .answer {
-            margin-bottom: 16px;
-            font-size: 1rem;
-            font-weight: 400;
-
-            a {
-                color: white;
-            }
-        }
+    @media (min-width: 1024px) {
+        width: 972.8px;
     }
 `;
 

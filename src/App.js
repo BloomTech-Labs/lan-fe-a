@@ -10,6 +10,7 @@ import CreatePost from './components/common/createPost';
 import Post from './components/common/post';
 import User from './components/common/user';
 import Settings from './components/common/settings';
+import FAQ from './components/common/faq';
 import Error from './components/authentication/error';
 import PageNotFound from './components/common/pageNotFound';
 
@@ -25,6 +26,7 @@ const App = () => {
 			<PrivateRoute path='/post/:id' component={Post} />
 			<PrivateRoute path='/user/:id' component={User} />
 			<PrivateRoute path='/settings' component={Settings} />
+			<PrivateRoute path='/faq' component={FAQ} />
 			<PrivateRoute path='/error' component={Error} />
 			<Route component={PageNotFound} />
 		</Switch>
