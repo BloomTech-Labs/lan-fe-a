@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, logOut } from '../../actions';
+import { fetchUser, logOut, setSearch, fetchPosts } from '../../actions';
 import HeaderContainer from './styles/headerStyle';
 import viewee from '../../img/viewee.png';
 
 const Header = props => {
-    const [input, setInput] =  useState('');
     const [hamburgerMenu, setHamburgerMenu] = useState(false);
 
+    useEffect(() => props.fetchUser(), []);
+
     const onChange = event => {
-        setInput(event.target.value);
+        props.setSearch(event.target.value);
     };
 
     const onSubmit = event => {
         event.preventDefault();
+        props.fetchPosts(props.search);
     };
 
     return (
@@ -27,7 +29,7 @@ const Header = props => {
             </div>
 
             <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
-                <input type='text' placeholder='Search for a question' value={input} onChange={onChange} />
+                <input type='text' placeholder='Search for a question' value={props.search} onChange={onChange} />
                 <button type='submit'><i className='fas fa-search'></i></button>
             </form>
 
@@ -45,8 +47,9 @@ const Header = props => {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.user,
+        search: state.search
     };
 };
 
-export default connect(mapStateToProps, { fetchUser, logOut })(Header);
+export default connect(mapStateToProps, { fetchUser, logOut, setSearch, fetchPosts })(Header);

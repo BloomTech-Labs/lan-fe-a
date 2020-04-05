@@ -14,6 +14,12 @@ export const success = history => dispatch => {
         .catch(error => console.log(error));
 };
 
+export const fetchUser = () => dispatch => {
+    axios.get('http://localhost:5000/api/auth/user')
+        .then(response => dispatch({ type: 'SET_USER', payload: response.data.user }))
+        .catch(error => console.log(error));
+};
+
 export const logOut = history => dispatch => {
     axios.get('http://localhost:5000/api/auth/logout')
         .then(response => {
@@ -27,15 +33,8 @@ export const setTrack = (track, token) => dispatch => {
     return axios.put('http://localhost:5000/api/auth/user/track', { track: track , token: token });
 };
 
-export const fetchUser = () => dispatch => {
-    dispatch({ type: 'FETCHING_USER' });
-    axios.get('http://localhost:5000/api/auth/user')
-        .then(response => dispatch({ type: 'SET_USER', payload: response.data.user }))
-        .catch(error => console.log(error));
-};
-
 export const postQuestion = (question, answer, track, category, history) => dispatch => {
-    axios.post('http://localhost:5000/api/post', {
+    axios.post('http://localhost:5000/api/post/create', {
         question: question,
         answer: answer,
         track: track,
@@ -48,15 +47,19 @@ export const postQuestion = (question, answer, track, category, history) => disp
         .catch(error => console.log(error));
 };
 
-export const fetchPosts = () => dispatch => {
-    dispatch({ type: 'FETCHING_POSTS' });
-    axios.get('http://localhost:5000/api/post')
+// search query, sort, filter, offset SEPERATELY
+export const fetchPosts = search => dispatch => {
+    axios.post('http://localhost:5000/api/post', { search })
         .then(response => dispatch({ type: 'SET_POSTS', payload: response.data }))
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
 };
 
 export const fetchPost = postID => dispatch => {
-    axios.post(`http://localhost:5000/api/post/${postID}`)
+    axios.get(`http://localhost:5000/api/post/${postID}`)
         .then(response => dispatch({ type: 'SET_CURRENT_POST', payload: response.data }))
         .catch(error => console.log(error));
+};
+
+export const setSearch = search => dispatch => {
+    dispatch({ type: 'SET_SEARCH', payload: search });
 };
