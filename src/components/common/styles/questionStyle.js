@@ -59,7 +59,7 @@ const QuestionContainer = styled.div`
                 button {
                     padding: 1px 2px;
                     margin-right: 4px;
-                    background-color: #1da1f2;
+                    background: linear-gradient(to right, #0083b0, #00b4db);
                     border: none;
                     border-radius: 3px;
                     font-family: 'Nunito', sans-serif;

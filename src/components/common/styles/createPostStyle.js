@@ -115,7 +115,7 @@ const CreatePostContainer = styled.div`
             justify-content: flex-end;
 
             button {
-                padding: 10px 16px;
+                padding: 10px 32px;
                 margin-left: 8px;
                 background-color: #1da1f2;
                 border: none;

@@ -30,10 +30,10 @@ const FilterContainer = styled.div`
         }
     }
 
-    .post-a-question {
+    button {
         padding: 8px 16px;
         margin-bottom: 16px;
-        background-color: #1da1f2;
+        background: linear-gradient(to right, #0083b0, #00b4db);
         border: none;
         border-radius: 3px;
         font-family: 'Nunito', sans-serif;
