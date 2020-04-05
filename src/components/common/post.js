@@ -8,10 +8,7 @@ import PostContainer from './styles/postStyle';
 const Post = props => {
     const postID = props.match.params.id;
     
-    useEffect(() => {
-        props.fetchUser();
-        props.fetchPost(postID);
-    }, []);
+    useEffect(() => props.fetchPost(postID), []);
 
     return (
         <>

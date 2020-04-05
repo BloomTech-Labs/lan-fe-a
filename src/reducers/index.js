@@ -1,9 +1,11 @@
 const initialState = {
     user: {},
-    fetchingUser: false,
+    currentUser: {},
     posts: [],
-    fetchingPosts: false,
-    currentPost: {}
+    currentPost: {},
+    search: '',
+    sort: '',
+    filter: ''
 };
 
 export const reducer = (state = initialState, action) => {
@@ -11,33 +13,25 @@ export const reducer = (state = initialState, action) => {
         case 'SET_USER':
             return {
                 ...state,
-                user: action.payload,
-                fetchingUser: false
-            };
-
-        case 'FETCHING_USER':
-            return {
-                ...state,
-                fetchingUser: true
+                user: action.payload
             };
 
         case 'SET_POSTS':
             return {
                 ...state,
-                posts: action.payload,
-                fetchingPosts: false
-            };
-
-        case 'FETCHING_POSTS':
-            return {
-                ...state,
-                fetchingPosts: true
+                posts: action.payload
             };
 
         case 'SET_CURRENT_POST':
             return {
                 ...state,
                 currentPost: action.payload
+            };
+
+        case 'SET_SEARCH':
+            return {
+                ...state,
+                search: action.payload
             };
         
         default:

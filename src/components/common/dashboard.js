@@ -4,7 +4,6 @@ import Filter from './filter';
 import Questions from './questions';
  
 const Dashboard = props => {
-    
     return (
         <>
             <Header history={props.history} />
@@ -14,4 +13,4 @@ const Dashboard = props => {
     );
 };
 
-export default (Dashboard);
+export default Dashboard;

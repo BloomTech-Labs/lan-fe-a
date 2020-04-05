@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions';
 import Question from './question';
 import QuestionsContainer from './styles/questionsStyle';
 
 const Questions = props => {
+    useEffect(() => props.fetchPosts(props.search), []);
+
     return (
         <QuestionsContainer>
             {props.posts.length > 0 ? props.posts.map((item, index) => <Question key={index} post={item} />) : (
@@ -18,7 +20,8 @@ const Questions = props => {
 
 const mapStateToProps = state => {
     return {
-        posts: state.posts
+        posts: state.posts,
+        search: state.search
     };
 };
 
