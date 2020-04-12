@@ -60,11 +60,11 @@ const QuestionContainer = styled.div`
                 button {
                     padding: 1px 2px;
                     margin-right: 4px;
-                    background: linear-gradient(to right, #0083b0, #00b4db);
+                    background: linear-gradient(to right, #0084ff, #0099ff);
                     border: none;
                     border-radius: 3px;
                     font-family: 'Nunito', sans-serif;
-                    font-size: 0.75rem;
+                    font-size: 0.625rem;
                     font-weight: 700;
                     color: #ffffff;
                     cursor: pointer;
@@ -105,7 +105,7 @@ const QuestionContainer = styled.div`
                     }
 
                     .fas {
-                        color: #00b4db;
+                        color: #0099ff;
                     }
                 }
             }
