@@ -5,7 +5,8 @@ const initialState = {
     currentPost: {},
     search: '',
     sort: '',
-    filter: ''
+    filter: '',
+    usersLikedPosts: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -32,6 +33,12 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 search: action.payload
+            };
+
+        case 'SET_USERS_LIKED_POSTS':
+            return {
+                ...state,
+                usersLikedPosts: action.payload
             };
         
         default:

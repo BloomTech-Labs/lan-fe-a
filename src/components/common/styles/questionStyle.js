@@ -103,6 +103,10 @@ const QuestionContainer = styled.div`
                     .fa-thumbs-up:active {
                         transform: scale(1.25);
                     }
+
+                    .fas {
+                        color: #00b4db;
+                    }
                 }
             }
         }

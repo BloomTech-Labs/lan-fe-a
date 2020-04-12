@@ -65,7 +65,19 @@ export const setSearch = search => dispatch => {
 };
 
 export const like = postID => dispatch => {
-    axios.get(`http://localhost:5000/api/like/${postID}`)
+    axios.get(`http://localhost:5000/api/post/like/${postID}`)
         .then(response => console.log(response))
+        .catch(error => console.log(error));
+};
+
+export const unlike = postID => dispatch => {
+    axios.delete(`http://localhost:5000/api/post/like/${postID}`)
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+};
+
+export const fetchUsersLikedPosts = () => dispatch => {
+    axios.get('http://localhost:5000/api/post/like')
+        .then(response => dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data }))
         .catch(error => console.log(error));
 };
