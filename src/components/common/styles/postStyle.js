@@ -144,7 +144,7 @@ const PostContainer = styled.div`
             justify-content: flex-end;
 
             button {
-                padding: 10px 16px;
+                padding: 10px 24px;
                 background: linear-gradient(to right, #0084ff, #0099ff);
                 border: none;
                 border-radius: 3px;

@@ -30,7 +30,7 @@ const CreatePostContainer = styled.div`
             button {
                 padding: 8px 16px;
                 margin-right: 8px;
-                border: 1px solid #1da1f2;
+                border: 1px solid #0099ff;
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;
                 font-size: 0.875rem;
@@ -41,21 +41,21 @@ const CreatePostContainer = styled.div`
             }
 
             button:nth-child(1) {
-                background: ${props => props.categories[0].value ? '#1da1f2' : 'none'};
-                color: ${props => props.categories[0].value ? '#ffffff' : '#1da1f2'};
+                background: ${props => props.categories[0].value ? '#0099ff' : 'none'};
+                color: ${props => props.categories[0].value ? '#ffffff' : '#0099ff'};
     
                 :hover {
-                    background-color: #1da1f2;
+                    background-color: #0099ff;
                     color: #ffffff;
                 }
             }
 
             button:nth-child(2) {
-                background: ${props => props.categories[1].value ? '#1da1f2' : 'none'};
-                color: ${props => props.categories[1].value ? '#ffffff' : '#1da1f2'};
+                background: ${props => props.categories[1].value ? '#0099ff' : 'none'};
+                color: ${props => props.categories[1].value ? '#ffffff' : '#0099ff'};
     
                 :hover {
-                    background-color: #1da1f2;
+                    background-color: #0099ff;
                     color: #ffffff;
                 }
             }
@@ -64,7 +64,7 @@ const CreatePostContainer = styled.div`
         .error {
             margin-top: 4px;
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 600;
             color: #ea4335;
         }
 
@@ -115,21 +115,21 @@ const CreatePostContainer = styled.div`
             justify-content: flex-end;
 
             button {
-                padding: 10px 32px;
+                padding: 10px 24px;
                 margin-left: 8px;
-                background-color: #1da1f2;
+                background: linear-gradient(to right, #0084ff, #0099ff);
                 border: none;
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;
-                font-size: 1rem;
-                font-weight: 500;
+                font-size: 0.875rem;
+                font-weight: 600;
                 color: #ffffff;
                 cursor: pointer;
                 transition: 0.25s;
     
                 i {
                     margin-right: 4px;
-                    font-size: 0.875rem;
+                    font-size: 0.75rem;
                 }
     
                 :hover {

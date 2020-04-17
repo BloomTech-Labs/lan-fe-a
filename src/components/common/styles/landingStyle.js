@@ -68,13 +68,14 @@ const LandingContainer = styled.div`
                 
             button {
                 width: 100%;
-                padding: 10px;
+                padding: 10px 0;
                 margin-bottom: 12px;
                 background-color: #2c2f33;
                 border: none;
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;
                 font-size: 1rem;
+                font-weight: 500;
                 color: #ffffff;
                 display: flex;
                 justify-content: center;

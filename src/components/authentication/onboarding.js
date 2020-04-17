@@ -47,7 +47,7 @@ const Onboarding = props => {
                 <button className='track' onClick={() => onClick('AND')}>Android</button>
                 <button className='track' onClick={() => onClick('None')}>None</button>
             </div>
-            <p className='career-coach' onClick={() => props.history.push('/onboarding/careercoach')}>I'm a career coach<i className='fas fa-chevron-right'></i></p>
+            <button className='career-coach' onClick={() => props.history.push('/onboarding/careercoach')}>I'm a career coach<i className='fas fa-chevron-right'></i></button>
             <div className='continue'>
                 <p className='error'>{error}</p>
                 <button onClick={onSubmit}>Continue<i className='fas fa-chevron-right'></i></button>

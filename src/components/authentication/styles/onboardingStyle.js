@@ -7,6 +7,7 @@ const OnboardingContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
 
     h1 {
         margin-bottom: 4px;
@@ -28,11 +29,11 @@ const OnboardingContainer = styled.div`
         .track {
             margin-right: 8px;
             margin-bottom: 8px;
-            padding: 10px 32px;
-            border: 1px solid #1da1f2;
+            padding: 10px 24px;
+            border: solid 1px #0099ff;
             border-radius: 3px;
             font-family: 'Nunito', sans-serif;
-            font-size: 1rem;
+            font-size: 0.875rem;
             font-weight: 600;
             cursor: pointer;
             transition: 0.25s;
@@ -40,61 +41,61 @@ const OnboardingContainer = styled.div`
         }
 
         .track:nth-child(1) {
-            background: ${props => props.tracks[0].value ? '#1da1f2' : 'none'};
-            color: ${props => props.tracks[0].value ? '#ffffff' : '#1da1f2'};
+            background: ${props => props.tracks[0].value ? '#0099ff' : 'none'};
+            color: ${props => props.tracks[0].value ? '#ffffff' : '#0099ff'};
 
             :hover {
-                background-color: #1da1f2;
+                background-color: #0099ff;
                 color: #ffffff;
             }
         }
 
         .track:nth-child(2) {
-            background: ${props => props.tracks[1].value ? '#1da1f2' : 'none'};
-            color: ${props => props.tracks[1].value ? '#ffffff' : '#1da1f2'};
+            background: ${props => props.tracks[1].value ? '#0099ff' : 'none'};
+            color: ${props => props.tracks[1].value ? '#ffffff' : '#0099ff'};
 
             :hover {
-                background-color: #1da1f2;
+                background-color: #0099ff;
                 color: #ffffff;
             }
         }
 
         .track:nth-child(3) {
-            background: ${props => props.tracks[2].value ? '#1da1f2' : 'none'};
-            color: ${props => props.tracks[2].value ? '#ffffff' : '#1da1f2'};
+            background: ${props => props.tracks[2].value ? '#0099ff' : 'none'};
+            color: ${props => props.tracks[2].value ? '#ffffff' : '#0099ff'};
 
             :hover {
-                background-color: #1da1f2;
+                background-color: #0099ff;
                 color: #ffffff;
             }
         }
 
         .track:nth-child(4) {
-            background: ${props => props.tracks[3].value ? '#1da1f2' : 'none'};
-            color: ${props => props.tracks[3].value ? '#ffffff' : '#1da1f2'};
+            background: ${props => props.tracks[3].value ? '#0099ff' : 'none'};
+            color: ${props => props.tracks[3].value ? '#ffffff' : '#0099ff'};
 
             :hover {
-                background-color: #1da1f2;
+                background-color: #0099ff;
                 color: #ffffff;
             }
         }
 
         .track:nth-child(5) {
-            background: ${props => props.tracks[4].value ? '#1da1f2' : 'none'};
-            color: ${props => props.tracks[4].value ? '#ffffff' : '#1da1f2'};
+            background: ${props => props.tracks[4].value ? '#0099ff' : 'none'};
+            color: ${props => props.tracks[4].value ? '#ffffff' : '#0099ff'};
 
             :hover {
-                background-color: #1da1f2;
+                background-color: #0099ff;
                 color: #ffffff;
             }
         }
 
         .track:nth-child(6) {
-            background: ${props => props.tracks[5].value ? '#1da1f2' : 'none'};
-            color: ${props => props.tracks[5].value ? '#ffffff' : '#1da1f2'};
+            background: ${props => props.tracks[5].value ? '#0099ff' : 'none'};
+            color: ${props => props.tracks[5].value ? '#ffffff' : '#0099ff'};
 
             :hover {
-                background-color: #1da1f2;
+                background-color: #0099ff;
                 color: #ffffff;
             }
         }
@@ -102,10 +103,12 @@ const OnboardingContainer = styled.div`
 
     .career-coach {
         margin-bottom: 32px;
+        background: none;
+        border: none;
+        font-family: 'Nunito', sans-serif;
         font-size: 0.875rem;
-        font-weight: 500;
+        font-weight: 600;
         color: #ffffff;
-        display: inline;
         cursor: pointer;
 
         i {
@@ -122,6 +125,7 @@ const OnboardingContainer = styled.div`
     }
 
     .continue {
+        width: 100%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -134,13 +138,13 @@ const OnboardingContainer = styled.div`
 
         button {
             margin-left: 16px;
-            padding: 10px 32px;
-            background-color: #1da1f2;
+            padding: 10px 24px;
+            background: linear-gradient(to right, #0084ff, #0099ff);
             border: none;
             border-radius: 3px;
             font-family: 'Nunito', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 0.875rem;
+            font-weight: 600;
             color: #ffffff;
             cursor: pointer;
             transition: 0.25s;
