@@ -125,7 +125,6 @@ const PostContainer = styled.div`
             max-width: 100%;
             height: 144px;
             padding: 10px;
-            margin-bottom: 16px;
             background-color: #23272a;
             border: none;
             border-radius: 3px;
@@ -139,12 +138,20 @@ const PostContainer = styled.div`
             }
         }
 
+        .error {
+            margin-top: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #ea4335;
+        }
+
         .button {
             display: flex;
             justify-content: flex-end;
 
             button {
                 padding: 10px 24px;
+                margin-top: 16px;
                 background: linear-gradient(to right, #0084ff, #0099ff);
                 border: none;
                 border-radius: 3px;

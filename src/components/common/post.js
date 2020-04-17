@@ -9,6 +9,7 @@ const Post = props => {
     const postID = props.match.params.id;
 
     const [input, setInput] = useState('');
+    const [error, setError] = useState('');
     
     useEffect(() => props.fetchPost(postID), []);
 
@@ -18,8 +19,12 @@ const Post = props => {
 
     const onSubmit = event => {
         event.preventDefault();
-        props.postComment(props.user, Number(postID), input);
-        setInput('');
+        if (input === '') {
+            setError('Please enter a comment');
+        } else {
+            props.postComment(props.user, Number(postID), input);
+            setInput('');
+        };
     };
 
     return (
@@ -50,7 +55,8 @@ const Post = props => {
 
                 <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
                     <label htmlFor='comment'>Comment</label>
-                    <textarea name='comment' type='text' placeholder='How would you approach this question? Any advice or feedback?' value={input} onChange={onChange} required />
+                    <textarea name='comment' type='text' placeholder='How would you approach this question? Any advice or feedback?' value={input} onChange={onChange} />
+                    {error && <p className='error'>{error}</p>}
                     <div className='button'>
                         <button type='submit'>Submit</button>
                     </div>
