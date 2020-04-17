@@ -65,11 +65,11 @@ const PostContainer = styled.div`
                 button {
                     padding: 1px 2px;
                     margin-right: 4px;
-                    background-color: #1da1f2;
+                    background: linear-gradient(to right, #0084ff, #0099ff);
                     border: none;
                     border-radius: 3px;
                     font-family: 'Nunito', sans-serif;
-                    font-size: 0.75rem;
+                    font-size: 0.625rem;
                     font-weight: 700;
                     color: #ffffff;
                 }
@@ -144,13 +144,13 @@ const PostContainer = styled.div`
             justify-content: flex-end;
 
             button {
-                padding: 8px 16px;
-                background-color: #1da1f2;
+                padding: 10px 16px;
+                background: linear-gradient(to right, #0084ff, #0099ff);
                 border: none;
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;
                 font-size: 0.875rem;
-                font-weight: 500;
+                font-weight: 600;
                 color: #ffffff;
                 cursor: pointer;
                 transition: 0.25s;
