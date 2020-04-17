@@ -7,10 +7,11 @@ const UserContainer = styled.div`
     margin-bottom: 64px;
 
     .user {
-        width: 256.78px;
-        margin: 0 auto;
+        // width: 256.78px;
+        // margin: 0 auto;
         margin-bottom: 32px;
         display: flex;
+        justify-content: center;
 
         img {
             margin-right: 16px;
@@ -20,6 +21,7 @@ const UserContainer = styled.div`
         }
 
         .information {
+            // width: 100%;
             display: flex;
             flex-direction: column;
 
@@ -38,8 +40,7 @@ const UserContainer = styled.div`
     
                     .track {
                         padding: 1px 2px;
-                        margin-right: 4px;
-                        background-color: #1da1f2;
+                        background: linear-gradient(to right, #0084ff, #0099ff);
                         border: none;
                         border-radius: 3px;
                         font-family: 'Nunito', sans-serif;
@@ -53,6 +54,7 @@ const UserContainer = styled.div`
                 .statistics {
                     margin-bottom: 4px;
                     display: flex;
+                    // justify-content: space-between;
 
                     p {
                         margin-right: 16px;
@@ -73,12 +75,13 @@ const UserContainer = styled.div`
             }
 
             button {
-                padding: 8px 16px;
-                background-color: #1da1f2;
+                padding: 10px 24px;
+                background: linear-gradient(to right, #0084ff, #0099ff);
                 border: none;
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;
                 font-size: 0.875rem;
+                font-weight: 600;
                 color: #ffffff;
                 cursor: pointer;
                 transition: 0.25s;
@@ -92,7 +95,7 @@ const UserContainer = styled.div`
 
     .activity {
         .tabs {
-            max-width: 393.3px;
+            max-width: 372.6px;
             margin: 0 auto;
             display: flex;
             justify-content: space-evenly;
@@ -105,9 +108,10 @@ const UserContainer = styled.div`
                 color: #ffffff;
                 text-align: center;
                 cursor: pointer;
+                transition: 0.25s;
 
                 :hover {
-                    border-bottom: 3px solid dimgray;
+                    border-bottom: 2px solid dimgray;
                 }
             }
         }

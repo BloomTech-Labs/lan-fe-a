@@ -5,6 +5,8 @@ import Header from './header';
 import UserContainer from './styles/userStyle';
 
 const User = props => {
+    const userID = Number(props.match.params.id);
+
     useEffect(() => props.fetchUser(), []);
 
     return (
@@ -25,7 +27,7 @@ const User = props => {
                                 <p><b>20</b>comments</p>
                             </div>
                         </div>
-                        <button>Edit profile</button>
+                        {props.user.id === userID && <button>Edit profile</button>}
                     </div>
                 </div>
 

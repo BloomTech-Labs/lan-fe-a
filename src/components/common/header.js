@@ -38,6 +38,7 @@ const Header = props => {
             {hamburgerMenu && <div className='dropdown'>
                 <p onClick={() => props.history.push('/faq')}><i className='fas fa-question'></i>FAQ</p>
                 <a href='https://github.com/viewee/frontend/issues' target='_blank' rel='noreferrer noopener'><p><i className='fas fa-bug'></i>Report a Bug</p></a>
+                <p onClick={() => props.history.push(`/user/${props.user.id}`)}><i className='fas fa-user'></i>My Profile</p>
                 <p onClick={() => props.history.push('/settings')}><i className='fas fa-cog'></i>Settings</p>
                 <p onClick={() => props.logOut(props.history)}><i className='fas fa-sign-out-alt'></i>Log Out</p>
             </div>}
