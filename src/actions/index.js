@@ -81,3 +81,16 @@ export const fetchUsersLikedPosts = () => dispatch => {
         .then(response => dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data }))
         .catch(error => console.log(error));
 };
+
+export const postComment = (user, postID, comment) => dispatch => {
+    axios.post('http://localhost:5000/api/comment', { postID, comment })
+        .then(response => {
+            dispatch({ type: 'SET_POSTS_COMMENTS', payload: {
+                ...response.data.comment,
+                display_name: user.displayName,
+                profile_picture: user.profilePicture,
+                track: user.track
+            } });
+        })
+        .catch(error => console.log(error))
+};

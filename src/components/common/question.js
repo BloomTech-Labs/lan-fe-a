@@ -10,7 +10,6 @@ const Question = props => {
 	const [numberOfLikes, setNumberOfLikes] = useState(props.post.likes)
 
 	useEffect(() => {
-		console.log('i was hit');
 		if (props.usersLikedPosts.find(item => item.post_id === props.post.id)) setLiked(true);
 	}, [props.usersLikedPosts]);
 

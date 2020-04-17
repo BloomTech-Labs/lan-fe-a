@@ -40,6 +40,18 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 usersLikedPosts: action.payload
             };
+
+        case 'SET_POSTS_COMMENTS':
+            return {
+                ...state,
+                currentPost: {
+                    ...state.currentPost,
+                    comments: [
+                        action.payload,
+                        ...state.currentPost.comments
+                    ]
+                }
+            };
         
         default:
             return state;
