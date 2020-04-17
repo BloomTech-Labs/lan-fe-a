@@ -263,6 +263,26 @@ const PostContainer = styled.div`
                 }
             }
         }
+
+        .no-comments-yet {
+            height: 25vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+            p {
+                font-size: 1rem;
+                font-weight: 500;
+                color: #ffffff;
+                display: flex;
+                align-items: center;
+    
+                i {
+                    margin-right: 8px;
+                    font-size: 0.875rem;
+                }
+            }
+        }
     }
 
     @media (min-width: 768px) {
