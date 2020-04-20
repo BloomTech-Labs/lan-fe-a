@@ -132,7 +132,7 @@ const OnboardingContainer = styled.div`
 
         .error {
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 600;
             color: #ea4335;
         }
 
