@@ -7,21 +7,27 @@ import QuestionContainer from './styles/questionStyle';
 
 const Question = props => {
 	const [liked, setLiked] = useState(false);
-	const [numberOfLikes, setNumberOfLikes] = useState(props.post.likes)
+	const [numberOfLikes, setNumberOfLikes] = useState(0)
 
 	useEffect(() => {
-		if (props.usersLikedPosts.find(item => item.post_id === props.post.id)) setLiked(true);
+		if (props.usersLikedPosts.find(item => item.post_id === props.post.id)) {
+			setLiked(true);
+		} else {
+			setLiked(false);
+		};
 	}, [props.usersLikedPosts]);
 
+	useEffect(() => setNumberOfLikes(props.post.likes), []);
+
     const likeOnClick = postID => {
-        props.like(postID);
 		setLiked(true);
+        props.like(postID);
 		setNumberOfLikes(numberOfLikes + 1);
     };
 
     const unlikeOnClick = postID => {
-        props.unlike(postID);
 		setLiked(false);
+        props.unlike(postID);
 		setNumberOfLikes(numberOfLikes - 1);
     };
 

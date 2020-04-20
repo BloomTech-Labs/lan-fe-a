@@ -1,17 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, fetchPost, postComment } from '../../actions';
+import { fetchUser, fetchPost, postComment, fetchUsersLikedPosts, like, unlike } from '../../actions';
 import moment from 'moment';
 import Header from './header';
 import PostContainer from './styles/postStyle';
 
 const Post = props => {
-    const postID = props.match.params.id;
+    const postID = Number(props.match.params.id);
 
+    const [liked, setLiked] = useState(false);
+    const [likes, setLikes] = useState(0);
     const [input, setInput] = useState('');
     const [error, setError] = useState('');
     
-    useEffect(() => props.fetchPost(postID), []);
+    useEffect(() => {
+        props.fetchPost(postID);
+        props.fetchUsersLikedPosts();
+    }, []);
+
+    useEffect(() => {
+        if (props.usersLikedPosts.find(item => item.post_id === postID)) {
+            setLiked(true);
+        } else {
+            setLiked(false);
+        };
+    }, [props.usersLikedPosts]);
+
+    useEffect(() => setLikes(props.currentPost.likes), [props.currentPost]);
 
     const onChange = event => {
         setInput(event.target.value);
@@ -22,9 +37,21 @@ const Post = props => {
         if (input === '') {
             setError('Please enter a comment');
         } else {
-            props.postComment(props.user, Number(postID), input);
+            props.postComment(props.user, postID, input);
             setInput('');
         };
+    };
+
+    const like = postID => {
+        setLiked(true);
+        setLikes(likes + 1)
+        props.like(postID);
+    };
+    
+    const unlike = postID => {
+        setLiked(false);
+        setLikes(likes - 1)
+        props.unlike(postID);
     };
 
     return (
@@ -47,7 +74,14 @@ const Post = props => {
                         {props.currentPost.question && <p className='question'>{props.currentPost.question}</p>}
                         {props.currentPost.answer && <p className='answer'>{props.currentPost.answer}</p>}
                         <div className='activity'>
-                            {props.currentPost.likes !== undefined && <p><i className='far fa-thumbs-up'></i>{props.currentPost.likes}</p>}
+                            {props.currentPost.likes !== undefined && (
+                                <p>
+                                    {liked
+                                        ? <i className='fas fa-thumbs-up' onClick={() => unlike(postID)}></i>
+                                        : <i className='far fa-thumbs-up' onClick={() => like(postID)}></i>}
+                                    {likes}
+                                </p>
+                            )}
                             {props.currentPost.comments && <p><i className='far fa-comment'></i>{props.currentPost.comments.length}</p>}
                         </div>
                     </div>
@@ -101,8 +135,9 @@ const Post = props => {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        currentPost: state.currentPost
+        currentPost: state.currentPost,
+        usersLikedPosts: state.usersLikedPosts
     };
 };
 
-export default connect(mapStateToProps, { fetchUser, fetchPost, postComment })(Post);
+export default connect(mapStateToProps, { fetchUser, fetchPost, postComment, fetchUsersLikedPosts, like, unlike })(Post);

@@ -102,6 +102,19 @@ const PostContainer = styled.div`
                     i {
                         margin-right: 4px;
                     }
+
+                    .fa-thumbs-up {
+                        cursor: pointer;
+                        transition: 0.1s;
+                    }
+
+                    .fa-thumbs-up:active {
+                        transform: scale(1.25);
+                    }
+
+                    .fas {
+                        color: #0099ff;
+                    }
                 }
             }
         }
