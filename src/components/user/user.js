@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../../actions';
-import Header from './header';
+import Header from '../common/header';
 import UserContainer from './styles/userStyle';
 
 const User = props => {

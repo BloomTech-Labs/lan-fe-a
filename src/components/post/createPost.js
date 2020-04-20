@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { postQuestion } from '../../actions';
-import Header from './header';
+import Header from '../common/header';
 import CreatePostContainer from './styles/createPostStyle';
 
 const CreatePost = props => {

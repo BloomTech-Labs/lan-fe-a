@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, fetchPost, postComment, fetchUsersLikedPosts, like, unlike } from '../../actions';
 import moment from 'moment';
-import Header from './header';
+import Header from '../common/header';
 import PostContainer from './styles/postStyle';
 
 const Post = props => {

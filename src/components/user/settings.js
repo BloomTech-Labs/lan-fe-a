@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from './header';
+import Header from '../common/header';
 import SettingsContainer from './styles/settingsStyle';
 
 const Settings = props => {
