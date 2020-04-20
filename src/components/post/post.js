@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUser, fetchPost, postComment, fetchUsersLikedPosts, like, unlike } from '../../actions';
 import moment from 'moment';
 import Header from '../common/header';
+import Comment from '../post/comment';
 import PostContainer from './styles/postStyle';
 
 const Post = props => {
@@ -106,21 +107,7 @@ const Post = props => {
                     </div>
 
                     {props.currentPost.comments && props.currentPost.comments.length > 0 ? (
-                        props.currentPost.comments.map((item, index) => (
-                            <div className='comment' key={index}>
-                                <img src={item.profile_picture} alt='profile icon' onClick={() => props.history.push(`/user/${item.user_id}`)} />
-                                <div className='right-section'>
-                                    <div className='user'>
-                                        <p className='display-name' onClick={() => props.history.push(`/user/${item.user_id}`)}>{item.display_name}</p>
-                                        <p className='timestamp'>{moment(item.created_at).fromNow()}</p>
-                                    </div>
-    
-                                    <p className='answer'>{item.comment}</p>
-    
-                                    <p className='likes'><i className='far fa-thumbs-up'></i>{item.likes}</p>
-                                </div>
-                            </div>
-                        ))
+                        props.currentPost.comments.map((item, index) => <Comment key={index} comment={item} />)
                     ) : (
                         <div className='no-comments-yet'>
                             <p><i className='fas fa-exclamation'></i>No comments yet</p>
