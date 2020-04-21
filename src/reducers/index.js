@@ -6,7 +6,8 @@ const initialState = {
     search: '',
     sort: '',
     filter: '',
-    usersLikedPosts: []
+    usersLikedPosts: [],
+    usersLikedComments: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -51,6 +52,12 @@ export const reducer = (state = initialState, action) => {
                         ...state.currentPost.comments
                     ]
                 }
+            };
+
+        case 'SET_USERS_LIKED_COMMENTS':
+            return {
+                ...state,
+                usersLikedComments: action.payload
             };
         
         default:

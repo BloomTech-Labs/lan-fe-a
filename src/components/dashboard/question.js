@@ -49,7 +49,7 @@ const Question = props => {
 						</div>
 						<div className='labels'>
 							<button>{props.post.track}</button>
-							<button>{props.post.category.toUpperCase()}</button>
+							<button>{props.post.category}</button>
 						</div>
 						<p className='question'>{props.post.question}</p>
 						<p className='answer'>{props.post.answer}</p>

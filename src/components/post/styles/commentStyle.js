@@ -52,7 +52,7 @@ const CommentContainer = styled.div`
 
         .likes {
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 600;
             color: #ffffff;
             display: flex;
             align-items: center;
@@ -65,6 +65,10 @@ const CommentContainer = styled.div`
                 :active {
                     transform: scale(1.25);
                 }
+            }
+
+            .fas {
+                color: #0099ff;
             }
         }
     }

@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { likeComment, unlikeComment } from '../../actions';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
 
 const Comment = props => {
+    const [liked, setLiked] = useState(false);
+    const [likes, setLikes] = useState(0);
+
+    useEffect(() => setLikes(props.comment.likes), [props.comment]);
+    useEffect(() => {
+        if (props.usersLikedComments.find(item => item.comment_id == props.comment.id)) {
+            setLiked(true);
+        } else {
+            setLiked(false);
+        };
+    }, [props.usersLikedComments]);
+
+    const like = () => {
+        setLiked(true);
+        setLikes(likes + 1);
+        props.likeComment(props.comment.id);
+    };
+    
+    const unlike = () => {
+        setLiked(false);
+        setLikes(likes - 1);
+        props.unlikeComment(props.comment.id);
+    };
+
     return (
         <CommentContainer>
             <img src={props.comment.profile_picture} alt='profile icon' onClick={() => props.history.push(`/user/${props.comment.user_id}`)} />
@@ -14,10 +40,21 @@ const Comment = props => {
 
                 <p className='answer'>{props.comment.comment}</p>
 
-                <p className='likes'><i className='far fa-thumbs-up'></i>{props.comment.likes}</p>
+                <p className='likes'>
+                    {liked
+                        ? <i className='fas fa-thumbs-up' onClick={unlike}></i>
+                        : <i className='far fa-thumbs-up' onClick={like}></i>}
+                    {likes}
+                </p>
             </div>
         </CommentContainer>
     );
 };
 
-export default Comment;
+const mapStateToProps = state => {
+    return {
+        usersLikedComments: state.usersLikedComments
+    };
+};
+
+export default connect(mapStateToProps, { likeComment, unlikeComment })(Comment);

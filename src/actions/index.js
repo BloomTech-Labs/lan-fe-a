@@ -94,3 +94,23 @@ export const postComment = (user, postID, comment) => dispatch => {
         })
         .catch(error => console.log(error))
 };
+
+export const fetchUsersLikedComments = () => dispatch => {
+    axios.get('http://localhost:5000/api/comment/like')
+        .then(response => {
+            console.log('USERS_LIKED_COMMENTS', response.data);
+            dispatch({ type: 'SET_USERS_LIKED_COMMENTS', payload: response.data });
+        });
+};
+
+export const likeComment = commentID => dispatch => {
+    axios.get(`http://localhost:5000/api/comment/like/${commentID}`)
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+};
+
+export const unlikeComment = commentID => dispatch => {
+    axios.delete(`http://localhost:5000/api/comment/like/${commentID}`)
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+};

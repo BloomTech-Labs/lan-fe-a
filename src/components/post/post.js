@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, fetchPost, postComment, fetchUsersLikedPosts, like, unlike } from '../../actions';
+import { fetchUser, fetchPost, postComment, fetchUsersLikedPosts, like, unlike, fetchUsersLikedComments } from '../../actions';
 import moment from 'moment';
 import Header from '../common/header';
 import Comment from '../post/comment';
@@ -17,6 +17,7 @@ const Post = props => {
     useEffect(() => {
         props.fetchPost(postID);
         props.fetchUsersLikedPosts();
+        props.fetchUsersLikedComments();
     }, []);
 
     useEffect(() => {
@@ -127,4 +128,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { fetchUser, fetchPost, postComment, fetchUsersLikedPosts, like, unlike })(Post);
+export default connect(mapStateToProps, { fetchUser, fetchPost, postComment, fetchUsersLikedPosts, like, unlike, fetchUsersLikedComments })(Post);
