@@ -7,8 +7,6 @@ const UserContainer = styled.div`
     margin-bottom: 64px;
 
     .user {
-        // width: 256.78px;
-        // margin: 0 auto;
         margin-bottom: 32px;
         display: flex;
         justify-content: center;
@@ -21,7 +19,6 @@ const UserContainer = styled.div`
         }
 
         .information {
-            // width: 100%;
             display: flex;
             flex-direction: column;
 
@@ -29,10 +26,11 @@ const UserContainer = styled.div`
                 .display-name-and-track {
                     margin-bottom: 4px;
                     display: flex;
-                    align-items: center;
+                    flex-direction: column;
+                    align-items: flex-start;
     
                     .display-name {
-                        margin-right: 8px;
+                        margin-bottom: 3px;
                         font-size: 1.25rem;
                         font-weight: 600;
                         color: #ffffff;
@@ -52,20 +50,14 @@ const UserContainer = styled.div`
                 }
 
                 .statistics {
-                    margin-bottom: 4px;
+                    margin-bottom: 12px;
                     display: flex;
-                    // justify-content: space-between;
 
                     p {
                         margin-right: 16px;
-                        margin-bottom: 8px;
-                        font-size: 1rem;
-                        font-weight: 500;
+                        font-size: 0.875rem;
+                        font-weight: 600;
                         color: #ffffff;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        line-height: 1.125rem;
 
                         :last-child {
                             margin-right: 0;
@@ -103,6 +95,7 @@ const UserContainer = styled.div`
             p {
                 width: 100%;
                 padding: 12px 0;
+                border-bottom: 2px solid #23272a;
                 font-size: 1rem;
                 font-weight: 500;
                 color: #ffffff;
@@ -113,35 +106,46 @@ const UserContainer = styled.div`
                 :hover {
                     border-bottom: 2px solid dimgray;
                 }
+
+                :active {
+                    color: dimgray;
+                }
+
+                :nth-child(1) {
+                    border-bottom: ${props => props.tab === 'Posts' ? '2px solid dimgray' : ''};
+                }
+
+                :nth-child(2) {
+                    border-bottom: ${props => props.tab === 'Comments' ? '2px solid dimgray' : ''};
+                }
+
+                :nth-child(3) {
+                    border-bottom: ${props => props.tab === 'Saved' ? '2px solid dimgray' : ''};
+                }
+            }
+        }
+    }
+
+    @media (min-width: 375px) {
+        .user {
+            .information {
+                .left-section {
+                    .display-name-and-track {
+                        flex-direction: row;
+                        align-items: center;
+
+                        .display-name {
+                            margin-right: 8px;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
             }
         }
     }
 
     @media (min-width: 768px) {
         width: 95%;
-
-        .user {
-            width: 729.6px;
-
-            .information {
-                width: 649.6px;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: flex-start;
-
-                .left-section {
-                    .statistics {
-                        p {
-                            flex-direction: row;
-
-                            b {
-                                margin-right: 4px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 
     @media (min-width: 1024px) {
