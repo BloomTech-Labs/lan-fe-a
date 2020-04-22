@@ -32,7 +32,7 @@ const FilterContainer = styled.div`
     }
 
     button {
-        padding: 10px 16px;
+        padding: 10px 24px;
         margin-bottom: 16px;
         background-color: #2c2f33;
         border: none;

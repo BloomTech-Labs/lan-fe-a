@@ -15,12 +15,13 @@ const PageNotFoundContainer = styled.div`
     }
 
     button {
-        padding: 10px 32px;
+        padding: 10px 24px;
         background: linear-gradient(to right, #0072ff, #00c6ff);
         border: none;
         border-radius: 3px;
         font-family: 'Nunito', sans-serif;
-        font-size: 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
         color: #ffffff;
         transition: 0.25s;
         cursor: pointer;
