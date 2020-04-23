@@ -50,7 +50,6 @@ const UserContainer = styled.div`
                 }
 
                 .statistics {
-                    margin-bottom: 12px;
                     display: flex;
 
                     p {
@@ -68,6 +67,7 @@ const UserContainer = styled.div`
 
             button {
                 padding: 10px 24px;
+                margin-top: 12px;
                 background: linear-gradient(to right, #0084ff, #0099ff);
                 border: none;
                 border-radius: 3px;
@@ -85,48 +85,71 @@ const UserContainer = styled.div`
         }
     }
 
-    .activity {
-        .tabs {
-            max-width: 372.6px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-evenly;
+    .tabs {
+        max-width: 288px;
+        margin: 0 auto;
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-evenly;
 
-            p {
-                width: 100%;
-                padding: 12px 0;
-                border-bottom: 2px solid #23272a;
-                font-size: 1rem;
-                font-weight: 500;
-                color: #ffffff;
-                text-align: center;
-                cursor: pointer;
-                transition: 0.25s;
+        p {
+            width: 100%;
+            padding: 12px 0;
+            border-bottom: 2px solid #23272a;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.25s;
 
-                :hover {
-                    border-bottom: 2px solid dimgray;
-                }
+            :hover {
+                border-bottom: 2px solid dimgray;
+            }
 
-                :active {
-                    color: dimgray;
-                }
+            :active {
+                color: dimgray;
+            }
 
-                :nth-child(1) {
-                    border-bottom: ${props => props.tab === 'Posts' ? '2px solid dimgray' : ''};
-                }
+            :nth-child(1) {
+                border-bottom: ${props => props.tab === 'Posts' ? '2px solid dimgray' : ''};
+            }
 
-                :nth-child(2) {
-                    border-bottom: ${props => props.tab === 'Comments' ? '2px solid dimgray' : ''};
-                }
+            :nth-child(2) {
+                border-bottom: ${props => props.tab === 'Comments' ? '2px solid dimgray' : ''};
+            }
 
-                :nth-child(3) {
-                    border-bottom: ${props => props.tab === 'Saved' ? '2px solid dimgray' : ''};
-                }
+            :nth-child(3) {
+                border-bottom: ${props => props.tab === 'Saved' ? '2px solid dimgray' : ''};
             }
         }
     }
 
-    @media (min-width: 375px) {
+    .card {
+        padding: 16px;
+        margin-bottom: 16px;
+        background-color: #2c2f33;
+        border-radius: 3px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+
+        .timestamp {
+            margin-bottom: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .content {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+    }
+
+    @media (min-width: 375px) {        
         .user {
             .information {
                 .left-section {

@@ -114,3 +114,12 @@ export const unlikeComment = commentID => dispatch => {
         .then(response => console.log(response))
         .catch(error => console.log(error));
 };
+
+export const fetchUserProfile = userID => dispatch => {
+    axios.get(`http://localhost:5000/api/user/${userID}`)
+        .then(response => {
+            console.log(response.data);
+            dispatch({ type: 'SET_CURRENT_USER', payload: response.data });
+        })
+        .catch(error => console.log(error));
+};
