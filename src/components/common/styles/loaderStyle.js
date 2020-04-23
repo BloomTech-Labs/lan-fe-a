@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 const LoaderContainer = styled.div`
-    height: 85vh;
+    height: ${props => props.message ? '85vh' : 'calc(90vh - 72px)'};
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     img {
-        margin-bottom: 8px;
+        margin-bottom: ${props => props.message ? '8px' : null};
         height: 32px;
         width: 32px;
         animation: loading-icon-spin infinite 1s linear;
