@@ -6,7 +6,7 @@ import CreatePostContainer from './styles/createPostStyle';
 
 const CreatePost = props => {
     const [categories, setCategories] = useState([
-        { category: 'Screening', value: false},
+        { category: 'Behavioral', value: false},
         { category: 'Technical', value: false}
     ]);
     const [input, setInput] = useState({
@@ -68,7 +68,7 @@ const CreatePost = props => {
                 <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
                     <p className='category'>Category</p>
                     <div className='categories'>
-                        <button type='button' onClick={() => toggleCategory('Screening')}>Screening</button>
+                        <button type='button' onClick={() => toggleCategory('Behavioral')}>Behavioral</button>
                         <button type='button' onClick={() => toggleCategory('Technical')}>Technical</button>
                     </div>
                     {error.checkbox && <p className='error'>{error.checkbox}</p>}
