@@ -26,7 +26,10 @@ const User = props => {
                             <div className='left-section'>
                                 <div className='display-name-and-track'>
                                     <p className='display-name'>{props.currentUser.display_name}</p>
-                                    <p className='track'>{props.currentUser.track.toUpperCase()}</p>
+                                    {props.currentUser.track === 'Career Coach'
+                                        ? <p className='track career-coach'>CAREER COACH</p>
+                                        : <p className='track'>{props.currentUser.track.toUpperCase()}</p>
+                                    }
                                 </div>
                                 
                                 <div className='statistics'>

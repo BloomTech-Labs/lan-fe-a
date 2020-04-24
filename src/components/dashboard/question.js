@@ -48,7 +48,7 @@ const Question = props => {
 							<p className='timestamp'>{moment(props.post.created_at).fromNow()}</p>
 						</div>
 						<div className='labels'>
-							<button>{props.post.track.toUpperCase()}</button>
+							{props.post.track === 'Career Coach' ? <button className='career-coach'>CAREER COACH</button> : <button>{props.post.track.toUpperCase()}</button>}
 							<button>{props.post.category.toUpperCase()}</button>
 						</div>
 						<p className='question'>{props.post.question}</p>

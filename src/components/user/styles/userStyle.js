@@ -45,7 +45,11 @@ const UserContainer = styled.div`
                         font-size: 0.75rem;
                         font-weight: 700;
                         color: #ffffff;
-                        cursor: pointer;
+                    }
+
+                    .career-coach {
+                        background: #ffcb37;
+                        color: #23272a;
                     }
                 }
 

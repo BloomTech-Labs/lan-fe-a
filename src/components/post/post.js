@@ -70,7 +70,8 @@ const Post = props => {
                             {props.currentPost.created_at && <p className='timestamp'>{moment(props.currentPost.created_at).fromNow()}</p>}
                         </div>
                         <div className='labels'>
-                            {props.currentPost.track && <button>{props.currentPost.track.toUpperCase()}</button>}
+                            {props.currentPost.track && props.currentPost.track === 'Career Coach' && <button className='career-coach'>CAREER COACH</button>}
+                            {props.currentPost.track && props.currentPost.track !== 'Career Coach' && <button>{props.currentPost.track.toUpperCase()}</button>}
                             {props.currentPost.category && <button>{props.currentPost.category.toUpperCase()}</button>}
                         </div>
                         {props.currentPost.question && <p className='question'>{props.currentPost.question}</p>}

@@ -73,6 +73,11 @@ const PostContainer = styled.div`
                     font-weight: 700;
                     color: #ffffff;
                 }
+
+                .career-coach {
+                    background: #ffcb37;
+                    color: #23272a;
+                }
             }
 
             .question {
