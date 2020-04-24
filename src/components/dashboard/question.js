@@ -48,8 +48,8 @@ const Question = props => {
 							<p className='timestamp'>{moment(props.post.created_at).fromNow()}</p>
 						</div>
 						<div className='labels'>
-							<button>{props.post.track}</button>
-							<button>{props.post.category}</button>
+							<button>{props.post.track.toUpperCase()}</button>
+							<button>{props.post.category.toUpperCase()}</button>
 						</div>
 						<p className='question'>{props.post.question}</p>
 						<p className='answer'>{props.post.answer}</p>
