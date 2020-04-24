@@ -42,8 +42,8 @@ const SettingsContainer = styled.div`
         }
 
         button {
-            padding: 8px 16px;
-            background-color: #1da1f2;
+            padding: 10px 24px;
+            background: linear-gradient(to right, #0084ff, #0099ff);
             border: none;
             border-radius: 3px;
             font-family: 'Nunito', sans-serif;
@@ -65,15 +65,17 @@ const SettingsContainer = styled.div`
         border-radius: 3px;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
 
         label {
-            margin-bottom: 16px;
+            margin-bottom: 4px;
             font-size: 1rem;
             font-weight: 500;
             color: #ffffff;
         }
 
         input {
+            width: 256px;
             padding: 10px;
             margin-bottom: 16px;
             background-color: #23272a;
@@ -90,8 +92,8 @@ const SettingsContainer = styled.div`
         }
 
         button {
-            padding: 8px 16px;
-            background-color: #1da1f2;
+            padding: 10px 24px;
+            background: linear-gradient(to right, #0084ff, #0099ff);
             border: none;
             border-radius: 3px;
             font-family: 'Nunito', sans-serif;
@@ -115,10 +117,19 @@ const SettingsContainer = styled.div`
         font-weight: 500;
         color: #ffffff;
         cursor: pointer;
-        transition: 0.25s;
+        display: flex;
+        align-items: center;
+        
+        i {
+            margin-left: 4px;
+            font-size: 0.75rem;
+            transition: 0.25s;
+        }
 
         :hover {
-            opacity: 0.5;
+            i {
+                margin-left: 8px;
+            }
         }
     }
 
@@ -149,48 +160,37 @@ const SettingsContainer = styled.div`
             font-size: 1rem;
             font-weight: 500;
             color: #ffffff;
-            line-height: 1.25rem;
         }
 
         button {
-            padding: 8px 16px;
-            margin-right: 8px;
-            background-color: #1da1f2;
+            padding: 10px 24px;
+            background: linear-gradient(to right, #0084ff, #0099ff);
             border: none;
             border-radius: 3px;
             font-family: 'Nunito', sans-serif;
             font-size: 0.875rem;
+            font-weight: 600;
             color: #ffffff;
-            cursor: pointer;
             transition: 0.25s;
 
-            :last-child {
-                margin-right: 0;
+            :first-of-type {
+                margin-right: 8px;
+                background: #2c2f33;
+                color: dimgray;
             }
 
-            :hover {
-                opacity: 0.5;
+            :last-child {
+                cursor: pointer;
+
+                :hover {
+                    opacity: 0.5;
+                }
             }
         }
     }
 
     @media (min-width: 768px) {
         width: 95%;
-
-        .update {
-            flex-direction: row;
-            align-items: center;
-
-            label {
-                margin-bottom: 0;
-                margin-right: 16px;
-            }
-
-            input {
-                margin-bottom: 0;
-                margin-right: 16px;
-            }
-        }
     }
 
     @media (min-width: 1024px) {

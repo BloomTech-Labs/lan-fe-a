@@ -28,7 +28,7 @@ const CreatePostContainer = styled.div`
 
         .categories {
             button {
-                padding: 8px 16px;
+                padding: 10px 24px;
                 margin-right: 8px;
                 border: 1px solid #0099ff;
                 border-radius: 3px;
