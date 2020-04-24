@@ -123,3 +123,9 @@ export const fetchUserProfile = userID => dispatch => {
         })
         .catch(error => console.log(error));
 };
+
+export const updateUserDisplayName = (userID, displayName) => dispatch => {
+    axios.put('http://localhost:5000/api/user', { userID, displayName })
+        .then(response => console.log(response.data))
+        .catch(error => console.log(error));
+};
