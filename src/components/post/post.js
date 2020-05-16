@@ -109,7 +109,7 @@ const Post = props => {
                     </div>
 
                     {props.currentPost.comments && props.currentPost.comments.length > 0 ? (
-                        props.currentPost.comments.map((item, index) => <Comment key={index} comment={item} />)
+                        props.currentPost.comments.map((item, index) => <Comment key={index} comment={item} history={props.history} />)
                     ) : (
                         <div className='no-comments-yet'>
                             <p><i className='fas fa-exclamation'></i>No comments yet</p>
