@@ -5,10 +5,7 @@ import Header from '../common/header';
 import CreatePostContainer from './styles/createPostStyle';
 
 const CreatePost = props => {
-    const [categories, setCategories] = useState([
-        { category: 'Behavioral', value: false},
-        { category: 'Technical', value: false}
-    ]);
+    const [category, setCategory] = useState('');
     const [input, setInput] = useState({
         question: '',
         answer: ''
@@ -19,10 +16,6 @@ const CreatePost = props => {
         answer: ''
     });
 
-    const toggleCategory = category => {
-        setCategories(categories.map(item => item.category === category ? { ...item, value: true } : { ...item, value: false }));
-    };
-
     const onChange = event => {
         setInput({
             ...input,
@@ -32,7 +25,7 @@ const CreatePost = props => {
 
     const onSubmit = event => {
         event.preventDefault();
-        if (!categories.find(item => item.value === true)) {
+        if (category === '') {
             setError({
                 checkbox: 'Please select a category',
                 question: '',
@@ -56,20 +49,32 @@ const CreatePost = props => {
                 question: '',
                 answer: ''
             });
-            props.postQuestion(input.question, input.answer, props.user.track, categories.find(item => item.value === true).category, props.history);
+            props.postQuestion(input.question, input.answer, props.user.track, category, props.history)
+                .then(response => {
+                    console.log(response);
+                    props.history.push('/');
+                })
+                .catch(error => {
+                    console.log(error);
+                    setError({
+                        checkbox: '',
+                        question: '',
+                        answer: 'An entry exceeds the character limit'
+                    });
+                });
         };
     };
 
     return (
         <>
             <Header history={props.history} />
-            <CreatePostContainer categories={categories}>
+            <CreatePostContainer category={category}>
                 <h2>Post a question</h2>
                 <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
                     <p className='category'>Category</p>
                     <div className='categories'>
-                        <button type='button' onClick={() => toggleCategory('Behavioral')}>Behavioral</button>
-                        <button type='button' onClick={() => toggleCategory('Technical')}>Technical</button>
+                        <button type='button' onClick={() => setCategory('Behavioral')}>Behavioral</button>
+                        <button type='button' onClick={() => setCategory('Technical')}>Technical</button>
                     </div>
                     {error.checkbox && <p className='error'>{error.checkbox}</p>}
 

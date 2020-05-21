@@ -41,22 +41,30 @@ const CreatePostContainer = styled.div`
             }
 
             button:nth-child(1) {
-                background: ${props => props.categories[0].value ? '#0099ff' : 'none'};
-                color: ${props => props.categories[0].value ? '#ffffff' : '#0099ff'};
+                background: ${props => props.category === 'Behavioral' ? '#0099ff' : 'none'};
+                color: ${props => props.category === 'Behavioral' ? '#ffffff' : '#0099ff'};
     
                 :hover {
                     background-color: #0099ff;
                     color: #ffffff;
                 }
+
+                :active {
+                    opacity: 0.5;
+                }
             }
 
             button:nth-child(2) {
-                background: ${props => props.categories[1].value ? '#0099ff' : 'none'};
-                color: ${props => props.categories[1].value ? '#ffffff' : '#0099ff'};
+                background: ${props => props.category === 'Technical' ? '#0099ff' : 'none'};
+                color: ${props => props.category === 'Technical' ? '#ffffff' : '#0099ff'};
     
                 :hover {
                     background-color: #0099ff;
                     color: #ffffff;
+                }
+
+                :active {
+                    opacity: 0.5;
                 }
             }
         }
