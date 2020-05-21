@@ -1,11 +1,11 @@
 import React from 'react';
 import LoaderContainer from './styles/loaderStyle';
-import loadingicon from '../../img/loading-icon.png';
+import loader from '../../img/loader.png';
 
 const Loader = props => {
     return (
         <LoaderContainer message={props.message}>
-            <img src={loadingicon} alt='loading icon' />
+            <img src={loader} alt='loader' />
             {props.message && <p>Wakey wakey server!</p>}
         </LoaderContainer>
     );

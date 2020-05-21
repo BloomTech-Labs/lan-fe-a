@@ -18,7 +18,7 @@ const Landing = props => {
 
     return (
         <>
-            {fetching ? <Loader /> : (
+            {fetching ? <Loader message={true} /> : (
                 <LandingContainer>
                     <div className='left-section-container'>
                         <div className='left-section'>

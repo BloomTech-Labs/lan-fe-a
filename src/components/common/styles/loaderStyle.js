@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const LoaderContainer = styled.div`
-    height: ${props => props.message ? '85vh' : 'calc(90vh - 72px)'};
+    height: 90vh;
+    // height: calc(90vh - 72px);
     display: flex;
     flex-direction: column;
     justify-content: center;
