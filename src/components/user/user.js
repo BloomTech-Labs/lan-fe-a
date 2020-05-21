@@ -20,7 +20,7 @@ const User = props => {
             {Object.keys(props.currentUser).length > 0 ? (
                 <UserContainer tab={tab}>
                     <div className='user'>
-                        <img src={props.currentUser.profile_picture} alt='profile picture' />
+                        <img src={props.currentUser.profile_picture} alt='profile icon' />
 
                         <div className='information'>
                             <div className='left-section'>

@@ -6,12 +6,12 @@ const QuestionsContainer = styled.div`
     margin-bottom: 64px;
 
     .no-posts-found {
-        height: 50vh;
         display: flex;
         justify-content: center;
         align-items: center;
 
         p {
+            margin: 64px 0;
             font-size: 1rem;
             font-weight: 500;
             color: #ffffff;

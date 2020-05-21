@@ -14,7 +14,6 @@ const OnboardingContainer = styled.div`
         font-size: 2rem;
         font-weight: 700;
         color: #ffffff;
-        line-height: 36px;
     }
     
     .instructions {
@@ -22,7 +21,6 @@ const OnboardingContainer = styled.div`
         font-size: 1rem;
         font-weight: 500;
         color: #ffffff;
-        line-height: 20px;
     }
 
     .tracks {

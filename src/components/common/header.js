@@ -33,7 +33,7 @@ const Header = props => {
                 <button type='submit'><i className='fas fa-search'></i></button>
             </form>
 
-            <img className='profile-picture' src={props.user.profilePicture} alt='profile picture' onClick={() => setHamburgerMenu(!hamburgerMenu)} />
+            <img className='profile-picture' src={props.user.profilePicture} alt='profile icon' onClick={() => setHamburgerMenu(!hamburgerMenu)} />
 
             {hamburgerMenu && <div className='dropdown'>
                 <p onClick={() => props.history.push('/faq')}><i className='fas fa-question'></i>FAQ</p>

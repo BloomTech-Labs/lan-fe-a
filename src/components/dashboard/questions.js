@@ -6,6 +6,7 @@ import QuestionsContainer from './styles/questionsStyle';
 
 const Questions = props => {
     useEffect(() => {
+        // ? Default search query passed in 
         props.fetchPosts(props.search);
         props.fetchUsersLikedPosts();
     }, []);
@@ -23,8 +24,8 @@ const Questions = props => {
 
 const mapStateToProps = state => {
     return {
-        posts: state.posts,
-        search: state.search
+        search: state.search,
+        posts: state.posts
     };
 };
 

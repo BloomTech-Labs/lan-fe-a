@@ -10,7 +10,8 @@ const Comment = props => {
 
     useEffect(() => setLikes(props.comment.likes), [props.comment]);
     useEffect(() => {
-        if (props.usersLikedComments.find(item => item.comment_id == props.comment.id)) {
+        // Take a look at this comparison
+        if (props.usersLikedComments.find(item => item.comment_id === props.comment.id)) {
             setLiked(true);
         } else {
             setLiked(false);
