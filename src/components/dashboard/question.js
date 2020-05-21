@@ -52,7 +52,7 @@ const Question = props => {
 							<button>{props.post.category.toUpperCase()}</button>
 						</div>
 						<p className='question'>{props.post.question}</p>
-						<p className='answer'>{props.post.answer}</p>
+						{/* <p className='answer'>{props.post.answer}</p> */}
 						<div className='activity'>
 							<p>
 								<Link to='/'>

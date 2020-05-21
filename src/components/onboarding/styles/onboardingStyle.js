@@ -46,6 +46,10 @@ const OnboardingContainer = styled.div`
                 background-color: #0099ff;
                 color: #ffffff;
             }
+
+            :active {
+                opacity: 0.5;
+            }
         }
 
         .track:nth-child(2) {
@@ -55,6 +59,10 @@ const OnboardingContainer = styled.div`
             :hover {
                 background-color: #0099ff;
                 color: #ffffff;
+            }
+
+            :active {
+                opacity: 0.5;
             }
         }
 
@@ -66,6 +74,10 @@ const OnboardingContainer = styled.div`
                 background-color: #0099ff;
                 color: #ffffff;
             }
+
+            :active {
+                opacity: 0.5;
+            }
         }
 
         .track:nth-child(4) {
@@ -75,6 +87,10 @@ const OnboardingContainer = styled.div`
             :hover {
                 background-color: #0099ff;
                 color: #ffffff;
+            }
+
+            :active {
+                opacity: 0.5;
             }
         }
 
@@ -86,6 +102,10 @@ const OnboardingContainer = styled.div`
                 background-color: #0099ff;
                 color: #ffffff;
             }
+
+            :active {
+                opacity: 0.5;
+            }
         }
 
         .track:nth-child(6) {
@@ -95,6 +115,10 @@ const OnboardingContainer = styled.div`
             :hover {
                 background-color: #0099ff;
                 color: #ffffff;
+            }
+
+            :active {
+                opacity: 0.5;
             }
         }
     }
@@ -146,7 +170,7 @@ const OnboardingContainer = styled.div`
             color: #ffffff;
             cursor: pointer;
             transition: 0.25s;
-
+            
             i {
                 margin-left: 4px;
                 font-size: 0.75rem;

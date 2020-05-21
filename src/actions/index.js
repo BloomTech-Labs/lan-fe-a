@@ -38,17 +38,14 @@ export const setTrack = (track, token) => dispatch => {
 
 // Post
 export const postQuestion = (question, answer, track, category, history) => dispatch => {
-    axios.post('http://localhost:5000/api/post/create', {
-        question: question,
-        answer: answer,
-        track: track,
-        category: category
-    })
-        .then(response => {
-            console.log(response);
-            history.push('/');
+    return (
+        axios.post('http://localhost:5000/api/post/create', {
+            question: question,
+            answer: answer,
+            track: track,
+            category: category
         })
-        .catch(error => console.log(error));
+    );
 };
 
 // Search query, sort, filter, offset SEPERATELY

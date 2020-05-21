@@ -81,6 +81,10 @@ const QuestionContainer = styled.div`
                 font-size: 1rem;
                 font-weight: 600;
                 color: #ffffff;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;  
+                overflow: hidden;
             }
 
             .answer {
