@@ -103,10 +103,7 @@ const HeaderContainer = styled.div`
 
         a {
             text-decoration: none;
-
-            p {
-                border-bottom: 1px solid #23272a;
-            }
+            border-bottom: 1px solid #23272a;
         }
 
         p {
@@ -116,6 +113,10 @@ const HeaderContainer = styled.div`
             color: #ffffff;
             cursor: pointer;
             transition: 0.25s;
+
+            :nth-child(4) {
+                border-bottom: 1px solid #23272a;
+            }
 
             i {
                 margin-right: 8px;
