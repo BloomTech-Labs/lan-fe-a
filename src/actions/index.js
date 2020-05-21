@@ -1,8 +1,9 @@
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
+// Auth
 export const success = history => dispatch => {
-    axios.get('http://localhost:5000/api/auth/user')
+    axios.get('http://localhost:5000/api/user')
         .then(response => {
             localStorage.setItem('id', response.data.user.id);
             if (response.data.user.track === null) {
@@ -14,8 +15,9 @@ export const success = history => dispatch => {
         .catch(error => console.log(error));
 };
 
+// Sort out this flow: success, fetchUser, fetchUserProfile
 export const fetchUser = () => dispatch => {
-    axios.get('http://localhost:5000/api/auth/user')
+    axios.get('http://localhost:5000/api/user')
         .then(response => dispatch({ type: 'SET_USER', payload: response.data.user }))
         .catch(error => console.log(error));
 };
@@ -29,10 +31,12 @@ export const logOut = history => dispatch => {
         .catch(error => console.log(error));
 };
 
+// Onboarding?
 export const setTrack = (track, token) => dispatch => {
-    return axios.put('http://localhost:5000/api/auth/user/track', { track: track , token: token });
+    return axios.put('http://localhost:5000/api/user/track', { track, token });
 };
 
+// Post
 export const postQuestion = (question, answer, track, category, history) => dispatch => {
     axios.post('http://localhost:5000/api/post/create', {
         question: question,
@@ -47,7 +51,7 @@ export const postQuestion = (question, answer, track, category, history) => disp
         .catch(error => console.log(error));
 };
 
-// search query, sort, filter, offset SEPERATELY
+// Search query, sort, filter, offset SEPERATELY
 export const fetchPosts = search => dispatch => {
     axios.post('http://localhost:5000/api/post', { search })
         .then(response => dispatch({ type: 'SET_POSTS', payload: response.data }))
@@ -77,11 +81,12 @@ export const unlike = postID => dispatch => {
 };
 
 export const fetchUsersLikedPosts = () => dispatch => {
-    axios.get('http://localhost:5000/api/post/like')
+    axios.get('http://localhost:5000/api/user/post/like')
         .then(response => dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data }))
         .catch(error => console.log(error));
 };
 
+// Comment
 export const postComment = (user, postID, comment) => dispatch => {
     axios.post('http://localhost:5000/api/comment', { postID, comment })
         .then(response => {
@@ -96,7 +101,7 @@ export const postComment = (user, postID, comment) => dispatch => {
 };
 
 export const fetchUsersLikedComments = () => dispatch => {
-    axios.get('http://localhost:5000/api/comment/like')
+    axios.get('http://localhost:5000/api/user/comment/like')
         .then(response => {
             console.log('USERS_LIKED_COMMENTS', response.data);
             dispatch({ type: 'SET_USERS_LIKED_COMMENTS', payload: response.data });
@@ -115,6 +120,7 @@ export const unlikeComment = commentID => dispatch => {
         .catch(error => console.log(error));
 };
 
+// Auth?
 export const fetchUserProfile = userID => dispatch => {
     axios.get(`http://localhost:5000/api/user/${userID}`)
         .then(response => {
@@ -125,7 +131,7 @@ export const fetchUserProfile = userID => dispatch => {
 };
 
 export const updateUserDisplayName = (userID, displayName) => dispatch => {
-    axios.put('http://localhost:5000/api/user', { userID, displayName })
+    axios.put('http://localhost:5000/api/user/displayname', { userID, displayName })
         .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
