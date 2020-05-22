@@ -7,6 +7,8 @@ import google from '../../img/google.png';
 import facebook from '../../img/facebook.png';
 import twitter from '../../img/twitter.png';
 
+const BACKEND_URL = process.env.DEPLOYED_URL || 'http://localhost:5000';
+
 const Landing = props => {
     const [fetching, setFetching] = useState(false);
     
@@ -32,19 +34,19 @@ const Landing = props => {
                     <div className='right-section-container'>
                         <div className='right-section'>
                             <h2>Get Started</h2>
-                            <a className='social-media-link' href='http://localhost:5000/api/auth/google' onClick={() => setFetching(true)}>
+                            <a className='social-media-link' href={`${BACKEND_URL}/api/auth/google`} onClick={() => setFetching(true)}>
                                 <button className='google-button'>
                                     <img src={google} alt='google logo' />
                                     Continue with Google
                                 </button>
                             </a>
-                            <a className='social-media-link' href='http://localhost:5000/api/auth/facebook' onClick={() => setFetching(true)}>
+                            <a className='social-media-link' href={`${BACKEND_URL}/api/auth/facebook`} onClick={() => setFetching(true)}>
                                 <button className='facebook-button'>
                                     <img src={facebook} alt='facebook logo' />
                                     Continue with Facebook
                                 </button>
                             </a>
-                            <a className='social-media-link' href='http://localhost:5000/api/auth/twitter' onClick={() => setFetching(true)}>
+                            <a className='social-media-link' href={`${BACKEND_URL}/api/auth/twitter`} onClick={() => setFetching(true)}>
                                 <button className='twitter-button'>
                                     <img src={twitter} alt='twitter logo' />
                                     Continue with Twitter

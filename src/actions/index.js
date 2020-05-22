@@ -1,9 +1,11 @@
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
+const BACKEND_URL = process.env.DEPLOYED_URL || 'http://localhost:5000';
+
 // Auth
 export const success = history => dispatch => {
-    axios.get('http://localhost:5000/api/user')
+    axios.get(`${BACKEND_URL}/api/user`)
         .then(response => {
             localStorage.setItem('id', response.data.user.id);
             if (response.data.user.track === null) {
@@ -17,13 +19,13 @@ export const success = history => dispatch => {
 
 // Sort out this flow: success, fetchUser, fetchUserProfile
 export const fetchUser = () => dispatch => {
-    axios.get('http://localhost:5000/api/user')
+    axios.get(`${BACKEND_URL}/api/user`)
         .then(response => dispatch({ type: 'SET_USER', payload: response.data.user }))
         .catch(error => console.log(error));
 };
 
 export const logOut = history => dispatch => {
-    axios.get('http://localhost:5000/api/auth/logout')
+    axios.get(`${BACKEND_URL}/api/auth/logout`)
         .then(response => {
             localStorage.removeItem('id');
             history.push('/welcome');
@@ -33,13 +35,13 @@ export const logOut = history => dispatch => {
 
 // Onboarding?
 export const setTrack = (track, token) => dispatch => {
-    return axios.put('http://localhost:5000/api/user/track', { track, token });
+    return axios.put(`${BACKEND_URL}/api/user/track`, { track, token });
 };
 
 // Post
 export const postQuestion = (question, answer, track, category, history) => dispatch => {
     return (
-        axios.post('http://localhost:5000/api/post/create', {
+        axios.post(`${BACKEND_URL}/api/post/create`, {
             question: question,
             answer: answer,
             track: track,
@@ -50,7 +52,7 @@ export const postQuestion = (question, answer, track, category, history) => disp
 
 // Search query, sort, filter, offset SEPERATELY
 export const fetchPosts = search => dispatch => {
-    axios.post('http://localhost:5000/api/post', { search })
+    axios.post(`${BACKEND_URL}/api/post`, { search })
         .then(response => {
             console.log(response.data);
             dispatch({ type: 'SET_POSTS', payload: response.data });
@@ -59,7 +61,7 @@ export const fetchPosts = search => dispatch => {
 };
 
 export const fetchPost = postID => dispatch => {
-    axios.get(`http://localhost:5000/api/post/${postID}`)
+    axios.get(`${BACKEND_URL}/api/post/${postID}`)
         .then(response => {
             console.log(response.data);
             dispatch({ type: 'SET_CURRENT_POST', payload: response.data });
@@ -72,26 +74,26 @@ export const setSearch = search => dispatch => {
 };
 
 export const like = postID => dispatch => {
-    axios.get(`http://localhost:5000/api/post/like/${postID}`)
+    axios.get(`${BACKEND_URL}/api/post/like/${postID}`)
         .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
 
 export const unlike = postID => dispatch => {
-    axios.delete(`http://localhost:5000/api/post/like/${postID}`)
+    axios.delete(`${BACKEND_URL}/api/post/like/${postID}`)
         .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
 
 export const fetchUsersLikedPosts = () => dispatch => {
-    axios.get('http://localhost:5000/api/user/post/like')
+    axios.get(`${BACKEND_URL}/api/user/post/like`)
         .then(response => dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data }))
         .catch(error => console.log(error));
 };
 
 // Comment
 export const postComment = (user, postID, comment) => dispatch => {
-    axios.post('http://localhost:5000/api/comment', { postID, comment })
+    axios.post(`${BACKEND_URL}/api/comment`, { postID, comment })
         .then(response => {
             dispatch({ type: 'SET_POSTS_COMMENTS', payload: {
                 ...response.data.comment,
@@ -104,7 +106,7 @@ export const postComment = (user, postID, comment) => dispatch => {
 };
 
 export const fetchUsersLikedComments = () => dispatch => {
-    axios.get('http://localhost:5000/api/user/comment/like')
+    axios.get(`${BACKEND_URL}/api/user/comment/like`)
         .then(response => {
             console.log('USERS_LIKED_COMMENTS', response.data);
             dispatch({ type: 'SET_USERS_LIKED_COMMENTS', payload: response.data });
@@ -112,20 +114,20 @@ export const fetchUsersLikedComments = () => dispatch => {
 };
 
 export const likeComment = commentID => dispatch => {
-    axios.get(`http://localhost:5000/api/comment/like/${commentID}`)
+    axios.get(`${BACKEND_URL}/api/comment/like/${commentID}`)
         .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
 
 export const unlikeComment = commentID => dispatch => {
-    axios.delete(`http://localhost:5000/api/comment/like/${commentID}`)
+    axios.delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
         .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
 
 // Auth?
 export const fetchUserProfile = userID => dispatch => {
-    axios.get(`http://localhost:5000/api/user/${userID}`)
+    axios.get(`${BACKEND_URL}/api/user/${userID}`)
         .then(response => {
             console.log(response.data);
             dispatch({ type: 'SET_CURRENT_USER', payload: response.data });
@@ -134,7 +136,7 @@ export const fetchUserProfile = userID => dispatch => {
 };
 
 export const updateUserDisplayName = (userID, displayName) => dispatch => {
-    axios.put('http://localhost:5000/api/user/displayname', { userID, displayName })
+    axios.put(`${BACKEND_URL}/api/user/displayname`, { userID, displayName })
         .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
