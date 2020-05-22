@@ -25,6 +25,13 @@ const QuestionsContainer = styled.div`
         }
     }
 
+    .youve-reached-the-end {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #ffffff;
+        text-align: center;
+    }
+
     @media (min-width: 768px) {
         width: 95%;
     }

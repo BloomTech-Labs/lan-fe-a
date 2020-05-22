@@ -51,13 +51,19 @@ export const postQuestion = (question, answer, track, category, history) => disp
 // Search query, sort, filter, offset SEPERATELY
 export const fetchPosts = search => dispatch => {
     axios.post('http://localhost:5000/api/post', { search })
-        .then(response => dispatch({ type: 'SET_POSTS', payload: response.data }))
+        .then(response => {
+            console.log(response.data);
+            dispatch({ type: 'SET_POSTS', payload: response.data });
+        })
         .catch(error => console.log(error));
 };
 
 export const fetchPost = postID => dispatch => {
     axios.get(`http://localhost:5000/api/post/${postID}`)
-        .then(response => dispatch({ type: 'SET_CURRENT_POST', payload: response.data }))
+        .then(response => {
+            console.log(response.data);
+            dispatch({ type: 'SET_CURRENT_POST', payload: response.data });
+        })
         .catch(error => console.log(error));
 };
 
@@ -67,13 +73,13 @@ export const setSearch = search => dispatch => {
 
 export const like = postID => dispatch => {
     axios.get(`http://localhost:5000/api/post/like/${postID}`)
-        .then(response => console.log(response))
+        .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
 
 export const unlike = postID => dispatch => {
     axios.delete(`http://localhost:5000/api/post/like/${postID}`)
-        .then(response => console.log(response))
+        .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
 
@@ -107,13 +113,13 @@ export const fetchUsersLikedComments = () => dispatch => {
 
 export const likeComment = commentID => dispatch => {
     axios.get(`http://localhost:5000/api/comment/like/${commentID}`)
-        .then(response => console.log(response))
+        .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
 
 export const unlikeComment = commentID => dispatch => {
     axios.delete(`http://localhost:5000/api/comment/like/${commentID}`)
-        .then(response => console.log(response))
+        .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
 

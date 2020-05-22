@@ -18,6 +18,7 @@ const Questions = props => {
                     <p><i className='fas fa-exclamation'></i>No posts found</p>
                 </div>
             )}
+            {props.posts.length > 0 && <p className='youve-reached-the-end'>You've reached the end!</p>}
         </QuestionsContainer>
     );
 };
