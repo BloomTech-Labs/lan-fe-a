@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUserProfile } from '../../actions';
 import moment from 'moment';
 import Header from '../common/header';
+import Question from '../dashboard/question';
 import Loader from '../common/loader';
 import UserContainer from './styles/userStyle';
 
@@ -33,12 +34,12 @@ const User = props => {
                                 </div>
                                 
                                 <div className='statistics'>
-                                    <p><b>{props.currentUser.posts.length}</b> posts</p>
-                                    <p><b>{props.currentUser.comments.length}</b> comments</p>
+                                    {props.currentUser.posts.length > 1 ? <p><b>{props.currentUser.posts.length}</b> posts</p> : <p><b>1</b> post</p>}
+                                    {props.currentUser.comments.length > 1 ? <p><b>{props.currentUser.comments.length}</b> comments</p> : <p><b>1</b> comment</p>}
                                 </div>
                             </div>
 
-                            {props.user.id === userID && <button>Edit profile</button>}
+                            {props.user.id === userID && <button onClick={() => props.history.push('/settings')}>Edit profile</button>}
                         </div>
                     </div>
 
