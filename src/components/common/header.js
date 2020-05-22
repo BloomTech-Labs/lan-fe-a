@@ -7,7 +7,14 @@ import viewee from '../../img/viewee.png';
 const Header = props => {
     const [hamburgerMenu, setHamburgerMenu] = useState(false);
 
-    useEffect(() => props.fetchUser(), []);
+    useEffect(() => {
+        // The header is the perfect place for fetching the user object
+        // Will only fetch if there is currently no user object
+        // This should help with sorting out the whole user object flow
+        if (Object.keys(props.user).length === 0) {
+            props.fetchUser();
+        };
+    }, []);
 
     const onChange = event => {
         props.setSearch(event.target.value);
