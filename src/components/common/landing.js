@@ -7,7 +7,7 @@ import google from '../../img/google.png';
 import facebook from '../../img/facebook.png';
 import twitter from '../../img/twitter.png';
 
-const BACKEND_URL = process.env.DEPLOYED_URL || 'http://localhost:5000';
+const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
 const Landing = props => {
     const [fetching, setFetching] = useState(false);

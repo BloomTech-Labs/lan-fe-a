@@ -1,7 +1,7 @@
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-const BACKEND_URL = process.env.DEPLOYED_URL || 'http://localhost:5000';
+const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
 // Auth
 export const success = history => dispatch => {
