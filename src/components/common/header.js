@@ -11,6 +11,7 @@ const Header = props => {
         // The header is the perfect place for fetching the user object
         // Will only fetch if there is currently no user object
         // This should help with sorting out the whole user object flow
+        // redux-query
         if (Object.keys(props.user).length === 0) {
             props.fetchUser();
         };
