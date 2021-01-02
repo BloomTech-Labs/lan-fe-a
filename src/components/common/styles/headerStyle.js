@@ -16,8 +16,8 @@ const HeaderContainer = styled.div`
 
         img {
             margin-right: 16px;
-            height: 24px;
-            width: 24px;
+            height: 32px;
+            width: 32px;
         }
 
         h1 {
