@@ -4,6 +4,7 @@ import { fetchUser, setTrack } from '../../actions';
 import OnboardingContainer from './styles/onboardingStyle';
 
 const Onboarding = props => {
+    // I think efficiencies could be made with the track state
     const [tracks, setTracks] = useState([
         { track: 'WEB', value: false },
         { track: 'DS', value: false },
@@ -14,7 +15,12 @@ const Onboarding = props => {
     ]);
     const [error, setError] = useState('');
 
-    useEffect(() => props.fetchUser(), []);
+    // The issue is whether someone signs in for the first time, is continuing an abandoned session, or is signed in on their browser and accessing a random page,
+    // we need user state in the store or else functionality breaks
+    useEffect(() => {
+        props.fetchUser();
+        console.log('PROPS IN ONBOARDING COMPONENT', props);
+    }, []);
 
     useEffect(() => {
         setTracks(tracks.map(item => item.track === props.user.track ? { ...item, value: true } : { ...item, value: false }))
