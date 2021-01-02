@@ -19,7 +19,7 @@ const LandingContainer = styled.div`
             .logo-and-name {
                 margin-bottom: 4px;
                 display: flex;
-                align-items: center;
+                flex-direction: column;
 
                 img {
                     height: 32px;
