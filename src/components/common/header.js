@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, logOut, setSearch, fetchPosts } from '../../actions';
 import HeaderContainer from './styles/headerStyle';
-import viewee from '../../img/viewee.png';
+import lambdaschool from '../../img/lambda-school.png';
 
 const Header = props => {
     const [hamburgerMenu, setHamburgerMenu] = useState(false);
@@ -34,8 +34,7 @@ const Header = props => {
                 setHamburgerMenu(false);
                 props.history.push('/');
             }}>
-                <img src={viewee} alt='viewee logo' />
-                <h1>viewee</h1>
+                <img src={lambdaschool} alt='Lambda School logo' />
             </div>
 
             <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
