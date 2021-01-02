@@ -48,11 +48,12 @@ const Question = props => {
 							<p className='timestamp'>{moment(props.post.created_at).fromNow()}</p>
 						</div>
 						<div className='labels'>
-							{props.post.track === 'Career Coach' ? <button className='career-coach'>CAREER COACH</button> : <button>{props.post.track.toUpperCase()}</button>}
+							{props.post.track === 'Career Coach' && <button className='career-coach'>CAREER COACH</button>}
+							{props.post.track && props.post.track !== 'Career Coach' && <button>{props.post.track.toUpperCase()}</button>}
 							<button>{props.post.category.toUpperCase()}</button>
 						</div>
 						<p className='question'>{props.post.question}</p>
-						{/* <p className='answer'>{props.post.answer}</p> */}
+						<p className='answer'>{props.post.answer}</p>
 						<div className='activity'>
 							<p>
 								<Link to='/'>

@@ -3,12 +3,16 @@ axios.defaults.withCredentials = true;
 
 const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
-// Auth
+// Authentication
 export const success = history => dispatch => {
     axios.get(`${BACKEND_URL}/api/user`)
         .then(response => {
+            console.log(response.data);
             localStorage.setItem('id', response.data.user.id);
             if (response.data.user.track === null) {
+                // Maybe don't do this, if the user doesn't select a track for some reason or abandons the session,
+                // we should leave it be, have an option display a null track on posts,
+                // and give them a heads up they haven't set a track with a toast notification... brainstorming
                 history.push('/onboarding');
             } else {
                 history.push('/');
@@ -18,9 +22,14 @@ export const success = history => dispatch => {
 };
 
 // Sort out this flow: success, fetchUser, fetchUserProfile
+// react-query will help with making sure user object is in state
+// Other one takes in a user ID, but do we have the user's ID available at all times (for example, when onboarding)
 export const fetchUser = () => dispatch => {
     axios.get(`${BACKEND_URL}/api/user`)
-        .then(response => dispatch({ type: 'SET_USER', payload: response.data.user }))
+        .then(response => {
+            dispatch({ type: 'SET_USER', payload: response.data.user });
+            console.log('FETCH USER ACTION', response.data.user);
+        })
         .catch(error => console.log(error));
 };
 
@@ -125,11 +134,12 @@ export const unlikeComment = commentID => dispatch => {
         .catch(error => console.log(error));
 };
 
-// Auth?
+// Can this be used for authentication so we don't have redundant actions?
+// The issue is the other one is for the user themselves, and this one is for other users when viewing their profile
 export const fetchUserProfile = userID => dispatch => {
     axios.get(`${BACKEND_URL}/api/user/${userID}`)
         .then(response => {
-            console.log(response.data);
+            console.log('FETCH USER PROFILE, DIFFERENT FROM AUTHENTICATION ONE', response.data);
             dispatch({ type: 'SET_CURRENT_USER', payload: response.data });
         })
         .catch(error => console.log(error));
