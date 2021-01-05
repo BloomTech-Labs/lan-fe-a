@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, fetchUsersLikedPosts } from '../../actions';
+import { fetchRecent, fetchUsersLikedPosts } from '../../actions';
 import Question from './question';
 import QuestionsContainer from './styles/questionsStyle';
 
 const Questions = props => {
     useEffect(() => {
         // ? Default search query passed in 
-        props.fetchPosts(props.search);
+        props.fetchRecent();
         props.fetchUsersLikedPosts();
     }, []);
 
@@ -30,4 +30,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { fetchPosts, fetchUsersLikedPosts })(Questions);
+export default connect(mapStateToProps, { fetchRecent, fetchUsersLikedPosts })(Questions);

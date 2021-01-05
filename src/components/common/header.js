@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, logOut, setSearch, fetchPosts } from '../../actions';
+import { fetchUser, logOut, setSearch } from '../../actions';
 import HeaderContainer from './styles/headerStyle';
 import lambdaschool from '../../img/lambda-school.png';
 
@@ -25,7 +25,7 @@ const Header = props => {
 
     const onSubmit = event => {
         event.preventDefault();
-        props.fetchPosts(props.search);
+        // props.fetchPosts(props.search);
     };
 
     return (
@@ -62,4 +62,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { fetchUser, logOut, setSearch, fetchPosts })(Header);
+export default connect(mapStateToProps, { fetchUser, logOut, setSearch })(Header);

@@ -60,8 +60,8 @@ export const postQuestion = (question, answer, track, category, history) => disp
 };
 
 // Search query, sort, filter, offset SEPERATELY
-export const fetchPosts = search => dispatch => {
-    axios.post(`${BACKEND_URL}/api/post`, { search })
+export const fetchRecent = () => dispatch => {
+    axios.post(`${BACKEND_URL}/api/recent`)
         .then(response => {
             console.log(response.data);
             dispatch({ type: 'SET_POSTS', payload: response.data });
