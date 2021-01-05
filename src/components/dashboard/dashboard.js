@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import Header from '../common/header';
 import Filter from './filter';
 import Questions from './questions';
 import styled from 'styled-components';
 import lambdaschool from '../../img/lambda-school.png';
 import Modal from 'react-modal';
+import toast, { Toaster } from 'react-hot-toast';
+
+const notify = () => toast.error('Lambda track not set. We recommend setting one now.');
 
 const ModalContainer = styled.div`
     transition: 0.25s;
@@ -82,8 +86,8 @@ const customStyles = {
         border: 'none',
         backgroundColor: '#f2f2f2',
         color: '#333',
-        backgroundColor: '#333',
-        color: '#f2f2f2',
+        // backgroundColor: '#333',
+        // color: '#f2f2f2',
         padding: '96px 64px',
         maxWidth: '500px',
     },
@@ -104,7 +108,10 @@ const Dashboard = props => {
         setIsOpen(false);
     };
 
-    useEffect(() => openModal(), []);
+    useEffect(() => {
+        // openModal();
+        notify();
+    }, []);
 
     const incrementSlide = () => setSlide(slide + 1);
 
@@ -112,6 +119,7 @@ const Dashboard = props => {
     
     // I don't know how I like the changing size of the modal - maybe we can cut down on the content or spread it out over more slides.
     // How do we go about showing this modal just once to every user? Table in database for just this purpose, like a notifications table?
+    // Will need to extract modal into seperate modular component. That will also allow it to be opened from FAQ option in header dropdown.
     return (
         <>
             <Header history={props.history} />
@@ -199,8 +207,20 @@ const Dashboard = props => {
                     </ModalContainer>
                 }
             </Modal>
+
+            <Toaster
+                position='top-right'
+                reverseOrder={false}
+            />
         </>
     );
 };
 
-export default Dashboard;
+const mapStateToProps = state => {
+    console.log('???????', state);
+    return {
+        chess: state.user
+    };
+};
+
+export default connect(mapStateToProps)(Dashboard);
