@@ -110,7 +110,7 @@ const Dashboard = props => {
 
     useEffect(() => {
         // openModal();
-        notify();
+        // notify();
     }, []);
 
     const incrementSlide = () => setSlide(slide + 1);

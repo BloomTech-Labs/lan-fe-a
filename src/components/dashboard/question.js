@@ -15,7 +15,7 @@ const Question = props => {
 		} else {
 			setLiked(false);
 		};
-	}, [props.usersLikedPosts]);
+	}, [props.usersLikedPosts, props.posts]);
 
 	useEffect(() => setNumberOfLikes(props.post.likes), []);
 
@@ -75,7 +75,8 @@ const Question = props => {
 
 const mapStateToProps = state => {
 	return {
-		usersLikedPosts: state.usersLikedPosts
+		usersLikedPosts: state.usersLikedPosts,
+		posts: state.posts
 	};
 };
 
