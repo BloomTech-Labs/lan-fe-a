@@ -109,7 +109,7 @@ const Dashboard = props => {
     };
 
     useEffect(() => {
-        openModal();
+        // openModal();
         // notify();
     }, []);
 
