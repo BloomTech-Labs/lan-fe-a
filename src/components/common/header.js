@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, logOut, setSearch, fetchSearch } from '../../actions';
 import HeaderContainer from './styles/headerStyle';
-import lambdaschool from '../../img/lambda-school.png';
+import lambdaschool from '../../img/lambdaschool.png';
 
 const Header = props => {
     const [hamburgerMenu, setHamburgerMenu] = useState(false);
