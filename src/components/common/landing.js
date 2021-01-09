@@ -4,6 +4,7 @@ import Loader from './loader';
 import LandingContainer from './styles/landingStyle';
 import lambdaschool from '../../img/lambdaschool.png';
 import google from '../../img/google.png';
+import linkedin from '../../img/linkedin.svg';
 // import facebook from '../../img/facebook.png';
 // import twitter from '../../img/twitter.png';
 
@@ -35,20 +36,26 @@ const Landing = props => {
                     <div className='right-section-container'>
                         <div className='right-section'>
                             <h2>Get Started</h2>
-                            <a className='social-media-link' href={`${BACKEND_URL}/api/auth/google`} onClick={() => setFetching(true)}>
-                                <button className='google-button'>
+                            {/* <a className='social-media-link' href={`${BACKEND_URL}/api/auth/google`} onClick={() => setFetching(true)}>
+                                <button>
                                     <img src={google} alt='Google logo' />
                                     Continue with Google
                                 </button>
+                            </a> */}
+                            <a className='social-media-link' href={`${BACKEND_URL}/api/auth/linkedin`} onClick={() => setFetching(true)}>
+                                <button>
+                                    <img src={linkedin} alt='LinkedIn logo' />
+                                    Continue with LinkedIn
+                                </button>
                             </a>
                             {/* <a className='social-media-link' href={`${BACKEND_URL}/api/auth/facebook`} onClick={() => setFetching(true)}>
-                                <button className='facebook-button'>
+                                <button>
                                     <img src={facebook} alt='Facebook logo' />
                                     Continue with Facebook
                                 </button>
                             </a>
                             <a className='social-media-link' href={`${BACKEND_URL}/api/auth/twitter`} onClick={() => setFetching(true)}>
-                                <button className='twitter-button'>
+                                <button>
                                     <img src={twitter} alt='Twitter logo' />
                                     Continue with Twitter
                                 </button>
