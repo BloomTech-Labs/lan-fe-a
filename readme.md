@@ -1,68 +1,16 @@
-# Lambda Alumni Network (LAN)
+## Lambda Alumni Network (LAN)
+An app that allows Lambda School alums to connect and grow in their profession by providing career advice, job opportunities, and much more!
 
-The LAN is an app for Lambda School alumns where they can connect, grow in their careers, and complete find information on endorsment completion.
+### Installation
+1. Once you have cloned the repository, download the dependencies with `npm install`.
+2. Start the server with `npm start`.
 
-A Lambda School alumn is defined as a student who has completed all sprints or who has been hired.
+### Documentation
+- [Product Canvas](https://docs.google.com/document/d/1-EyxKbikGrsTf08nTBxqso0zCdZ0HnKnJG7sbXu-d3s/edit#heading=h.n2quesrx1caj)
+- [Trello Board](https://trello.com/b/NOH7uQ8q/lambda-alumni-network)
+- [Design Files](https://projects.invisionapp.com/share/DRJBSR53VNS#/screens?browse)
 
-[Trello Board](https://trello.com/b/NOH7uQ8q/lambda-alumni-network)
-[Design Files]()
-
-
-## Contributors
-
-Product Manager
-
-Fhiwa N. [Github](https://github.com/chieffhiwa) | [Linkedin](https://www.linkedin.com/in/fndou/)
-
-Developers
-
-Miguel N. [Github](https://github.com/miugel) | [Linkedin](https://www.linkedin.com/in/miguelqnicolas/)
-
-Kelly M. [Github](https://github.com/misskellymore) | [Linkedin](https://www.linkedin.com/in/kemore/)
-
-
-## Project Overview
-
-LAN provides communication on important factors for alumni in endorsement and outside of Lambda School, such as:
-
-- Job opprtunities 
-- Essentenial alumni topics (Events, Personal Finance etc.)
-- Forums
-- and much more!
-
-## Key Features 
-
-- Ability to login with Linkedin
-- Ability for students to choose program + cohort 
-- Endless comment scroll 
-
-
-## Tech Stack
-
-`React` 
-`Redux` 
-
-
-## APIs
-
-
-## Content Licenses
-
-
-## Testing
-
-
-## Installation Instructions
-
-Make sure you have [PostgreSQL](https://www.postgresql.org/) and [pgAdmin4](https://www.pgadmin.org/) installed on your computer.
-
-`npm install`
-`npm start`
-
-### Other Scripts
-
-
-
-
-
-
+### Tech Stack
+`React`
+`Redux`
+`styled-components`
