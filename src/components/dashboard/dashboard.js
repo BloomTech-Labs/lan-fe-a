@@ -4,7 +4,7 @@ import Header from '../common/header';
 import Filter from './filter';
 import Questions from './questions';
 import styled from 'styled-components';
-import lambdaschool from '../../img/lambda-school.png';
+import lambdaschool from '../../img/lambdaschool.png';
 import Modal from 'react-modal';
 import toast, { Toaster } from 'react-hot-toast';
 

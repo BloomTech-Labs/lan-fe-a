@@ -70,13 +70,16 @@ const LandingContainer = styled.div`
                 width: 100%;
                 padding: 10px 0;
                 margin-bottom: 12px;
-                background-color: #2c2f33;
+                // background-color: #2c2f33;
+                background-color: white;
                 border: none;
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;
                 font-size: 1rem;
                 font-weight: 500;
-                color: #ffffff;
+                // color: #ffffff;
+                color: #333;
+                font-weight: 600;
                 display: flex;
                 justify-content: center;
                 align-items: center;
