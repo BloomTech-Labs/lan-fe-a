@@ -7,7 +7,6 @@ const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000
 export const success = history => dispatch => {
     axios.get(`${BACKEND_URL}/api/user`)
         .then(response => {
-            console.log(response.data);
             localStorage.setItem('id', response.data.user.id);
             if (response.data.user.track === null) {
                 // Maybe don't do this, if the user doesn't select a track for some reason or abandons the session,
@@ -88,11 +87,9 @@ export const fetchPopular = () => dispatch => {
 };
 
 export const fetchPost = postID => dispatch => {
+    dispatch({ type: 'START_FETCHING_CURRENT_POST' });
     axios.get(`${BACKEND_URL}/api/post/${postID}`)
-        .then(response => {
-            console.log(response.data);
-            dispatch({ type: 'SET_CURRENT_POST', payload: response.data });
-        })
+        .then(response => dispatch({ type: 'SET_CURRENT_POST', payload: response.data }))
         .catch(error => console.log(error));
 };
 
@@ -148,6 +145,21 @@ export const likeComment = commentID => dispatch => {
 
 export const unlikeComment = commentID => dispatch => {
     axios.delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
+        .then(response => console.log(response.data))
+        .catch(error => console.log(error));
+};
+
+// Fetch post's comments by recent
+export const fetchPostCommentsByRecent = postID => dispatch => {
+    dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
+    axios.get(`${BACKEND_URL}/api/comment/recent/${postID}`)
+        .then(response => dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data }))
+        .catch(error => console.log(error));
+};
+
+// Fetch post's comments by popular
+export const fetchPostCommentsByPopular = postID => dispatch => {
+    axios.get(`${BACKEND_URL}/api/comment/popular/${postID}`)
         .then(response => console.log(response.data))
         .catch(error => console.log(error));
 };
