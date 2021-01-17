@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, fetchPost, postComment, fetchUsersLikedPosts, like, unlike, fetchUsersLikedComments, fetchPostCommentsByRecent } from '../../actions';
+import {
+    fetchUser,
+    fetchPost,
+    postComment,
+    fetchUsersLikedPosts,
+    like,
+    unlike,
+    fetchUsersLikedComments,
+    fetchPostCommentsByRecent,
+    fetchPostCommentsByPopular
+} from '../../actions';
 import moment from 'moment';
 import Header from '../common/header';
 import Comment from '../post/comment';
@@ -13,6 +23,7 @@ const Post = props => {
     const [likes, setLikes] = useState(0);
     const [input, setInput] = useState('');
     const [error, setError] = useState('');
+    const [sortingDropdown, setSortingDropdown] = useState('Recent');
     
     useEffect(() => {
         props.fetchPost(postID);
@@ -55,6 +66,16 @@ const Post = props => {
         setLiked(false);
         setLikes(likes - 1)
         props.unlike(postID);
+    };
+
+    const sortingDropdownOnChange = event => {
+        setSortingDropdown(event.target.value);
+
+        if (event.target.value === 'Recent') {
+            props.fetchPostCommentsByRecent(postID);
+        } else {
+            props.fetchPostCommentsByPopular(postID);
+        };
     };
 
     return (
@@ -104,7 +125,7 @@ const Post = props => {
                     <div className='comments'>
                         <div className='filter'>
                             <label htmlFor='sort'>SORT</label>
-                            <select name='sort'>
+                            <select name='sort' value={sortingDropdown} onChange={sortingDropdownOnChange}>
                                 <option value='Recent'>Recent</option>
                                 <option value='Popular'>Popular</option>
                             </select>
@@ -141,4 +162,14 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { fetchUser, fetchPost, postComment, fetchUsersLikedPosts, like, unlike, fetchUsersLikedComments, fetchPostCommentsByRecent })(Post);
+export default connect(mapStateToProps, {
+    fetchUser,
+    fetchPost,
+    postComment,
+    fetchUsersLikedPosts,
+    like,
+    unlike,
+    fetchUsersLikedComments,
+    fetchPostCommentsByRecent,
+    fetchPostCommentsByPopular
+})(Post);

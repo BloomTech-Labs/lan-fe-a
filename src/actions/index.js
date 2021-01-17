@@ -159,8 +159,9 @@ export const fetchPostCommentsByRecent = postID => dispatch => {
 
 // Fetch post's comments by popular
 export const fetchPostCommentsByPopular = postID => dispatch => {
+    dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
     axios.get(`${BACKEND_URL}/api/comment/popular/${postID}`)
-        .then(response => console.log(response.data))
+        .then(response => dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data }))
         .catch(error => console.log(error));
 };
 
