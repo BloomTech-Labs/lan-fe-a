@@ -68,21 +68,16 @@ export const fetchSearch = search => dispatch => {
 };
 
 // Search query, sort, filter, offset SEPERATELY
+// Future Miguel here, perhaps not! Maybe.
 export const fetchRecent = () => dispatch => {
     axios.post(`${BACKEND_URL}/api/post/recent`)
-        .then(response => {
-            console.log(response.data);
-            dispatch({ type: 'SET_POSTS', payload: response.data });
-        })
+        .then(response => dispatch({ type: 'SET_POSTS', payload: response.data }))
         .catch(error => console.log(error));
 };
 
 export const fetchPopular = () => dispatch => {
     axios.post(`${BACKEND_URL}/api/post/popular`)
-        .then(response => {
-            console.log(response.data);
-            dispatch({ type: 'SET_POSTS', payload: response.data });
-        })
+        .then(response => dispatch({ type: 'SET_POSTS', payload: response.data }))
         .catch(error => console.log(error));
 };
 
