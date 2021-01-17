@@ -3,11 +3,14 @@ const initialState = {
     currentUser: {},
     posts: [],
     currentPost: {},
+    currentPostComments: [],
     search: '',
     sort: '',
     filter: '',
     usersLikedPosts: [],
-    usersLikedComments: []
+    usersLikedComments: [],
+    individualPostIsFetching: false,
+    individualPostCommentsAreFetching: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -24,10 +27,17 @@ export const reducer = (state = initialState, action) => {
                 posts: action.payload
             };
 
+        case 'START_FETCHING_CURRENT_POST':
+            return {
+                ...state,
+                individualPostIsFetching: true
+            };
+
         case 'SET_CURRENT_POST':
             return {
                 ...state,
-                currentPost: action.payload
+                currentPost: action.payload,
+                individualPostIsFetching: false
             };
 
         case 'SET_SEARCH':
@@ -64,6 +74,19 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentUser: action.payload
+            };
+
+        case 'START_FETCHING_CURRENT_POST_COMMENTS':
+            return {
+                ...state,
+                individualPostCommentsAreFetching: true
+            };
+
+        case 'SET_CURRENT_POST_COMMENTS':
+            return {
+                ...state,
+                currentPostComments: action.payload,
+                individualPostCommentsAreFetching: false
             };
         
         default:
