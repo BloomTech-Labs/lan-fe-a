@@ -8,7 +8,7 @@ import Loader from '../common/loader';
 import UserContainer from './styles/userStyle';
 
 const User = props => {
-    const userID = Number(props.match.params.id);
+    const userID = props.match.params.id;
 
     const [tab, setTab] = useState('Posts');
 
