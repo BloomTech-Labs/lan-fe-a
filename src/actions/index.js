@@ -5,7 +5,7 @@ const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000
 
 // Authentication
 export const success = history => dispatch => {
-    axios.get(`${BACKEND_URL}/api/user`)
+    axios.get(`${BACKEND_URL}/api/user`, { credentials: true })
         .then(response => {
             localStorage.setItem('id', response.data.user.id);
             if (response.data.user.track === null) {
