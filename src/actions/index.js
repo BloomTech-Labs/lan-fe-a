@@ -47,11 +47,11 @@ export const setTrack = (track, token) => dispatch => {
 };
 
 // Post
-export const postQuestion = (question, answer, track, category, history) => dispatch => {
+export const postQuestion = (title, description, track, category, history) => dispatch => {
     return (
         axios.post(`${BACKEND_URL}/api/post/create`, {
-            question: question,
-            answer: answer,
+            title: title,
+            description: description,
             track: track,
             category: category
         })

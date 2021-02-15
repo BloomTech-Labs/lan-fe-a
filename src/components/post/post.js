@@ -97,8 +97,8 @@ const Post = props => {
                                 {props.currentPost.track && props.currentPost.track !== 'Career Coach' && <button>{props.currentPost.track.toUpperCase()}</button>}
                                 {props.currentPost.category && <button>{props.currentPost.category.toUpperCase()}</button>}
                             </div>
-                            {props.currentPost.question && <p className='question'>{props.currentPost.question}</p>}
-                            {props.currentPost.answer && <p className='answer'>{props.currentPost.answer}</p>}
+                            {props.currentPost.title && <p className='question'>{props.currentPost.title}</p>}
+                            {props.currentPost.description && <p className='answer'>{props.currentPost.description}</p>}
                             <div className='activity'>
                                 {props.currentPost.likes !== undefined && (
                                     <p>

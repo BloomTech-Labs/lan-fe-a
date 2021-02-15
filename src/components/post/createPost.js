@@ -7,13 +7,13 @@ import CreatePostContainer from './styles/createPostStyle';
 const CreatePost = props => {
     const [category, setCategory] = useState('');
     const [input, setInput] = useState({
-        question: '',
-        answer: ''
+        title: '',
+        description: ''
     });
     const [error, setError] = useState({
         checkbox: '',
-        question: '',
-        answer: ''
+        title: '',
+        description: ''
     });
 
     const onChange = event => {
@@ -28,28 +28,28 @@ const CreatePost = props => {
         if (category === '') {
             setError({
                 checkbox: 'Please select a category',
-                question: '',
-                answer: ''
+                title: '',
+                description: ''
             });
-        } else if (input.question === '') {
+        } else if (input.title === '') {
             setError({
                 checkbox: '',
-                question: 'Please enter a question',
-                answer: ''
+                title: 'Please enter a question',
+                description: ''
             });
-        } else if (input.answer === '') {
+        } else if (input.description === '') {
             setError({
                 checkbox: '',
-                question: '',
-                answer: 'Please enter an answer'
+                title: '',
+                description: 'Please enter an answer'
             });
         } else {
             setError({
                 checkbox: '',
-                question: '',
-                answer: ''
+                title: '',
+                description: ''
             });
-            props.postQuestion(input.question, input.answer, props.user.track, category, props.history)
+            props.postQuestion(input.title, input.description, props.user.track, category, props.history)
                 .then(response => {
                     console.log(response);
                     props.history.push('/');
@@ -58,8 +58,8 @@ const CreatePost = props => {
                     console.log(error);
                     setError({
                         checkbox: '',
-                        question: '',
-                        answer: 'An entry exceeds the character limit'
+                        title: '',
+                        description: 'An entry exceeds the character limit'
                     });
                 });
         };
@@ -79,12 +79,12 @@ const CreatePost = props => {
                     {error.checkbox && <p className='error'>{error.checkbox}</p>}
 
                     <label>Question</label>
-                    <input type='text' name='question' placeholder='Enter the question' value={input.question} onChange={onChange} />
-                    {error.question && <p className='error'>{error.question}</p>}
+                    <input type='text' name='title' placeholder='Enter the question' value={input.title} onChange={onChange} />
+                    {error.title && <p className='error'>{error.title}</p>}
 
                     <label>Text</label>
-                    <textarea type='text' name='answer' placeholder='Explain how you answered and any other thoughts' value={input.answer} onChange={onChange} />
-                    {error.answer && <p className='error'>{error.answer}</p>}
+                    <textarea type='text' name='description' placeholder='Explain how you answered and any other thoughts' value={input.description} onChange={onChange} />
+                    {error.description && <p className='error'>{error.description}</p>}
                     
                     <div className='buttons'>
                         <button type='button' onClick={() => props.history.push('/')}><i className='fas fa-times'></i>Cancel</button>
