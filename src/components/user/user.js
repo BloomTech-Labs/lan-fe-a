@@ -51,7 +51,7 @@ const User = props => {
                         props.currentUser.posts.map((item, index) => (
                             <div key={index} className='card' onClick={() => props.history.push(`/post/${item.id}`)}>
                                 <p className='timestamp'>{moment(item.created_at).fromNow()}</p>
-                                <p className='content'>{item.question}</p>
+                                <p className='content'>{item.title}</p>
                             </div>
                         ))
                     ) : (
