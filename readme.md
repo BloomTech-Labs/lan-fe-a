@@ -1,6 +1,9 @@
 ## Lambda Alumni Network (LAN)
 An app that allows Lambda School alums to connect and grow in their profession by providing career advice, job opportunities, and much more!
 
+### Contributors
+Team A Members...
+
 ### Documentation
 - [Product Canvas](https://docs.google.com/document/d/1-EyxKbikGrsTf08nTBxqso0zCdZ0HnKnJG7sbXu-d3s/edit#heading=h.n2quesrx1caj)
 - [Trello Board](https://trello.com/b/NOH7uQ8q/lambda-alumni-network)
