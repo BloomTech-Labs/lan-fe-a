@@ -15,7 +15,7 @@ const Settings = (props) => {
   const [name, setName] = useState('');
   const [input, setInput] = useState('');
 
-  const { push } = useHistory;
+  const { push } = useHistory();
 
   useEffect(() => setName(props.user.displayName), [props.user]);
 
@@ -36,7 +36,8 @@ const Settings = (props) => {
     Axios.delete(
       `http://localhost:5000/api/user/settings/remove-user/${props.user.id}`
     )
-      .then(() => {
+      .then((res) => {
+        localStorage.removeItem('id');
         push('/');
       })
       .catch((err) => {
