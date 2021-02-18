@@ -46,14 +46,22 @@ export const setTrack = (track, token) => dispatch => {
     return axios.put(`${BACKEND_URL}/api/user/track`, { track, token });
 };
 
+//Rooms
+export const fetchRooms = () => dispatch => {
+    return axios.get(`${BACKEND_URL}/api/room`)
+        .then(response => dispatch({ type: 'SET_ROOMS', payload: response.data }))
+        .catch(error => console.log(error));
+}
+
 // Post
-export const postQuestion = (title, description, track, category, history) => dispatch => {
+export const postQuestion = (title, description, track, category, room, history) => dispatch => {
     return (
         axios.post(`${BACKEND_URL}/api/post/create`, {
             title: title,
             description: description,
             track: track,
-            category: category
+            category: category,
+            room_id: room
         })
     );
 };
