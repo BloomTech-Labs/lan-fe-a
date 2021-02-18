@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from '../common/header';
 import Filter from './filter';
 import Questions from './questions';
+import Rooms from './rooms'
 import styled from 'styled-components';
 import lambdaschool from '../../img/lambdaschool.png';
 import Modal from 'react-modal';
@@ -124,7 +125,8 @@ const Dashboard = props => {
         <>
             <Header history={props.history} />
             <Filter history={props.history} />
-            <Questions history={props.history} />
+            <Rooms history={props.history} />
+            {/* <Questions history={props.history} /> */}
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

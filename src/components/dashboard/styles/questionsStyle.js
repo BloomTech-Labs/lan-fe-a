@@ -4,7 +4,8 @@ const QuestionsContainer = styled.div`
     width: 90%;
     margin: 0 auto;
     margin-bottom: 64px;
-
+    display: flex;
+    flex-wrap: wrap;
     .no-posts-found {
         display: flex;
         justify-content: center;
