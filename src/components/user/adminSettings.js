@@ -45,17 +45,21 @@ const AdminSettings = (props) => {
           currentMod == 'users' ?
             modData.map(item => {
               return (
-                <div key={item.id}>
+                <div key={item.id} style={{background: 'grey', margin: '1rem'}}>
                   <h4>{item.display_name}</h4>
                   <p>{item.email}</p>
+                  <button>Change Role</button>
+                  <button>Delete</button>
                 </div>
               )
             })
-          : modData.map(item => {
+            : modData.map(item => {
               return (
-                <div key={item.id}>
+                <div key={item.id} style={{background: 'grey', margin: '1rem'}}>
                   <h4>{item.room_name}</h4>
                   <p>{item.description}</p>
+                  <button>View Posts</button>
+                  <button>Delete</button>
                 </div>
               )
             })
