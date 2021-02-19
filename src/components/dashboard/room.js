@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 
 const StyledRoomContainer = styled.div`
@@ -15,6 +16,14 @@ const StyledPost = styled.div`
     padding: 7px;
     margin: 7px 0px;
     box-shadow: 5px solid black;
+    a {
+        text-decoration: none;
+        color: white;
+        transition: all .2s;
+        &:hover {
+            color: grey;
+        }
+    }
     .profile-img {
         border-radius: 50%;
         width: 40px;
@@ -35,13 +44,15 @@ const Room = (props) => {
         return (
           <>
             <StyledPost className="post_card" key={index}>
-              <div className="profile">
-                <img className="profile-img" src={post.profile_picture} />
-                <p>{post.display_name}</p>
-              </div>
-              <h3> {post.title} </h3>
-              <p> {post.description} </p>
-              <p class="single-post-footer" onClick={() => console.log(`click ${post.id}`) }><span>Likes: {post.likes}</span><span>Comments: {post.comments}</span></p>
+              <Link to={`/post/${post.id}`}>
+                <div className="profile">
+                    <img className="profile-img" src={post.profile_picture} />
+                    <p>{post.display_name}</p>
+                </div>
+                <h3> {post.title} </h3>
+                <p> {post.description} </p>
+                <p class="single-post-footer" onClick={() => console.log(`click ${post.id}`) }><span>Likes: {post.likes}</span><span>Comments: {post.comments}</span></p>
+              </Link>
             </StyledPost>
           </>
         );
