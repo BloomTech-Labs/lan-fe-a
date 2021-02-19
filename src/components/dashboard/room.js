@@ -1,40 +1,39 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { connect } from 'react-redux';
 
-const StyledRoomCard = styled.div`
-  width: 45%;
-  background-color: #141414;
-  color: white;
-  box-shadow: 2px 2px 5px #212529;
-  border-radius: 12px;
-  margin: 22px;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  a {
-    text-decoration: none;
-    color: white;
-  }
-  p {
-    font-size: 1.2rem;
-  }
-`;
-// const Sider = styled.div`
-
-// `
-
-const room = ({ room }) => {
+const Room = (props) => {
   return (
-    <StyledRoomCard>
-      <Link to={`room/${room.id}`}>
-        <div>
-          <h2># {room.room_name}</h2>
-          <p>{room.description}</p>
-        </div>
-      </Link>
-    </StyledRoomCard>
+    <div>
+      {props.posts.map((post, index) => {
+        return (
+          <>
+            <div className="post_card" key={index}>
+              <div className="profile">
+                <img src={post.profile_picture} />
+                <p>{post.display_name}</p>
+              </div>
+              <h3> {post.title} </h3>
+              <p> {post.description} </p>
+              <p
+                onClick={() => {
+                  console.log(`click ${post.id}`); // need to add the liking post functionality
+                }}
+              >
+                {' '}
+                {post.likes}{' '}
+              </p>
+            </div>
+          </>
+        );
+      })}
+    </div>
   );
 };
 
-export default room;
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts,
+  };
+};
+
+export default connect(mapStateToProps)(Room);

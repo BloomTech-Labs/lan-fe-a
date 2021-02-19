@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/header';
 import Filter from './filter';
-// import Questions from './questions';
+
+import Posts from './posts';
 import Rooms from './rooms';
 import styled from 'styled-components';
 // import lambdaschool from '../../img/lambdaschool.png';
@@ -10,92 +11,93 @@ import redlambda from '../../img/redlambda.png';
 import Modal from 'react-modal';
 import toast, { Toaster } from 'react-hot-toast';
 
-const notify = () => toast.error('Lambda track not set. We recommend setting one now.');
+const notify = () =>
+  toast.error('Lambda track not set. We recommend setting one now.');
 
 const ModalContainer = styled.div`
+  transition: 0.25s;
+
+  img {
+    height: 40px;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .single-button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .double-button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button {
+    margin-top: 40px;
+    padding: 10px 24px;
+    background-color: #ec3944;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
     transition: 0.25s;
 
-    img {
-        height: 40px;
-        margin-bottom: 8px;
+    i {
+      margin-right: 4px;
+      font-size: 0.75rem;
     }
 
-    h2 {
-        font-weight: 700;
-        margin-bottom: 16px;
+    :hover {
+      opacity: 0.75;
     }
+  }
 
-    p {
-        font-weight: 600;
-        margin-bottom: 8px;
-    }
+  ul {
+    font-weight: 600;
+    padding: 0 0 16px 8px;
+  }
 
-    .single-button-container {
-        display: flex;
-        justify-content: flex-end;
-    }
+  .text-align-center {
+    text-align: center;
+  }
 
-    .double-button-container {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    button {
-        margin-top: 40px;
-        padding: 10px 24px;
-        background-color: #ec3944;
-        border: none;
-        border-radius: 3px;
-        font-family: 'Nunito', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: #ffffff;
-        cursor: pointer;
-        transition: 0.25s;
-
-        i {
-            margin-right: 4px;
-            font-size: 0.75rem;
-        }
-
-        :hover {
-            opacity: 0.75;
-        }
-    }
-
-    ul {
-        font-weight: 600;
-        padding: 0 0 16px 8px;
-    }
-
-    .text-align-center {
-        text-align: center;
-    }
-
-    a {
-        color: #ec3944;
-    }
+  a {
+    color: #ec3944;
+  }
 `;
 
 const customStyles = {
-    content : {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        border: 'none',
-        backgroundColor: '#f2f2f2',
-        color: '#333',
-        // backgroundColor: '#333',
-        // color: '#f2f2f2',
-        padding: '96px 64px',
-        maxWidth: '500px',
-    },
-    overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 0.5)'
-    }
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    border: 'none',
+    backgroundColor: '#f2f2f2',
+    color: '#333',
+    // backgroundColor: '#333',
+    // color: '#f2f2f2',
+    padding: '96px 64px',
+    maxWidth: '500px',
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
 };
 
 const Dashboard = props => {
@@ -220,11 +222,11 @@ const Dashboard = props => {
     );
 };
 
-const mapStateToProps = state => {
-    console.log('???????', state);
-    return {
-        chess: state.user
-    };
+const mapStateToProps = (state) => {
+  console.log('???????', state);
+  return {
+    chess: state.user,
+  };
 };
 
 export default connect(mapStateToProps)(Dashboard);

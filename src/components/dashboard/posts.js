@@ -1,28 +1,28 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchRooms } from "../../actions";
-import Room from "./roomCard";
+import { fetchRecent, fetchUsersLikedPosts } from "../../actions";
+import Post from "./post";
 import PostsContainer from "./styles/postsStyle";
 
-const Rooms = (props) => {
+const Posts = (props) => {
   useEffect(() => {
     // ? Default search query passed in
-    props.fetchRooms();
+    props.fetchRecent();
+    props.fetchUsersLikedPosts();
   }, []);
 
   return (
     <PostsContainer>
-      {console.log(props.rooms)}
-      {props.rooms.length > 0 ? (
-        props.rooms.map((item, index) => <Room key={index} room={item} />)
+      {props.posts.length > 0 ? (
+        props.posts.map((item, index) => <Post key={index} post={item} />)
       ) : (
         <div className="no-posts-found">
           <p>
-            <i className="fas fa-exclamation"></i>No Rooms found
+            <i className="fas fa-exclamation"></i>No posts found
           </p>
         </div>
       )}
-      {props.rooms.length > 0 && (
+      {props.posts.length > 0 && (
         <p className="youve-reached-the-end">You've reached the end!</p>
       )}
     </PostsContainer>
@@ -32,8 +32,10 @@ const Rooms = (props) => {
 const mapStateToProps = (state) => {
   return {
     search: state.search,
-    rooms: state.rooms,
+    posts: state.posts,
   };
 };
 
-export default connect(mapStateToProps, { fetchRooms })(Rooms);
+export default connect(mapStateToProps, { fetchRecent, fetchUsersLikedPosts })(
+  Posts
+);
