@@ -12,6 +12,7 @@ import CreatePost from './components/post/createPost';
 import Post from './components/post/post';
 import User from './components/user/user';
 import Settings from './components/user/settings';
+import AdminSettings from './components/user/adminSettings';
 import FAQ from './components/common/faq';
 import Error from './components/authentication/error';
 import PageNotFound from './components/common/pageNotFound';
@@ -30,6 +31,7 @@ const App = () => {
       <PrivateRoute path="/room/:id" component={RoomDashboard} />
       <PrivateRoute path="/user/:id" component={User} />
       <PrivateRoute path="/settings" component={Settings} />
+      <PrivateRoute path='/admin-settings' component={AdminSettings}/>
       <PrivateRoute path="/faq" component={FAQ} />
       <PrivateRoute path="/error" component={Error} />
       <Route component={PageNotFound} />

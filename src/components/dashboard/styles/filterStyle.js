@@ -1,74 +1,85 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const FilterContainer = styled.div`
-    width: 90%;
-    margin: 0 auto;
-    margin-top: 32px;
-    margin-bottom: 16px;
-    display: flex;
-    flex-direction: column-reverse;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column-reverse;
+  h1 {
+    color: white;
+    margin-left: 2.5%;
+  }
 
     .filters {
-        display: flex;
-        align-items: center;
-
-        label {
-            margin-right: 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #ffffff;
-        }
+      display: flex;
+      margin-left: 35%;
+      align-items: center;
+      justify-content:space between;
     
-        select {
-            margin-right: 16px;
-            background-color: #23272a;
-            border: none;
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #ffffff;
-            cursor: pointer;
-        }
-    }
-
-    button {
-        padding: 10px 24px;
-        margin-bottom: 16px;
-        background-color: #2c2f33;
-        border: none;
-        border-radius: 3px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        font-family: 'Nunito', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 600;
+      label {
+        margin-right: 8px;
+        font-size: 1.2rem;
+        font-weight: 700;
         color: #ffffff;
-        transition: 0.25s;
+      }
+      select {
+        margin-right: 22px;
+        background-color: #141414;
+        border: none;
+        font-family: "Nunito", sans-serif;
+        font-size: 1.2rem;
+        font-weight: bolder;
+        color: #ffffff;
         cursor: pointer;
+        padding: 6px;
+        border-radius: 3px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+    
+  }
 
-        i {
-            margin-right: 4px;
-            font-size: 0.625rem;
-        }
+  button {
+    padding: 10px 24px;
+    margin-right: 2.5%;
+    margin-bottom: 16px;
+    background-color: #141414;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: "Nunito", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    transition: 0.25s;
+    cursor: pointer;
 
-        :hover {
-            opacity: 0.5;
-        }
+    i {
+      margin-right: 4px;
+      font-size: 0.625rem;
     }
 
-    @media (min-width: 768px) {
-        width: 95%;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-
-        .post-a-question {
-            margin-bottom: 0;
-        }
+    :hover {
+      opacity: 0.5;
     }
+  }
 
-    @media (min-width: 1024px) {
-        width: 972.8px;
+  @media (min-width: 768px) {
+    width: 95%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .post-a-question {
+      margin-bottom: 0;
     }
+  }
+
+  @media (min-width: 1024px) {
+    width: 972.8px;
+  }
 `;
 
 export default FilterContainer;

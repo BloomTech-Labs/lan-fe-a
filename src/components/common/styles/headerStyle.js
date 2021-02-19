@@ -2,28 +2,37 @@ import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
     height: 72px;
-    width: 90%;
-    margin: 0 auto;
+    width: 98%;
+    margin: 2% auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    header{
+        font-family: Adamina;
+        font-size: 2.5rem;
+        color: #EC3944;
+        margin-left: 0.8%;
+        margin-bottom: 0.1%;
+        text-shadow: 2px 2px 5px #000000;
+    }
     .logo {
         display: flex;
         align-items: center;
         cursor: pointer;
         transition: 0.25s;
-
         img {
             margin-right: 16px;
             height: 32px;
-            width: 32px;
+            // width: 32px;
+            width: 20%;
+            height: 35%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
         h1 {
             margin-right: 16px;
             font-size: 1.75rem;
-            font-weight: 700;
+            font-weight: 800;
             color: #ffffff;
             display: none;
         }
@@ -37,26 +46,28 @@ const HeaderContainer = styled.div`
         max-width: 691.2px;
         width: 100%;
         display: flex;
-
+        
         input {
             width: 100%;
             padding: 10px;
-            background-color: #2c2f33;
+            background-color: #141414;
+            // background-color: #1b2631 ;
             border: none;
             border-top-left-radius: 3px;
             border-bottom-left-radius: 3px;
             font-family: 'Nunito', sans-serif;
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: #ffffff;
-
+            box-shadow: 2px 2px 5px #000000;
             ::placeholder {
-                color: dimgray;
+                color: #141414;
             }
         }
 
         button {
-            padding: 10px;
-            background-color: #2c2f33;
+            padding: 15px;
+            background-color: #141414;
+            // background-color: #1b2631 ;
             border: none;
             border-top-right-radius: 3px;
             border-bottom-right-radius: 3px;
@@ -77,8 +88,8 @@ const HeaderContainer = styled.div`
     }
 
     .profile-picture {
-        height: 32px;
-        width: 32px;
+        height: 52px;
+        width: 52px;
         margin-left: 16px;
         border-radius: 50%;
         cursor: pointer;
@@ -92,7 +103,8 @@ const HeaderContainer = styled.div`
     .dropdown {
         width: 200px;
         background: #2c2f33;
-        border-radius: 3px;
+        // background-color: #1b2631 ;
+        border-radius: 5px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         display: flex;
         flex-direction: column;
@@ -126,6 +138,12 @@ const HeaderContainer = styled.div`
             :hover {
                 opacity: 0.5;
             }
+        }
+
+        #admin {
+            height: 1.15rem;
+            margin-left: -2px;
+            margin-right: 5.5px;
         }
     }
 
