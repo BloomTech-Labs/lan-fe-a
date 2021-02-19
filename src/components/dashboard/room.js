@@ -1,38 +1,59 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
+const StyledRoomContainer = styled.div`
+    padding: 5%;
+    .single-room-name {
+        color: white;
+    }
+`
+
+const StyledPost = styled.div`
+    color: white;
+    border: 2px solid grey;
+    padding: 7px;
+    margin: 7px 0px;
+    box-shadow: 5px solid black;
+    .profile-img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+    .single-post-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+`
 
 const Room = (props) => {
   return (
-    <div>
+    <StyledRoomContainer>
+      {console.log(props.rooms)}
+      {props.rooms.filter(item => item.id == props.id).map(item => <h1 className="single-room-name">{item.room_name}</h1>)}
       {props.posts.map((post, index) => {
         return (
           <>
-            <div className="post_card" key={index}>
+            <StyledPost className="post_card" key={index}>
               <div className="profile">
-                <img src={post.profile_picture} />
+                <img className="profile-img" src={post.profile_picture} />
                 <p>{post.display_name}</p>
               </div>
               <h3> {post.title} </h3>
               <p> {post.description} </p>
-              <p
-                onClick={() => {
-                  console.log(`click ${post.id}`); // need to add the liking post functionality
-                }}
-              >
-                {' '}
-                {post.likes}{' '}
-              </p>
-            </div>
+              <p class="single-post-footer" onClick={() => console.log(`click ${post.id}`) }><span>Likes: {post.likes}</span><span>Comments: {post.comments}</span></p>
+            </StyledPost>
           </>
         );
       })}
-    </div>
+    </StyledRoomContainer>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
     posts: state.posts,
+    rooms: state.rooms,
   };
 };
 
