@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/header';
 import Filter from './filter';
-import Questions from './questions';
-import Rooms from './rooms'
+// import Questions from './questions';
+import Rooms from './rooms';
 import styled from 'styled-components';
-import lambdaschool from '../../img/lambdaschool.png';
+// import lambdaschool from '../../img/lambdaschool.png';
 import redlambda from '../../img/redlambda.png';
 import Modal from 'react-modal';
 import toast, { Toaster } from 'react-hot-toast';
@@ -138,7 +138,7 @@ const Dashboard = props => {
                 {slide === 1 &&
                     <ModalContainer>
                         {/* <img src={lambdaschool} alt='Lambda School logo' /> */}
-                        <img src={redlambda} alt='Lambda School logo' />
+                        <img src={redlambda} alt='Lambda School Red logo' />
                         <h2>Welcome to the Lambda Alumni Network (LAN)!</h2>
                         <p>LAN is a private community for Lambda alumni.</p>
                         <p>If you have graduated from Lambda School and you wish to engage with alums to help advance their careers and to advance your own, then this is probably the community for you.</p>

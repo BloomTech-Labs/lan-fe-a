@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, logOut, setSearch, fetchSearch } from '../../actions';
 import HeaderContainer from './styles/headerStyle';
-import lambdaschool from '../../img/lambdaschool.png';
+// import lambdaschool from '../../img/lambdaschool.png';
+// import redlambda from '../../img/redlambda.png';
+import whitelambda from '../../img/whitelambda.png'
 import adminLogo from '../../img/admin.png'
 
 const Header = props => {
@@ -35,7 +37,10 @@ const Header = props => {
                 setHamburgerMenu(false);
                 props.history.push('/');
             }}>
-                <img src={lambdaschool} alt='Lambda School logo' />
+                {/* <img src={lambdaschool} alt='Lambda School logo' /> */}
+                {/* <img src={redlambda} alt='Lambda School logo' /> */}
+                <img src={whitelambda} alt='Lambda School logo' />
+                <header>Alumni Network</header>
             </div>
 
             <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>

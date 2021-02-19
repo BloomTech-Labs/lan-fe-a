@@ -5,7 +5,8 @@
 }
 
 body {
-	background-color: #23272a;
+	/* background-color: #23272a; */
+	background-color: #0D0D0D;
 	font-family: 'Nunito', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

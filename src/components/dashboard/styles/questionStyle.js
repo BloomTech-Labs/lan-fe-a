@@ -97,13 +97,12 @@ const QuestionContainer = styled.div`
             .activity {
                 display: flex;
                 align-items: center;
-
                 p {
                     margin-right: 16px;
                     font-size: 0.875rem;
                     font-weight: 500;
                     color: #ffffff;
-
+                 
                     i {
                         margin-right: 4px;
                         transition: 0.1s;

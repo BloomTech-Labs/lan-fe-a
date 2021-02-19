@@ -18,15 +18,16 @@ const Filter = props => {
 
     return (
         <FilterContainer>
-            <div className='filters'>
-                <label htmlFor='sort'>SORT</label>
-                <select name='sort' value={input} onChange={onChange}>
-                    <option value='Recent'>Recent</option>
-                    <option value='Popular'>Popular</option>
-                </select>
-            </div>
-
-            <button className='post-a-question' onClick={() => props.history.push('/post')}><i className='fas fa-plus'></i>Post a question</button>
+            <h1>Dashboard</h1>
+                <div className='filters'>
+                    <label htmlFor='sort'>SORT</label>
+                    <select name='sort' value={input} onChange={onChange}>
+                        <option value='Recent'>Recent</option>
+                        <option value='Popular'>Popular</option>
+                    </select>
+                </div>
+                <button className='post-a-question' onClick={() => props.history.push('/post')}><i className='fas fa-plus'></i>Post a question</button>
+        
         </FilterContainer>
     );
 };
