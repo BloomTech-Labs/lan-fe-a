@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import arrow from '../../img/arrow.png';
+import returnpointer from '../../img/return.png';
 
 const StyledRoomContainer = styled.div`
-    padding: 5%;
+    width : 90%;
+    padding: 2%;
+    
     .single-room-name {
         color: white;
     }
@@ -12,7 +16,7 @@ const StyledRoomContainer = styled.div`
 const StyledPost = styled.div`
     color: white;
     border: 2px solid grey;
-    padding: 7px;
+    padding: 2px;
     margin: 7px 0px;
     box-shadow: 5px solid black;
     .profile-img {
@@ -24,13 +28,37 @@ const StyledPost = styled.div`
         display: flex;
         justify-content: space-between;
     }
+ 
+`
+const StyledPointer = styled.div`
+    display: flex; 
+    justify-content: space-between;
+    align-item: center;
+    background-color: #141414;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 20px;
+    .return-pointer{
+      margin: 20px;
+      padding: 7px;
+      border: 1px solid white;
+      border-radius: 15%;      
+    }
+    .single-room-name{
+      margin-top: 1.5%;
+      margin-left: 1.2%
+    }
 `
 
 const Room = (props) => {
   return (
     <StyledRoomContainer>
-      {console.log(props.rooms)}
-      {props.rooms.filter(item => item.id == props.id).map(item => <h1 className="single-room-name">{item.room_name}</h1>)}
+      {console.log(props.rooms)} 
+      <StyledPointer>
+        {props.rooms.filter(item => item.id == props.id).map(item =>   <h1 className="single-room-name"># {item.room_name}</h1>)}
+        {/* add return pointer to go back previous page */}
+        <img src={returnpointer} className="return-pointer" alt="return-pointer"/>
+      </StyledPointer>
       {props.posts.map((post, index) => {
         return (
           <>

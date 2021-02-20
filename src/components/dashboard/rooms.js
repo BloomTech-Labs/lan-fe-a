@@ -1,20 +1,27 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchRooms } from "../../actions";
+import Sidebar from "../common/sidebar";
 import Room from "./roomCard";
 import PostsContainer from "./styles/postsStyle";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const TitleWrapper = styled.div`
-    h1 {
-        color: white;
-        display: flex;
-        flex-wrap:wrap;
-        justify-content: center;
-        align-items: center;
-        font-size: 2.5rem;
-    }
-`
+// const TitleWrapper = styled.div`
+//   h1 {
+//     color: white;
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     align-items: center;
+//     font-size: 2.5rem;
+//   }
+// `;
+
+const RoomWrapper = styled.div`
+  display: flex;
+  width: 95%;
+  flex-wrap: wrap;
+`;
 
 const Rooms = (props) => {
   useEffect(() => {
@@ -23,21 +30,24 @@ const Rooms = (props) => {
   }, []);
 
   return (
-    <TitleWrapper>
+    <RoomWrapper>
+      {/* // <TitleWrapper> */}
+        <Sidebar />
         <PostsContainer>
-            {console.log(props.rooms)}
-            {props.rooms.length > 0 ? (
-                props.rooms.map((item, index) => <Room key={index} room={item} />)
-            ) : (
-                <div className="no-posts-found">
-                <p>
-                    <i className="fas fa-exclamation"></i>No Rooms found
-                </p>
-                </div>
-            )}
-            {/* {props.rooms.length > 0 && (<p className="youve-reached-the-end">You've reached the end!</p>)} */}
+          {console.log(props.rooms)}
+          {props.rooms.length > 0 ? (
+            props.rooms.map((item, index) => <Room key={index} room={item} />)
+          ) : (
+            <div className="no-posts-found">
+              <p>
+                <i className="fas fa-exclamation"></i>No Rooms found
+              </p>
+            </div>
+          )}
+          {/* {props.rooms.length > 0 && (<p className="youve-reached-the-end">You've reached the end!</p>)} */}
         </PostsContainer>
-    </TitleWrapper>
+      {/* // </TitleWrapper> */}
+    </RoomWrapper>
   );
 };
 
