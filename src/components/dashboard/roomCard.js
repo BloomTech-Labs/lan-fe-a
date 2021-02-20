@@ -11,6 +11,7 @@ const StyledRoomCard = styled.div`
     margin: 22px;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     padding: 20px;
     a {
         text-decoration: none;

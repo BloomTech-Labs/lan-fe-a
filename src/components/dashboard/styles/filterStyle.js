@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 const FilterContainer = styled.div`
   width: 95%;
-  margin: 0 auto;
+  // margin: 0 auto;
+  margin-left:32%;
+  margin-right: 45%;
   margin-top: 32px;
   margin-bottom: 16px;
   display: flex;
@@ -16,7 +18,7 @@ const FilterContainer = styled.div`
       display: flex;
       margin-left: 35%;
       align-items: center;
-      justify-content:space between;
+      // justify-content: flex-end;
     
       label {
         margin-right: 8px;
