@@ -58,6 +58,14 @@ export const postQuestion = (title, description, track, category, history) => di
     );
 };
 
+// 😀😀😀
+export const deletePost = postID => dispatch => {
+    axios.delete(`${BACKEND_URL}/api/post/delete/${postID}`)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err.message))
+}
+// 😀😀😀
+
 export const fetchSearch = search => dispatch => {
     axios.post(`${BACKEND_URL}/api/post/search`, { search })
         .then(response => {
