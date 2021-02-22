@@ -180,7 +180,7 @@ const Post = (props) => {
 						<textarea
 							name='comment'
 							type='text'
-							placeholder='How would you approach this question? Any advice or feedback?'
+							placeholder='Add a comment...'
 							value={input}
 							onChange={onChange}
 						/>
