@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/header';
 import SettingsContainer from './styles/settingsStyle';
-import { fetchRooms, fetchUsers } from '../../actions'
+import { fetchRooms, fetchUsers, deleteRoom } from '../../actions'
+import SingleUserCard from './singleUserCard';
 
 const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
@@ -16,6 +17,16 @@ const AdminSettings = (props) => {
 
   const createRoom = (e) => {
       e.preventDefault()
+  }
+
+  const handleDeleteRoom = (id) => {
+      props.deleteRoom(id)
+        .then(() => {
+            props.fetchRooms()
+        })
+        .catch((err) => {
+            console.log(err)
+        })
   }
   return (
     <>
@@ -40,12 +51,7 @@ const AdminSettings = (props) => {
                   <h3>Users</h3>
                   {props.users.map(item => {
                     return (
-                        <div key={item.id} style={{background: 'grey', margin: '1rem'}}>
-                        <h4>{item.display_name}</h4>
-                        <p>{item.email}</p>
-                        <button>Change Role</button>
-                        <button>Delete</button>
-                        </div>
+                        <SingleUserCard key={item.id} user={item}/>
                     )
                     })}
               </div>
@@ -64,7 +70,7 @@ const AdminSettings = (props) => {
                   <h4>{item.room_name}</h4>
                   <p>{item.description}</p>
                   <button>Update Name</button>
-                  <button>Delete</button>
+                  <button onClick={() => handleDeleteRoom(item.id)}>Delete</button>
                 </div>
               )
             })}
@@ -84,4 +90,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchRooms, fetchUsers })(AdminSettings);
+export default connect(mapStateToProps, { fetchRooms, fetchUsers, deleteRoom })(AdminSettings);
