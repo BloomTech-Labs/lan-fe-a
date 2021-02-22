@@ -44,12 +44,12 @@ const Room = (props) => {
             <button>delete</button>
             {isEditable ?
                 (
-                    <form>
+                    <div>
                         <input name='room_name' type='text' value={roomValues.room_name} onChange={handleUpdateChange} />
                         <textarea name='description' value={roomValues.description} onChange={handleUpdateChange} />
                         <button onClick={handleUpdateSubmit}>Save</button>
                         <button onClick={handleUpdateCancel}>cancel</button>
-                    </form>) : null}
+                    </div>) : null}
         </div>
     )
 }
