@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
-    width: 90%;
+    width: 98%;
     margin: 0 auto;
-    margin-top: 32px;
-    margin-bottom: 64px;
+
+    display: flex;
 
     h2 {
         margin-bottom: 32px;
@@ -17,17 +17,89 @@ const SettingsContainer = styled.div`
         padding-bottom: 8px;
         margin-bottom: 8px;
         border-bottom: 1px solid #2c2f33;
-        font-size: 1.25rem;
+        font-size: 1.6rem;
         font-weight: 700;
         color: #ffffff;
+        // padding: 2%;
     }
+// styling users-setting-card
+    .users-card-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        // margin: 0% 8% 0% 4%;
+        margin-left: 7.8%;
+        .users-card{
+            display:flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            width: 45%;
+            padding: 2.2%;
+            margin-left: 5%;
+            margin-top: 1.5%;
+            margin-bottom: 1.5%;
+            border-radius: 20px;
+            background-color: #141414;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            h4{
+                text-transform: capitalize;
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: #ffffff;
+                margin-left: 1.5%;
+                margin-top: 1.5%;
+                margin-bottom: 1.5%;
+            }
+            p{
+                color: #ffffff;
+                margin-top: 1.5%;
+                margin-bottom: 1.5%;
+                font-weight: 600;
+            }
+            .profile-photo{
+                width: 45%;
+                height: 18vh;
+                border-radius: 20px;
+            }
+            .button-container{
+                display: flex;
+                width: 80%;
+                
+            }
+            button { 
+                margin-top: 1.5%;
+                margin-right: 3%;       
+                padding: 10px 24px;
+                background-color: #212529;
+                box-shadow: 2px 2px 8px #212529;
+                // background: linear-gradient(to right, #141414, #212529);
+                border: 1px solid grey;
+                border-radius: 3px;
+                font-family: 'Nunito', sans-serif;
+                font-size: 0.9rem;
+                color: #ffffff;
+                cursor: pointer;
+                transition: 0.25s;
+    
+                :hover {
+                    opacity: 0.5;
+                }
+             
+            }
+        }
+    }
+   
 
     .display-name {
         margin-bottom: 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-
+        flex-direction: column;
+        margin-right: 45%;
+        // margin-left:5%;
+    
         .left-section {
             p {
                 font-size: 1rem;
@@ -55,7 +127,9 @@ const SettingsContainer = styled.div`
             :hover {
                 opacity: 0.5;
             }
+         
         }
+    
     }
 
     .update {
