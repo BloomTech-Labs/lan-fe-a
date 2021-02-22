@@ -28,7 +28,7 @@ const Room = (props) => {
     }
 
     const handleUpdateCancel = () => {
-        setRoomValues({ room_name: '', description: '' })
+        setRoomValues({ room_name: item.room_name, description: item.description })
         setIsEditable(false)
     }
 
