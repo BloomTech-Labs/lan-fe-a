@@ -55,6 +55,13 @@ export const logOut = (history) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
+export const updateUserRole = (id, role) => (dispatch) => {
+  return axios
+    .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error));
+}
+
 // Onboarding?
 export const setTrack = (track, token) => (dispatch) => {
   return axios.put(`${BACKEND_URL}/api/user/track`, { track, token });
@@ -67,6 +74,13 @@ export const fetchRooms = () => (dispatch) => {
     .then((response) => dispatch({ type: 'SET_ROOMS', payload: response.data }))
     .catch((error) => console.log(error));
 };
+
+export const deleteRoom = (id) => (dispatch) => {
+  return axios
+    .delete(`${BACKEND_URL}/api/room/${id}`)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error));
+}
 
 // Post
 export const postQuestion = (
