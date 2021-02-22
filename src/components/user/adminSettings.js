@@ -63,7 +63,7 @@ const AdminSettings = (props) => {
                 <div key={item.id} style={{background: 'grey', margin: '1rem'}}>
                   <h4>{item.room_name}</h4>
                   <p>{item.description}</p>
-                  <button>View Posts</button>
+                  <button>Update Name</button>
                   <button>Delete</button>
                 </div>
               )
