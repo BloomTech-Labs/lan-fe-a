@@ -8,8 +8,10 @@ const HeaderContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     header{
-        font-family: Adamina;
-        font-size: 2.5rem;
+        // font-family: Adamina;
+        font-family: 'Nunito', sans-serif;
+        font-weight: bolder;
+        font-size: 2.3rem;
         color: #EC3944;
         margin-left: 0.8%;
         margin-bottom: 0.1%;
