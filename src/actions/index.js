@@ -36,6 +36,15 @@ export const fetchUser = () => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
+export const fetchUsers = () => (dispatch) => {
+  axios
+    .get(`${BACKEND_URL}/api/admin/users/`)
+    .then((response) => {
+      dispatch({ type: 'SET_USERS', payload: response.data });
+    })
+    .catch((error) => console.log(error));
+  };
+
 export const logOut = (history) => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/auth/logout`)
