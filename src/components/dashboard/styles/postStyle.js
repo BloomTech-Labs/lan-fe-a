@@ -13,7 +13,7 @@ const PostContainer = styled.div`
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
-
+    
     .left {
       img {
         margin-right: 12px;
@@ -33,14 +33,13 @@ const PostContainer = styled.div`
         margin-bottom: 4px;
         display: flex;
         align-items: center;
-
-        .display-name {
+        
+        .display-name{
           margin-right: 8px;
           font-size: 0.875rem;
           font-weight: 500;
           color: #ffffff;
           transition: 0.25s;
-
           :hover {
             opacity: 0.5;
           }
@@ -103,6 +102,7 @@ const PostContainer = styled.div`
           font-size: 0.875rem;
           font-weight: 500;
           color: #ffffff;
+          
 
           i {
             margin-right: 4px;

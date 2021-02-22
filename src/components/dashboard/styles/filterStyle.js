@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const FilterContainer = styled.div`
-  width: 95%;
-  // margin: 0 auto;
-  margin-left:32%;
-  margin-right: 45%;
+  width: 90%;
+  
+  margin-left: 33%;
+  margin-right: 42%;
   margin-top: 32px;
   margin-bottom: 16px;
   display: flex;
