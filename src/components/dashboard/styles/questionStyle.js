@@ -40,7 +40,6 @@ const QuestionContainer = styled.div`
                     font-weight: 500;
                     color: #ffffff;
                     transition: 0.25s;
-    
                     :hover {
                         opacity: 0.5;
                     }

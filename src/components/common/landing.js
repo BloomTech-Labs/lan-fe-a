@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import Loader from './loader';
 import LandingContainer from './styles/landingStyle';
-import lambdaschool from '../../img/lambdaschool.png';
-import google from '../../img/google.png';
+// import lambdaschool from '../../img/lambdaschool.png';
+// import google from '../../img/google.png';
 import linkedin from '../../img/linkedin.svg';
 // import facebook from '../../img/facebook.png';
 // import twitter from '../../img/twitter.png';
-
+import whitelambda from '../../img/whitelambda.png';
 const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
 const Landing = props => {
@@ -26,7 +26,7 @@ const Landing = props => {
                     <div className='left-section-container'>
                         <div className='left-section'>
                             <div className='logo-and-name'>
-                                <img src={lambdaschool} alt='Lambda School logo' />
+                                <img src={whitelambda} alt='Lambda School logo' />
                                 <h1>Lambda Alumni Network</h1>
                             </div>
                             {/* <p className='description'>Prepare for tech interviews with viewee! Browse an array of questions fellow Lambda School students have received during interviews, view input from career coaches and how other students would answer, and post questions you have received and how you responded for feedback.</p> */}
