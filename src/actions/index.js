@@ -63,16 +63,12 @@ export const fetchRooms = () => (dispatch) => {
 export const postQuestion = (
   title,
   description,
-  track,
-  category,
   room,
   history
 ) => (dispatch) => {
   return axios.post(`${BACKEND_URL}/api/post/create`, {
     title: title,
     description: description,
-    track: track,
-    category: category,
     room_id: room,
   });
 };
