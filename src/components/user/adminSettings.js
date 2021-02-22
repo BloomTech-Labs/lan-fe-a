@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/header';
 import SettingsContainer from './styles/settingsStyle';
+import Room from './room'
 import { fetchRooms, fetchUsers } from '../../actions'
 import axios from 'axios';
 
@@ -10,7 +11,6 @@ const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000
 const AdminSettings = (props) => {
   const [currentMod, setCurrentMod] = useState("Users")
   const [roomValues, setRoomValues] = useState({ room_name: '', description: '' })
-  const [isEditable, setIsEditable] = useState(false)
 
   useEffect(() => {
     props.fetchUsers()
@@ -21,28 +21,6 @@ const AdminSettings = (props) => {
     evt.preventDefault()
   }
 
-  const editRoom = () => {
-    setIsEditable(true)
-  }
-
-  const handleUpdateChange = (evt) => {
-    const { name, value } = evt.target;
-    setRoomValues({ ...roomValues, [name]: value })
-  }
-
-  const handleUpdateSubmit = (evt) => {
-    evt.preventDefault()
-    // axios
-    //   .update('', roomValues)
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err.message))
-    console.log(roomValues)
-  }
-
-  const handleUpdateCancel = () => {
-    setRoomValues({ room_name: '', description: '' })
-    setIsEditable(false)
-  }
 
   return (
     <>
@@ -86,27 +64,7 @@ const AdminSettings = (props) => {
                   </form>
                 </div>
                 {props.rooms.map(item => {
-                  return (
-                    <div key={item.id} style={{ background: 'grey', margin: '1rem' }}>
-                      <h4>{item.room_name}</h4>
-                      <p>{item.description}</p>
-                      {/* on edit,
-                          hide h4 - room_name
-                          hide p - description
-                      */}
-                      <button onClick={editRoom}>edit</button>
-                      <button>delete</button>
-                      {isEditable ?
-                        (
-                          <div>
-                            <input name='room_name' type='text' value={roomValues.room_name} onChange={handleUpdateChange} />
-                            <textarea name='description' onChange={handleUpdateChange} />
-                            <button onClick={handleUpdateSubmit}>Save</button>
-                            <button onClick={handleUpdateCancel}>cancel</button>
-                          </div>) : null}
-                    </div>
-
-                  )
+                  return <Room key={item.id} item={item} />
                 })}
               </div>
             )
