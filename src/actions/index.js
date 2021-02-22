@@ -229,3 +229,10 @@ export const fetchPostByRoom = (roomID) => (dispatch) => {
     dispatch({ type: 'SET_POSTS', payload: res.data });
   });
 };
+
+export const deletePost = (postID) => (dispatch) => {
+  axios
+    .delete(`${BACKEND_URL}/api/post/${postID}`)
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err.message));
+}

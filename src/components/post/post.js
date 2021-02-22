@@ -11,6 +11,7 @@ import {
 	fetchUsersLikedComments,
 	fetchPostCommentsByRecent,
 	fetchPostCommentsByPopular,
+	deletePost,
 } from '../../actions';
 import moment from 'moment';
 import Header from '../common/header';
@@ -68,6 +69,10 @@ const Post = (props) => {
 		setLiked(false);
 		setLikes(likes - 1);
 		props.unlike(postID);
+	};
+
+	const deletePost = (postID) => {
+		props.deletePost(postID);
 	};
 
 	const sortingDropdownOnChange = (event) => {
@@ -165,7 +170,7 @@ const Post = (props) => {
 							<p className='fas fa-ellipsis-h'></p>
 						</div>
 						{moreOptions && <div className='dropdown'>
-								<Link to='/'>Delete Post</Link>
+								<Link to='/' onClick={() => deletePost(postID)}>Delete Post</Link>
 							</div>
 						}
 					</div>
@@ -244,4 +249,5 @@ export default connect(mapStateToProps, {
 	fetchUsersLikedComments,
 	fetchPostCommentsByRecent,
 	fetchPostCommentsByPopular,
+	deletePost,
 })(Post);
