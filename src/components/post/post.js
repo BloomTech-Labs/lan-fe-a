@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import {
 	fetchUser,
 	fetchPost,
@@ -229,14 +229,14 @@ const Post = (props) => {
 };
 
 const mapStateToProps = (state) => {
-	return {
-		user: state.user,
-		currentPost: state.currentPost,
-		currentPostComments: state.currentPostComments,
-		usersLikedPosts: state.usersLikedPosts,
-		individualPostIsFetching: state.individualPostIsFetching,
-		individualPostCommentsAreFetching: state.individualPostCommentsAreFetching,
-	};
+  return {
+    user: state.user,
+    currentPost: state.currentPost,
+    currentPostComments: state.currentPostComments,
+    usersLikedPosts: state.usersLikedPosts,
+    individualPostIsFetching: state.individualPostIsFetching,
+    individualPostCommentsAreFetching: state.individualPostCommentsAreFetching,
+  };
 };
 
 export default connect(mapStateToProps, {

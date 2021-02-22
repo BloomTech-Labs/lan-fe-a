@@ -10,7 +10,6 @@ const UserContainer = styled.div`
         margin-bottom: 32px;
         display: flex;
         justify-content: center;
-
         img {
             margin-right: 16px;
             height: 64px;
@@ -34,6 +33,7 @@ const UserContainer = styled.div`
                         font-size: 1.25rem;
                         font-weight: 600;
                         color: #ffffff;
+                    
                     }
     
                     .track {

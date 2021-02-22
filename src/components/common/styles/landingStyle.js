@@ -1,41 +1,47 @@
 import styled from 'styled-components';
 
 const LandingContainer = styled.div`
-    height: 100vh;
+    height: 90vh;
     width: 90%;
     margin: 0 auto;
+    // top right bottom left
+    border-radius: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 
-    .left-section-container {
+    .left-section-container {        
         .left-section {
             max-width: 372.6px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
-
+           
+            
             .logo-and-name {
                 margin-bottom: 4px;
                 display: flex;
                 flex-direction: column;
-
                 img {
-                    height: 32px;
-                    width: 32px;
+                    width:50%;
+                    height: 45%;
+                    // height: 32px;
+                    // width: 164px;
                     margin-right: 8px;
+                    margin-bottom: 15px;
                 }
 
                 h1 {
                     font-size: 2rem;
                     font-weight: 600;
-                    color: #ffffff;
+                    // color: #ffffff;
+                    color: #EC3944;
                 }
             }
             
             .description {
-                font-size: 1rem;
+                font-size: 1.1rem;
                 color: #ffffff;
             }
         }
@@ -48,7 +54,7 @@ const LandingContainer = styled.div`
             display: flex;
             flex-direction: column;
             justify-content: center;
-
+      
             h2 {
                 margin-bottom: 16px;
                 font-size: 1.75rem;
@@ -99,7 +105,7 @@ const LandingContainer = styled.div`
 
             .terms {
                 // margin-bottom: 16px;
-                font-size: 0.875rem;
+                font-size: 1.1rem;
                 color: #ffffff;
 
                 a {
