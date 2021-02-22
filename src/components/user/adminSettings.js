@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import Header from "../common/header";
-import SettingsContainer from "./styles/settingsStyle";
-import { fetchRooms, fetchUsers } from "../../actions";
 import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import Header from '../common/header';
+import SettingsContainer from './styles/settingsStyle';
+import { fetchRooms, fetchUsers, deleteRoom } from '../../actions'
+import SingleUserCard from './singleUserCard';
+
 
 const StyledAdminHeader = styled.div`
   display: flex;
@@ -27,10 +29,23 @@ const AdminSettings = (props) => {
   }, []);
 
   const createRoom = (e) => {
-    e.preventDefault();
-  };
+
+      e.preventDefault()
+  }
+
+  const handleDeleteRoom = (id) => {
+      props.deleteRoom(id)
+        .then(() => {
+            props.fetchRooms()
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+  }
+
   return (
     <>
+
       <Header history={props.history} />
       <SettingsContainer>
         <StyledAdminHeader>
@@ -62,23 +77,24 @@ const AdminSettings = (props) => {
               <div className="users-card-wrapper">
                 {props.users.map((item) => {
                   return (
-                    <div className="users-card" key={item.id}>
-                      <img
-                        className="profile-photo"
-                        src={item.profile_picture}
-                      />
-                      <h4>User Name: {item.display_name}</h4>
-                      <p>Email: {item.email}</p>
-                      <div className="button-container">
-                        <button>Change Role</button>
-                        <button>Delete</button>
-                      </div>
-                    </div>
+                    <SingleUserCard key={item.id} user={item}/>
+                    // <div className="users-card" key={item.id}>
+                    //   <img
+                    //     className="profile-photo"
+                    //     src={item.profile_picture}
+                    //   />
+                    //   <h4>User Name: {item.display_name}</h4>
+                    //   <p>Email: {item.email}</p>
+                    //   <div className="button-container">
+                    //     <button>Change Role</button>
+                    //     <button>Delete</button>
+                    //   </div>
+                    // </div>
                   );
                 })}
-              </div>
-            </div>
-          ) : (
+              </div> 
+            </div> 
+         ): ( 
             <div>
               <h3>Rooms</h3>
               <div className="create-new-room">
@@ -92,24 +108,21 @@ const AdminSettings = (props) => {
                   <button>Create Room</button>
                 </form>
               </div>
-              {props.rooms.map((item) => {
-                return (
-                  <div
-                    key={item.id}
-                    style={{ background: "grey", margin: "1rem" }}
-                  >
-                    <h4>{item.room_name}</h4>
-                    <p>{item.description}</p>
-                    <button>Update Name</button>
-                    <button>Delete</button>
-                  </div>
-                );
-              })}
+              {props.rooms.map(item => {
+              return (
+                <div key={item.id} style={{background: 'grey', margin: '1rem'}}>
+                  <h4>{item.room_name}</h4>
+                  <p>{item.description}</p>
+                  <button>Update Name</button>
+                  <button onClick={() => handleDeleteRoom(item.id)}>Delete</button>
+                </div>
+              )
+            })}
             </div>
-          )
-        ) : (
-          ""
-        )}
+           )
+          ) : ( 
+            "" 
+            )}
       </SettingsContainer>
     </>
   );
@@ -123,6 +136,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchRooms, fetchUsers })(
-  AdminSettings
-);
+export default connect(mapStateToProps, { fetchRooms, fetchUsers, deleteRoom })(AdminSettings);
