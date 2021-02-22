@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import {
 	fetchUser,
 	fetchPost,
@@ -11,6 +11,7 @@ import {
 	fetchUsersLikedComments,
 	fetchPostCommentsByRecent,
 	fetchPostCommentsByPopular,
+	deletePost,
 } from '../../actions';
 import moment from 'moment';
 import Header from '../common/header';
@@ -68,6 +69,10 @@ const Post = (props) => {
 		setLiked(false);
 		setLikes(likes - 1);
 		props.unlike(postID);
+	};
+
+	const deletePost = (postID) => {
+		props.deletePost(postID);
 	};
 
 	const sortingDropdownOnChange = (event) => {
@@ -165,7 +170,7 @@ const Post = (props) => {
 							<p className='fas fa-ellipsis-h'></p>
 						</div>
 						{moreOptions && <div className='dropdown'>
-								<Link to='/'>Delete Post</Link>
+								<Link to='/' onClick={() => deletePost(postID)}>Delete Post</Link>
 							</div>
 						}
 					</div>
@@ -175,7 +180,7 @@ const Post = (props) => {
 						<textarea
 							name='comment'
 							type='text'
-							placeholder='How would you approach this question? Any advice or feedback?'
+							placeholder='Add a comment...'
 							value={input}
 							onChange={onChange}
 						/>
@@ -224,14 +229,14 @@ const Post = (props) => {
 };
 
 const mapStateToProps = (state) => {
-	return {
-		user: state.user,
-		currentPost: state.currentPost,
-		currentPostComments: state.currentPostComments,
-		usersLikedPosts: state.usersLikedPosts,
-		individualPostIsFetching: state.individualPostIsFetching,
-		individualPostCommentsAreFetching: state.individualPostCommentsAreFetching,
-	};
+  return {
+    user: state.user,
+    currentPost: state.currentPost,
+    currentPostComments: state.currentPostComments,
+    usersLikedPosts: state.usersLikedPosts,
+    individualPostIsFetching: state.individualPostIsFetching,
+    individualPostCommentsAreFetching: state.individualPostCommentsAreFetching,
+  };
 };
 
 export default connect(mapStateToProps, {
@@ -244,4 +249,5 @@ export default connect(mapStateToProps, {
 	fetchUsersLikedComments,
 	fetchPostCommentsByRecent,
 	fetchPostCommentsByPopular,
+	deletePost,
 })(Post);

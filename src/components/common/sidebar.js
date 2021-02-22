@@ -6,23 +6,18 @@ import styled from 'styled-components';
 
 const StyledSidebar = styled.div`
     display: flex;
-    width : 18%;
+    width : 20%;
     flex-direction: column;
     border: none;
-    padding: 1.5% 10px 3% 30px;
-    margin-left: 1.7%;
-    margin-bottom: 3.8%;
-    margin-top: 1.9%;
-    height: 85vh;
+    padding: 1.5% 10px 3% 20px;
+    // top right bottom left
+    margin : 1.5% 1% 3.5% 2%;
+    height: 114vh;
     justify-content: space-around;
     background-color: #141414;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 20px;
-    .arrow{
-      width: 32px;
-      height: 5vh;
-    }
     a {
         color: white;
         text-decoration: none;
@@ -31,11 +26,13 @@ const StyledSidebar = styled.div`
     .active-sidebar-room {
         color: white;
         background-color: #0D0D0D;
-        width: 70%;
-        padding: 3%;
+        width: 93%;
+        padding: 3% 10px 3% 10px;
+        // top right bottom left
+        margin: 2% 0% 2% 1%;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
 

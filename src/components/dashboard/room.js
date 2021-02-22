@@ -12,6 +12,7 @@ import { postQuestion, fetchPostByRoom } from '../../actions'
 
 const StyledRoomContainer = styled.div`
   width : 90%;
+
   padding: 2%;
 
   .single-room-name {
@@ -31,11 +32,13 @@ const StyledPost = styled.div`
   a {
     text-decoration: none;
     color: white;
-    transition: all .2s;
+
+    transition: all 0.2s;
       &:hover {
         color: grey;
       }
     }
+
   h4 {
     text-transform: capitalize;
     margin-left: 1%;
@@ -72,10 +75,12 @@ const StyledPost = styled.div`
     font-size: 1.1rem;
   }
 `;
+
 const StyledPointer = styled.div`
-display: flex;
+  display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-item: center;
+
   background-color: #141414;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 20px;
@@ -125,6 +130,7 @@ const customStyles = {
       backgroundColor: 'rgba(0, 0, 0, 0.2)',
     },
 };
+
 
 
 const Room = (props) => {
@@ -198,7 +204,6 @@ const Room = (props) => {
             <button onClick={() => openModal()} className="create-post-button">Create Post</button>
             <img src={returnpointer} className="return-pointer" alt="return-pointer"/>
         </div>
-        
       </StyledPointer>
       {props.posts.map((post, index) => {
         return (
