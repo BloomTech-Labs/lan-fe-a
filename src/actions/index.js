@@ -55,6 +55,21 @@ export const logOut = (history) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
+export const updateUserRole = (id, role) => (dispatch) => {
+  return axios
+    .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error));
+};
+
+//function for admin to delete a user from DB. This to be used on singleUserCard.js  file
+export const deleteUser = (id) => (dispatch) => {
+  return axios
+    .delete(`${BACKEND_URL}/api/admin/users/${id}`)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
+
 // Onboarding?
 export const setTrack = (track, token) => (dispatch) => {
   return axios.put(`${BACKEND_URL}/api/user/track`, { track, token });
@@ -68,13 +83,17 @@ export const fetchRooms = () => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
+export const deleteRoom = (id) => (dispatch) => {
+  return axios
+    .delete(`${BACKEND_URL}/api/room/${id}`)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error));
+};
+
 // Post
-export const postQuestion = (
-  title,
-  description,
-  room,
-  history
-) => (dispatch) => {
+export const postQuestion = (title, description, room, history) => (
+  dispatch
+) => {
   return axios.post(`${BACKEND_URL}/api/post/create`, {
     title: title,
     description: description,
@@ -156,6 +175,16 @@ export const updateRoom = (id, room) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err.message)
+
+export const createRoom = (room) => (dispatch) => {
+  return axios
+    .post(`${BACKEND_URL}/api/room`, { ...room })
+    .then(() => {
+        console.log('room added')
+    })
+    .catch((err) => {
+        console.log(err)
+
     })
 }
 
@@ -254,4 +283,4 @@ export const deletePost = (postID) => (dispatch) => {
     .delete(`${BACKEND_URL}/api/post/${postID}`)
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err.message));
-}
+};

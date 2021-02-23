@@ -133,14 +133,13 @@ const PostContainer = styled.div`
     }
 
     .more-options {
-    color: #ffffff;
-	border: 1px solid white;
-	height: 3vh;
-    padding: 5px;
-	display: flex;
-	align-items: center;
-    border-radius: 5px;
-
+      color: #ffffff;
+      border: 1px solid white;
+      height: 3vh;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
     }
 
     .dropdown {
