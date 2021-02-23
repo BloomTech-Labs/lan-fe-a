@@ -10,7 +10,7 @@ const StyledAdminHeader = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  marign: 0 auto;
+  margin: 0 auto;
 `;
 const StyledRoom = styled.div` 
   // width: 85%;
@@ -24,16 +24,17 @@ const StyledRoom = styled.div`
     font-size: 1.2rem;
   }
   p{
-    font-size: 1rem:
+    font-size: 1rem;
     font-weight: 550;
     color: lightgrey;
   }
-`
+`;
+
 const BACKEND_URL =
-  process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
+  process.env.REACT_APP_DEPLOYED_URL || "http://localhost:5000";
 
 const AdminSettings = (props) => {
-  const [currentMod, setCurrentMod] = useState('Users');
+  const [currentMod, setCurrentMod] = useState("Users");
 
   useEffect(() => {
     props.fetchUsers();
@@ -93,16 +94,16 @@ const AdminSettings = (props) => {
                 })}
               </div> 
             </div> 
-         ): ( 
+         ) : ( 
             <div>
               <h3>Rooms</h3>
-              <div className='create-new-room'>
+              <div className="create-new-room">
                 <form onSubmit={createRoom}>
                   <input
-                    type='text'
-                    id='new-room'
-                    name='new-room'
-                    placeholder='Room Name'
+                    type="text"
+                    id="new-room"
+                    name="new-room"
+                    placeholder="Room Name"
                   />
                   <button>Create Room</button>
                 </form>
@@ -111,7 +112,6 @@ const AdminSettings = (props) => {
               return (
                 <StyledRoom>
                   <div key={item.id} >
-                    {/* style={{background: 'grey', margin: '1rem'}} */}
                     <h4>{item.room_name}</h4>
                     <p>{item.description}</p>
                     <button>Update Name</button>
