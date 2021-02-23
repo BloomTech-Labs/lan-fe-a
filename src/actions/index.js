@@ -164,6 +164,17 @@ export const fetchUsersLikedPosts = () => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
+export const createRoom = (room) => (dispatch) => {
+  return axios
+    .post(`${BACKEND_URL}/api/room`, { ...room })
+    .then(() => {
+        console.log('room added')
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
+
 // Comment
 export const postComment = (user, postID, comment) => (dispatch) => {
   axios
