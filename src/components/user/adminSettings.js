@@ -10,12 +10,26 @@ import SingleUserCard from './singleUserCard';
 const StyledAdminHeader = styled.div`
   display: flex;
   flex-direction: column;
-  width: 35%;
-  // margin: 2px auto;
-  align-item: center;
-  .profile-photo {
-  }
+  width: 50%;
+  marign: 0 auto;
 `;
+const StyledRoom = styled.div` 
+  // width: 85%;
+  padding: 2.2%;
+  background-color: #141414;
+  margin: 1.2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-left: 2px solid lightgrey; 
+  h4{
+    color: white;
+    font-size: 1.2rem;
+  }
+  p{
+    font-size: 1rem:
+    font-weight: 550;
+    color: lightgrey;
+  }
+`
 
 const BACKEND_URL =
   process.env.REACT_APP_DEPLOYED_URL || "http://localhost:5000";
@@ -77,19 +91,7 @@ const AdminSettings = (props) => {
               <div className="users-card-wrapper">
                 {props.users.map((item) => {
                   return (
-                    <SingleUserCard key={item.id} user={item}/>
-                    // <div className="users-card" key={item.id}>
-                    //   <img
-                    //     className="profile-photo"
-                    //     src={item.profile_picture}
-                    //   />
-                    //   <h4>User Name: {item.display_name}</h4>
-                    //   <p>Email: {item.email}</p>
-                    //   <div className="button-container">
-                    //     <button>Change Role</button>
-                    //     <button>Delete</button>
-                    //   </div>
-                    // </div>
+                      <SingleUserCard key={item.id} user={item}/>
                   );
                 })}
               </div> 
@@ -110,12 +112,15 @@ const AdminSettings = (props) => {
               </div>
               {props.rooms.map(item => {
               return (
-                <div key={item.id} style={{background: 'grey', margin: '1rem'}}>
-                  <h4>{item.room_name}</h4>
-                  <p>{item.description}</p>
-                  <button>Update Name</button>
-                  <button onClick={() => handleDeleteRoom(item.id)}>Delete</button>
-                </div>
+                <StyledRoom>
+                  <div key={item.id} >
+                    {/* style={{background: 'grey', margin: '1rem'}} */}
+                    <h4>{item.room_name}</h4>
+                    <p>{item.description}</p>
+                    <button>Update Name</button>
+                    <button onClick={() => handleDeleteRoom(item.id)}>Delete</button>
+                  </div>
+                </StyledRoom>
               )
             })}
             </div>
