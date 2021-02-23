@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/header';
@@ -5,8 +6,31 @@ import SettingsContainer from './styles/settingsStyle';
 import { fetchRooms, fetchUsers, deleteRoom } from '../../actions';
 import SingleUserCard from './singleUserCard';
 
-const BACKEND_URL =
-  process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
+
+const StyledAdminHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  marign: 0 auto;
+`;
+const StyledRoom = styled.div` 
+  padding: 2.2%;
+  background-color: #141414;
+  margin: 1.2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-left: 2px solid lightgrey; 
+  h4{
+    color: white;
+    font-size: 1.2rem;
+  }
+  p{
+    font-size: 1rem:
+    font-weight: 550;
+    color: lightgrey;
+  }
+`
+
+const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
 const AdminSettings = (props) => {
   const [currentMod, setCurrentMod] = useState('Users');
@@ -17,6 +41,7 @@ const AdminSettings = (props) => {
   }, []);
 
   const createRoom = (e) => {
+
     e.preventDefault();
   };
 
@@ -35,6 +60,7 @@ const AdminSettings = (props) => {
     <>
       <Header history={props.history} />
       <SettingsContainer>
+        <StyleAdminHeader>
         <h2>Admin Settings</h2>
         <div className='display-name'>
           <button
@@ -53,9 +79,13 @@ const AdminSettings = (props) => {
           >
             Modify Rooms
           </button>
+        </StyleAdminHeader>
+        
           {/* {console.log(user.role_id)} */}
           {/* {console.log(users)} */}
+        
         </div>
+        
         {props.user.role_id === 3 ? (
           currentMod == 'Users' ? (
             <div>
@@ -65,6 +95,7 @@ const AdminSettings = (props) => {
               })}
             </div>
           ) : (
+
             <div>
               <h3>Rooms</h3>
               <div className='create-new-room'>
@@ -78,11 +109,12 @@ const AdminSettings = (props) => {
                   <button>Create Room</button>
                 </form>
               </div>
+
               {props.rooms.map((item) => {
                 return (
                   <div
                     key={item.id}
-                    style={{ background: 'grey', margin: '1rem' }}
+//                     style={{ background: 'grey', margin: '1rem' }}
                   >
                     <h4>{item.room_name}</h4>
                     <p>{item.description}</p>
@@ -98,6 +130,7 @@ const AdminSettings = (props) => {
         ) : (
           ''
         )}
+
       </SettingsContainer>
     </>
   );
@@ -111,8 +144,10 @@ const mapStateToProps = (state) => {
   };
 };
 
+
 export default connect(mapStateToProps, {
   fetchRooms,
   fetchUsers,
   deleteRoom,
 })(AdminSettings);
+

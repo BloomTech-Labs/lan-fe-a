@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
-    margin-top: 32px;
-    margin-bottom: 64px;
-
+    display: flex;
     h2 {
         margin-bottom: 32px;
         font-size: 1.75rem;
@@ -14,20 +12,30 @@ const SettingsContainer = styled.div`
     }
 
     h3 {
+        margin-left: 7%;
         padding-bottom: 8px;
         margin-bottom: 8px;
         border-bottom: 1px solid #2c2f33;
-        font-size: 1.25rem;
+        font-size: 1.7rem;
         font-weight: 700;
         color: #ffffff;
     }
+// styling users-setting-card
+    .users-card-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        margin-left:8%;
+    }
+   
 
     .display-name {
         margin-bottom: 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-
+        flex-direction: column;
+        margin-right: 45%;
         .left-section {
             p {
                 font-size: 1rem;
@@ -40,22 +48,24 @@ const SettingsContainer = styled.div`
                 }
             }
         }
-
         button {
-            padding: 10px 24px;
-            background: linear-gradient(to right, #0084ff, #0099ff);
-            border: none;
-            border-radius: 3px;
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.875rem;
+            padding: 12px 26px;
+            margin-top: 16px;
+            background: linear-gradient(to right, #000000, #212121, #424949);
+            // background: white ;
+            border-radius: 5px;
+            font-family: "Nunito", sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
             color: #ffffff;
             cursor: pointer;
             transition: 0.25s;
-
+            border: 1px solid grey;
+            box-shadow: 3px 3px 6px #888888;
             :hover {
-                opacity: 0.5;
+              opacity: 0.5;
             }
-        }
+          }
     }
 
     .update {
