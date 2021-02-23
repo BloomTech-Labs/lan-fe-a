@@ -4,13 +4,9 @@ import Header from '../common/header';
 import SettingsContainer from './styles/settingsStyle';
 import Room from './room'
 import { fetchRooms, fetchUsers } from '../../actions'
-import axios from 'axios';
-
-const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
 const AdminSettings = (props) => {
   const [currentMod, setCurrentMod] = useState("Users")
-  const [roomValues, setRoomValues] = useState({ room_name: '', description: '' })
 
   useEffect(() => {
     props.fetchUsers()
@@ -20,7 +16,6 @@ const AdminSettings = (props) => {
   const createRoom = (evt) => {
     evt.preventDefault()
   }
-
 
   return (
     <>

@@ -43,7 +43,7 @@ export const fetchUsers = () => (dispatch) => {
       dispatch({ type: 'SET_USERS', payload: response.data });
     })
     .catch((error) => console.log(error));
-  };
+};
 
 export const logOut = (history) => (dispatch) => {
   axios
@@ -144,6 +144,20 @@ export const fetchUsersLikedPosts = () => (dispatch) => {
     )
     .catch((error) => console.log(error));
 };
+
+export const updateRoom = (id, room) => (dispatch) => {
+  return axios
+    .put(`${BACKEND_URL}/api/admin/rooms/${id}`, room)
+    .then((res) => {
+      fetchRooms()
+      dispatch({ type: 'UPDATE_ROOMS', payload: res.data })
+      console.log('room updated')
+      console.log('res', res)
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+}
 
 // Comment
 export const postComment = (user, postID, comment) => (dispatch) => {

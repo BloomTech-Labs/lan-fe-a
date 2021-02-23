@@ -28,7 +28,13 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 rooms: action.payload
             }
-        
+
+        case 'UPDATE_ROOMS':
+            return {
+                ...state,
+                rooms: action.payload
+            }
+
         case 'SET_USERS':
             return {
                 ...state,
@@ -102,7 +108,7 @@ export const reducer = (state = initialState, action) => {
                 currentPostComments: action.payload,
                 individualPostCommentsAreFetching: false
             };
-        
+
         default:
             return state;
     };
