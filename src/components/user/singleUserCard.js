@@ -77,8 +77,8 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
         setStatus('Unable To Update Role');
       });
   };
-
-  const handleDeleteUser = () => {
+  
+    const handleDeleteUser = () => {
     deleteUser(user.id)
       .then(() => {
         fetchUsers();
@@ -87,29 +87,34 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
         console.log(err);
       });
   };
-
+  
   return (
     <StyledUser>
-      <h4>{user.display_name}</h4>
-      <p>{user.email}</p>
-      <select
-        value={roleId}
-        onChange={(e) => setRoleId(e.target.value)}
-        name='user_role'
-        id='user_role'
-      >
-        <option value='1'>Alumni</option>
-        <option value='2'>Moderator</option>
-        <option value='3'>Admin</option>
-      </select>
-      <button onClick={handleSubmit}>Change Role</button>
-      <button onClick={handleDeleteUser}>Delete User</button>
-      <span className='update-role-status'>{status}</span>
+      <div className="user-card-wrapper">
+          <img className="profile-photo" src={user.profile_picture} />
+        <div className="user-card">
+          <h4>Username -  {user.display_name}</h4>
+          <p>Email- {user.email}</p>
+          <select
+            value={roleId}
+            onChange={(e) => setRoleId(e.target.value)}
+            name="user_role"
+            id="user_role"
+          >
+            <option value="1">Alumni</option>
+            <option value="2">Moderator</option>
+            <option value="3">Admin</option>
+          </select>
+          <button onClick={handleSubmit}>Change Role</button>
+          <button onClick={handleDeleteUser}>Delete User</button>
+          <span className="update-role-status">{status}</span>
+        </div>
+      </div>
     </StyledUser>
   );
 };
 
+
 export default connect(null, { updateUserRole, fetchUsers, deleteUser })(
   SingleUserCard
 );
-
