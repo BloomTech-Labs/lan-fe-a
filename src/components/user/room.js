@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+// import axios from 'axios'
+import { connect } from 'react-redux'
+import { fetchRooms, updateRoom } from '../../actions'
 
 const Room = (props) => {
-
     const { item } = props
-    console.log(item)
     const [roomValues, setRoomValues] = useState({ room_name: item.room_name, description: item.description })
-
     const [isEditable, setIsEditable] = useState(false)
-
 
     const editRoom = () => {
         setIsEditable(true)
@@ -20,11 +19,8 @@ const Room = (props) => {
 
     const handleUpdateSubmit = (evt) => {
         evt.preventDefault()
-        // axios
-        //   .update('', roomValues)
-        //   .then(res => console.log(res))
-        //   .catch(err => console.log(err.message))
-        console.log(roomValues)
+        props.updateRoom(item.id, roomValues).then(fetchRooms)
+        setIsEditable(false)
     }
 
     const handleUpdateCancel = () => {
@@ -32,19 +28,21 @@ const Room = (props) => {
         setIsEditable(false)
     }
 
+    useEffect(() => {
+        console.log('rooms updated')
+    }, [])
+
     return (
         <div style={{ background: 'grey', margin: '1rem' }}>
-            <h4>{item.room_name}</h4>
-            <p>{item.description}</p>
-            {/* on edit,
-                          hide h4 - room_name
-                          hide p - description
-                      */}
-            <button onClick={editRoom}>edit</button>
-            <button>delete</button>
+            <div className='not-editable'>
+                <h4>{item.room_name}</h4>
+                <p>{item.description}</p>
+                <button onClick={editRoom}>edit</button>
+                <button>delete</button>
+            </div>
             {isEditable ?
                 (
-                    <div>
+                    <div className='editable'>
                         <input name='room_name' type='text' value={roomValues.room_name} onChange={handleUpdateChange} />
                         <textarea name='description' value={roomValues.description} onChange={handleUpdateChange} />
                         <button onClick={handleUpdateSubmit}>Save</button>
@@ -54,4 +52,12 @@ const Room = (props) => {
     )
 }
 
-export default Room;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        rooms: state.rooms,
+        users: state.users,
+    }
+}
+
+export default connect(mapStateToProps, { updateRoom })(Room);
