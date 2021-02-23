@@ -43,7 +43,7 @@ export const fetchUsers = () => (dispatch) => {
       dispatch({ type: 'SET_USERS', payload: response.data });
     })
     .catch((error) => console.log(error));
-  };
+};
 
 export const logOut = (history) => (dispatch) => {
   axios
@@ -60,7 +60,15 @@ export const updateUserRole = (id, role) => (dispatch) => {
     .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
     .then((response) => console.log(response))
     .catch((error) => console.log(error));
-}
+};
+
+//function for admin to delete a user from DB. This to be used on singleUserCard.js  file
+export const deleteUser = (id) => (dispatch) => {
+  return axios
+    .delete(`${BACKEND_URL}/api/admin/users/${id}`)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
 
 // Onboarding?
 export const setTrack = (track, token) => (dispatch) => {
@@ -80,15 +88,12 @@ export const deleteRoom = (id) => (dispatch) => {
     .delete(`${BACKEND_URL}/api/room/${id}`)
     .then((response) => console.log(response))
     .catch((error) => console.log(error));
-}
+};
 
 // Post
-export const postQuestion = (
-  title,
-  description,
-  room,
-  history
-) => (dispatch) => {
+export const postQuestion = (title, description, room, history) => (
+  dispatch
+) => {
   return axios.post(`${BACKEND_URL}/api/post/create`, {
     title: title,
     description: description,
@@ -254,4 +259,4 @@ export const deletePost = (postID) => (dispatch) => {
     .delete(`${BACKEND_URL}/api/post/${postID}`)
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err.message));
-}
+};
