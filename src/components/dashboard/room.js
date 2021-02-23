@@ -217,7 +217,7 @@ const Room = (props) => {
                 <h3> {post.title} </h3>
                 <p> {post.description} </p>
                 <p
-                  class="single-post-footer"
+                  className="single-post-footer"
                   onClick={() => console.log(`click ${post.id}`)}
                 >
                   <span>

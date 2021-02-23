@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { updateUserRole, fetchUsers } from "../../actions";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { updateUserRole, fetchUsers, deleteUser } from '../../actions';
+import styled from 'styled-components';
 
 const StyledUser = styled.div`
   width: 45%;
@@ -15,53 +15,53 @@ const StyledUser = styled.div`
     color: black;
     padding-left: 7px;
   }
-    .profile-photo {
-        height: 52px;
-        width: 52px;
-        margin-left: 16px;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: 0.25s;
-        :hover {
-            opacity: 0.5;
-        }
-    }
 
-    h4 {
-      text-transform: capitalize;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-left: 1.5%;
-      margin-top: 1.5%;
-      margin-bottom: 1.5%;
+  .profile-photo {
+    height: 52px;
+    width: 52px;
+    margin-left: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.25s;
+    :hover {
+      opacity: 0.5;
     }
-    p {
-      color: #ffffff;
-      margin-top: 1.5%;
-      margin-bottom: 1.5%;
-      font-weight: 600;
-    }
-    button { 
-        margin-top: 1.5%;
-        margin-left: 3%;       
-        padding: 8px 12px;
-        background-color: #212529;
-        box-shadow: 2px 2px 8px #212529;
-        border: 1px solid grey;
-        border-radius: 3px;
-        font-family: 'Nunito', sans-serif;
-        font-size: 0.9rem;
-        color: #ffffff;
-        cursor: pointer;
-        transition: 0.25s;
+  }
 
-        :hover {
-            opacity: 0.5;
-        }
+  h4 {
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-left: 1.5%;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+  }
+  p {
+    color: #ffffff;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    font-weight: 600;
+  }
+  button { 
+    margin-top: 1.5%;
+    margin-left: 3%;       
+    padding: 8px 12px;
+    background-color: #212529;
+    box-shadow: 2px 2px 8px #212529;
+    // background: linear-gradient(to right, #141414, #212529);
+    border: 1px solid grey;
+    border-radius: 3px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.25s;
+      :hover {
+        opacity: 0.5;
+      }
+  }
 `;
-
-
 
 const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
   const [roleId, setRoleId] = useState(user.role_id);
@@ -78,7 +78,7 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
       });
   };
   
-    const handleDeleteUser = () => {
+  const handleDeleteUser = () => {
     deleteUser(user.id)
       .then(() => {
         fetchUsers();
@@ -87,11 +87,11 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
         console.log(err);
       });
   };
-  
+
   return (
     <StyledUser>
       <div className="user-card-wrapper">
-          <img className="profile-photo" src={user.profile_picture} />
+        <img className="profile-photo" src={user.profile_picture} />
         <div className="user-card">
           <h4>Username -  {user.display_name}</h4>
           <p>Email- {user.email}</p>
@@ -113,7 +113,6 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
     </StyledUser>
   );
 };
-
 
 export default connect(null, { updateUserRole, fetchUsers, deleteUser })(
   SingleUserCard

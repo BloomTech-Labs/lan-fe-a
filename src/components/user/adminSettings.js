@@ -1,18 +1,19 @@
 import styled from "styled-components";
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import Header from "../common/header";
-import SettingsContainer from "./styles/settingsStyle";
-import { fetchRooms, fetchUsers, deleteRoom } from "../../actions";
-import SingleUserCard from "./singleUserCard";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import Header from '../common/header';
+import SettingsContainer from './styles/settingsStyle';
+import { fetchRooms, fetchUsers, deleteRoom } from '../../actions';
+import SingleUserCard from './singleUserCard';
 
 const StyledAdminHeader = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  marign: 0 auto;
+  margin: 0 auto;
 `;
 const StyledRoom = styled.div` 
+  // width: 85%;
   padding: 2.2%;
   background-color: #141414;
   margin: 1.2rem;
@@ -23,7 +24,7 @@ const StyledRoom = styled.div`
     font-size: 1.2rem;
   }
   p{
-    font-size: 1rem:
+    font-size: 1rem;
     font-weight: 550;
     color: lightgrey;
   }
@@ -54,12 +55,12 @@ const AdminSettings = (props) => {
         console.log(err);
       });
   };
-
+  
   return (
     <>
       <Header history={props.history} />
       <SettingsContainer>
-        <StyleAdminHeader>
+        <StyledAdminHeader>
           <h2>Admin Settings</h2>
           <div className="display-name">
             <button
@@ -78,21 +79,22 @@ const AdminSettings = (props) => {
             >
               Modify Rooms
             </button>
-
-            {/* {console.log(user.role_id)} */}
-            {/* {console.log(users)} */}
           </div>
-        </StyleAdminHeader>
-
+        </StyledAdminHeader>
         {props.user.role_id === 3 ? (
           currentMod == "Users" ? (
             <div>
+              {" "}
               <h3>Users</h3>
-              {props.users.map((item) => {
-                return <SingleUserCard key={item.id} user={item} />;
-              })}
-            </div>
-          ) : (
+              <div className="users-card-wrapper">
+                {props.users.map((item) => {
+                  return (
+                      <SingleUserCard key={item.id} user={item}/>
+                  );
+                })}
+              </div> 
+            </div> 
+         ) : ( 
             <div>
               <h3>Rooms</h3>
               <div className="create-new-room">
@@ -106,27 +108,23 @@ const AdminSettings = (props) => {
                   <button>Create Room</button>
                 </form>
               </div>
-
-              {props.rooms.map((item) => {
-                return (
-                  <div
-                    key={item.id}
-                    //                     style={{ background: 'grey', margin: '1rem' }}
-                  >
+              {props.rooms.map(item => {
+              return (
+                <StyledRoom>
+                  <div key={item.id} >
                     <h4>{item.room_name}</h4>
                     <p>{item.description}</p>
                     <button>Update Name</button>
-                    <button onClick={() => handleDeleteRoom(item.id)}>
-                      Delete
-                    </button>
+                    <button onClick={() => handleDeleteRoom(item.id)}>Delete</button>
                   </div>
-                );
-              })}
+                </StyledRoom>
+              )
+            })}
             </div>
-          )
-        ) : (
-          ""
-        )}
+           )
+          ) : ( 
+            "" 
+            )}
       </SettingsContainer>
     </>
   );
@@ -140,8 +138,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  fetchRooms,
-  fetchUsers,
-  deleteRoom,
-})(AdminSettings);
+export default connect(mapStateToProps, { fetchRooms, fetchUsers, deleteRoom })(AdminSettings);
