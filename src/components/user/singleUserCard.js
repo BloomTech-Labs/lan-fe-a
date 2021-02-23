@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { updateUserRole, fetchUsers } from "../../actions";
@@ -12,13 +11,10 @@ const StyledUser = styled.div`
   color: #000000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-left: 2px solid lightgrey;
-
   .update-role-status {
     color: black;
     padding-left: 7px;
   }
-
-
     .profile-photo {
         height: 52px;
         width: 52px;
@@ -52,7 +48,6 @@ const StyledUser = styled.div`
         padding: 8px 12px;
         background-color: #212529;
         box-shadow: 2px 2px 8px #212529;
-        // background: linear-gradient(to right, #141414, #212529);
         border: 1px solid grey;
         border-radius: 3px;
         font-family: 'Nunito', sans-serif;
@@ -66,18 +61,20 @@ const StyledUser = styled.div`
         }
 `;
 
-const SingleUserCard = ({ user, updateUserRole, fetchUsers }) => {
+
+
+const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
   const [roleId, setRoleId] = useState(user.role_id);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState('');
 
   const handleSubmit = () => {
     updateUserRole(user.id, roleId)
       .then(() => {
-        setStatus("User Role Updated");
+        setStatus('User Role Updated');
         fetchUsers();
       })
       .catch(() => {
-        setStatus("Unable To Update Role");
+        setStatus('Unable To Update Role');
       });
   };
   

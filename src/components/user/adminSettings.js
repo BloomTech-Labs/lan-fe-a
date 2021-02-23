@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import Header from '../common/header';
-import SettingsContainer from './styles/settingsStyle';
-import { fetchRooms, fetchUsers, deleteRoom } from '../../actions';
-import SingleUserCard from './singleUserCard';
-
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import Header from "../common/header";
+import SettingsContainer from "./styles/settingsStyle";
+import { fetchRooms, fetchUsers, deleteRoom } from "../../actions";
+import SingleUserCard from "./singleUserCard";
 
 const StyledAdminHeader = styled.div`
   display: flex;
@@ -28,12 +27,13 @@ const StyledRoom = styled.div`
     font-weight: 550;
     color: lightgrey;
   }
-`
+`;
 
-const BACKEND_URL = process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
+const BACKEND_URL =
+  process.env.REACT_APP_DEPLOYED_URL || "http://localhost:5000";
 
 const AdminSettings = (props) => {
-  const [currentMod, setCurrentMod] = useState('Users');
+  const [currentMod, setCurrentMod] = useState("Users");
 
   useEffect(() => {
     props.fetchUsers();
@@ -41,7 +41,6 @@ const AdminSettings = (props) => {
   }, []);
 
   const createRoom = (e) => {
-
     e.preventDefault();
   };
 
@@ -61,33 +60,32 @@ const AdminSettings = (props) => {
       <Header history={props.history} />
       <SettingsContainer>
         <StyleAdminHeader>
-        <h2>Admin Settings</h2>
-        <div className='display-name'>
-          <button
-            className='update'
-            onClick={() => {
-              setCurrentMod('Users');
-            }}
-          >
-            Modify Users
-          </button>
-          <button
-            className='update'
-            onClick={() => {
-              setCurrentMod('Rooms');
-            }}
-          >
-            Modify Rooms
-          </button>
+          <h2>Admin Settings</h2>
+          <div className="display-name">
+            <button
+              className="update"
+              onClick={() => {
+                setCurrentMod("Users");
+              }}
+            >
+              Modify Users
+            </button>
+            <button
+              className="update"
+              onClick={() => {
+                setCurrentMod("Rooms");
+              }}
+            >
+              Modify Rooms
+            </button>
+
+            {/* {console.log(user.role_id)} */}
+            {/* {console.log(users)} */}
+          </div>
         </StyleAdminHeader>
-        
-          {/* {console.log(user.role_id)} */}
-          {/* {console.log(users)} */}
-        
-        </div>
-        
+
         {props.user.role_id === 3 ? (
-          currentMod == 'Users' ? (
+          currentMod == "Users" ? (
             <div>
               <h3>Users</h3>
               {props.users.map((item) => {
@@ -95,16 +93,15 @@ const AdminSettings = (props) => {
               })}
             </div>
           ) : (
-
             <div>
               <h3>Rooms</h3>
-              <div className='create-new-room'>
+              <div className="create-new-room">
                 <form onSubmit={createRoom}>
                   <input
-                    type='text'
-                    id='new-room'
-                    name='new-room'
-                    placeholder='Room Name'
+                    type="text"
+                    id="new-room"
+                    name="new-room"
+                    placeholder="Room Name"
                   />
                   <button>Create Room</button>
                 </form>
@@ -114,7 +111,7 @@ const AdminSettings = (props) => {
                 return (
                   <div
                     key={item.id}
-//                     style={{ background: 'grey', margin: '1rem' }}
+                    //                     style={{ background: 'grey', margin: '1rem' }}
                   >
                     <h4>{item.room_name}</h4>
                     <p>{item.description}</p>
@@ -128,9 +125,8 @@ const AdminSettings = (props) => {
             </div>
           )
         ) : (
-          ''
+          ""
         )}
-
       </SettingsContainer>
     </>
   );
@@ -144,10 +140,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-
 export default connect(mapStateToProps, {
   fetchRooms,
   fetchUsers,
   deleteRoom,
 })(AdminSettings);
-
