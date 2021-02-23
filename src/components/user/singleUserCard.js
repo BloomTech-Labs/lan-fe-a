@@ -9,8 +9,17 @@ const StyledUser = styled.div`
   background-color: #141414;
   margin: 1rem;
   color: #000000;
+  border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-left: 2px solid lightgrey;
+
+  .drop-down{
+    width: 85px;
+    height: 35px;
+    background: #2c2f33;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
   .update-role-status {
     color: black;
     padding-left: 7px;
@@ -49,8 +58,7 @@ const StyledUser = styled.div`
     padding: 8px 12px;
     background-color: #212529;
     box-shadow: 2px 2px 8px #212529;
-    // background: linear-gradient(to right, #141414, #212529);
-    border: 1px solid grey;
+    border: 1px solid #707B7C ;
     border-radius: 3px;
     font-family: 'Nunito', sans-serif;
     font-size: 0.9rem;
@@ -60,7 +68,7 @@ const StyledUser = styled.div`
       :hover {
         opacity: 0.5;
       }
-  }
+    }
 `;
 
 const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
@@ -95,16 +103,19 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
         <div className="user-card">
           <h4>Username -  {user.display_name}</h4>
           <p>Email- {user.email}</p>
-          <select
-            value={roleId}
-            onChange={(e) => setRoleId(e.target.value)}
-            name="user_role"
-            id="user_role"
-          >
-            <option value="1">Alumni</option>
-            <option value="2">Moderator</option>
-            <option value="3">Admin</option>
-          </select>
+          
+            <select
+              value={roleId}
+              onChange={(e) => setRoleId(e.target.value)}
+              name="user_role"
+              id="user_role"
+              className="drop-down"
+            >
+              <option value="1">Alumni</option>
+              <option value="2">Moderator</option>
+              <option value="3">Admin</option>
+            </select>
+           
           <button onClick={handleSubmit}>Change Role</button>
           <button onClick={handleDeleteUser}>Delete User</button>
           <span className="update-role-status">{status}</span>
