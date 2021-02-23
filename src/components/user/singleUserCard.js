@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { updateUserRole, fetchUsers } from "../../actions";
@@ -11,10 +12,12 @@ const StyledUser = styled.div`
   color: #000000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-left: 2px solid lightgrey;
+
   .update-role-status {
     color: black;
     padding-left: 7px;
   }
+
 
     .profile-photo {
         height: 52px;
@@ -77,6 +80,17 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers }) => {
         setStatus("Unable To Update Role");
       });
   };
+  
+    const handleDeleteUser = () => {
+    deleteUser(user.id)
+      .then(() => {
+        fetchUsers();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  
   return (
     <StyledUser>
       <div className="user-card-wrapper">
@@ -95,7 +109,7 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers }) => {
             <option value="3">Admin</option>
           </select>
           <button onClick={handleSubmit}>Change Role</button>
-          <button>Delete</button>
+          <button onClick={handleDeleteUser}>Delete User</button>
           <span className="update-role-status">{status}</span>
         </div>
       </div>
@@ -103,4 +117,7 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers }) => {
   );
 };
 
-export default connect(null, { updateUserRole, fetchUsers })(SingleUserCard);
+
+export default connect(null, { updateUserRole, fetchUsers, deleteUser })(
+  SingleUserCard
+);
