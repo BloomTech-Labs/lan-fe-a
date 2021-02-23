@@ -1,9 +1,45 @@
 import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
-    width: 95%;
+    width: 98%;
     margin: 0 auto;
     display: flex;
+    input{
+        background-color: #242323;
+        height: 40px;
+        width: 35%;
+        padding: 8px;
+        margin: 3% 2% 2% 2.2%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border: 1px solid lightgrey;
+        font-family: "Nunito", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #ffffff;
+    
+        ::placeholder {
+          color: dimgray;
+        }
+    }
+
+    button {      
+            padding: 8px 12px;
+            background-color: #212529;
+            box-shadow: 2px 2px 8px #212529;
+            border: 1px solid #707B7C ;
+            border-radius: 3px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.7rem;
+            color: #ffffff;
+            cursor: pointer;
+            transition: 0.25s;
+              :hover {
+                opacity: 0.5;
+              }
+          }
+
     h2 {
         margin-bottom: 32px;
         font-size: 1.75rem;
@@ -24,8 +60,8 @@ const SettingsContainer = styled.div`
     .users-card-wrapper{
         display: flex;
         flex-wrap: wrap;
-        width: 90%;
-        margin-left:8%;
+        width: 95%;
+        margin-left: 7%;
     }
    
 
@@ -52,7 +88,6 @@ const SettingsContainer = styled.div`
             padding: 12px 26px;
             margin-top: 16px;
             background: linear-gradient(to right, #000000, #212121, #424949);
-            // background: white ;
             border-radius: 5px;
             font-family: "Nunito", sans-serif;
             font-size: 1rem;

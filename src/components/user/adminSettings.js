@@ -9,26 +9,48 @@ import SingleUserCard from './singleUserCard';
 const StyledAdminHeader = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 55%;
   margin: 0 auto;
+  border-right: 1px solid #2c2f33;
+
 `;
 const StyledRoom = styled.div` 
-  // width: 85%;
-  padding: 2.2%;
+  padding: 2.5%;
   background-color: #141414;
   margin: 1.2rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-left: 2px solid lightgrey; 
+  border-radius: 12px;
   h4{
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   p{
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 550;
     color: lightgrey;
   }
+  button {
+    margin-top: 1.5%;
+    margin-right: 3%;       
+    padding: 8px 12px;
+    background-color: #212529;
+    box-shadow: 2px 2px 8px #212529;
+    border: 1px solid #707B7C ;
+    border-radius: 3px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.25s;
+      :hover {
+        opacity: 0.5;
+      }
+  }
+
+  
+  
 `;
+
 
 const BACKEND_URL =
   process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
@@ -107,6 +129,7 @@ const AdminSettings = (props) => {
             <div>
               <h3>Rooms</h3>
               <div className="create-new-room">
+                {/* <h4> Edit Rooms </h4> */}
                 <form onSubmit={handleRoomCreation}>
                   <input
                     type="text"

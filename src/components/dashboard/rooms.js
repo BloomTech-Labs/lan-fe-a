@@ -6,16 +6,6 @@ import Room from "./roomCard";
 import PostsContainer from "./styles/postsStyle";
 import styled from "styled-components";
 
-// const TitleWrapper = styled.div`
-//   h1 {
-//     color: white;
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: center;
-//     align-items: center;
-//     font-size: 2.5rem;
-//   }
-// `;
 
 const RoomWrapper = styled.div`
   display: flex;
@@ -46,7 +36,6 @@ const Rooms = (props) => {
           )}
           {/* {props.rooms.length > 0 && (<p className="youve-reached-the-end">You've reached the end!</p>)} */}
         </PostsContainer>
-      {/* // </TitleWrapper> */}
     </RoomWrapper>
   );
 };

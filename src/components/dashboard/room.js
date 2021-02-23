@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
-import arrow from '../../img/arrow.png';
 import returnpointer from '../../img/return.png';
 import likeicon from "../../img/likeicon.png";
 import replyicon from "../../img/replyicon.png";
@@ -12,9 +11,7 @@ import { postQuestion, fetchPostByRoom } from '../../actions'
 
 const StyledRoomContainer = styled.div`
   width : 90%;
-
   padding: 2%;
-
   .single-room-name {
     color: white;
   }
