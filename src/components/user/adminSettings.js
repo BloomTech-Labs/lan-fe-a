@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/header';
 import SettingsContainer from './styles/settingsStyle';
-import { fetchRooms, fetchUsers, deleteRoom } from '../../actions';
+import { fetchRooms, fetchUsers, deleteRoom, createRoom } from '../../actions';
 import SingleUserCard from './singleUserCard';
 
 const StyledAdminHeader = styled.div`
@@ -31,18 +31,27 @@ const StyledRoom = styled.div`
 `;
 
 const BACKEND_URL =
-  process.env.REACT_APP_DEPLOYED_URL || "http://localhost:5000";
+  process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
 const AdminSettings = (props) => {
-  const [currentMod, setCurrentMod] = useState("Users");
+  const [currentMod, setCurrentMod] = useState('Users');
+  const [newRoom, setNewRoom] = useState({ room_name: '', description: '' })
 
   useEffect(() => {
     props.fetchUsers();
     props.fetchRooms();
   }, []);
 
-  const createRoom = (e) => {
+  const handleRoomCreation = (e) => {
     e.preventDefault();
+    props.createRoom(newRoom)
+      .then(() => {
+          setNewRoom({room_name: '', description: ''})
+          props.fetchRooms()
+      })
+      .catch(() => {
+          console.log('failed to create room')
+      })
   };
 
   const handleDeleteRoom = (id) => {
@@ -98,12 +107,22 @@ const AdminSettings = (props) => {
             <div>
               <h3>Rooms</h3>
               <div className="create-new-room">
-                <form onSubmit={createRoom}>
+                <form onSubmit={handleRoomCreation}>
                   <input
                     type="text"
+                    value={newRoom.room_name}
+                    onChange={(e) => setNewRoom({ ...newRoom, room_name: e.target.value })}
                     id="new-room"
                     name="new-room"
                     placeholder="Room Name"
+                  />
+                  <input
+                    type="text"
+                    value={newRoom.description}
+                    onChange={(e) => setNewRoom({ ...newRoom, description: e.target.value })}
+                    id="description"
+                    name="description"
+                    placeholder="Room Description"
                   />
                   <button>Create Room</button>
                 </form>
@@ -138,4 +157,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchRooms, fetchUsers, deleteRoom })(AdminSettings);
+export default connect(mapStateToProps, { fetchRooms, fetchUsers, deleteRoom, createRoom })(AdminSettings);
