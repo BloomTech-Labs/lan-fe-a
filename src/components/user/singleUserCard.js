@@ -15,7 +15,6 @@ const StyledUser = styled.div`
     color: black;
     padding-left: 7px;
   }
-
     .profile-photo {
         height: 52px;
         width: 52px;
@@ -49,7 +48,6 @@ const StyledUser = styled.div`
         padding: 8px 12px;
         background-color: #212529;
         box-shadow: 2px 2px 8px #212529;
-        // background: linear-gradient(to right, #141414, #212529);
         border: 1px solid grey;
         border-radius: 3px;
         font-family: 'Nunito', sans-serif;
@@ -63,44 +61,55 @@ const StyledUser = styled.div`
         }
 `;
 
-const SingleUserCard = ({ user, updateUserRole, fetchUsers }) => {
+
+
+const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
   const [roleId, setRoleId] = useState(user.role_id);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState('');
 
   const handleSubmit = () => {
     updateUserRole(user.id, roleId)
       .then(() => {
-        setStatus("User Role Updated");
+        setStatus('User Role Updated');
         fetchUsers();
       })
       .catch(() => {
-        setStatus("Unable To Update Role");
+        setStatus('Unable To Update Role');
       });
   };
+
+  const handleDeleteUser = () => {
+    deleteUser(user.id)
+      .then(() => {
+        fetchUsers();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <StyledUser>
-      <div className="user-card-wrapper">
-          <img className="profile-photo" src={user.profile_picture} />
-        <div className="user-card">
-          <h4>Username -  {user.display_name}</h4>
-          <p>Email- {user.email}</p>
-          <select
-            value={roleId}
-            onChange={(e) => setRoleId(e.target.value)}
-            name="user_role"
-            id="user_role"
-          >
-            <option value="1">Alumni</option>
-            <option value="2">Moderator</option>
-            <option value="3">Admin</option>
-          </select>
-          <button onClick={handleSubmit}>Change Role</button>
-          <button>Delete</button>
-          <span className="update-role-status">{status}</span>
-        </div>
-      </div>
+      <h4>{user.display_name}</h4>
+      <p>{user.email}</p>
+      <select
+        value={roleId}
+        onChange={(e) => setRoleId(e.target.value)}
+        name='user_role'
+        id='user_role'
+      >
+        <option value='1'>Alumni</option>
+        <option value='2'>Moderator</option>
+        <option value='3'>Admin</option>
+      </select>
+      <button onClick={handleSubmit}>Change Role</button>
+      <button onClick={handleDeleteUser}>Delete User</button>
+      <span className='update-role-status'>{status}</span>
     </StyledUser>
   );
 };
 
-export default connect(null, { updateUserRole, fetchUsers })(SingleUserCard);
+export default connect(null, { updateUserRole, fetchUsers, deleteUser })(
+  SingleUserCard
+);
+

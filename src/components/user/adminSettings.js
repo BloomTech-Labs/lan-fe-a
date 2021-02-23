@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/header';
 import SettingsContainer from './styles/settingsStyle';
-import { fetchRooms, fetchUsers, deleteRoom } from '../../actions'
+import { fetchRooms, fetchUsers, deleteRoom } from '../../actions';
 import SingleUserCard from './singleUserCard';
 
 
@@ -43,7 +43,6 @@ const AdminSettings = (props) => {
   }, []);
 
   const createRoom = (e) => {
-
       e.preventDefault()
   }
 
@@ -99,7 +98,7 @@ const AdminSettings = (props) => {
          ): ( 
             <div>
               <h3>Rooms</h3>
-              <div className="create-new-room">
+              <div className='create-new-room'>
                 <form onSubmit={createRoom}>
                   <input
                     type="text"
@@ -141,4 +140,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchRooms, fetchUsers, deleteRoom })(AdminSettings);
+
+export default connect(mapStateToProps, {
+  fetchRooms,
+  fetchUsers,
+  deleteRoom,
+})(AdminSettings);
+
