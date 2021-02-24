@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 const QuestionsContainer = styled.div`
-    width: 90%;
-    margin: 0 auto;
+    width: 95%;
+    margin: 2% auto;
     margin-bottom: 64px;
-
+    display: flex;
+    flex-wrap: wrap;
     .no-posts-found {
         display: flex;
         justify-content: center;
         align-items: center;
-
         p {
             margin: 64px 0;
             font-size: 1rem;
@@ -26,10 +26,11 @@ const QuestionsContainer = styled.div`
     }
 
     .youve-reached-the-end {
-        font-size: 1rem;
+        font-size: 1.5rem;
         font-weight: 500;
         color: #ffffff;
         text-align: center;
+   
     }
 
     @media (min-width: 768px) {

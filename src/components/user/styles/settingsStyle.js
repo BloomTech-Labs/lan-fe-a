@@ -1,10 +1,44 @@
 import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
-    width: 90%;
+    width: 98%;
     margin: 0 auto;
-    margin-top: 32px;
-    margin-bottom: 64px;
+    display: flex;
+    input{
+        background-color: #242323;
+        height: 40px;
+        width: 35%;
+        padding: 8px;
+        margin: 3% 2% 2% 2.2%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border: 1px solid lightgrey;
+        font-family: "Nunito", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #ffffff;
+    
+        ::placeholder {
+          color: dimgray;
+        }
+    }
+
+    button {      
+            padding: 8px 12px;
+            background-color: #212529;
+            box-shadow: 2px 2px 8px #212529;
+            border: 1px solid #707B7C ;
+            border-radius: 3px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.7rem;
+            color: #ffffff;
+            cursor: pointer;
+            transition: 0.25s;
+              :hover {
+                opacity: 0.5;
+              }
+          }
 
     h2 {
         margin-bottom: 32px;
@@ -14,20 +48,30 @@ const SettingsContainer = styled.div`
     }
 
     h3 {
+        margin-left: 7%;
         padding-bottom: 8px;
         margin-bottom: 8px;
         border-bottom: 1px solid #2c2f33;
-        font-size: 1.25rem;
+        font-size: 1.7rem;
         font-weight: 700;
         color: #ffffff;
     }
+// styling users-setting-card
+    .users-card-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        width: 95%;
+        margin-left: 7%;
+    }
+   
 
     .display-name {
         margin-bottom: 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-
+        flex-direction: column;
+        margin-right: 45%;
         .left-section {
             p {
                 font-size: 1rem;
@@ -40,22 +84,23 @@ const SettingsContainer = styled.div`
                 }
             }
         }
-
         button {
-            padding: 10px 24px;
-            background: linear-gradient(to right, #0084ff, #0099ff);
-            border: none;
-            border-radius: 3px;
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.875rem;
+            padding: 12px 26px;
+            margin-top: 16px;
+            background: linear-gradient(to right, #000000, #212121, #424949);
+            border-radius: 5px;
+            font-family: "Nunito", sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
             color: #ffffff;
             cursor: pointer;
             transition: 0.25s;
-
+            border: 1px solid grey;
+            box-shadow: 3px 3px 6px #888888;
             :hover {
-                opacity: 0.5;
+              opacity: 0.5;
             }
-        }
+          }
     }
 
     .update {

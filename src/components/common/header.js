@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, logOut, setSearch, fetchSearch } from '../../actions';
 import HeaderContainer from './styles/headerStyle';
-import lambdaschool from '../../img/lambdaschool.png';
+// import lambdaschool from '../../img/lambdaschool.png';
+// import redlambda from '../../img/redlambda.png';
+import whitelambda from '../../img/whitelambda.png'
+import adminLogo from '../../img/admin.png'
 
 const Header = props => {
     const [hamburgerMenu, setHamburgerMenu] = useState(false);
@@ -34,7 +37,10 @@ const Header = props => {
                 setHamburgerMenu(false);
                 props.history.push('/');
             }}>
-                <img src={lambdaschool} alt='Lambda School logo' />
+                {/* <img src={lambdaschool} alt='Lambda School logo' /> */}
+                {/* <img src={redlambda} alt='Lambda School logo' /> */}
+                <img src={whitelambda} alt='Lambda School logo' />
+                <header>Alumni Network</header>
             </div>
 
             <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
@@ -49,6 +55,7 @@ const Header = props => {
                 <a href='https://github.com/viewee/frontend/issues' target='_blank' rel='noreferrer noopener'><p><i className='fas fa-bug'></i>Report a Bug</p></a>
                 <p onClick={() => props.history.push(`/user/${props.user.id}`)}><i className='fas fa-user'></i>My Profile</p>
                 <p onClick={() => props.history.push('/settings')}><i className='fas fa-cog'></i>Settings</p>
+                <p onClick={() => props.history.push(`/admin-settings`)}><img src={adminLogo} id='admin' />Admin Settings</p>
                 <p onClick={() => props.logOut(props.history)}><i className='fas fa-sign-out-alt'></i>Log Out</p>
             </div>}
         </HeaderContainer>

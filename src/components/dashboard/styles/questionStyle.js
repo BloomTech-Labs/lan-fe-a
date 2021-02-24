@@ -40,7 +40,6 @@ const QuestionContainer = styled.div`
                     font-weight: 500;
                     color: #ffffff;
                     transition: 0.25s;
-    
                     :hover {
                         opacity: 0.5;
                     }
@@ -97,13 +96,12 @@ const QuestionContainer = styled.div`
             .activity {
                 display: flex;
                 align-items: center;
-
                 p {
                     margin-right: 16px;
                     font-size: 0.875rem;
                     font-weight: 500;
                     color: #ffffff;
-
+                 
                     i {
                         margin-right: 4px;
                         transition: 0.1s;
