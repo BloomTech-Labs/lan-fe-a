@@ -234,26 +234,6 @@ export const unlike = (postID) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-export const fetchUsersLikedPosts = () => (dispatch) => {
-  axios
-    .get(`${BACKEND_URL}/api/user/post/like`)
-    .then((response) =>
-      dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data })
-    )
-    .catch((error) => console.log(error));
-};
-
-export const createRoom = (room) => (dispatch) => {
-  return axios
-    .post(`${BACKEND_URL}/api/room`, { ...room })
-    .then(() => {
-      console.log('room added');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
 // Creates a comment
 export const postComment = (user, postID, comment) => (dispatch) => {
   axios
