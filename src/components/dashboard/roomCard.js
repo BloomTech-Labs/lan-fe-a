@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledRoomCard = styled.div`
     width: 45%;
@@ -20,19 +20,19 @@ const StyledRoomCard = styled.div`
     p {
         font-size: 1.2rem;
     }
-`
+`;
 
 const room = ({ room }) => {
-    return (
-        <StyledRoomCard>
-            <Link to={`room/${room.id}`}>
-                <div>
-                    <h2># {room.room_name}</h2>
-                    <p>{room.description}</p> 
-                </div>       
-            </Link>
-        </StyledRoomCard>
-    )
-}
+  return (
+    <StyledRoomCard>
+      <Link to={`room/${room.id}`}>
+        <div>
+          <h2># {room.room_name}</h2>
+          <p>{room.description}</p> 
+        </div>       
+      </Link>
+    </StyledRoomCard>
+  );
+};
 
-export default room
+export default room;

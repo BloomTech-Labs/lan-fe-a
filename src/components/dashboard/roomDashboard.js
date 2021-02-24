@@ -5,11 +5,11 @@ import Sidebar from '../common/sidebar';
 import Room from './room';
 import { fetchPostByRoom, fetchRooms } from '../../actions';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const StyledRoomDashboard = styled.div`
     display: flex;
-`
+`;
 
 const RoomDashboard = (props) => {
   let { id } = useParams();

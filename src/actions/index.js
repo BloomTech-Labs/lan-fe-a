@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
-import { dispatch } from 'react-hot-toast';
 axios.defaults.withCredentials = true;
 
 const BACKEND_URL =
@@ -12,9 +13,6 @@ export const success = (history) => (dispatch) => {
     .then((response) => {
       localStorage.setItem('id', response.data.user.id);
       if (response.data.user.track === null) {
-        // Maybe don't do this, if the user doesn't select a track for some reason or abandons the session,
-        // we should leave it be, have an option display a null track on posts,
-        // and give them a heads up they haven't set a track with a toast notification... brainstorming
         history.push('/onboarding');
       } else {
         history.push('/');
@@ -23,9 +21,7 @@ export const success = (history) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-// Sort out this flow: success, fetchUser, fetchUserProfile
-// react-query will help with making sure user object is in state
-// Other one takes in a user ID, but do we have the user's ID available at all times (for example, when onboarding)
+// Fetches logged in user 
 export const fetchUser = () => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/user`)
@@ -36,6 +32,7 @@ export const fetchUser = () => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
+// Fetches all users
 export const fetchUsers = () => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/admin/users/`)
@@ -45,6 +42,7 @@ export const fetchUsers = () => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
+// Logs out user
 export const logOut = (history) => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/auth/logout`)
@@ -55,14 +53,7 @@ export const logOut = (history) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-export const updateUserRole = (id, role) => (dispatch) => {
-  return axios
-    .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
-    .then((response) => console.log(response))
-    .catch((error) => console.log(error));
-};
-
-//function for admin to delete a user from DB. This to be used on singleUserCard.js  file
+// Deletes user 
 export const deleteUser = (id) => (dispatch) => {
   return axios
     .delete(`${BACKEND_URL}/api/admin/users/${id}`)
@@ -70,12 +61,60 @@ export const deleteUser = (id) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-// Onboarding?
+// Fetches a user's liked posts
+export const fetchUsersLikedPosts = () => (dispatch) => {
+  axios
+    .get(`${BACKEND_URL}/api/user/post/like`)
+    .then((response) =>
+      dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data })
+    )
+    .catch((error) => console.log(error));
+};
+
+// Fetches a user's liked comments
+export const fetchUsersLikedComments = () => (dispatch) => {
+  axios.get(`${BACKEND_URL}/api/user/comment/like`).then((response) => {
+    console.log('USERS_LIKED_COMMENTS', response.data);
+    dispatch({ type: 'SET_USERS_LIKED_COMMENTS', payload: response.data });
+  });
+};
+
+// Fetches a user's profile
+export const fetchUserProfile = (userID) => (dispatch) => {
+  axios
+    .get(`${BACKEND_URL}/api/user/${userID}`)
+    .then((response) => {
+      console.log(
+        'FETCH USER PROFILE, DIFFERENT FROM AUTHENTICATION ONE',
+        response.data
+      );
+      dispatch({ type: 'SET_CURRENT_USER', payload: response.data });
+    })
+    .catch((error) => console.log(error));
+};
+
+// Updates a user's display name
+export const updateUserDisplayName = (userID, displayName) => (dispatch) => {
+  axios
+    .put(`${BACKEND_URL}/api/user/displayname`, { userID, displayName })
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error));
+};
+
+// Updates a user's role
+export const updateUserRole = (id, role) => (dispatch) => {
+  return axios
+    .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error));
+};
+
+// Sets user track during onboarding
 export const setTrack = (track, token) => (dispatch) => {
   return axios.put(`${BACKEND_URL}/api/user/track`, { track, token });
 };
 
-//Rooms
+// Fetches all rooms
 export const fetchRooms = () => (dispatch) => {
   return axios
     .get(`${BACKEND_URL}/api/room`)
@@ -83,18 +122,29 @@ export const fetchRooms = () => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
+// Creates a room
+export const createRoom = (room) => (dispatch) => {
+  return axios
+    .post(`${BACKEND_URL}/api/room`, { ...room })
+    .then(() => {
+      console.log('room added');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// Updates a room
 export const updateRoom = (id, room) => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/admin/rooms/${id}`, room)
     .then((res) => {
-      // fetchRooms()
-      // dispatch({ type: 'UPDATE_ROOMS', payload: res.data })
-      console.log('room updated')
-      // console.log('res', res)
+      console.log('room updated');
     })
-    .catch((err) => { console.log(err) })
-}
+    .catch((err) => { console.log(err); });
+};
 
+// Deletes a room
 export const deleteRoom = (id) => (dispatch) => {
   return axios
     .delete(`${BACKEND_URL}/api/room/${id}`)
@@ -102,7 +152,7 @@ export const deleteRoom = (id) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-// Create a post
+// Creates a post
 export const postQuestion = (title, description, room, history) => (
   dispatch
 ) => {
@@ -113,14 +163,14 @@ export const postQuestion = (title, description, room, history) => (
   });
 };
 
-// Delete post
-export const deletePost = postID => dispatch => {
-    axios.delete(`${BACKEND_URL}/api/post/delete/${postID}`)
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err.message))
-}
+// Deletes a post
+export const deletePost = postID => (dispatch) => {
+  axios.delete(`${BACKEND_URL}/api/post/delete/${postID}`)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err.message));
+};
 
-// Fetch posts based on user search input
+// Fetches posts based on user search input
 export const fetchSearch = (search) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/post/search`, { search })
@@ -131,22 +181,7 @@ export const fetchSearch = (search) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-// Search query, sort, filter, offset SEPERATELY
-// Future Miguel here, perhaps not! Maybe.
-export const fetchRecent = () => (dispatch) => {
-  axios
-    .post(`${BACKEND_URL}/api/post/recent`)
-    .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
-    .catch((error) => console.log(error));
-};
-
-export const fetchPopular = () => (dispatch) => {
-  axios
-    .post(`${BACKEND_URL}/api/post/popular`)
-    .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
-    .catch((error) => console.log(error));
-};
-
+// Fetches a post
 export const fetchPost = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST' });
   axios
@@ -157,10 +192,23 @@ export const fetchPost = (postID) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-export const setSearch = (search) => (dispatch) => {
-  dispatch({ type: 'SET_SEARCH', payload: search });
+// Fetches posts, ordered by most recent
+export const fetchRecent = () => (dispatch) => {
+  axios
+    .post(`${BACKEND_URL}/api/post/recent`)
+    .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
+    .catch((error) => console.log(error));
 };
 
+// Fetches posts, ordered by number of likes
+export const fetchPopular = () => (dispatch) => {
+  axios
+    .post(`${BACKEND_URL}/api/post/popular`)
+    .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
+    .catch((error) => console.log(error));
+};
+
+// Likes a post
 export const like = (postID) => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/post/like/${postID}`)
@@ -168,6 +216,7 @@ export const like = (postID) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
+// Removes like from a post
 export const unlike = (postID) => (dispatch) => {
   axios
     .delete(`${BACKEND_URL}/api/post/like/${postID}`)
@@ -175,27 +224,7 @@ export const unlike = (postID) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-export const fetchUsersLikedPosts = () => (dispatch) => {
-  axios
-    .get(`${BACKEND_URL}/api/user/post/like`)
-    .then((response) =>
-      dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data })
-    )
-    .catch((error) => console.log(error));
-};
-
-export const createRoom = (room) => (dispatch) => {
-  return axios
-    .post(`${BACKEND_URL}/api/room`, { ...room })
-    .then(() => {
-      console.log('room added')
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-
-// Comment
+// Creates a comment
 export const postComment = (user, postID, comment) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/comment`, { postID, comment })
@@ -213,13 +242,7 @@ export const postComment = (user, postID, comment) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-export const fetchUsersLikedComments = () => (dispatch) => {
-  axios.get(`${BACKEND_URL}/api/user/comment/like`).then((response) => {
-    console.log('USERS_LIKED_COMMENTS', response.data);
-    dispatch({ type: 'SET_USERS_LIKED_COMMENTS', payload: response.data });
-  });
-};
-
+// Likes a comment
 export const likeComment = (commentID) => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/comment/like/${commentID}`)
@@ -227,6 +250,7 @@ export const likeComment = (commentID) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
+// Removes like from a comment
 export const unlikeComment = (commentID) => (dispatch) => {
   axios
     .delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
@@ -234,7 +258,7 @@ export const unlikeComment = (commentID) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-// Fetch post's comments by recent
+// Fetches a post's comments, ordered by recent
 export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
   axios
@@ -245,7 +269,7 @@ export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-// Fetch post's comments by popular
+// Fetches a post's comments, ordered by number of likes
 export const fetchPostCommentsByPopular = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
   axios
@@ -256,28 +280,7 @@ export const fetchPostCommentsByPopular = (postID) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-// Can this be used for authentication so we don't have redundant actions?
-// The issue is the other one is for the user themselves, and this one is for other users when viewing their profile
-export const fetchUserProfile = (userID) => (dispatch) => {
-  axios
-    .get(`${BACKEND_URL}/api/user/${userID}`)
-    .then((response) => {
-      console.log(
-        'FETCH USER PROFILE, DIFFERENT FROM AUTHENTICATION ONE',
-        response.data
-      );
-      dispatch({ type: 'SET_CURRENT_USER', payload: response.data });
-    })
-    .catch((error) => console.log(error));
-};
-
-export const updateUserDisplayName = (userID, displayName) => (dispatch) => {
-  axios
-    .put(`${BACKEND_URL}/api/user/displayname`, { userID, displayName })
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error));
-};
-
+// Fetches all posts in a specific room
 export const fetchPostByRoom = (roomID) => (dispatch) => {
   axios.get(`${BACKEND_URL}/api/room/${roomID}/recent`).then((res) => {
     console.log(res);
@@ -285,9 +288,7 @@ export const fetchPostByRoom = (roomID) => (dispatch) => {
   });
 };
 
-export const deletePost = (postID) => (dispatch) => {
-  axios
-    .delete(`${BACKEND_URL}/api/post/${postID}`)
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err.message));
+// Updates search state
+export const setSearch = (search) => (dispatch) => {
+  dispatch({ type: 'SET_SEARCH', payload: search });
 };

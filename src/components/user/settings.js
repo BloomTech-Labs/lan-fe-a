@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { updateUserDisplayName } from '../../actions';
 import Header from '../common/header';
-// import Loader from '../common/loader';
 import SettingsContainer from './styles/settingsStyle';
-
-//needed to bring in Axios and useHistory to handle the delete
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
@@ -31,12 +28,12 @@ const Settings = (props) => {
     setDisplayName(false);
   };
 
-  // this will send the user id to the specified enpoint and remove the user from the user table
+  // deletes user from users table
   const deleteHandler = () => {
     Axios.delete(
       `http://localhost:5000/api/user/settings/remove-user/${props.user.id}`
     )
-      .then((res) => {
+      .then(() => {
         localStorage.removeItem('id');
         push('/');
       })
@@ -44,8 +41,6 @@ const Settings = (props) => {
         console.log('Delete Error:', err);
       });
   };
-
-  // Object.keys(props.user).length > 0
 
   return (
     <>
