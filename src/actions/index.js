@@ -102,7 +102,7 @@ export const deleteRoom = (id) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-// Post
+// Create a post
 export const postQuestion = (title, description, room, history) => (
   dispatch
 ) => {
@@ -113,6 +113,14 @@ export const postQuestion = (title, description, room, history) => (
   });
 };
 
+// Delete post
+export const deletePost = postID => dispatch => {
+    axios.delete(`${BACKEND_URL}/api/post/delete/${postID}`)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err.message))
+}
+
+// Fetch posts based on user search input
 export const fetchSearch = (search) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/post/search`, { search })
