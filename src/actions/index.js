@@ -101,6 +101,15 @@ export const postQuestion = (title, description, room, history) => (
   });
 };
 
+export const updatePost = (id, newDescription) => (dispatch) => {
+  return axios
+    .put(`${BACKEND_URL}/api/post/update/${id}`, { newDescription })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => console.log(error));
+};
+
 export const fetchSearch = (search) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/post/search`, { search })
@@ -168,12 +177,12 @@ export const createRoom = (room) => (dispatch) => {
   return axios
     .post(`${BACKEND_URL}/api/room`, { ...room })
     .then(() => {
-        console.log('room added')
+      console.log('room added');
     })
     .catch((err) => {
-        console.log(err)
-    })
-}
+      console.log(err);
+    });
+};
 
 // Comment
 export const postComment = (user, postID, comment) => (dispatch) => {
