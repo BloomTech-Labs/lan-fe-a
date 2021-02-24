@@ -165,7 +165,12 @@ const Post = (props) => {
 							<p className='fas fa-ellipsis-h'></p>
 						</div>
 						{moreOptions && <div className='dropdown'>
+<<<<<<< Updated upstream
 								<Link to='/'>Delete Post</Link>
+=======
+								<Link to='/' onClick={() => deletePost(postID)}>Delete Post</Link>
+								<Link>Flag Post</Link>
+>>>>>>> Stashed changes
 							</div>
 						}
 					</div>

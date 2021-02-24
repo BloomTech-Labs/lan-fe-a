@@ -18,11 +18,19 @@ const CommentContainer = styled.div`
     }
 
     .right-section {
+<<<<<<< Updated upstream
+=======
+        width: 95%;
+        padding-bottom: 1.5%;
+        border-bottom: 1.5px solid grey;
+        display:flex;
+        flex-direction: column;
+>>>>>>> Stashed changes
         .user {
             margin-bottom: 4px;
             display: flex;
+            flex-wrap:wrap;
             align-items: center;
-
             .display-name {
                 margin-right: 8px;
                 font-size: 0.875rem;
@@ -35,13 +43,27 @@ const CommentContainer = styled.div`
                     opacity: 0.5;
                 }
             }
-
             .timestamp {
                 font-size: 0.625rem;
                 font-weight: 500;
                 color: #ffffff;
             }
-        }
+            .more-options {
+                color: #ffffff;
+                border: 1px solid white;
+                height: 3vh;
+                padding: 5px;
+                display: flex;
+                border-radius: 50px;
+                margin-left: 83%;
+                :hover {
+                        opacity: 0.5;
+                    }
+            }
+                   
+                
+               
+    }
 
         .answer {
             margin-bottom: 8px;

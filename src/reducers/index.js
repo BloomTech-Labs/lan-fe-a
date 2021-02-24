@@ -1,6 +1,7 @@
 const initialState = {
     user: {},
     currentUser: {},
+    rooms: [],
     posts: [],
     currentPost: {},
     currentPostComments: [],
@@ -20,6 +21,12 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 user: action.payload
             };
+
+        case 'SET_ROOMS':
+            return {
+                ...state,
+                rooms: action.payload
+            }
 
         case 'SET_POSTS':
             return {
