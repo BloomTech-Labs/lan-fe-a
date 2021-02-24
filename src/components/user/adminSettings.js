@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/header';
 import SettingsContainer from './styles/settingsStyle';
 import { fetchRooms, fetchUsers, deleteRoom, createRoom } from '../../actions';
 import SingleUserCard from './singleUserCard';
-import SingleRoomCard from "./singleRoomCard";
+import SingleRoomCard from './singleRoomCard';
 
 const StyledAdminHeader = styled.div`
   display: flex;
@@ -15,13 +15,9 @@ const StyledAdminHeader = styled.div`
   border-right: 1px solid #2c2f33;
 `;
 
-
-const BACKEND_URL =
-  process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
-
 const AdminSettings = (props) => {
   const [currentMod, setCurrentMod] = useState('Users');
-  const [newRoom, setNewRoom] = useState({ room_name: '', description: '' })
+  const [newRoom, setNewRoom] = useState({ room_name: '', description: '' });
 
   useEffect(() => {
     props.fetchUsers();
@@ -32,12 +28,12 @@ const AdminSettings = (props) => {
     e.preventDefault();
     props.createRoom(newRoom)
       .then(() => {
-        setNewRoom({ room_name: '', description: '' })
-        props.fetchRooms()
+        setNewRoom({ room_name: '', description: '' });
+        props.fetchRooms();
       })
       .catch(() => {
-        console.log('failed to create room')
-      })
+        console.log('failed to create room');
+      });
   };
 
   return (
@@ -50,7 +46,7 @@ const AdminSettings = (props) => {
             <button
               className="update"
               onClick={() => {
-                setCurrentMod("Users");
+                setCurrentMod('Users');
               }}
             >
               Modify Users
@@ -58,7 +54,7 @@ const AdminSettings = (props) => {
             <button
               className="update"
               onClick={() => {
-                setCurrentMod("Rooms");
+                setCurrentMod('Rooms');
               }}
             >
               Modify Rooms
@@ -66,9 +62,9 @@ const AdminSettings = (props) => {
           </div>
         </StyledAdminHeader>
         {props.user.role_id === 3 ? (
-          currentMod == "Users" ? (
+          currentMod == 'Users' ? (
             <div>
-              {" "}
+              {' '}
               <h3>Users</h3>
               <div className="users-card-wrapper">
                 {props.users.map((item) => {
@@ -79,48 +75,39 @@ const AdminSettings = (props) => {
               </div>
             </div>
           ) : (
-              <div>
-                <h3>Rooms</h3>
-                <div className="create-new-room">
-                  {/* <h4> Edit Rooms </h4> */}
-                  <form onSubmit={handleRoomCreation}>
-                    <input
-                      type="text"
-                      value={newRoom.room_name}
-                      onChange={(e) => setNewRoom({ ...newRoom, room_name: e.target.value })}
-                      id="new-room"
-                      name="new-room"
-                      placeholder="Room Name"
-                    />
-                    <input
-                      type="text"
-                      value={newRoom.description}
-                      onChange={(e) => setNewRoom({ ...newRoom, description: e.target.value })}
-                      id="description"
-                      name="description"
-                      placeholder="Room Description"
-                    />
-                    <button>Create Room</button>
-                  </form>
-                </div>
-                {props.rooms.map(item => {
-                  return (
-                    // <StyledRoom>
-                    //   <div key={item.id} >
-                    //     <h4>{item.room_name}</h4>
-                    //     <p>{item.description}</p>
-                    //     <button>Update Name</button>
-                    //     <button onClick={() => handleDeleteRoom(item.id)}>Delete</button>
-                    //   </div>
-                    // </StyledRoom>
-                    <SingleRoomCard key={item.id} item={item} />
-                  )
-                })}
+            <div>
+              <h3>Rooms</h3>
+              <div className="create-new-room">
+                <form onSubmit={handleRoomCreation}>
+                  <input
+                    type="text"
+                    value={newRoom.room_name}
+                    onChange={(e) => setNewRoom({ ...newRoom, room_name: e.target.value })}
+                    id="new-room"
+                    name="new-room"
+                    placeholder="Room Name"
+                  />
+                  <input
+                    type="text"
+                    value={newRoom.description}
+                    onChange={(e) => setNewRoom({ ...newRoom, description: e.target.value })}
+                    id="description"
+                    name="description"
+                    placeholder="Room Description"
+                  />
+                  <button>Create Room</button>
+                </form>
               </div>
-            )
+              {props.rooms.map(item => {
+                return (
+                  <SingleRoomCard key={item.id} item={item} />
+                );
+              })}
+            </div>
+          )
         ) : (
-            ""
-          )}
+          ''
+        )}
       </SettingsContainer>
     </>
   );

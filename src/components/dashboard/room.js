@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import returnpointer from '../../img/return.png';
-import likeicon from "../../img/likeicon.png";
-import replyicon from "../../img/replyicon.png";
+import likeicon from '../../img/likeicon.png';
+import replyicon from '../../img/replyicon.png';
 import Modal from 'react-modal';
-import CreatePostContainer from '../post/styles/createPostStyle'
-import { postQuestion, fetchPostByRoom } from '../../actions'
+import CreatePostContainer from '../post/styles/createPostStyle';
+import { postQuestion, fetchPostByRoom } from '../../actions';
 
 const StyledRoomContainer = styled.div`
   width : 90%;
@@ -29,7 +29,6 @@ const StyledPost = styled.div`
   a {
     text-decoration: none;
     color: white;
-
     transition: all 0.2s;
       &:hover {
         color: grey;
@@ -76,7 +75,7 @@ const StyledPost = styled.div`
 const StyledPointer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-item: center;
+  align-items: center;
 
   background-color: #141414;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -111,21 +110,21 @@ const StyledPointer = styled.div`
 `;
 
 const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      border: 'none',
-      backgroundColor: '#0D0D0D',
-      color: 'white',
-      padding: '96px 64px',
-    },
-    overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    border: 'none',
+    backgroundColor: '#0D0D0D',
+    color: 'white',
+    padding: '96px 64px',
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  },
 };
 
 
@@ -152,54 +151,54 @@ const Room = (props) => {
 
   const onChange = event => {
     setInput({
-        ...input,
-        [event.target.name]: event.target.value
+      ...input,
+      [event.target.name]: event.target.value
     });
   };
 
   const onSubmit = event => {
     event.preventDefault();
     if (input.title === '') {
-        setError({
-            title: 'Please enter a title',
-            description: ''
-        });
+      setError({
+        title: 'Please enter a title',
+        description: ''
+      });
     } else if (input.description === '') {
-        setError({
-            title: '',
-            description: 'Please enter post content'
-        });
+      setError({
+        title: '',
+        description: 'Please enter post content'
+      });
     } else {
-        setError({
+      setError({
+        title: '',
+        description: ''
+      });
+      props.postQuestion(input.title, input.description, props.id, props.history)
+        .then(() => {
+          setInput({
             title: '',
             description: ''
+          });
+          props.fetchPostByRoom(props.id);
+          closeModal();
+        })
+        .catch(error => {
+          console.log(error);
+          setError({
+            title: '',
+            description: 'Unable to create post please try again'
+          });
         });
-        props.postQuestion(input.title, input.description, props.id, props.history)
-            .then(response => {
-                setInput({
-                    title: '',
-                    description: ''
-                })
-                props.fetchPostByRoom(props.id)
-                closeModal()
-            })
-            .catch(error => {
-                console.log(error);
-                setError({
-                    title: '',
-                    description: 'Unable to create post please try again'
-                });
-            });
     };
   };
   return (
     <StyledRoomContainer>
       <StyledPointer>
-        {props.rooms.filter(item => item.id == props.id).map(item => <h1 className="single-room-name"># {item.room_name}</h1>)}
+        {props.rooms.filter(item => item.id == props.id).map(item => <h1 key={item.id} className="single-room-name"># {item.room_name}</h1>)}
         {/* add return pointer to go back previous page */}
         <div className="single-room-navigation">
-            <button onClick={() => openModal()} className="create-post-button">Create Post</button>
-            <img src={returnpointer} className="return-pointer" alt="return-pointer"/>
+          <button onClick={() => openModal()} className="create-post-button">Create Post</button>
+          <img src={returnpointer} className="return-pointer" alt="return-pointer"/>
         </div>
       </StyledPointer>
       {props.posts.map((post, index) => {
@@ -222,7 +221,7 @@ const Room = (props) => {
                       className="white-like-icon"
                       src={likeicon}
                       alt="like-icon"
-                    />{" "}
+                    />{' '}
                     {post.likes}
                   </span>
                   <span>
@@ -230,7 +229,7 @@ const Room = (props) => {
                       className="white-reply-icon"
                       src={replyicon}
                       alt="reply-icon"
-                    />{" "}
+                    />{' '}
                     {post.comments}
                   </span>
                 </p>
@@ -246,23 +245,23 @@ const Room = (props) => {
         style={customStyles}
         shouldCloseOnOverlayClick={false}>
         <CreatePostContainer>
-            {props.rooms.filter(item => item.id == props.id).map(item => <h1 className="single-room-name"># {item.room_name}</h1>)}
-            <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
-                {error.checkbox && <p className='error'>{error.checkbox}</p>}
+          {props.rooms.filter(item => item.id == props.id).map(item => <h1 key={item.id} className="single-room-name"># {item.room_name}</h1>)}
+          <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
+            {error.checkbox && <p className='error'>{error.checkbox}</p>}
 
-                <label>Title</label>
-                <input type='text' name='title' placeholder='Post Title' value={input.title} onChange={onChange} />
-                {error.title && <p className='error'>{error.title}</p>}
+            <label>Title</label>
+            <input type='text' name='title' placeholder='Post Title' value={input.title} onChange={onChange} />
+            {error.title && <p className='error'>{error.title}</p>}
 
-                <label>Post Content</label>
-                <textarea type='text' name='description' placeholder='Post Content' value={input.description} onChange={onChange} />
-                {error.description && <p className='error'>{error.description}</p>}
+            <label>Post Content</label>
+            <textarea type='text' name='description' placeholder='Post Content' value={input.description} onChange={onChange} />
+            {error.description && <p className='error'>{error.description}</p>}
                 
-                <div className='buttons'>
-                    <button type='button' onClick={closeModal}><i className='fas fa-times'></i>Cancel</button>
-                    <button type='submit'>Submit<i className='fas fa-check'></i></button>
-                </div>
-            </form>
+            <div className='buttons'>
+              <button type='button' onClick={closeModal}><i className='fas fa-times'></i>Cancel</button>
+              <button type='submit'>Submit<i className='fas fa-check'></i></button>
+            </div>
+          </form>
         </CreatePostContainer>
       </Modal>
     </StyledRoomContainer>

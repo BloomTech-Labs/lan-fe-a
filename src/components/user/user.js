@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import { fetchUserProfile } from '../../actions';
 import moment from 'moment';
 import Header from '../common/header';
-import Post from '../dashboard/post';
 import Loader from '../common/loader';
 import UserContainer from './styles/userStyle';
 
 const User = (props) => {
   const userID = props.match.params.id;
-
   const [tab, setTab] = useState('Posts');
 
   useEffect(() => props.fetchUserProfile(userID), []);
@@ -17,7 +15,6 @@ const User = (props) => {
   return (
     <>
       <Header history={props.history} />
-
       {Object.keys(props.currentUser).length > 0 ? (
         <UserContainer tab={tab}>
           <div className="user">
@@ -34,10 +31,10 @@ const User = (props) => {
                   )}
                   {props.currentUser.track &&
                     props.currentUser.track !== 'Career Coach' && (
-                      <p className="track">
-                        {props.currentUser.track.toUpperCase()}
-                      </p>
-                    )}
+                    <p className="track">
+                      {props.currentUser.track.toUpperCase()}
+                    </p>
+                  )}
                 </div>
 
                 <div className="statistics">
@@ -73,34 +70,33 @@ const User = (props) => {
           <div className="tabs">
             <p onClick={() => setTab('Posts')}>Posts</p>
             <p onClick={() => setTab('Comments')}>Comments</p>
-            {/* {props.user.id === userID && <p onClick={() => setTab('Saved')}>Saved</p>} */}
           </div>
 
           {tab === 'Posts'
             ? props.currentUser.posts.map((item, index) => (
-                <div
-                  key={index}
-                  className="card"
-                  onClick={() => props.history.push(`/post/${item.id}`)}
-                >
-                  <p className="timestamp">
-                    {moment(item.created_at).fromNow()}
-                  </p>
-                  <p className="content">{item.title}</p>
-                </div>
-              ))
+              <div
+                key={index}
+                className="card"
+                onClick={() => props.history.push(`/post/${item.id}`)}
+              >
+                <p className="timestamp">
+                  {moment(item.created_at).fromNow()}
+                </p>
+                <p className="content">{item.title}</p>
+              </div>
+            ))
             : props.currentUser.comments.map((item, index) => (
-                <div
-                  key={index}
-                  className="card"
-                  onClick={() => props.history.push(`/post/${item.post_id}`)}
-                >
-                  <p className="timestamp">
-                    {moment(item.created_at).fromNow()}
-                  </p>
-                  <p className="content">{item.comment}</p>
-                </div>
-              ))}
+              <div
+                key={index}
+                className="card"
+                onClick={() => props.history.push(`/post/${item.post_id}`)}
+              >
+                <p className="timestamp">
+                  {moment(item.created_at).fromNow()}
+                </p>
+                <p className="content">{item.comment}</p>
+              </div>
+            ))}
         </UserContainer>
       ) : (
         <Loader message={false} />
