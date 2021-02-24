@@ -1,8 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
 import { PrivateRoute } from './utils/privateRoute';
-
 import Dashboard from './components/dashboard/dashboard';
 import Landing from './components/common/landing';
 import Success from './components/authentication/success';

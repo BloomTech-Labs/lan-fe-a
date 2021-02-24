@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { fetchRecent, fetchUsersLikedPosts } from "../../actions";
-import Post from "./post";
-import PostsContainer from "./styles/postsStyle";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchRecent, fetchUsersLikedPosts } from '../../actions';
+import Post from './post';
+import PostsContainer from './styles/postsStyle';
 
 const Posts = (props) => {
   useEffect(() => {
-    // ? Default search query passed in
     props.fetchRecent();
     props.fetchUsersLikedPosts();
   }, []);

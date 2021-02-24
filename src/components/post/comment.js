@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { likeComment, unlikeComment } from "../../actions";
-import moment from "moment";
-import CommentContainer from "./styles/commentStyle.js";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { likeComment, unlikeComment } from '../../actions';
+import moment from 'moment';
+import CommentContainer from './styles/commentStyle.js';
 
 const Comment = (props) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
 
   useEffect(() => setLikes(props.comment.likes), [props.comment]);
+
   useEffect(() => {
-    // Take a look at this comparison
     if (
       props.usersLikedComments.find(
         (item) => item.comment_id === props.comment.id
@@ -22,12 +22,14 @@ const Comment = (props) => {
     }
   }, [props.usersLikedComments]);
 
+  // likes comment
   const like = () => {
     setLiked(true);
     setLikes(likes + 1);
     props.likeComment(props.comment.id);
   };
 
+  // removes like from comment
   const unlike = () => {
     setLiked(false);
     setLikes(likes - 1);

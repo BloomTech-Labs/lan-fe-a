@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { updateUserRole, fetchUsers, deleteUser } from '../../actions';
 import styled from 'styled-components';
@@ -46,6 +46,7 @@ const StyledUser = styled.div`
     margin-top: 1.5%;
     margin-bottom: 1.5%;
   }
+  
   p {
     color: #ffffff;
     margin-top: 1.5%;
@@ -103,7 +104,6 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
         <div className='user-card'>
           <h4>Username - {user.display_name}</h4>
           <p>Email- {user.email}</p>
-
           <select
             value={roleId}
             onChange={(e) => setRoleId(e.target.value)}
@@ -115,7 +115,6 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
             <option value='2'>Moderator</option>
             <option value='3'>Admin</option>
           </select>
-
           <button onClick={handleSubmit}>Change Role</button>
           <button onClick={handleDeleteUser}>Delete User</button>
           <span className='update-role-status'>{status}</span>

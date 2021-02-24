@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { like, unlike } from "../../actions";
-import { Link } from "react-router-dom";
-import moment from "moment";
-import PostContainer from "./styles/postStyle";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { like, unlike } from '../../actions';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
+import PostContainer from './styles/postStyle';
 
 const Post = (props) => {
   const [liked, setLiked] = useState(false);
@@ -49,11 +49,6 @@ const Post = (props) => {
                 {moment(props.post.created_at).fromNow()}
               </p>
             </div>
-            {/* <div className='labels'>
-							{props.post.track === 'Career Coach' && <button className='career-coach'>CAREER COACH</button>}
-							{props.post.track && props.post.track !== 'Career Coach' && <button>{props.post.track.toUpperCase()}</button>}
-							<button>{props.post.category.toUpperCase()}</button>
-						</div> */}
             <p className="title">{props.post.title}</p>
             <p className="description">{props.post.description}</p>
             <div className="activity">

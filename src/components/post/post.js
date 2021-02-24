@@ -69,18 +69,22 @@ const Post = (props) => {
     }
   };
 
+  // adds like to post
   const like = (postID) => {
     setLiked(true);
     setLikes(likes + 1);
     props.like(postID);
   };
 
+
+  // removes like from post
   const unlike = (postID) => {
     setLiked(false);
     setLikes(likes - 1);
     props.unlike(postID);
   };
 
+  // deletes post
   const deletePost = (postID) => {
     props.deletePost(postID);
   };
@@ -149,6 +153,7 @@ const Post = (props) => {
                   props.currentPost.track !== 'Career Coach' && (
                     <button>{props.currentPost.track.toUpperCase()}</button>
                   )}
+
                 {props.currentPost.category && (
                   <button>{props.currentPost.category.toUpperCase()}</button>
                 )}
@@ -182,7 +187,6 @@ const Post = (props) => {
               ) : (
                 ''
               )}
-
               {props.currentPost.description && (
                 <p className='answer'>{props.currentPost.description}</p>
               )}
@@ -281,13 +285,13 @@ const Post = (props) => {
                   </p>
                 </div>
               )}
+
           </div>
         </PostContainer>
       )}
     </>
   );
 };
-
 const mapStateToProps = (state) => {
   return {
     user: state.user,
