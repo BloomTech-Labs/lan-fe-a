@@ -12,14 +12,14 @@ const StyledUser = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-  .drop-down{
+  .drop-down {
     width: 85px;
     height: 35px;
     background: #2c2f33;
     color: white;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+  }
   .update-role-status {
     color: black;
     padding-left: 7px;
@@ -53,23 +53,23 @@ const StyledUser = styled.div`
     margin-bottom: 1.5%;
     font-weight: 600;
   }
-  button { 
+  button {
     margin-top: 1.5%;
-    margin-left: 3%;       
+    margin-left: 3%;
     padding: 8px 12px;
     background-color: #212529;
     box-shadow: 2px 2px 8px #212529;
-    border: 1px solid #707B7C ;
+    border: 1px solid #707b7c;
     border-radius: 3px;
     font-family: 'Nunito', sans-serif;
     font-size: 0.9rem;
     color: #ffffff;
     cursor: pointer;
     transition: 0.25s;
-      :hover {
-        opacity: 0.5;
-      }
+    :hover {
+      opacity: 0.5;
     }
+  }
 `;
 
 const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
@@ -86,7 +86,7 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
         setStatus('Unable To Update Role');
       });
   };
-  
+
   const handleDeleteUser = () => {
     deleteUser(user.id)
       .then(() => {
@@ -99,27 +99,25 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
 
   return (
     <StyledUser>
-      <div className="user-card-wrapper">
-        <img className="profile-photo" src={user.profile_picture} />
-        <div className="user-card">
-          <h4>Username -  {user.display_name}</h4>
+      <div className='user-card-wrapper'>
+        <img className='profile-photo' src={user.profile_picture} />
+        <div className='user-card'>
+          <h4>Username - {user.display_name}</h4>
           <p>Email- {user.email}</p>
-          
           <select
             value={roleId}
             onChange={(e) => setRoleId(e.target.value)}
-            name="user_role"
-            id="user_role"
-            className="drop-down"
+            name='user_role'
+            id='user_role'
+            className='drop-down'
           >
-            <option value="1">Alumni</option>
-            <option value="2">Moderator</option>
-            <option value="3">Admin</option>
+            <option value='1'>Alumni</option>
+            <option value='2'>Moderator</option>
+            <option value='3'>Admin</option>
           </select>
-           
           <button onClick={handleSubmit}>Change Role</button>
           <button onClick={handleDeleteUser}>Delete User</button>
-          <span className="update-role-status">{status}</span>
+          <span className='update-role-status'>{status}</span>
         </div>
       </div>
     </StyledUser>

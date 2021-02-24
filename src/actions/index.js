@@ -163,6 +163,15 @@ export const postQuestion = (title, description, room, history) => (
   });
 };
 
+export const updatePost = (id, newDescription) => (dispatch) => {
+  return axios
+    .put(`${BACKEND_URL}/api/post/update/${id}`, { newDescription })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => console.log(error));
+};
+
 // Deletes a post
 export const deletePost = postID => (dispatch) => {
   axios.delete(`${BACKEND_URL}/api/post/delete/${postID}`)
@@ -171,6 +180,7 @@ export const deletePost = postID => (dispatch) => {
 };
 
 // Fetches posts based on user search input
+
 export const fetchSearch = (search) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/post/search`, { search })
@@ -222,6 +232,26 @@ export const unlike = (postID) => (dispatch) => {
     .delete(`${BACKEND_URL}/api/post/like/${postID}`)
     .then((response) => console.log(response.data))
     .catch((error) => console.log(error));
+};
+
+export const fetchUsersLikedPosts = () => (dispatch) => {
+  axios
+    .get(`${BACKEND_URL}/api/user/post/like`)
+    .then((response) =>
+      dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data })
+    )
+    .catch((error) => console.log(error));
+};
+
+export const createRoom = (room) => (dispatch) => {
+  return axios
+    .post(`${BACKEND_URL}/api/room`, { ...room })
+    .then(() => {
+      console.log('room added');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 // Creates a comment
