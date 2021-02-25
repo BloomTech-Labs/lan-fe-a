@@ -4,7 +4,6 @@ const LandingContainer = styled.div`
     height: 90vh;
     width: 90%;
     margin: 0 auto;
-    // top right bottom left
     border-radius: 50px;
     display: flex;
     flex-direction: column;
@@ -18,7 +17,6 @@ const LandingContainer = styled.div`
             flex-direction: column;
             justify-content: center;
            
-            
             .logo-and-name {
                 margin-bottom: 4px;
                 display: flex;
@@ -26,8 +24,6 @@ const LandingContainer = styled.div`
                 img {
                     width:50%;
                     height: 45%;
-                    // height: 32px;
-                    // width: 164px;
                     margin-right: 8px;
                     margin-bottom: 15px;
                 }
@@ -35,7 +31,6 @@ const LandingContainer = styled.div`
                 h1 {
                     font-size: 1.9rem;
                     font-weight: 550;
-                    // color: #ffffff;
                     color: #EC3944;
                 }
             }
@@ -76,14 +71,12 @@ const LandingContainer = styled.div`
                 width: 100%;
                 padding: 10px 0;
                 margin-bottom: 12px;
-                // background-color: #2c2f33;
                 background-color: white;
                 border: none;
                 border-radius: 3px;
                 font-family: 'Nunito', sans-serif;
                 font-size: 1rem;
                 font-weight: 500;
-                // color: #ffffff;
                 color: #333;
                 font-weight: 600;
                 display: flex;
@@ -104,7 +97,6 @@ const LandingContainer = styled.div`
             }
 
             .terms {
-                // margin-bottom: 16px;
                 font-size: 1.1rem;
                 color: #ffffff;
 
