@@ -8,13 +8,12 @@ const HeaderContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     header{
-        // font-family: Adamina;
-        font-family: 'Nunito', sans-serif;
-        font-weight: bolder;
-        font-size: 2.3rem;
+        font-family: 'Tiempos Headline', serif;
+        font-weight: 500;
+        font-size: 3rem;
         color: #EC3944;
         margin-left: 0.8%;
-        margin-bottom: 0.1%;
+        margin-bottom: 0.85%;
         text-shadow: 2px 2px 5px #000000;
     }
     .logo {
@@ -53,7 +52,6 @@ const HeaderContainer = styled.div`
             width: 100%;
             padding: 10px;
             background-color: #141414;
-            // background-color: #1b2631 ;
             border: none;
             border-top-left-radius: 3px;
             border-bottom-left-radius: 3px;
@@ -69,7 +67,6 @@ const HeaderContainer = styled.div`
         button {
             padding: 15px;
             background-color: #141414;
-            // background-color: #1b2631 ;
             border: none;
             border-top-right-radius: 3px;
             border-bottom-right-radius: 3px;
@@ -105,7 +102,6 @@ const HeaderContainer = styled.div`
     .dropdown {
         width: 200px;
         background: #2c2f33;
-        // background-color: #1b2631 ;
         border-radius: 5px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         display: flex;

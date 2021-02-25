@@ -40,7 +40,7 @@ const StyledUser = styled.div`
   h4 {
     text-transform: capitalize;
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 520;
     color: #ffffff;
     margin-left: 1.5%;
     margin-top: 1.5%;
@@ -51,7 +51,8 @@ const StyledUser = styled.div`
     color: #ffffff;
     margin-top: 1.5%;
     margin-bottom: 1.5%;
-    font-weight: 600;
+    font-weight: 500;
+    color: lightgrey;
   }
   button {
     margin-top: 1.5%;

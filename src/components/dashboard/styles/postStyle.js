@@ -37,9 +37,8 @@ const PostContainer = styled.div`
         .display-name{
           margin-right: 8px;
           font-size: 0.875rem;
-          font-weight: 500;
           color: #ffffff;
-          transition: 0.25s;
+          transition: 0.25s;  
           :hover {
             opacity: 0.5;
           }

@@ -18,7 +18,6 @@ const FilterContainer = styled.div`
       display: flex;
       margin-left: 35%;
       align-items: center;
-      // justify-content: flex-end;
     
       label {
         margin-right: 8px;

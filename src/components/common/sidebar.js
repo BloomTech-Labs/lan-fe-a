@@ -19,7 +19,8 @@ const StyledSidebar = styled.div`
     a {
         color: white;
         text-decoration: none;
-        font-size: 22px;
+        font-size: 25px;
+        font-weight: 520;
     }
     .active-sidebar-room {
         color: white;
