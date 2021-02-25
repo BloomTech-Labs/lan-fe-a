@@ -7,10 +7,7 @@ const StyledRoomCard = styled.div`
     width: 40%;
     background-color: black;
     color: white;
-<<<<<<< Updated upstream
-    box-shadow: 3px 3px 5px black;
-=======
-  }
+  
 `;
 
 const StyledPost = styled.div`
@@ -81,7 +78,6 @@ const StyledPointer = styled.div`
     font-size: 1.8rem;
   }
   .return-pointer {
->>>>>>> Stashed changes
     margin: 20px;
     display: flex;
     padding: 15px;
@@ -89,7 +85,8 @@ const StyledPointer = styled.div`
         text-decoration: none;
         color: white;
     }
-`
+  }
+`;
 
 const room = ({ room }) => {
     return (

@@ -18,14 +18,11 @@ const CommentContainer = styled.div`
     }
 
     .right-section {
-<<<<<<< Updated upstream
-=======
         width: 95%;
         padding-bottom: 1.5%;
         border-bottom: 1.5px solid grey;
         display:flex;
         flex-direction: column;
->>>>>>> Stashed changes
         .user {
             margin-bottom: 4px;
             display: flex;

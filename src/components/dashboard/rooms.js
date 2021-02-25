@@ -10,19 +10,6 @@ const Rooms = props => {
         props.fetchRooms();
     }, []);
 
-<<<<<<< Updated upstream
-    return (
-        <QuestionsContainer>
-            {console.log(props.rooms)}
-            {props.rooms.length > 0 ? props.rooms.map((item, index) => <Room key={index} room={item} />) : (
-                <div className='no-posts-found'>
-                    <p><i className='fas fa-exclamation'></i>No Rooms found</p>
-                </div>
-            )}
-            {props.rooms.length > 0 && <p className='youve-reached-the-end'>You've reached the end!</p>}
-        </QuestionsContainer>
-    );
-=======
 const RoomWrapper = styled.div`
   display: flex;
   width: 95%;
@@ -53,8 +40,8 @@ const Rooms = (props) => {
         </PostsContainer>
     </RoomWrapper>
   );
->>>>>>> Stashed changes
 };
+}
 
 const mapStateToProps = state => {
     return {
