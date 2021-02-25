@@ -9,7 +9,6 @@ const Header = props => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
 
   useEffect(() => {
-    // Fetches user object
     if (Object.keys(props.user).length === 0) {
       props.fetchUser();
     };
@@ -46,7 +45,12 @@ const Header = props => {
         <a href='https://github.com/viewee/frontend/issues' target='_blank' rel='noreferrer noopener'><p><i className='fas fa-bug'></i>Report a Bug</p></a>
         <p onClick={() => props.history.push(`/user/${props.user.id}`)}><i className='fas fa-user'></i>My Profile</p>
         <p onClick={() => props.history.push('/settings')}><i className='fas fa-cog'></i>Settings</p>
-        <p onClick={() => props.history.push('/admin-settings')}><img src={adminLogo} id='admin' />Admin Settings</p>
+        {props.user.role_id === 3 ? (
+          <p onClick={() => props.history.push('/admin-settings')}><img src={adminLogo} id='admin' />Admin Settings</p>
+        ) : ''}
+        {props.user.role_id > 1 ? (
+          <p onClick={() => props.history.push('/mod-settings')}><img src={adminLogo} id='mod' />Moderator Settings</p>
+        ) : ''}
         <p onClick={() => props.logOut(props.history)}><i className='fas fa-sign-out-alt'></i>Log Out</p>
       </div>}
     </HeaderContainer>
