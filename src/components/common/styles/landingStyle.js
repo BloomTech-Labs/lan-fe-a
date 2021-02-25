@@ -33,8 +33,8 @@ const LandingContainer = styled.div`
                 }
 
                 h1 {
-                    font-size: 2rem;
-                    font-weight: 600;
+                    font-size: 1.9rem;
+                    font-weight: 550;
                     // color: #ffffff;
                     color: #EC3944;
                 }

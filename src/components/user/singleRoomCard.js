@@ -12,10 +12,11 @@ const StyledRoom = styled.div`
   h4 {
     color: white;
     font-size: 1.3rem;
+    font-weight: 500;
   }
   p {
     font-size: 1.1rem;
-    font-weight: 550;
+    font-weight: 500;
     color: lightgrey;
   }
   .editable {

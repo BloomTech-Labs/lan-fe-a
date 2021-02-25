@@ -38,11 +38,13 @@ const StyledPost = styled.div`
   h4 {
     text-transform: capitalize;
     margin-left: 1%;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    font-weight: 540;
   }
   h3 {
     margin-bottom: 0.5%;
     font-size: 1.25rem;
+    font-weight: 540;
   }
   .profile {
     display: flex;
@@ -67,8 +69,10 @@ const StyledPost = styled.div`
   }
   p {
     justify-self: stretch;
-    color: #e0dcdc;
+    /* color: #e0dcdc; */
+    color: #D8D8D8;
     font-size: 1.1rem;
+    font-weight: 500;
   }
 `;
 
@@ -76,7 +80,6 @@ const StyledPointer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   background-color: #141414;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 20px;
@@ -92,6 +95,7 @@ const StyledPointer = styled.div`
   .single-room-name {
     margin-top: 1.5%;
     margin-left: 1.2%;
+    font-weight: 500;
   }
   .single-room-navigation {
     display: flex;
@@ -125,6 +129,7 @@ const customStyles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
+  
 };
 
 

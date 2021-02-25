@@ -5,13 +5,12 @@ const CreatePostContainer = styled.div`
     margin: 0 auto;
     margin-top: 32px;
     margin-bottom: 32px;
-
     h2 {
         padding-bottom: 8px;
         margin-bottom: 8px;
         border-bottom: 1px solid #2c2f33;
         font-size: 1.25rem;
-        font-weight: 700;
+        font-weight: 550;
         color: #ffffff;
     }
 
@@ -78,21 +77,21 @@ const CreatePostContainer = styled.div`
 
         label {
             margin: 16px 0 4px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 500;
             color: #ffffff;
         }
 
         input {
             padding: 10px;
-            background-color: #2c2f33;
+            background-color: #212121;
             border: none;
-            border-radius: 3px;
+            border-radius: 5px;
             font-family: 'Nunito', sans-serif;
             font-size: 1rem;
             font-weight: 500;
             color: #ffffff;
-
+            margin-top: 2%;
             ::placeholder {
                 color: dimgray;
             }
@@ -104,14 +103,15 @@ const CreatePostContainer = styled.div`
             max-width: 100%;
             height: 288px;
             padding: 10px;
-            background-color: #2c2f33;
+            /* background-color: #2c2f33; */
+            background-color: #212121;
             border: none;
-            border-radius: 3px;
+            border-radius: 5px;
             font-family: 'Nunito', sans-serif;
             font-size: 1rem;
             font-weight: 500;
             color: #ffffff;
-
+            margin-top: 2%;
             ::placeholder {
                 color: dimgray;
             }
@@ -125,9 +125,10 @@ const CreatePostContainer = styled.div`
             button {
                 padding: 10px 24px;
                 margin-left: 8px;
-                background: linear-gradient(to right, #0084ff, #0099ff);
-                border: none;
-                border-radius: 3px;
+                /* background: linear-gradient(to right, #0084ff, #0099ff); */
+                background: linear-gradient(to right, #000000, #212121, #424949);
+                border-radius: 5px;
+                border: 2px solid  #424949;
                 font-family: 'Nunito', sans-serif;
                 font-size: 0.875rem;
                 font-weight: 600;

@@ -7,7 +7,8 @@
 body {
   /* background-color: #23272a; */
   background-color: #0d0d0d;
-  font-family: 'Nunito', sans-serif;
+  /* font-family: 'Nunito', sans-serif; */
+  font-family: 'Suisse Intl Regular', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

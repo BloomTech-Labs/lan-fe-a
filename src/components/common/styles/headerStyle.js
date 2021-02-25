@@ -8,13 +8,13 @@ const HeaderContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     header{
-        // font-family: Adamina;
-        font-family: 'Nunito', sans-serif;
-        font-weight: bolder;
-        font-size: 2.3rem;
+        font-family: 'Tiempos Headline';
+        /* font-family: 'Nunito', sans-serif; */
+        font-weight: 500;
+        font-size: 3rem;
         color: #EC3944;
         margin-left: 0.8%;
-        margin-bottom: 0.1%;
+        margin-bottom: 0.85%;
         text-shadow: 2px 2px 5px #000000;
     }
     .logo {
