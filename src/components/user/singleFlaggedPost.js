@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { fetchRooms, updateRoom, deleteRoom } from '../../actions';
+import { Link } from 'react-router-dom';
+import {
+  fetchRooms,
+  updateRoom,
+  deleteRoom,
+  fetchFlaggedPosts,
+  archivePost,
+  resolvePost,
+} from '../../actions';
 
 const StyledRoom = styled.div`
   padding: 2.8%;
@@ -34,30 +42,30 @@ const StyledRoom = styled.div`
     width: 90%;
     border: none;
     /* width: 40%; */
-    input{
-        min-height: 44px;
-        min-width: 100%;
-        max-width: 100%;
+    input {
+      min-height: 44px;
+      min-width: 100%;
+      max-width: 100%;
     }
     textarea {
-            margin-left: 2%;
-            min-height: 44px;
-            min-width: 100%;
-            max-width: 100%;
-            /* height: 288px; */
-            padding: 10px;
-            background-color: #242323;
-            border: 1px solid #808080;
-            border-radius: 5px;
-            font-family: 'Nunito', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #808080;
+      margin-left: 2%;
+      min-height: 44px;
+      min-width: 100%;
+      max-width: 100%;
+      /* height: 288px; */
+      padding: 10px;
+      background-color: #242323;
+      border: 1px solid #808080;
+      border-radius: 5px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #808080;
 
-            ::placeholder {
-                color: dimgray;
-            }
-        }
+      ::placeholder {
+        color: dimgray;
+      }
+    }
   }
   .button-wrap {
     margin-bottom: 2.8%;
@@ -82,44 +90,24 @@ const StyledRoom = styled.div`
 `;
 
 const SingleFlaggedPost = (props) => {
-  const { item } = props;
-  const [roomValues, setRoomValues] = useState({
-    room_name: item.room_name,
-    description: item.description,
-  });
-  const [isEditable, setIsEditable] = useState(false);
+  const { post } = props;
 
-  const editRoom = () => {
-    setIsEditable(true);
-  };
-
-  const handleUpdateChange = (evt) => {
-    const { name, value } = evt.target;
-    setRoomValues({ ...roomValues, [name]: value });
-  };
-
-  const handleUpdateSubmit = () => {
+  const handleResolvePost = (id) => {
     props
-      .updateRoom(item.id, roomValues)
+      .resolvePost(id)
       .then(() => {
-        props.fetchRooms();
+        props.fetchFlaggedPosts;
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
       });
-    setIsEditable(false);
   };
 
-  const handleUpdateCancel = () => {
-    setRoomValues({ room_name: item.room_name, description: item.description });
-    setIsEditable(false);
-  };
-
-  const handleDeleteRoom = (id) => {
+  const handleArchivePost = (id) => {
     props
-      .deleteRoom(id)
+      .archivePost(id)
       .then(() => {
-        props.fetchRooms();
+        props.fetchFlaggedPosts();
       })
       .catch((err) => {
         console.log(err);
@@ -129,33 +117,12 @@ const SingleFlaggedPost = (props) => {
   return (
     <StyledRoom>
       <div className="not-editable">
-        <h4>{item.room_name}</h4>
-        <p>{item.description}</p>
-        <button onClick={editRoom}>Edit</button>
-        <button onClick={() => handleDeleteRoom(item.id)}>Delete</button>
+        <h4>{post.title}</h4>
+        <Link to={`post/${id}`}>Click Here To See Original Post</Link>
+        <p>{post.description}</p>
+        <button onClick={handleResolvePost(post.id)}>Accept Post</button>
+        <button onClick={() => handleArchivePost(post.id)}>Delete Post</button>
       </div>
-      {isEditable ? (
-        <div className="editable">
-          <div className="button-wrap">
-            <button onClick={handleUpdateSubmit}>Save</button>
-            <button onClick={handleUpdateCancel}>Cancel</button>
-          </div>
-
-          <div className="input-wrap">
-            <input
-              name="room_name"
-              type="text"
-              value={roomValues.room_name}
-              onChange={handleUpdateChange}
-            />
-            <textarea
-              name="description"
-              value={roomValues.description}
-              onChange={handleUpdateChange}
-            />
-          </div>
-        </div>
-      ) : null}
     </StyledRoom>
   );
 };
@@ -166,6 +133,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { updateRoom, fetchRooms, deleteRoom })(
-  SingleFlaggedPost
-);
+export default connect(mapStateToProps, {
+  updateRoom,
+  fetchRooms,
+  deleteRoom,
+  fetchFlaggedPosts,
+  archivePost,
+  resolvePost,
+})(SingleFlaggedPost);
