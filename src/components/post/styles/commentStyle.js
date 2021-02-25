@@ -6,7 +6,6 @@ const CommentContainer = styled.div`
     padding: 2%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
     img {
         margin-right: 12px;
         height: 32px;
@@ -24,12 +23,12 @@ const CommentContainer = styled.div`
         width: 90%;
         padding-bottom: 1.5%;
         border-bottom: 1.5px solid grey;
-       
+        font-weight: 500;
         .user {
             margin-bottom: 4px;
             display: flex;
             align-items: center;
-
+            font-weight: 500;
             .display-name {
                 margin-right: 8px;
                 font-size: 0.875rem;
@@ -55,14 +54,14 @@ const CommentContainer = styled.div`
         .answer {            
             margin-bottom: 8px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 500;
             // color: #ffffff;
             color: #E0DCDC;            
         }
 
         .likes {
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 500;
             color: #ffffff;
             display: flex;
             align-items: center;
