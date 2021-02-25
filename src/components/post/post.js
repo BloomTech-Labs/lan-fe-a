@@ -18,6 +18,8 @@ import moment from 'moment';
 import Header from '../common/header';
 import Comment from '../post/comment';
 import PostContainer from './styles/postStyle';
+import toast from 'react-hot-toast';
+
 const Post = (props) => {
   const postID = Number(props.match.params.id);
   const [liked, setLiked] = useState(false);
@@ -60,6 +62,7 @@ const Post = (props) => {
       setError('Please enter a comment');
     } else {
       props.postComment(props.user, postID, input);
+      toast('Comment Added to Post by ' + props.currentPost.display_name);
       setInput('');
     }
   };
@@ -70,7 +73,6 @@ const Post = (props) => {
     setLikes(likes + 1);
     props.like(postID);
   };
-
 
   // removes like from post
   const unlike = (postID) => {
@@ -100,6 +102,7 @@ const Post = (props) => {
     props.updatePost(postID, postInput).then(() => {
       props.fetchPost(postID);
     });
+    toast('Post Updated');
     setEditing(false);
   };
 
@@ -141,12 +144,12 @@ const Post = (props) => {
               <div className='labels'>
                 {props.currentPost.track &&
                   props.currentPost.track === 'Career Coach' && (
-                    <button className='career-coach'>CAREER COACH</button>
-                  )}
+                  <button className='career-coach'>CAREER COACH</button>
+                )}
                 {props.currentPost.track &&
                   props.currentPost.track !== 'Career Coach' && (
-                    <button>{props.currentPost.track.toUpperCase()}</button>
-                  )}
+                  <button>{props.currentPost.track.toUpperCase()}</button>
+                )}
 
                 {props.currentPost.category && (
                   <button>{props.currentPost.category.toUpperCase()}</button>
@@ -273,12 +276,12 @@ const Post = (props) => {
               ))}
             {!props.individualPostCommentsAreFetching &&
               props.currentPostComments.length === 0 && (
-                <div className='no-comments-yet'>
-                  <p>
-                    <i className='fas fa-exclamation'></i>No comments yet
-                  </p>
-                </div>
-              )}
+              <div className='no-comments-yet'>
+                <p>
+                  <i className='fas fa-exclamation'></i>No comments yet
+                </p>
+              </div>
+            )}
 
           </div>
         </PostContainer>

@@ -27,7 +27,7 @@ const room = ({ room }) => {
     <StyledRoomCard>
       <Link to={`room/${room.id}`}>
         <div>
-          <h2># {room.room_name}</h2>
+          <h2>{room.room_name}</h2>
           <p>{room.description}</p> 
         </div>       
       </Link>
