@@ -18,7 +18,7 @@ const PostContainer = styled.div`
     position: relative;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 2.5%;
-    border-width: 3px;
+    border-width: 1.5px;
     border-style: solid;
     border-image: linear-gradient(to bottom, grey, rgba(0, 0, 0, 0)) 1 100%;
 
@@ -48,7 +48,7 @@ const PostContainer = styled.div`
         .display-name {
           margin-right: 8px;
           font-size: 1.2rem;
-          font-weight: 700;
+          font-weight: 545;
           color: #ffffff;
           cursor: pointer;
           transition: 0.25s;
@@ -91,14 +91,14 @@ const PostContainer = styled.div`
       .question {
         margin-bottom: 6px;
         font-size: 1.1rem;
-        font-weight: 600;
+        font-weight: 545;
         color: #ffffff;
       }
 
       .answer {
         margin-bottom: 15px;
         font-size: 1rem;
-        font-weight: 550;
+        font-weight: 500;
         color: #e0dcdc;
       }
 
@@ -109,7 +109,7 @@ const PostContainer = styled.div`
         p {
           margin-right: 16px;
           font-size: 0.875rem;
-          font-weight: 500;
+          font-weight: 480;
           color: #ffffff;
 
           i {
@@ -228,7 +228,6 @@ const PostContainer = styled.div`
         padding: 12px 26px;
         margin-top: 16px;
         background: linear-gradient(to right, #000000, #212121, #424949);
-        // background: white ;
         border-radius: 5px;
         font-family: "Nunito", sans-serif;
         font-size: 1rem;
@@ -237,7 +236,7 @@ const PostContainer = styled.div`
         cursor: pointer;
         transition: 0.25s;
         border: 1px solid grey;
-        box-shadow: 3px 3px 6px #888888;
+        /* box-shadow: 3px 3px 6px #888888; */
         :hover {
           opacity: 0.5;
         }
