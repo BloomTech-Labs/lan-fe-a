@@ -69,7 +69,6 @@ const StyledPost = styled.div`
   }
   p {
     justify-self: stretch;
-    /* color: #e0dcdc; */
     color: #D8D8D8;
     font-size: 1.1rem;
     font-weight: 500;
@@ -131,8 +130,6 @@ const customStyles = {
   },
   
 };
-
-
 
 const Room = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
