@@ -21,7 +21,7 @@ export const success = (history) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-// Fetches logged in user 
+// Fetches logged in user
 export const fetchUser = () => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/user`)
@@ -53,7 +53,7 @@ export const logOut = (history) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-// Deletes user 
+// Deletes user
 export const deleteUser = (id) => (dispatch) => {
   return axios
     .delete(`${BACKEND_URL}/api/admin/users/${id}`)
@@ -141,7 +141,9 @@ export const updateRoom = (id, room) => (dispatch) => {
     .then((res) => {
       console.log('room updated');
     })
-    .catch((err) => { console.log(err); });
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 // Deletes a room
@@ -173,10 +175,11 @@ export const updatePost = (id, newDescription) => (dispatch) => {
 };
 
 // Deletes a post
-export const deletePost = postID => (dispatch) => {
-  axios.delete(`${BACKEND_URL}/api/post/delete/${postID}`)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err.message));
+export const deletePost = (postID) => (dispatch) => {
+  axios
+    .delete(`${BACKEND_URL}/api/post/delete/${postID}`)
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err.message));
 };
 
 // Fetches posts based on user search input
@@ -302,3 +305,29 @@ export const fetchPostByRoom = (roomID) => (dispatch) => {
 export const setSearch = (search) => (dispatch) => {
   dispatch({ type: 'SET_SEARCH', payload: search });
 };
+
+export const fetchFlaggedPosts = () => (dispatch) => {
+  axios
+    .get(`${BACKEND_URL}/api/mod/posts`)
+    .then((res) => {
+      dispatch({ type: 'SET_POSTS', payload: res.data });
+    })
+    .catch((error) => console.log(error));
+};
+
+export const fetchFlaggedComments = () => (dispatch) => {
+  axios
+    .get(`${BACKEND_URL}/api/mod/comments`)
+    .then((res) => {
+      dispatch({ type: 'SET_POSTS', payload: res.data });
+    })
+    .catch((error) => console.log(error));
+};
+
+export const archivePost = () => (dispatch) => {};
+
+export const archiveComment = () => (dispatch) => {};
+
+export const resolvePost = () => (dispatch) => {};
+
+export const resolveComment = () => (dispatch) => {};

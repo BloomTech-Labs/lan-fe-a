@@ -1,5 +1,5 @@
 const initialState = {
-  user: { role_id: 3 },
+  user: {},
   currentUser: {},
   rooms: [],
   users: [],

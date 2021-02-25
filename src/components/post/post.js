@@ -18,19 +18,14 @@ import moment from 'moment';
 import Header from '../common/header';
 import Comment from '../post/comment';
 import PostContainer from './styles/postStyle';
-
 const Post = (props) => {
   const postID = Number(props.match.params.id);
-
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
   const [sortingDropdown, setSortingDropdown] = useState('Recent');
   const [moreOptions, setMoreOptions] = useState(false);
-
-  //needed to update the post
-  const [updatedPost, setUpdatedPost] = useState('');
   const [postInput, setPostInput] = useState('');
   const [editing, setEditing] = useState(false);
 
@@ -105,7 +100,6 @@ const Post = (props) => {
     props.updatePost(postID, postInput).then(() => {
       props.fetchPost(postID);
     });
-    setUpdatedPost(postInput);
     setEditing(false);
   };
 

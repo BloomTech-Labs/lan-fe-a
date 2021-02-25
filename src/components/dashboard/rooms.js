@@ -22,7 +22,6 @@ const Rooms = (props) => {
     <RoomWrapper>
       <Sidebar />
       <PostsContainer>
-        {console.log(props.rooms)}
         {props.rooms.length > 0 ? (
           props.rooms.map((item, index) => <Room key={index} room={item} />)
         ) : (

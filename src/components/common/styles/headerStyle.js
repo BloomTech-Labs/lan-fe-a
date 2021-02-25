@@ -143,6 +143,11 @@ const HeaderContainer = styled.div`
             margin-left: -2px;
             margin-right: 5.5px;
         }
+        #mod {
+            height: 1.15rem;
+            margin-left: -2px;
+            margin-right: 5.5px;
+        }
     }
 
     @media (min-width: 768px) {
