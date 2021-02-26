@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { fetchFlaggedPosts, archivePost, resolvePost } from '../../actions';
 import { Link } from 'react-router-dom';
-import {
-  fetchRooms,
-  updateRoom,
-  deleteRoom,
-  fetchFlaggedPosts,
-  archivePost,
-  resolvePost,
-} from '../../actions';
 
 const StyledRoom = styled.div`
   padding: 2.8%;
@@ -93,10 +86,9 @@ const SingleFlaggedPost = (props) => {
   const { post } = props;
 
   const handleResolvePost = (id) => {
-    props
-      .resolvePost(id)
+    props.resolvePost(id)
       .then(() => {
-        props.fetchFlaggedPosts;
+        props.fetchFlaggedPosts();
       })
       .catch((err) => {
         console.log(err);
@@ -104,8 +96,7 @@ const SingleFlaggedPost = (props) => {
   };
 
   const handleArchivePost = (id) => {
-    props
-      .archivePost(id)
+    props.archivePost(id)
       .then(() => {
         props.fetchFlaggedPosts();
       })
@@ -118,9 +109,9 @@ const SingleFlaggedPost = (props) => {
     <StyledRoom>
       <div className="not-editable">
         <h4>{post.title}</h4>
-        <Link to={`post/${id}`}>Click Here To See Original Post</Link>
+        <Link to={`/post/${post.id}`}>Click Here To See Original Post</Link>
         <p>{post.description}</p>
-        <button onClick={handleResolvePost(post.id)}>Accept Post</button>
+        <button onClick={() => handleResolvePost(post.id)}>Accept Post</button>
         <button onClick={() => handleArchivePost(post.id)}>Delete Post</button>
       </div>
     </StyledRoom>
@@ -134,9 +125,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  updateRoom,
-  fetchRooms,
-  deleteRoom,
   fetchFlaggedPosts,
   archivePost,
   resolvePost,
