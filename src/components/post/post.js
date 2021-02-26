@@ -222,9 +222,9 @@ const Post = (props) => {
                 { props.currentPost.user_id === props.user.id ? <Link to='/' onClick={() => deletePost(postID)}>
                   Delete Post
                 </Link> : '' }
-                <button className="flag-button" onClick={() => flagPost(postID)} >
+                { props.currentPost.user_id !== props.user.id ?<button className="flag-button" onClick={() => props.flagPost(postID)} >
                   Flag Post
-                </button>
+                </button> : '' }
               </div>
             )}
           </div>
