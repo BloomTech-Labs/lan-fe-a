@@ -325,28 +325,28 @@ export const fetchFlaggedComments = () => (dispatch) => {
 };
 
 export const archivePost = (postID) => (dispatch) => {
-  axios
+  return axios
     .delete(`${BACKEND_URL}/api/mod/posts/${postID}`)
     .then((response) => console.log(response.data))
     .catch((error) => console.log(error));
 };
 
 export const archiveComment = (commentID) => (dispatch) => {
-  axios
+  return axios
     .delete(`${BACKEND_URL}/api/mod/comments/${commentID}`)
     .then((response) => console.log(response.data))
     .catch((error) => console.log(error));
 };
 
 export const resolvePost = (postID) => (dispatch) => {
-  axios
+  return axios
     .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
     .then((response) => console.log(response.data))
     .catch((error) => console.log(error));
 };
 
 export const resolveComment = (commentID) => (dispatch) => {
-  axios
+  return axios
     .put(`${BACKEND_URL}/api/mod/comments/${commentID}`)
     .then((response) => console.log(response.data))
     .catch((error) => console.log(error));
