@@ -13,6 +13,7 @@ import {
   fetchPostCommentsByPopular,
   deletePost,
   updatePost,
+  flagPost,
 } from '../../actions';
 import moment from 'moment';
 import Header from '../common/header';
@@ -218,17 +219,12 @@ const Post = (props) => {
             </div>
             {moreOptions && (
               <div className='dropdown'>
-                <Link to='/' onClick={() => deletePost(postID)}>
+                { props.currentPost.user_id === props.user.id ? <Link to='/' onClick={() => deletePost(postID)}>
                   Delete Post
-                </Link>
-                {/* <Link
-                  to='/'
-                  onClick={() => {
-                    handleUpdatePost(postID), setEditing(true);
-                  }}
-                >
-                  Edit
-                </Link> */}
+                </Link> : '' }
+                <button className="flag-button" onClick={() => flagPost(postID)} >
+                  Flag Post
+                </button>
               </div>
             )}
           </div>
@@ -309,4 +305,5 @@ export default connect(mapStateToProps, {
   fetchPostCommentsByPopular,
   deletePost,
   updatePost,
+  flagPost,
 })(Post);
