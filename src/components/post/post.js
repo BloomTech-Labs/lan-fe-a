@@ -104,6 +104,12 @@ const Post = (props) => {
     setEditing(false);
   };
 
+  // Flag a post
+  const handleFlaggingPost = () => {
+    props.flagPost(postID)
+    setMoreOptions(!moreOptions);
+  }
+
   return (
     <>
       <Header history={props.history} />
@@ -222,7 +228,7 @@ const Post = (props) => {
                 { props.currentPost.user_id === props.user.id ? <Link to='/' onClick={() => deletePost(postID)}>
                   Delete Post
                 </Link> : '' }
-                { props.currentPost.user_id !== props.user.id ?<button className="flag-button" onClick={() => props.flagPost(postID)} >
+                { props.currentPost.user_id !== props.user.id ?<button className="flag-button" onClick={handleFlaggingPost} >
                   Flag Post
                 </button> : '' }
               </div>
