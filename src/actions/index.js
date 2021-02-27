@@ -306,6 +306,28 @@ export const setSearch = (search) => (dispatch) => {
   dispatch({ type: 'SET_SEARCH', payload: search });
 };
 
+export const flagPost = (id) => (dispatch) => {
+  axios
+    .post(`${BACKEND_URL}/api/mod/posts/${id}`)
+    .then(() => {
+        console.log('Post flagged')
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
+
+export const flagComment = (id) => (dispatch) => {
+  axios
+    .post(`${BACKEND_URL}/api/mod/comments/${id}`)
+    .then(() => {
+        console.log('Comment flagged')
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
+
 export const fetchFlaggedPosts = () => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/mod/posts`)
@@ -324,10 +346,30 @@ export const fetchFlaggedComments = () => (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-export const archivePost = () => (dispatch) => {};
+export const archivePost = (postID) => (dispatch) => {
+  return axios
+    .delete(`${BACKEND_URL}/api/mod/posts/${postID}`)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error));
+};
 
-export const archiveComment = () => (dispatch) => {};
+export const archiveComment = (commentID) => (dispatch) => {
+  return axios
+    .delete(`${BACKEND_URL}/api/mod/comments/${commentID}`)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error));
+};
 
-export const resolvePost = () => (dispatch) => {};
+export const resolvePost = (postID) => (dispatch) => {
+  return axios
+    .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error));
+};
 
-export const resolveComment = () => (dispatch) => {};
+export const resolveComment = (commentID) => (dispatch) => {
+  return axios
+    .put(`${BACKEND_URL}/api/mod/comments/${commentID}`)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error));
+};

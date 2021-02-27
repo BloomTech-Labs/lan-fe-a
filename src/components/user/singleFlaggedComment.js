@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { fetchRooms, updateRoom, deleteRoom } from '../../actions';
+import { archiveComment, resolveComment, fetchFlaggedComments } from '../../actions';
+import { Link } from 'react-router-dom';
 
 const StyledRoom = styled.div`
   padding: 2.8%;
@@ -82,44 +83,25 @@ const StyledRoom = styled.div`
 `;
 
 const SingleFlaggedComment = (props) => {
-  const { item } = props;
-  const [roomValues, setRoomValues] = useState({
-    room_name: item.room_name,
-    description: item.description,
-  });
-  const [isEditable, setIsEditable] = useState(false);
+  const { comment } = props
+  
 
-  const editRoom = () => {
-    setIsEditable(true);
-  };
-
-  const handleUpdateChange = (evt) => {
-    const { name, value } = evt.target;
-    setRoomValues({ ...roomValues, [name]: value });
-  };
-
-  const handleUpdateSubmit = () => {
+  const handleResolveComment = (id) => {
     props
-      .updateRoom(item.id, roomValues)
+      .resolveComment(id)
       .then(() => {
-        props.fetchRooms();
+          props.fetchFlaggedComments();
       })
       .catch((err) => {
-        console.log(err.message);
-      });
-    setIsEditable(false);
+          console.log(err);
+      })
   };
 
-  const handleUpdateCancel = () => {
-    setRoomValues({ room_name: item.room_name, description: item.description });
-    setIsEditable(false);
-  };
-
-  const handleDeleteRoom = (id) => {
+  const handleArchiveComment = (id) => {
     props
-      .deleteRoom(id)
+      .archiveComment(id)
       .then(() => {
-        props.fetchRooms();
+        props.fetchFlaggedComments();
       })
       .catch((err) => {
         console.log(err);
@@ -129,33 +111,11 @@ const SingleFlaggedComment = (props) => {
   return (
     <StyledRoom>
       <div className="not-editable">
-        <h4>{item.room_name}</h4>
-        <p>{item.description}</p>
-        <button onClick={editRoom}>Edit</button>
-        <button onClick={() => handleDeleteRoom(item.id)}>Delete</button>
+        <p>{comment.comment}</p>
+        <Link to={`/post/${comment.post_id}`}>Attached Post</Link>
+        <button onClick={() => handleResolveComment(comment.id)}>Keep</button>
+        <button onClick={() => handleArchiveComment(comment.id)}>Delete</button>
       </div>
-      {isEditable ? (
-        <div className="editable">
-          <div className="button-wrap">
-            <button onClick={handleUpdateSubmit}>Save</button>
-            <button onClick={handleUpdateCancel}>Cancel</button>
-          </div>
-
-          <div className="input-wrap">
-            <input
-              name="room_name"
-              type="text"
-              value={roomValues.room_name}
-              onChange={handleUpdateChange}
-            />
-            <textarea
-              name="description"
-              value={roomValues.description}
-              onChange={handleUpdateChange}
-            />
-          </div>
-        </div>
-      ) : null}
     </StyledRoom>
   );
 };
@@ -166,6 +126,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { updateRoom, fetchRooms, deleteRoom })(
+export default connect(mapStateToProps, { archiveComment, resolveComment, fetchFlaggedComments })(
   SingleFlaggedComment
 );

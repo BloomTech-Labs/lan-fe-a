@@ -151,11 +151,12 @@ const PostContainer = styled.div`
       display: flex;
       flex-direction: column;
       position: absolute;
-      top: 20px;
+      top: 43px;
       right: 0;
+      margin-right: 20px;
       z-index: 9999;
 
-      a {
+      a, button {
         text-decoration: none;
         border-bottom: 1px solid #23272a;
         padding: 12px;
@@ -164,6 +165,9 @@ const PostContainer = styled.div`
         color: #ffffff;
         cursor: pointer;
         transition: 0.25s;
+        background-color: unset;
+        border: none;
+        text-align: left;
 
         :nth-child(4) {
           border-bottom: 1px solid #23272a;

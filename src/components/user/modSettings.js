@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/header';
 import SettingsContainer from './styles/settingsStyle';
-import { fetchFlaggedPosts, fetchFlaggedComments, archivePost, archiveComment, resolvePost, resolveComment } from '../../actions';
+import { fetchFlaggedPosts, fetchFlaggedComments } from '../../actions';
 import SingleFlaggedPost from './singleFlaggedPost';
 import SingleFlaggedComment from './singleFlaggedComment';
 
@@ -22,6 +22,16 @@ const AdminSettings = (props) => {
     props.fetchFlaggedPosts();
   }, []);
 
+  const handleFetchPosts = () => {
+    setCurrentMod('Posts');
+    props.fetchFlaggedPosts();
+  }
+
+  const handleFetchComments = () => {
+    setCurrentMod('Comments');
+    props.fetchFlaggedComments();
+  }
+
   return (
     <>
       <Header history={props.history} />
@@ -31,17 +41,13 @@ const AdminSettings = (props) => {
           <div className="display-name">
             <button
               className="update"
-              onClick={() => {
-                setCurrentMod('Posts');
-              }}
+              onClick={handleFetchPosts}
             >
               Modify Posts
             </button>
             <button
               className="update"
-              onClick={() => {
-                setCurrentMod('Comments');
-              }}
+              onClick={handleFetchComments}
             >
               Modify Comments
             </button>
@@ -85,4 +91,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchFlaggedPosts, fetchFlaggedComments, archivePost, archiveComment, resolvePost, resolveComment })(AdminSettings);
+export default connect(mapStateToProps, { fetchFlaggedPosts, fetchFlaggedComments })(AdminSettings);
