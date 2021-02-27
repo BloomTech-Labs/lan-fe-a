@@ -4,6 +4,7 @@ const SettingsContainer = styled.div`
     width: 98%;
     margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
     input{
         background-color: #242323;
         height: 40px;
@@ -61,17 +62,17 @@ const SettingsContainer = styled.div`
         display: flex;
         flex-wrap: wrap;
         width: 95%;
-        margin-left: 7%;
+        /* margin-left: 7%; */
     }
    
 
     .display-name {
         margin-bottom: 16px;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-        margin-right: 45%;
+        /* justify-content: space-between;  */
+        /* align-items: center;
+        flex-direction: column; */
+        /* margin-right: 45%; */
         .left-section {
             p {
                 font-size: 1rem;
@@ -96,7 +97,7 @@ const SettingsContainer = styled.div`
             cursor: pointer;
             transition: 0.25s;
             border: 1px solid grey;
-            box-shadow: 3px 3px 6px #888888;
+            /* box-shadow: 3px 3px 6px #888888; */
             :hover {
               opacity: 0.5;
             }

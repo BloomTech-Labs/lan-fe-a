@@ -9,10 +9,10 @@ import SingleRoomCard from './singleRoomCard';
 
 const StyledAdminHeader = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 55%;
-  margin: 0 auto;
-  border-right: 1px solid #2c2f33;
+  align-items: baseline;
+  /* flex-direction: column; */
+  width: 90%;
+  margin: 2% auto;
 `;
 
 const AdminSettings = (props) => {

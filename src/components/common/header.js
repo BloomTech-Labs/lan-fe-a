@@ -30,7 +30,7 @@ const Header = props => {
         props.history.push('/');
       }}>
         <img src={whitelambda} alt='Lambda School logo' />
-        <header>Alumni Network</header>
+        {/* <header>Alumni Network</header> */}
       </div>
 
       <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
