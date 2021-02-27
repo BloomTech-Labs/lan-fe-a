@@ -310,23 +310,23 @@ export const flagPost = (id) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/mod/posts/${id}`)
     .then(() => {
-        console.log('Post flagged')
+      console.log('Post flagged');
     })
     .catch((err) => {
-        console.log(err)
-    })
-}
+      console.log(err);
+    });
+};
 
 export const flagComment = (id) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/mod/comments/${id}`)
     .then(() => {
-        console.log('Comment flagged')
+      console.log('Comment flagged');
     })
     .catch((err) => {
-        console.log(err)
-    })
-}
+      console.log(err);
+    });
+};
 
 export const fetchFlaggedPosts = () => (dispatch) => {
   axios

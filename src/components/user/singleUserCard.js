@@ -7,17 +7,35 @@ const StyledUser = styled.div`
   width: 45%;
   padding: 2%;
   background-color: #141414;
-  margin: 1rem;
+  margin: 2% auto;
   color: #000000;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+  .user-infor-wrapper{
+    display: flex;
+    margin: 3% auto;
+  }
+  .infor-card{
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    margin-left: 3%;
+    /* margin: 0 auto; */
+  }
+  .user-card {
+    display: flex;
+    width: 95%;
+    flex-direction: column;
+  }
   .drop-down {
-    width: 85px;
+    width: 97%;
+    display: flex;
+    /* margin: 0 auto; */
+    margin-left: 3.2%;
     height: 35px;
     background: #2c2f33;
     color: white;
-    border-radius: 5px;
+    border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   .update-role-status {
@@ -53,6 +71,7 @@ const StyledUser = styled.div`
     margin-bottom: 1.5%;
     font-weight: 500;
     color: lightgrey;
+    margin-left: 1%;
   }
   button {
     margin-top: 1.5%;
@@ -101,10 +120,14 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
   return (
     <StyledUser>
       <div className='user-card-wrapper'>
-        <img className='profile-photo' src={user.profile_picture} />
+        <div className='user-infor-wrapper'>
+          <img className='profile-photo' src={user.profile_picture} />
+          <div className='infor-card'>
+            <h4>Username - {user.display_name}</h4>
+            <p>Email- {user.email}</p>
+          </div>
+        </div>
         <div className='user-card'>
-          <h4>Username - {user.display_name}</h4>
-          <p>Email- {user.email}</p>
           <select
             value={roleId}
             onChange={(e) => setRoleId(e.target.value)}
