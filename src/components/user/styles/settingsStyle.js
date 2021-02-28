@@ -69,10 +69,10 @@ const SettingsContainer = styled.div`
     .display-name {
         margin-bottom: 16px;
         display: flex;
-        /* justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-        margin-right: 45%; */
+        /* justify-content: space-between;  */
+        /* align-items: center;
+        flex-direction: column; */
+        /* margin-right: 45%; */
         .left-section {
             p {
                 font-size: 1rem;

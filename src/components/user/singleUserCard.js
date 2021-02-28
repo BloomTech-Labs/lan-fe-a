@@ -64,7 +64,7 @@ const StyledUser = styled.div`
     margin-top: 1.5%;
     margin-bottom: 1.5%;
   }
-  
+
   p {
     color: #ffffff;
     margin-top: 1.5%;
