@@ -7,7 +7,7 @@ import likeicon from '../../img/likeicon.png';
 import replyicon from '../../img/replyicon.png';
 import Modal from 'react-modal';
 import CreatePostContainer from '../post/styles/createPostStyle';
-import { postQuestion, fetchPostByRoom } from '../../actions';
+import { postQuestion, fetchPostByRoom, fetchPostByRoomByPopular } from '../../actions';
 
 const StyledRoomContainer = styled.div`
   width : 90%;
@@ -85,6 +85,27 @@ const StyledPointer = styled.div`
   h1 {
     font-size: 1.8rem;
   }
+  .filters {
+    font-size: 16px;
+    color: white;
+    background-color: #0D0D0D;
+    border: 1px solid white;
+    border-radius: 5px;
+    height: 40px;
+    padding-top: 10px;
+    padding-right: 5px;
+    label {
+      padding-right: 5px;
+    }
+    select {
+      font-size: 16px;
+      color: white;
+      background-color: #0D0D0D;
+      border: 1px solid white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
   .return-pointer {
     margin: 20px;
     padding: 7px;
@@ -133,11 +154,22 @@ const customStyles = {
 
 const Room = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [sortValue, setSortValue] = useState('Recent');
 
+  const handleSortChange = (e) => {
+    setSortValue(e.target.value);
+    if (e.target.value === 'Recent') {
+      props.fetchPostByRoom(props.id);
+    } else if (e.target.value === 'Popular') {
+      props.fetchPostByRoomByPopular(props.id);
+    } else {
+      setSortValue('Recent');
+    }
+  };
+  
   const openModal = () => {
     setIsOpen(true);
   };
-
   const closeModal = () => {
     setIsOpen(false);
   };
@@ -199,6 +231,13 @@ const Room = (props) => {
         {props.rooms.filter(item => item.id == props.id).map(item => <h1 key={item.id} className="single-room-name"># {item.room_name}</h1>)}
         {/* add return pointer to go back previous page */}
         <div className="single-room-navigation">
+          <div className='filters'>
+            <label htmlFor='sort'>SORT</label>
+            <select name='sort' value={sortValue} onChange={(e) => handleSortChange(e)}>
+              <option value='Recent'>Recent</option>
+              <option value='Popular'>Popular</option>
+            </select>
+          </div>
           <button onClick={() => openModal()} className="create-post-button">Create Post</button>
           <img src={returnpointer} className="return-pointer" alt="return-pointer"/>
         </div>
@@ -277,4 +316,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { postQuestion, fetchPostByRoom })(Room);
+export default connect(mapStateToProps, { postQuestion, fetchPostByRoom, fetchPostByRoomByPopular })(Room);

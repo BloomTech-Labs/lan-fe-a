@@ -301,6 +301,14 @@ export const fetchPostByRoom = (roomID) => (dispatch) => {
   });
 };
 
+// Fetches all posts in a specific room
+export const fetchPostByRoomByPopular = (roomID) => (dispatch) => {
+  axios.get(`${BACKEND_URL}/api/room/${roomID}/popular`).then((res) => {
+    console.log(res);
+    dispatch({ type: 'SET_POSTS', payload: res.data });
+  });
+};
+
 // Updates search state
 export const setSearch = (search) => (dispatch) => {
   dispatch({ type: 'SET_SEARCH', payload: search });
