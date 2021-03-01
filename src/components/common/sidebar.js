@@ -10,7 +10,7 @@ const StyledSidebar = styled.div`
   border: none;
   padding: 1.5% 10px 3% 20px;
   margin: 1.5% 1% 3.5% 2%;
-  height: auto;
+  height: 100vh;
   justify-content: space-around;
   background-color: #141414;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

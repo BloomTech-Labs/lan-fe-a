@@ -12,6 +12,7 @@ const RoomWrapper = styled.div`
 const RoomsContainer = styled.div`
   width: 98%;
   flex-wrap: wrap;
+  justify-content: center;
   .no-posts-found {
     display: flex;
     justify-content: center;
@@ -45,19 +46,21 @@ const RoomsContainer = styled.div`
 
 const StyledPointer = styled.div`
   display: flex;
-  justify-content: space-between;
+  width: 67%;
+  margin: 1.5% 20% 1.5% 17%;
   align-items: center;
   background-color: #141414;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 20px;
-  height: 80px;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  border-radius: 10px;
+  height: 8vh;
   h1 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
   .single-room-name {
-    margin-top: 1.5%;
-    margin-left: 1.2%;
-    font-weight: 500;
+    /* margin-top: 1.5%;
+    margin-left: 1.2%; */
+    font-weight: 600;
+    margin: 1.5% 0% 1.5% 1.2%;
   }
 `;
 
