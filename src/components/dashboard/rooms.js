@@ -5,9 +5,11 @@ import Sidebar from '../common/sidebar';
 import Room from './roomCard';
 import styled from 'styled-components';
 
-
 const RoomWrapper = styled.div`
   display: flex;
+`;
+
+const RoomsContainer = styled.div`
   width: 98%;
   flex-wrap: wrap;
   .no-posts-found {
@@ -27,22 +29,47 @@ const RoomWrapper = styled.div`
       }
     }
   }
-
   .youve-reached-the-end {
     font-size: 1rem;
     font-weight: 500;
     color: #ffffff;
     text-align: center;
   }
-
   @media (min-width: 768px) {
     width: 95%;
   }
-
   @media (min-width: 1024px) {
     width: 972.8px;
   }
 `;
+
+const StyledPointer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #141414;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
+  height: 80px;
+  h1 {
+    font-size: 1.8rem;
+  }
+  .single-room-name {
+    margin-top: 1.5%;
+    margin-left: 1.2%;
+    font-weight: 500;
+  }
+`;
+
+const StyledRoomContainer = styled.div`
+  width : 90%;
+  padding: 2%;
+  .single-room-name {
+    color: white;
+  }
+`;
+
+
 
 const Rooms = (props) => {
   useEffect(() => {
