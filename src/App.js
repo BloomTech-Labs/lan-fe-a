@@ -16,26 +16,35 @@ import FAQ from './components/common/faq';
 import Error from './components/authentication/error';
 import PageNotFound from './components/common/pageNotFound';
 import RoomDashboard from './components/dashboard/roomDashboard';
+import { Toaster } from 'react-hot-toast';
+import FullSearchResults from './components/searches/fullSearchResults';
 
 const App = () => {
   return (
-    <Switch>
-      <PrivateRoute exact path="/" component={Dashboard} />
-      <Route path="/welcome" component={Landing} />
-      <Route path="/success" component={Success} />
-      <PrivateRoute exact path="/onboarding" component={Onboarding} />
-      <PrivateRoute path="/onboarding/careercoach" component={CareerCoach} />
-      <PrivateRoute exact path="/post" component={CreatePost} />
-      <PrivateRoute path="/post/:id" component={Post} />
-      <PrivateRoute path="/room/:id" component={RoomDashboard} />
-      <PrivateRoute path="/user/:id" component={User} />
-      <PrivateRoute path="/settings" component={Settings} />
-      <PrivateRoute path='/admin-settings' component={AdminSettings}/>
-      <PrivateRoute path='/mod-settings' component={ModSettings}/>
-      <PrivateRoute path="/faq" component={FAQ} />
-      <PrivateRoute path="/error" component={Error} />
-      <Route component={PageNotFound} />
-    </Switch>
+    <>
+      <Switch>
+        <PrivateRoute exact path="/" component={Dashboard} />
+        <Route path="/welcome" component={Landing} />
+        <Route path="/success" component={Success} />
+        <PrivateRoute exact path="/onboarding" component={Onboarding} />
+        <PrivateRoute path="/onboarding/careercoach" component={CareerCoach} />
+        <PrivateRoute exact path="/post" component={CreatePost} />
+        <PrivateRoute path="/post/:id" component={Post} />
+        <PrivateRoute path="/room/:id" component={RoomDashboard} />
+        <PrivateRoute path="/full-search" component={FullSearchResults} />
+        <PrivateRoute path="/user/:id" component={User} />
+        <PrivateRoute path="/settings" component={Settings} />
+        <PrivateRoute path='/admin-settings' component={AdminSettings}/>
+        <PrivateRoute path='/mod-settings' component={ModSettings}/>
+        <PrivateRoute path="/faq" component={FAQ} />
+        <PrivateRoute path="/error" component={Error} />
+        <Route component={PageNotFound} />
+      </Switch>
+      <Toaster 
+        position='bottom'
+        reverseOrder={false}
+      />
+    </>
   );
 };
 

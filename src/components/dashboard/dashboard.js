@@ -6,7 +6,6 @@ import Rooms from './rooms';
 import styled from 'styled-components';
 import redlambda from '../../img/redlambda.png';
 import Modal from 'react-modal';
-import toast, { Toaster } from 'react-hot-toast';
 
 const ModalContainer = styled.div`
   transition: 0.25s;
@@ -114,7 +113,7 @@ const Dashboard = props => {
   return (
     <>
       <Header history={props.history} />
-      <Filter history={props.history} />
+      {/* <Filter history={props.history} /> */}
       <Rooms history={props.history} />
       <Modal
         isOpen={modalIsOpen}
@@ -198,11 +197,6 @@ const Dashboard = props => {
                     </ModalContainer>
         }
       </Modal>
-
-      <Toaster
-        position='top-right'
-        reverseOrder={false}
-      />
     </>
   );
 };

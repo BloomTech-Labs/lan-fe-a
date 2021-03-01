@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const PostsContainer = styled.div`
   width: 95%;
