@@ -48,7 +48,7 @@ const AllRoomsDashboard = props => {
                     </StyledModalContainer>
         }
         {slide === 2 &&
-                    <ModalContainer>
+                    <StyledModalContainer>
                       <h2>What is the purpose of this community platform?</h2>
                       <p>The core principle of this community platform is to give 🤲</p>
                       <p>We believe that “giving back” is the key to unlocking the potential of every Lambda student and alum. Here’s why:</p>
@@ -62,10 +62,10 @@ const AllRoomsDashboard = props => {
                         <button onClick={decrementSlide}>Previous</button>
                         <button onClick={incrementSlide}>Next</button>
                       </div>
-                    </ModalContainer>
+                    </StyledModalContainer>
         }
         {slide === 3 &&
-                    <ModalContainer>
+                    <StyledModalContainer>
                       <h2>Why this, and not Slack, Reddit, Discord, Circle, etc.?</h2>
                       <p>This is a great question 😊 Here are a few reasons why we decided not to use a third-party app:</p>
                       <ul>
@@ -77,10 +77,10 @@ const AllRoomsDashboard = props => {
                         <button onClick={decrementSlide}>Previous</button>
                         <button onClick={incrementSlide}>Next</button>
                       </div>
-                    </ModalContainer>
+                    </StyledModalContainer>
         }
         {slide === 4 &&
-                    <ModalContainer>
+                    <StyledModalContainer>
                       <h2>How does it work?</h2>
                       <p>We want to keep this simple and clean 🧼 Here are a few ways to engage:</p>
                       <ul>
@@ -93,10 +93,10 @@ const AllRoomsDashboard = props => {
                         <button onClick={decrementSlide}>Previous</button>
                         <button onClick={incrementSlide}>Next</button>
                       </div>
-                    </ModalContainer>
+                    </StyledModalContainer>
         }
         {slide === 5 &&
-                    <ModalContainer>
+                    <StyledModalContainer>
                       <h2>Awesome! So how do I get started?</h2>
                       <p>Create your profile! ✨</p>
                       <p>Your profile is incredibly important. It is how other Lambda grads will identify you.</p>
@@ -108,7 +108,7 @@ const AllRoomsDashboard = props => {
                         <button onClick={decrementSlide}>Previous</button>
                         <button onClick={closeModal}>Close</button>
                       </div>
-                    </ModalContainer>
+                    </StyledModalContainer>
         }
       </Modal>
     </>
