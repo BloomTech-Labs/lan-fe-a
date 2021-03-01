@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { likeComment, unlikeComment } from '../../store/actions';
+import {
+  likeComment,
+  unlikeComment,
+  removeCommentsByUserId,
+  fetchPostCommentsByRecent
+} from '../../actions';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
 
 const Comment = (props) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
-
+  const { comment } = props;
   useEffect(() => setLikes(props.comment.likes), [props.comment]);
 
   useEffect(() => {
@@ -34,6 +39,18 @@ const Comment = (props) => {
     setLiked(false);
     setLikes(likes - 1);
     props.unlikeComment(props.comment.id);
+  };
+
+  //removes a comment by UserId
+  const removeComments = (commentId) => {
+    props
+      .removeCommentsByUserId(comment.id)
+      .then(() => {
+        props.fetchPostCommentsByRecent(comment.post_id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -66,6 +83,15 @@ const Comment = (props) => {
           )}
           {likes}
         </p>
+
+        <button
+          className="remove-comments"
+          onClick={() => removeComments(props.comment.id)
+          }
+        >
+          {console.log(props.comment.id)}
+          Delete Comment
+        </button>
       </div>
     </CommentContainer>
   );
@@ -77,6 +103,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { likeComment, unlikeComment })(
+export default connect(mapStateToProps, { likeComment,
+  unlikeComment, 
+  removeCommentsByUserId, 
+  fetchPostCommentsByRecent
+})(
   Comment
 );
