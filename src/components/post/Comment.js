@@ -5,7 +5,7 @@ import {
   unlikeComment,
   removeCommentsByUserId,
   fetchPostCommentsByRecent
-} from '../../actions';
+} from '../../store/actions';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
 
