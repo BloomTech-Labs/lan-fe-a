@@ -382,3 +382,20 @@ export const resolveComment = (commentID) => (dispatch) => {
     .then((response) => console.log(response.data))
     .catch((error) => console.log(error));
 };
+
+// Removes a comment (user)
+export const removeCommentsByUserId = (commentId) => (dispatch) => {
+  console.log(commentId)
+  return axios
+    .delete(`${BACKEND_URL}/api/comment/${commentId}`)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error));
+};
+
+// fetch comment(user)
+export const fetchComments = (commentId) => (dispatch) =>  {
+  axios
+    .get(`${BACKEND_URL}/api/comment/${commentId}`)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error));
+};
