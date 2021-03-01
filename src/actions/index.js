@@ -27,7 +27,9 @@ export const success = (history) => (dispatch) => {
 export const fetchUser = () => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/user`)
-    .then((response) => dispatch({ type: 'SET_USER', payload: response.data.user }))
+    .then((response) =>
+      dispatch({ type: 'SET_USER', payload: response.data.user })
+    )
     .catch((error) => console.log(error));
 };
 
@@ -63,7 +65,9 @@ export const deleteUser = (id) => (dispatch) => {
 export const fetchUsersLikedPosts = () => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/user/post/like`)
-    .then((response) => dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data }))
+    .then((response) =>
+      dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data })
+    )
     .catch(() => toast('Hmmm, there was a problem fetching liked posts.'));
 };
 
@@ -71,7 +75,9 @@ export const fetchUsersLikedPosts = () => (dispatch) => {
 export const fetchUsersLikedComments = () => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/user/comment/like`)
-    .then((response) => dispatch({ type: 'SET_USERS_LIKED_COMMENTS', payload: response.data }))
+    .then((response) =>
+      dispatch({ type: 'SET_USERS_LIKED_COMMENTS', payload: response.data })
+    )
     .catch(() => toast('Hmmm, there was a problem fetching liked comments.'));
 };
 
@@ -79,7 +85,9 @@ export const fetchUsersLikedComments = () => (dispatch) => {
 export const fetchUserProfile = (userID) => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/user/${userID}`)
-    .then((response) => dispatch({ type: 'SET_CURRENT_USER', payload: response.data }))
+    .then((response) =>
+      dispatch({ type: 'SET_CURRENT_USER', payload: response.data })
+    )
     .catch(() => toast('Hmmm, there was a problem fetching the user.'));
 };
 
@@ -88,7 +96,9 @@ export const updateUserDisplayName = (userID, displayName) => (dispatch) => {
   axios
     .put(`${BACKEND_URL}/api/user/displayname`, { userID, displayName })
     .then(() => toast('Woo! Display name changed to ' + displayName))
-    .catch(() => toast('Oh no! there was a problem updating your display name.'));
+    .catch(() =>
+      toast('Oh no! there was a problem updating your display name.')
+    );
 };
 
 // Updates a user's role
@@ -96,7 +106,7 @@ export const updateUserRole = (id, role) => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
     .then(() => toast('Track successfully changed to' + role))
-    .catch(() => toast('There was a problem updating the user\'s role.'));
+    .catch(() => toast("There was a problem updating the user's role."));
 };
 
 // Sets user track during onboarding
@@ -140,7 +150,9 @@ export const deleteRoom = (id) => (dispatch) => {
 };
 
 // Creates a post
-export const postQuestion = (title, description, room, history) => (dispatch) => {
+export const postQuestion = (title, description, room, history) => (
+  dispatch
+) => {
   return axios
     .post(`${BACKEND_URL}/api/post/create`, {
       title: title,
@@ -152,9 +164,11 @@ export const postQuestion = (title, description, room, history) => (dispatch) =>
 };
 
 // Updates a post
-export const updatePost = (id, newDescription) => (dispatch) => {
+export const updatePost = (userID, postID, newDescription) => (dispatch) => {
   return axios
-    .put(`${BACKEND_URL}/api/post/update/${id}`, { newDescription })
+    .put(`${BACKEND_URL}/api/post/update/${userID}/${postID}`, {
+      newDescription,
+    })
     .then(() => toast('Your post was successfully updated.'))
     .catch(() => toast('Oh no! There was a problem updating your post.'));
 };
@@ -186,7 +200,9 @@ export const fetchPost = (postID) => (dispatch) => {
     .then((response) =>
       dispatch({ type: 'SET_CURRENT_POST', payload: response.data })
     )
-    .catch(() => toast('Uh... looks like there was a problem fetching the post.'));
+    .catch(() =>
+      toast('Uh... looks like there was a problem fetching the post.')
+    );
 };
 
 // Fetches posts, ordered by most recent
