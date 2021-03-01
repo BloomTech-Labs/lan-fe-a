@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, setTrack } from '../../actions';
+import { fetchUser, setTrack } from '../../store/actions';
 import OnboardingContainer from './styles/onboardingStyle';
 
 const Onboarding = props => {
@@ -32,7 +32,7 @@ const Onboarding = props => {
       setError('No track chosen');
     } else {
       props.setTrack(tracks.find(item => item.value === true).track, null)
-        .then(response => props.history.push('/'))
+        .then(() => props.history.push('/'))
         .catch(error => console.log(error));
     };
   };
@@ -40,7 +40,7 @@ const Onboarding = props => {
   return (
     <OnboardingContainer tracks={tracks}>
       {props.user.displayName && <h1>{props.user.displayName.split(' ')[0]}, what track are you in?</h1>}
-      <p className='instructions'>The questions and replies that you post will automatically be tagged with the track you are in. If you are not in any cohort, choose None. If you are a career coach, choose I'm a career coach.</p>
+      <p className='instructions'>The questions and replies that you post will automatically be tagged with the track you are in. If you are not in any cohort, choose None.</p>
       <div className='tracks'>
         <button className='track' onClick={() => onClick('WEB')}>Web Development</button>
         <button className='track' onClick={() => onClick('DS')}>Data Science</button>
@@ -49,7 +49,6 @@ const Onboarding = props => {
         <button className='track' onClick={() => onClick('AND')}>Android</button>
         <button className='track' onClick={() => onClick('None')}>None</button>
       </div>
-      <button className='career-coach' onClick={() => props.history.push('/onboarding/careercoach')}>I'm a career coach<i className='fas fa-chevron-right'></i></button>
       <div className='continue'>
         <p className='error'>{error}</p>
         <button onClick={onSubmit}>Continue<i className='fas fa-chevron-right'></i></button>

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, logOut, setSearch, fetchSearch } from '../../actions';
+import { fetchUser, logOut, setSearch, fetchSearch } from '../../store/actions';
 import HeaderContainer from './styles/headerStyle';
-import whitelambda from '../../img/whitelambda.png';
 import adminLogo from '../../img/admin.png';
 import AlumniLogo from'../../img/AlumniLogo.svg';
-import asset from '../../img/asset.png';
 
 const Header = props => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);

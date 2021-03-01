@@ -4,7 +4,6 @@ import {
   likeComment,
   unlikeComment,
   removeCommentsByUserId,
-  // fetchComments,
   fetchPostCommentsByRecent
 } from '../../actions';
 import moment from 'moment';
@@ -105,9 +104,9 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { likeComment,
-   unlikeComment, 
-   removeCommentsByUserId, 
-   fetchPostCommentsByRecent
-  })(
+  unlikeComment, 
+  removeCommentsByUserId, 
+  fetchPostCommentsByRecent
+})(
   Comment
 );
