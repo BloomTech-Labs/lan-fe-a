@@ -47,7 +47,6 @@ const Comment = (props) => {
     props
       .removeCommentsByUserId(comment.id)
       .then(() => {
-        // props.fetchComments(commentId);
         props.fetchPostCommentsByRecent(comment.post_id);
       })
       .catch((err) => {
