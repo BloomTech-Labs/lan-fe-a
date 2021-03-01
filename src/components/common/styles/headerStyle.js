@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
     height: 72px;
-    width: 98%;
+    width: 90%;
     margin: 2% auto;
     display: flex;
     justify-content: space-between;
@@ -22,12 +22,13 @@ const HeaderContainer = styled.div`
         cursor: pointer;
         transition: 0.25s;
         img {
+            background-color: #0d0d0d;
             margin-right: 16px;
             height: 32px;
-            // width: 32px;
             width: 20%;
             height: 35%;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            // width: 32px;
+            /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
         }
 
         h1 {
@@ -58,7 +59,7 @@ const HeaderContainer = styled.div`
             font-family: 'Nunito', sans-serif;
             font-size: 1.2rem;
             color: #ffffff;
-            box-shadow: 2px 2px 5px #000000;
+            /* box-shadow: 2px 2px 5px #000000; */
             ::placeholder {
                 color: #141414;
             }

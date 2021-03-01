@@ -4,6 +4,8 @@ import { fetchUser, logOut, setSearch, fetchSearch } from '../../actions';
 import HeaderContainer from './styles/headerStyle';
 import whitelambda from '../../img/whitelambda.png';
 import adminLogo from '../../img/admin.png';
+import AlumniLogo from'../../img/AlumniLogo.svg';
+import asset from '../../img/asset.png';
 
 const Header = props => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
@@ -31,7 +33,7 @@ const Header = props => {
         setHamburgerMenu(false);
         props.history.push('/');
       }}>
-        <img src={whitelambda} alt='Lambda School logo' />
+        <img src={AlumniLogo} alt='Lambda School logo' />
         {/* <header>Alumni Network</header> */}
       </div>
 

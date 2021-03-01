@@ -21,19 +21,20 @@ const StyledRoomContainer = styled.div`
 const StyledPost = styled.div`
   color: white;
   border: 2px solid #272626;
-  border-radius: 25px;
+  border-radius: 15px;
   padding: 2%;
   margin: 2.2% 0%;
   background-color: #141414;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   justify-content: space-evenly;
+  transition: 0.2s;
+  :hover{
+      opacity: 0.5;
+    }
   a {
     text-decoration: none;
     color: white;
     transition: all 0.2s;
-      &:hover {
-        color: grey;
-      }
     }
 
   h4 {
@@ -45,7 +46,7 @@ const StyledPost = styled.div`
   h3 {
     margin-bottom: 0.5%;
     font-size: 1.25rem;
-    font-weight: 540;
+    font-weight: 550;
   }
   .profile {
     display: flex;
@@ -72,7 +73,8 @@ const StyledPost = styled.div`
     justify-self: stretch;
     color: #D8D8D8;
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: lighter;
+    transition: 0.25s;
   }
 `;
 
@@ -81,8 +83,8 @@ const StyledPointer = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #141414;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 20px;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  border-radius: 10px;
   h1 {
     font-size: 1.8rem;
   }
@@ -110,11 +112,15 @@ const StyledPointer = styled.div`
   .return-pointer {
     margin: 20px;
     padding: 7px;
-    border: 1px solid white;
-    border-radius: 15%;
+    border: 2px solid grey ;
+    border-radius: 50%;
+    transition: 0.25s;
+    :hover{
+      opacity: 0.5;
+    }
   }
   .single-room-name {
-    margin-top: 1.5%;
+    /* margin-top: 1.5%; */
     margin-left: 1.2%;
     font-weight: 500;
   }
@@ -123,14 +129,22 @@ const StyledPointer = styled.div`
     align-items: center;
   }
   .create-post-button {
-    font-size: 16px;
+    width: max-content;
+    justify-self: center;
+    font-size: 18px;
     color: white;
-    background-color: #0D0D0D;
-    padding: 10px;
-    border: 1px solid white;
-    border-radius: 5px;
-    height: 40px;
+    border: none;
+    background-color: #4571C9;
+    padding: 15px;
+    border-radius: 10px;
+    height: 50px;
     cursor: pointer; 
+    transition: 0.25s;
+    :hover{
+      opacity: 0.5;
+    }
+    /* font-weight: 600; */
+    /* border: 1px solid white; */
   }
 `;
 

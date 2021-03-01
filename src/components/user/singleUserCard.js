@@ -30,7 +30,6 @@ const StyledUser = styled.div`
   .drop-down {
     width: 97%;
     display: flex;
-    /* margin: 0 auto; */
     margin-left: 3.2%;
     height: 35px;
     background: #2c2f33;

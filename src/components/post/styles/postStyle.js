@@ -16,11 +16,11 @@ const PostContainer = styled.div`
     margin-bottom: 64px;
     display: flex;
     position: relative;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
     padding: 2.5%;
-    border-width: 1.5px;
-    border-style: solid;
-    border-image: linear-gradient(to bottom, grey, rgba(0, 0, 0, 0)) 1 100%;
+    border: 1.2px solid #686868;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    /* border-image: linear-gradient(to bottom, grey, rgba(0, 0, 0, 0)) 1 100%; */
 
     .left-section {
       img {
@@ -47,7 +47,7 @@ const PostContainer = styled.div`
 
         .display-name {
           margin-right: 8px;
-          font-size: 1.2rem;
+          font-size: 1.3rem;
           font-weight: 545;
           color: #ffffff;
           cursor: pointer;
@@ -90,7 +90,7 @@ const PostContainer = styled.div`
 
       .question {
         margin-bottom: 6px;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         font-weight: 545;
         color: #ffffff;
       }
@@ -98,8 +98,8 @@ const PostContainer = styled.div`
       .answer {
         margin-bottom: 15px;
         font-size: 1rem;
-        font-weight: 500;
-        color: #e0dcdc;
+        font-weight: 400;
+        color: darkgrey;
       }
 
       .activity {
@@ -139,12 +139,16 @@ const PostContainer = styled.div`
       padding: 5px;
       display: flex;
       align-items: center;
-      border-radius: 5px;
+      border-radius: 50%;
+      transition: 0.25s;
+      :hover{
+        opacity: 0.5;
+      }
     }
 
     .dropdown {
       width: 200px;
-      background: #2c2f33;
+      background: #242323;
       border-radius: 3px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -168,7 +172,7 @@ const PostContainer = styled.div`
         background-color: unset;
         border: none;
         text-align: left;
-
+        border: 1px solid darkgrey;
         :nth-child(4) {
           border-bottom: 1px solid #23272a;
         }

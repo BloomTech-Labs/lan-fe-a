@@ -3,16 +3,18 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const StyledRoomCard = styled.div`
-    width: 45%;
+    width: 98%;
     background-color: #141414;
     color: white;
-    box-shadow: 2px 2px 5px #212529;
     border-radius: 12px;
-    margin: 22px 44px 22px 0px;
+    margin: 1.5% auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     padding: 20px;
+    transition: 0.25s;
+    :hover {
+      opacity: 0.5;
+    }
     a {
         text-decoration: none;
         color: white;
@@ -26,8 +28,8 @@ const room = ({ room }) => {
   return (
     <StyledRoomCard>
       <Link to={`room/${room.id}`}>
-        <div>
-          <h2>{room.room_name}</h2>
+        <div className="rooms-wrapper">
+          <h2># {room.room_name}</h2>
           <p>{room.description}</p> 
         </div>       
       </Link>

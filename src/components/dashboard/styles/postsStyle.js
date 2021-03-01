@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
 const PostsContainer = styled.div`
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 64px;
+  width: 95%;
+  margin-bottom: 60px;
   display: flex;
+  /* flex-direction: column; */
+  margin: 0 auto;
   flex-wrap: wrap;
+  p{
+    color: lightgrey;
+    font-weight: 300;
+  }
   .no-posts-found {
     display: flex;
     justify-content: center;
@@ -15,7 +20,7 @@ const PostsContainer = styled.div`
       margin: 64px 0;
       font-size: 1rem;
       font-weight: 500;
-      color: #ffffff;
+      color: grey;
       display: flex;
       align-items: center;
 
