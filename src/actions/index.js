@@ -112,7 +112,9 @@ export const fetchRooms = () => (dispatch) => {
   return axios
     .get(`${BACKEND_URL}/api/room`)
     .then((response) => dispatch({ type: 'SET_ROOMS', payload: response.data }))
-    .catch(toast('Oh no! There was a problem fetching rooms.'));
+    .catch(() => {
+      toast('Oh no! There was a problem fetching rooms.');
+    });
 };
 
 // Creates a room
