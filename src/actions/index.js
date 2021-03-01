@@ -288,9 +288,27 @@ export const fetchPostByRoom = (roomID) => (dispatch) => {
     .catch(() => toast('Oh no! Could not fetch posts.'));
 };
 
+// Fetches all posts in a specific room
+export const fetchPostByRoomByPopular = (roomID) => (dispatch) => {
+  axios.get(`${BACKEND_URL}/api/room/${roomID}/popular`).then((res) => {
+    console.log(res);
+    dispatch({ type: 'SET_POSTS', payload: res.data });
+  });
+};
+
 // Updates search state
 export const setSearch = (search) => (dispatch) => {
   dispatch({ type: 'SET_SEARCH', payload: search });
+};
+
+export const retrieveFullSearchResults = (search) => (dispatch) => {
+  axios
+    .get(`${BACKEND_URL}/api/search/full/${search}`)
+    .then((res) => {
+      console.log(res.data);
+      dispatch({ type: 'SET_FULL_SEARCH', payload: res.data });
+    })
+    .catch((error) => console.log(error));
 };
 
 export const flagPost = (id) => (dispatch) => {

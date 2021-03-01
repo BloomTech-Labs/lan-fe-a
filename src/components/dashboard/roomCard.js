@@ -8,7 +8,7 @@ const StyledRoomCard = styled.div`
     color: white;
     box-shadow: 2px 2px 5px #212529;
     border-radius: 12px;
-    margin: 22px;
+    margin: 22px 44px 22px 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

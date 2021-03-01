@@ -4,6 +4,12 @@ const initialState = {
   rooms: [],
   users: [],
   posts: [],
+  mainSearchResults: {
+    users: [],
+    rooms: [],
+    posts: [],
+    comments: [],
+  },
   currentPost: {},
   currentPostComments: [],
   search: '',
@@ -58,6 +64,12 @@ export const reducer = (state = initialState, action) => {
     return {
       ...state,
       search: action.payload,
+    };
+
+  case 'SET_FULL_SEARCH':
+    return {
+      ...state,
+      mainSearchResults: action.payload
     };
 
   case 'SET_USERS_LIKED_POSTS':

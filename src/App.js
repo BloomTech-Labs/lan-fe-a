@@ -17,7 +17,7 @@ import Error from './components/authentication/error';
 import PageNotFound from './components/common/pageNotFound';
 import RoomDashboard from './components/dashboard/roomDashboard';
 import { Toaster } from 'react-hot-toast';
-
+import FullSearchResults from './components/searches/fullSearchResults';
 
 const App = () => {
   return (
@@ -31,6 +31,7 @@ const App = () => {
         <PrivateRoute exact path="/post" component={CreatePost} />
         <PrivateRoute path="/post/:id" component={Post} />
         <PrivateRoute path="/room/:id" component={RoomDashboard} />
+        <PrivateRoute path="/full-search" component={FullSearchResults} />
         <PrivateRoute path="/user/:id" component={User} />
         <PrivateRoute path="/settings" component={Settings} />
         <PrivateRoute path='/admin-settings' component={AdminSettings}/>

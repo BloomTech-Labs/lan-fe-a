@@ -7,7 +7,7 @@ import adminLogo from '../../img/admin.png';
 
 const Header = props => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
-
+  const [searchInput, setSearchInput] = useState('');
   useEffect(() => {
     if (Object.keys(props.user).length === 0) {
       props.fetchUser();
@@ -15,12 +15,14 @@ const Header = props => {
   }, []);
 
   const onChange = event => {
+    setSearchInput(event.target.value);
     props.setSearch(event.target.value);
   };
 
   const onSubmit = event => {
     event.preventDefault();
-    props.fetchSearch(props.search);
+    setSearchInput('');
+    props.history.push('/full-search');
   };
 
   return (
@@ -34,7 +36,7 @@ const Header = props => {
       </div>
 
       <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
-        <input type='text' placeholder='Search for a question' value={props.search} onChange={onChange} />
+        <input type='text' placeholder='Search for a question' value={searchInput} onChange={onChange} />
         <button type='submit'><i className='fas fa-search'></i></button>
       </form>
 
