@@ -114,7 +114,7 @@ const Dashboard = props => {
   return (
     <>
       <Header history={props.history} />
-      <Filter history={props.history} />
+      {/* <Filter history={props.history} /> */}
       <Rooms history={props.history} />
       <Modal
         isOpen={modalIsOpen}
