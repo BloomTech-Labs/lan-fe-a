@@ -314,6 +314,16 @@ export const setSearch = (search) => (dispatch) => {
   dispatch({ type: 'SET_SEARCH', payload: search });
 };
 
+export const retrieveFullSearchResults = (search) => (dispatch) => {
+  axios
+    .get(`${BACKEND_URL}/api/search/full/${search}`)
+    .then((res) => {
+      console.log(res.data);
+      dispatch({ type: 'SET_FULL_SEARCH', payload: res.data });
+    })
+    .catch((error) => console.log(error));
+};
+
 export const flagPost = (id) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/mod/posts/${id}`)
