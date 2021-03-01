@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
-import Loader from './loader';
+import Loader from './Loader';
 import LandingContainer from './styles/landingStyle';
 import linkedin from '../../img/linkedin.svg';
 import whitelambda from '../../img/whitelambda.png';

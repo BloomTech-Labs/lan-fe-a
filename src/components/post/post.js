@@ -14,12 +14,11 @@ import {
   deletePost,
   updatePost,
   flagPost,
-} from '../../actions';
+} from '../../store/actions';
 import moment from 'moment';
-import Header from '../common/header';
-import Comment from '../post/comment';
+import Header from '../common/Header';
+import Comment from './Comment';
 import PostContainer from './styles/postStyle';
-import toast from 'react-hot-toast';
 
 const Post = (props) => {
   const postID = Number(props.match.params.id);
@@ -63,7 +62,6 @@ const Post = (props) => {
       setError('Please enter a comment');
     } else {
       props.postComment(props.user, postID, input);
-      toast('Comment Added to Post by ' + props.currentPost.display_name);
       setInput('');
     }
   };
@@ -103,15 +101,14 @@ const Post = (props) => {
     props.updatePost(postID, postInput).then(() => {
       props.fetchPost(postID);
     });
-    toast('Post Updated');
     setEditing(false);
   };
 
   // Flag a post
   const handleFlaggingPost = () => {
-    props.flagPost(postID)
+    props.flagPost(postID);
     setMoreOptions(!moreOptions);
-  }
+  };
 
   return (
     <>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { likeComment, unlikeComment } from '../../actions';
+import { likeComment, unlikeComment } from '../../store/actions';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
 
