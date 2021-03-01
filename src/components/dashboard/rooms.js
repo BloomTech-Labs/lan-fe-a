@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 const RoomWrapper = styled.div`
   display: flex;
-  width: 95%;
+  width: 98%;
   flex-wrap: wrap;
 `;
 

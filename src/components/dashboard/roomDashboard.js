@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 const StyledRoomDashboard = styled.div`
     display: flex;
+    /* width: 98%; */
 `;
 
 const RoomDashboard = (props) => {

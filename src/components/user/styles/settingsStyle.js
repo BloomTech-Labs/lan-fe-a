@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
     width: 98%;
-    margin: 0 auto;
+    margin: 5% auto;
     display: flex;
     flex-wrap: wrap;
     input{
@@ -14,12 +14,12 @@ const SettingsContainer = styled.div`
         border-radius: 8px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border: 1px solid lightgrey;
         font-family: "Nunito", sans-serif;
         font-size: 1rem;
         font-weight: 500;
         color: #ffffff;
-    
+        /* border: 1px solid lightgrey; */
+        
         ::placeholder {
           color: dimgray;
         }
@@ -46,33 +46,40 @@ const SettingsContainer = styled.div`
         font-size: 1.75rem;
         font-weight: 700;
         color: #ffffff;
+        
     }
 
     h3 {
-        margin-left: 7%;
-        padding-bottom: 8px;
-        margin-bottom: 8px;
-        border-bottom: 1px solid #2c2f33;
-        font-size: 1.7rem;
-        font-weight: 700;
+        width: 98%;
+        padding: 2%;
+        font-size: 1.6rem;
+        font-weight: 500;
         color: #ffffff;
+        border: 1px solid grey;
+        border-left-style: hidden;
+        border-right-style: hidden;
+        border-bottom-style: hidden;
+        /* width: 100%; */
+        /* margin-left: 8%; */
+        /* padding-bottom: 8px; */
+        /* margin-bottom: 8px; */
+        
     }
 // styling users-setting-card
     .users-card-wrapper{
         display: flex;
         flex-wrap: wrap;
-        width: 95%;
-        /* margin-left: 7%; */
+        width: 98%;
+        padding: 3%;
+        border-top-style: hidden;
+        /* border: 1px solid grey; */
     }
    
 
     .display-name {
-        margin-bottom: 16px;
-        display: flex;
-        /* justify-content: space-between;  */
-        /* align-items: center;
-        flex-direction: column; */
-        /* margin-right: 45%; */
+        display: flex; 
+        border: none;
+        margin-left: 4%;
         .left-section {
             p {
                 font-size: 1rem;
@@ -85,11 +92,10 @@ const SettingsContainer = styled.div`
                 }
             }
         }
-        button {
+        button{
             padding: 12px 26px;
             margin-top: 16px;
             background: linear-gradient(to right, #000000, #212121, #424949);
-            border-radius: 5px;
             font-family: "Nunito", sans-serif;
             font-size: 1rem;
             font-weight: 600;
@@ -97,8 +103,10 @@ const SettingsContainer = styled.div`
             cursor: pointer;
             transition: 0.25s;
             border: 1px solid grey;
-            /* box-shadow: 3px 3px 6px #888888; */
-            :hover {
+            height: 50px;
+            /* border-bottom-style: none; */
+            /* /* box-shadow: 3px 3px 6px #888888; */
+             :hover {
               opacity: 0.5;
             }
           }

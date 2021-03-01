@@ -5,9 +5,9 @@ const PostContainer = styled.div`
     text-decoration: none;
     color: #ffffff;
   }
-
+  
   .post-card {
-    padding: 16px;
+    padding: 10px;
     margin-bottom: 16px;
     background-color: #2c2f33;
     border-radius: 3px;
@@ -33,10 +33,9 @@ const PostContainer = styled.div`
         margin-bottom: 4px;
         display: flex;
         align-items: center;
-        
         .display-name{
           margin-right: 8px;
-          font-size: 0.875rem;
+          font-size: 1.2rem;
           color: #ffffff;
           transition: 0.25s;  
           :hover {

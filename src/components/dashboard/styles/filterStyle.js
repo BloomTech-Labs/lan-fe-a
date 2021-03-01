@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
 const FilterContainer = styled.div`
-  width: 90%;
-  
-  margin-left: 33%;
-  margin-right: 42%;
-  margin-top: 32px;
-  margin-bottom: 16px;
+  width: 90%;  
+  margin: 2% 10% 2% 35%;
   display: flex;
   flex-direction: column-reverse;
   h1 {
@@ -56,6 +52,7 @@ const FilterContainer = styled.div`
     color: #ffffff;
     transition: 0.25s;
     cursor: pointer;
+    transition: 0.25s;
 
     i {
       margin-right: 4px;
