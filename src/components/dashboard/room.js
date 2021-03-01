@@ -8,6 +8,7 @@ import replyicon from '../../img/replyicon.png';
 import Modal from 'react-modal';
 import CreatePostContainer from '../post/styles/createPostStyle';
 import { postQuestion, fetchPostByRoom, fetchPostByRoomByPopular } from '../../actions';
+import toast from 'react-hot-toast';
 
 const StyledRoomContainer = styled.div`
   width : 90%;
@@ -214,6 +215,7 @@ const Room = (props) => {
             description: ''
           });
           props.fetchPostByRoom(props.id);
+          toast('Post Added to Room');
           closeModal();
         })
         .catch(error => {
@@ -228,7 +230,7 @@ const Room = (props) => {
   return (
     <StyledRoomContainer>
       <StyledPointer>
-        {props.rooms.filter(item => item.id == props.id).map(item => <h1 key={item.id} className="single-room-name"># {item.room_name}</h1>)}
+        {props.rooms.filter(item => item.id == props.id).map(item => <h1 key={item.id} className="single-room-name">{item.room_name}</h1>)}
         {/* add return pointer to go back previous page */}
         <div className="single-room-navigation">
           <div className='filters'>
@@ -286,7 +288,7 @@ const Room = (props) => {
         style={customStyles}
         shouldCloseOnOverlayClick={false}>
         <CreatePostContainer>
-          {props.rooms.filter(item => item.id == props.id).map(item => <h1 key={item.id} className="single-room-name"># {item.room_name}</h1>)}
+          {props.rooms.filter(item => item.id == props.id).map(item => <h1 key={item.id} className="single-room-name">{item.room_name}</h1>)}
           <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
             {error.checkbox && <p className='error'>{error.checkbox}</p>}
 
