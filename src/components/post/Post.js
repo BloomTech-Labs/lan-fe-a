@@ -61,8 +61,11 @@ const Post = (props) => {
     if (input === '') {
       setError('Please enter a comment');
     } else {
-      props.postComment(props.user, postID, input);
-      setInput('');
+      props.postComment(props.user, postID, input)
+        .then(() => {
+          props.fetchPostCommentsByRecent(postID);
+          setInput('');
+        });
     }
   };
 
@@ -148,12 +151,12 @@ const Post = (props) => {
               <div className="labels">
                 {props.currentPost.track &&
                   props.currentPost.track === 'Career Coach' && (
-                    <button className="career-coach">CAREER COACH</button>
-                  )}
+                  <button className="career-coach">CAREER COACH</button>
+                )}
                 {props.currentPost.track &&
                   props.currentPost.track !== 'Career Coach' && (
-                    <button>{props.currentPost.track.toUpperCase()}</button>
-                  )}
+                  <button>{props.currentPost.track.toUpperCase()}</button>
+                )}
 
                 {props.currentPost.category && (
                   <button>{props.currentPost.category.toUpperCase()}</button>
@@ -288,12 +291,12 @@ const Post = (props) => {
               ))}
             {!props.individualPostCommentsAreFetching &&
               props.currentPostComments.length === 0 && (
-                <div className="no-comments-yet">
-                  <p>
-                    <i className="fas fa-exclamation"></i>No comments yet
-                  </p>
-                </div>
-              )}
+              <div className="no-comments-yet">
+                <p>
+                  <i className="fas fa-exclamation"></i>No comments yet
+                </p>
+              </div>
+            )}
           </div>
         </PostContainer>
       )}
