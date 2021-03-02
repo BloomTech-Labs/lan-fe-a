@@ -4,6 +4,7 @@ import Header from '../common/Header';
 import AllRoomsBody from './AllRoomsBody';
 import redlambda from '../../img/redlambda.png';
 import Modal from 'react-modal';
+import { updateOnboardedStatusToTrue, fetchUser } from '../../store/actions';
 import StyledModalContainer, { customStyles } from './styles/modalContainerStyle';
 
 const AllRoomsDashboard = props => {
@@ -14,13 +15,19 @@ const AllRoomsDashboard = props => {
     setIsOpen(true);
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
+  const handleCloseModal = () => {
+    props.updateOnboardedStatusToTrue()
+      .then(() => {
+        props.fetchUser();
+        setIsOpen(false);
+      });
   };
 
   useEffect(() => {
-    // openModal();
-  }, []);
+    if(props.user.onboarded == false) {
+      openModal();
+    }
+  }, [props.user]);
 
   const incrementSlide = () => setSlide(slide + 1);
   const decrementSlide = () => setSlide(slide - 1);
@@ -31,7 +38,7 @@ const AllRoomsDashboard = props => {
       <AllRoomsBody history={props.history} />
       <Modal
         isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        onRequestClose={handleCloseModal}
         style={customStyles}
         contentLabel='FAQ'
         shouldCloseOnOverlayClick={false}
@@ -48,7 +55,7 @@ const AllRoomsDashboard = props => {
                     </StyledModalContainer>
         }
         {slide === 2 &&
-                    <ModalContainer>
+                    <StyledModalContainer>
                       <h2>What is the purpose of this community platform?</h2>
                       <p>The core principle of this community platform is to give 🤲</p>
                       <p>We believe that “giving back” is the key to unlocking the potential of every Lambda student and alum. Here’s why:</p>
@@ -62,10 +69,10 @@ const AllRoomsDashboard = props => {
                         <button onClick={decrementSlide}>Previous</button>
                         <button onClick={incrementSlide}>Next</button>
                       </div>
-                    </ModalContainer>
+                    </StyledModalContainer>
         }
         {slide === 3 &&
-                    <ModalContainer>
+                    <StyledModalContainer>
                       <h2>Why this, and not Slack, Reddit, Discord, Circle, etc.?</h2>
                       <p>This is a great question 😊 Here are a few reasons why we decided not to use a third-party app:</p>
                       <ul>
@@ -77,10 +84,10 @@ const AllRoomsDashboard = props => {
                         <button onClick={decrementSlide}>Previous</button>
                         <button onClick={incrementSlide}>Next</button>
                       </div>
-                    </ModalContainer>
+                    </StyledModalContainer>
         }
         {slide === 4 &&
-                    <ModalContainer>
+                    <StyledModalContainer>
                       <h2>How does it work?</h2>
                       <p>We want to keep this simple and clean 🧼 Here are a few ways to engage:</p>
                       <ul>
@@ -93,10 +100,10 @@ const AllRoomsDashboard = props => {
                         <button onClick={decrementSlide}>Previous</button>
                         <button onClick={incrementSlide}>Next</button>
                       </div>
-                    </ModalContainer>
+                    </StyledModalContainer>
         }
         {slide === 5 &&
-                    <ModalContainer>
+                    <StyledModalContainer>
                       <h2>Awesome! So how do I get started?</h2>
                       <p>Create your profile! ✨</p>
                       <p>Your profile is incredibly important. It is how other Lambda grads will identify you.</p>
@@ -106,9 +113,9 @@ const AllRoomsDashboard = props => {
                       <p className='text-align-center'><i>Enjoy the LAN! Thank you for helping others.</i></p>
                       <div className='double-button-container'>
                         <button onClick={decrementSlide}>Previous</button>
-                        <button onClick={closeModal}>Close</button>
+                        <button onClick={handleCloseModal}>Close</button>
                       </div>
-                    </ModalContainer>
+                    </StyledModalContainer>
         }
       </Modal>
     </>
@@ -121,4 +128,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(AllRoomsDashboard);
+export default connect(mapStateToProps, { updateOnboardedStatusToTrue, fetchUser })(AllRoomsDashboard);
