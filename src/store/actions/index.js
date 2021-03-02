@@ -101,6 +101,16 @@ export const updateUserDisplayName = (userID, displayName) => (dispatch) => {
     );
 };
 
+// Set a user's onboarded status to true
+export const updateOnboardedStatusToTrue = () => (dispatch) => {
+  return axios
+    .put(`${BACKEND_URL}/api/user/onboard`)
+    .then(() => toast('Woo! Glad you are here!'))
+    .catch(() =>
+      toast('Oh no! there was a problem.')
+    );
+};
+
 // Updates a user's role
 export const updateUserRole = (id, role) => (dispatch) => {
   return axios
