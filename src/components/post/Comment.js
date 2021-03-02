@@ -42,7 +42,7 @@ const Comment = (props) => {
   };
 
   //removes a comment by UserId
-  const removeComments = (commentId) => {
+  const removeComments = () => {
     props
       .removeCommentsByUserId(comment.id)
       .then(() => {
