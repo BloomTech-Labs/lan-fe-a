@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   likeComment,
   unlikeComment,
   removeCommentsByUserId,
-  fetchPostCommentsByRecent
+  fetchPostCommentsByRecent,
+  flagComment,
 } from '../../store/actions';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
@@ -12,6 +14,8 @@ import CommentContainer from './styles/commentStyle.js';
 const Comment = (props) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
+  const [editing, setEditing] = useState(false);
+  const [moreOptions, setMoreOptions] = useState(false);
   const { comment } = props;
   useEffect(() => setLikes(props.comment.likes), [props.comment]);
 
@@ -53,6 +57,11 @@ const Comment = (props) => {
       });
   };
 
+  const handleFlaggingComment = () => {
+    props.flagComment(props.comment.id);
+    setMoreOptions(!moreOptions);
+  };
+
   return (
     <CommentContainer>
       <img
@@ -83,15 +92,38 @@ const Comment = (props) => {
           )}
           {likes}
         </p>
-
-        <button
-          className="remove-comments"
-          onClick={() => removeComments(props.comment.id)
-          }
+        <div
+          className="more-options"
+          onClick={() => {
+            setMoreOptions(!moreOptions);
+            console.log('clicked');
+          }}
         >
-          {console.log(props.comment.id)}
-          Delete Comment
-        </button>
+          <p className="fas fa-ellipsis-h"></p>
+          {moreOptions && (
+            <div className="commentdropdown">
+              {props.comment.user_id === props.user.id ? (
+                <button onClick={() => removeComments(props.comment.id)}>
+                  Delete Post
+                </button>
+              ) : (
+                ''
+              )}
+              {props.comment.user_id === props.user.id ? (
+                <button onClick={() => setEditing(true)}>Edit</button>
+              ) : (
+                ''
+              )}
+              {props.comment.user_id !== props.user.id ? (
+                <button className="flag-button" onClick={handleFlaggingComment}>
+                  Flag Post
+                </button>
+              ) : (
+                ''
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </CommentContainer>
   );
@@ -99,14 +131,15 @@ const Comment = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     usersLikedComments: state.usersLikedComments,
   };
 };
 
-export default connect(mapStateToProps, { likeComment,
-  unlikeComment, 
-  removeCommentsByUserId, 
-  fetchPostCommentsByRecent
-})(
-  Comment
-);
+export default connect(mapStateToProps, {
+  likeComment,
+  unlikeComment,
+  removeCommentsByUserId,
+  fetchPostCommentsByRecent,
+  flagComment,
+})(Comment);
