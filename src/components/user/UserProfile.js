@@ -38,7 +38,7 @@ const UserProfile = (props) => {
                 </div>
 
                 <div className="statistics">
-                  {props.currentUser.posts.length > 1 ? (
+                  {props.currentUser.posts.length !== 1 ? (
                     <p>
                       <b>{props.currentUser.posts.length}</b> posts
                     </p>
@@ -47,7 +47,7 @@ const UserProfile = (props) => {
                       <b>1</b> post
                     </p>
                   )}
-                  {props.currentUser.comments.length > 1 ? (
+                  {props.currentUser.comments.length !== 1 ? (
                     <p>
                       <b>{props.currentUser.comments.length}</b> comments
                     </p>
