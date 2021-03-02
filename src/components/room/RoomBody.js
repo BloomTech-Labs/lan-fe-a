@@ -78,6 +78,9 @@ const StyledPost = styled.div`
   .fa-thumbs-up {
       cursor: pointer;
   }
+  .fas {
+      color: #0099ff;
+  }
 `;
 
 const StyledPointer = styled.div`
@@ -172,13 +175,12 @@ const customStyles = {
 const RoomBody = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [sortValue, setSortValue] = useState('Recent');
-
   const handleSortChange = (e) => {
     setSortValue(e.target.value);
     if (e.target.value === 'Recent') {
-      props.fetchPostByRoom(props.id);
+      props.fetchPostByRoom(props.id, props.page);
     } else if (e.target.value === 'Popular') {
-      props.fetchPostByRoomByPopular(props.id);
+      props.fetchPostByRoomByPopular(props.id, props.page);
     } else {
       setSortValue('Recent');
     }

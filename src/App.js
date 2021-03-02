@@ -25,7 +25,7 @@ const App = () => {
         <Route path="/success" component={Success} />
         <PrivateRoute exact path="/onboarding" component={Onboarding} />
         <PrivateRoute path="/post/:id" component={Post} />
-        <PrivateRoute path="/room/:id" component={SingleRoomDashboard} />
+        <PrivateRoute path="/room/:id/page/:page" component={SingleRoomDashboard} />
         <PrivateRoute path="/full-search" component={FullSearchResults} />
         <PrivateRoute path="/user/:id" component={User} />
         <PrivateRoute path="/settings" component={Settings} />

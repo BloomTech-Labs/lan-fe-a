@@ -13,19 +13,19 @@ const StyledRoomDashboard = styled.div`
 `;
 
 const SingleRoomDashboard = (props) => {
-  let { id } = useParams();
+  let { id, page } = useParams();
   useEffect(() => {
     props.fetchRooms();
   }, []);
   useEffect(() => {
-    props.fetchPostByRoom(id);
-  }, [id]);
+    props.fetchPostByRoom(id, page);
+  }, [id, page]);
   return (
     <div>
       <Header history={props.history} />
       <StyledRoomDashboard>
         <Sidebar />
-        <RoomBody rooms={props.rooms} id={id} />
+        <RoomBody rooms={props.rooms} id={id} page={page} />
       </StyledRoomDashboard>
     </div>
   );

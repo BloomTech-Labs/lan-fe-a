@@ -10,7 +10,7 @@ const Sidebar = (props) => {
         return (
           <NavLink
             activeClassName="active-sidebar-room"
-            to={`/room/${room.id}`}
+            to={`/room/${room.id}/page/1`}
             key={index}
           >
             {room.room_name}

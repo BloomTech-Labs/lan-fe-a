@@ -27,7 +27,7 @@ const StyledRoomCard = styled.div`
 const RoomCard = ({ room }) => {
   return (
     <StyledRoomCard>
-      <Link to={`room/${room.id}`}>
+      <Link to={`room/${room.id}/page/1`}>
         <div className="rooms-wrapper">
           <h2>{room.room_name}</h2>
           <p>{room.description}</p> 
