@@ -197,8 +197,7 @@ const RoomBody = (props) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    let length = 10;
-    if (length > props.totalPages) length = props.totalPages;
+    let length = 10 > props.totalPages ? props.totalPages : 10;
     let start = props.page - Math.floor(length / 2);
     start = Math.max(start, 1);
     start = Math.min(start, 1 + props.totalPages - length);
