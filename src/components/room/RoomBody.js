@@ -9,7 +9,14 @@ import replyicon from '../../img/replyicon.png';
 import Modal from 'react-modal';
 import CreatePostContainer from './styles/createPostStyle';
 import AlumniLogo from '../../img/AlumniLogo.svg';
-import { like, unlike, postQuestion, fetchPostByRoom, fetchPostByRoomByPopular, fetchUsersLikedPosts } from '../../store/actions';
+import {
+  like,
+  unlike,
+  postQuestion,
+  fetchPostByRoom,
+  fetchPostByRoomByPopular,
+  fetchUsersLikedPosts,
+} from '../../store/actions';
 
 const StyledRoomContainer = styled.div`
   width: 90%;
@@ -78,7 +85,7 @@ const StyledPost = styled.div`
     transition: 0.25s;
   }
   .fa-thumbs-up {
-      cursor: pointer;
+    cursor: pointer;
   }
 `;
 
@@ -205,22 +212,20 @@ const RoomBody = (props) => {
 
   // adds like to post
   const handleLike = (postID) => {
-    props.like(postID)
-      .then(() => {
-        props.fetchUsersLikedPosts();
-        props.fetchPostByRoom(props.id);
-      });
+    props.like(postID).then(() => {
+      props.fetchUsersLikedPosts();
+      props.fetchPostByRoom(props.id);
+    });
   };
-    
+
   // removes like from post
   const handleUnlike = (postID) => {
-    props.unlike(postID)
-      .then(() => {
-        props.fetchUsersLikedPosts();
-        props.fetchPostByRoom(props.id);
-      });
+    props.unlike(postID).then(() => {
+      props.fetchUsersLikedPosts();
+      props.fetchPostByRoom(props.id);
+    });
   };
-      
+
   const [input, setInput] = useState({
     title: '',
     description: '',
@@ -324,7 +329,7 @@ const RoomBody = (props) => {
                   onClick={() => console.log(`click ${post.id}`)}
                 >
                   <span>
-                    <i class="fas fa-chevron-up"></i>
+                    <i className="fas fa-chevron-up"></i>
                   </span>
                   <span>
                     <i className="far fa-comment"></i>
@@ -404,6 +409,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-
-export default connect(mapStateToProps, { like, unlike, postQuestion, fetchPostByRoom, fetchPostByRoomByPopular, fetchUsersLikedPosts })(RoomBody);
-
+export default connect(mapStateToProps, {
+  like,
+  unlike,
+  postQuestion,
+  fetchPostByRoom,
+  fetchPostByRoomByPopular,
+  fetchUsersLikedPosts,
+})(RoomBody);

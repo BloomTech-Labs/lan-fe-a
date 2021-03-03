@@ -198,12 +198,12 @@ const Post = (props) => {
                   <p>
                     {liked ? (
                       <i
-                        class="fas fa-chevron-up"
+                        className="fas fa-chevron-up"
                         onClick={() => unlike(postID)}
                       ></i>
                     ) : (
                       <i
-                        class="fas fa-chevron-up"
+                        className="fas fa-chevron-up"
                         onClick={() => like(postID)}
                       ></i>
                     )}
