@@ -126,15 +126,6 @@ const PostContainer = styled.div`
           .fa-chevron-up:active {
             transform: scale(1.25);
           }
-          /* .fa-thumbs-up {
-            cursor: pointer;
-            transition: 0.1s;
-          }
-
-          .fa-thumbs-up:active {
-            transform: scale(1.25);
-          } */
-
           .fas {
             /* color: #0099ff; */
             color: #f5f7f9;
