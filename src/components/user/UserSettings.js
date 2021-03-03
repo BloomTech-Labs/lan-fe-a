@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { updateUserDisplayName } from '../../store/actions';
 import Header from '../common/Header';
-import SettingsContainer from './styles/settingsStyle';
+import ProfileSettings from '../user/styles/profilesettings';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
@@ -45,70 +45,70 @@ const UserSettings = (props) => {
   return (
     <>
       <Header history={props.history} />
-
-      <SettingsContainer>
+      <ProfileSettings>
         <h2>Settings</h2>
-
         <h3>User profile</h3>
-        <div className='display-name'>
-          <div className='left-section'>
-            <p>
-              <b>Display name</b>
-            </p>
-            <p>{name}</p>
+        <div className="display-name">
+          <div className="settings-wrapper">
+            <div className="left-section">
+              <p>
+                <b>Display name</b>
+              </p>
+              <p>{name}</p>
+            </div>
+            {displayName ? (
+              <button onClick={() => setDisplayName(false)}>Cancel</button>
+            ) : (
+              <button onClick={() => setDisplayName(true)}>Update</button>
+            )}
           </div>
-          {displayName ? (
-            <button onClick={() => setDisplayName(false)}>Cancel</button>
-          ) : (
-            <button onClick={() => setDisplayName(true)}>Update</button>
+          {displayName && (
+            <form
+              className="update"
+              autoComplete="off"
+              spellCheck="false"
+              onSubmit={onSubmit}
+            >
+              <label htmlFor="display-name">
+                Set a new display name (Max 15 characters)
+              </label>
+              <input
+                name="display-name"
+                type="text"
+                placeholder="Enter a new display name"
+                value={input}
+                onChange={onChange}
+                maxLength="15"
+                required
+              />
+              <button type="submit">Submit</button>
+            </form>
+          )}
+
+          <button
+            className="track"
+            onClick={() => props.history.push('/onboarding')}
+          >
+            <b>Update your Lambda School track</b>
+            <i className="fas fa-chevron-right"></i>
+          </button>
+
+          <h4>Deactivate your account</h4>
+          <button
+            className="deactivate"
+            onClick={() => setDeactivate(!deactivate)}
+          >
+            <i className="fas fa-trash-alt"></i>Deactivate your account
+          </button>
+          {deactivate && (
+            <div className="confirm">
+              <p>Are you sure you want to deactivate your account?</p>
+              <button onClick={deleteHandler}>Yes</button>
+              <button onClick={() => setDeactivate(false)}>No</button>
+            </div>
           )}
         </div>
-        {displayName && (
-          <form
-            className='update'
-            autoComplete='off'
-            spellCheck='false'
-            onSubmit={onSubmit}
-          >
-            <label htmlFor='display-name'>
-              Set a new display name (Max 15 characters)
-            </label>
-            <input
-              name='display-name'
-              type='text'
-              placeholder='Enter a new display name'
-              value={input}
-              onChange={onChange}
-              maxLength='15'
-              required
-            />
-            <button type='submit'>Submit</button>
-          </form>
-        )}
-
-        <button
-          className='track'
-          onClick={() => props.history.push('/onboarding')}
-        >
-          <b>Update your Lambda School track</b>
-          <i className='fas fa-chevron-right'></i>
-        </button>
-
-        <h3>Deactivate your account</h3>
-        <button
-          className='deactivate'
-          onClick={() => setDeactivate(!deactivate)}
-        >
-          <i className='fas fa-trash-alt'></i>Deactivate your account
-        </button>
-        {deactivate && (
-          <div className='confirm'>
-            <p>Are you sure you want to deactivate your account?</p>
-            <button onClick={deleteHandler}>Yes</button>
-            <button onClick={() => setDeactivate(false)}>No</button>
-          </div>
-        )}
-      </SettingsContainer>
+      </ProfileSettings>
     </>
   );
 };
@@ -119,4 +119,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { updateUserDisplayName })(UserSettings);
+export default connect(mapStateToProps, { updateUserDisplayName })(
+  UserSettings
+);
