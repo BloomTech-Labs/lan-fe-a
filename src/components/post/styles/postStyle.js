@@ -115,18 +115,20 @@ const PostContainer = styled.div`
           i {
             margin-right: 4px;
           }
-
-          .fa-thumbs-up {
+          .fa-chevron-up {
+            color: #0099ff;
+          }
+          .fa-chevron-up {
             cursor: pointer;
             transition: 0.1s;
           }
 
-          .fa-thumbs-up:active {
+          .fa-chevron-up:active {
             transform: scale(1.25);
           }
-
           .fas {
-            color: #0099ff;
+            /* color: #0099ff; */
+            color: #f5f7f9;
           }
         }
       }
