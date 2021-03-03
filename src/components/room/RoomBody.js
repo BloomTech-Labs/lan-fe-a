@@ -43,6 +43,19 @@ const StyledRoomContainer = styled.div`
       border-radius: 50%;
     }
   }
+  .prev-next-header {
+      display: flex;
+      justify-content: space-between;
+      color: white;
+      .pag-prev-arrow {
+          text-align: left;
+          width: 100%;
+      }
+      .pag-next-arrow {
+          text-align: right;
+          width: 100%;
+      }
+  }
 `;
 
 const StyledPost = styled.div`
@@ -373,6 +386,10 @@ const RoomBody = (props) => {
           />
         </div>
       </StyledPointer>
+      <div className="prev-next-header">
+        {Number(props.page) > 1 ? <Link className='pag-prev-arrow' to={`/room/${props.id}/page/${Number(props.page) - 1}`}>Prev</Link> : null}
+        {blocks.length > 1 && Number(props.page) !== props.totalPages ? <Link className='pag-next-arrow' to={`/room/${props.id}/page/${Number(props.page) + 1}`}>Next</Link> : null}
+      </div>
       {props.posts.map((post, index) => {
         return (
           <div key={`post-id-${post.id}`}>
@@ -415,7 +432,7 @@ const RoomBody = (props) => {
         {blocks.map((page) => {
           return page;
         })}
-        {blocks.length > 1 && Number(props.page) !== props.totalPages ? <Link className='pag-prev-arrow' to={`/room/${props.id}/page/${Number(props.page) + 1}`}>Next</Link> : null}
+        {blocks.length > 1 && Number(props.page) !== props.totalPages ? <Link className='pag-next-arrow' to={`/room/${props.id}/page/${Number(props.page) + 1}`}>Next</Link> : null}
       </div>
       <Modal
         isOpen={modalIsOpen}
