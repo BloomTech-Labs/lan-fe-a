@@ -37,6 +37,18 @@ const App = () => {
       <Toaster 
         position='bottom'
         reverseOrder={false}
+        toastOptions={{
+          success: {
+            style: {
+              border: '2px solid #62d347',
+            },
+          },
+          error: {
+            style: {
+              border: '2px solid #f94f4f'
+            }
+          }
+        }}
       />
     </>
   );

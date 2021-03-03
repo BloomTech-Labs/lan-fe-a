@@ -86,11 +86,16 @@ const Comment = (props) => {
 
         <p className="likes">
           {liked ? (
-            <i className="fas fa-thumbs-up" onClick={unlike}></i>
+            <>
+              <i className="blue fas fa-chevron-up" onClick={unlike}></i>
+              <span className='blue'>{likes}</span>
+            </>
           ) : (
-            <i className="far fa-thumbs-up" onClick={like}></i>
+            <>
+              <i className="white fas fa-chevron-up" onClick={like}></i>
+              <span className='white'>{likes}</span>
+            </>
           )}
-          {likes}
         </p>
         <div
           className="more-options"
