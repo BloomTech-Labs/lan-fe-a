@@ -11,8 +11,42 @@ const RoomWrapper = styled.div`
 
 const RoomsContainer = styled.div`
   width: 98%;
-  flex-wrap: wrap;
-  justify-content: center;
+  .rooms-dashboard-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .single-room-name {
+    display: flex;
+    width: 98%;
+    font-weight: 600;
+    margin-left: 25%;
+    /* margin: 1.5% 15% 1.5% 25%; */
+    font-size: 2.3rem;
+    justify-content: space-between;
+    button {
+      /* background-color: #282828; */
+      margin-left: 25%;
+      margin-right: -32%;
+      display: flex;
+      padding: 15px;
+      background: black;
+      border: none;
+      background: linear-gradient(to right, #212121, #282828, #424949);
+      border: 0.2px solid #424949;
+      border-radius: 50%;
+      transition: 0.25s;
+      :hover {
+        opacity: 0.5;
+      }
+      .fa-search {
+        display: center;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+    }
+  }
   .no-posts-found {
     display: flex;
     justify-content: center;
@@ -44,28 +78,8 @@ const RoomsContainer = styled.div`
   }
 `;
 
-const StyledPointer = styled.div`
-  display: flex;
-  width: 67%;
-  margin: 1.5% 20% 1.5% 17%;
-  align-items: center;
-  background-color: #141414;
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-  border-radius: 10px;
-  height: 8vh;
-  h1 {
-    font-size: 1.9rem;
-  }
-  .single-room-name {
-    /* margin-top: 1.5%;
-    margin-left: 1.2%; */
-    font-weight: 600;
-    margin: 1.5% 0% 1.5% 1.2%;
-  }
-`;
-
 const StyledRoomContainer = styled.div`
-  width : 90%;
+  width: 90%;
   padding: 2%;
   .single-room-name {
     color: white;
@@ -81,12 +95,19 @@ const AllRoomsBody = (props) => {
     <RoomWrapper>
       <Sidebar />
       <StyledRoomContainer>
-        <StyledPointer>
-          <h1 className="single-room-name">Rooms Dashboard</h1>
-        </StyledPointer>
         <RoomsContainer>
+          <div className="rooms-dashboard-wrapper">
+            <h1 className="single-room-name">
+              Rooms Dashboard
+              <button className="searcher" type="submit">
+                <i className="fas fa-search"></i>
+              </button>
+            </h1>
+          </div>
           {props.rooms.length > 0 ? (
-            props.rooms.map((item, index) => <RoomCard key={index} room={item} />)
+            props.rooms.map((item, index) => (
+              <RoomCard key={index} room={item} />
+            ))
           ) : (
             <div className="no-posts-found">
               <p>

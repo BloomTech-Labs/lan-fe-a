@@ -76,7 +76,7 @@ const PostContainer = styled.div`
           background: linear-gradient(to right, #0084ff, #0099ff);
           border: none;
           border-radius: 3px;
-          font-family: "Nunito", sans-serif;
+          font-family: 'Nunito', sans-serif;
           font-size: 0.625rem;
           font-weight: 700;
           color: #ffffff;
@@ -115,18 +115,29 @@ const PostContainer = styled.div`
           i {
             margin-right: 4px;
           }
+          .fa-chevron-up {
+            color: #0099ff;
+          }
+          .fa-chevron-up {
+            cursor: pointer;
+            transition: 0.1s;
+          }
 
-          .fa-thumbs-up {
+          .fa-chevron-up:active {
+            transform: scale(1.25);
+          }
+          /* .fa-thumbs-up {
             cursor: pointer;
             transition: 0.1s;
           }
 
           .fa-thumbs-up:active {
             transform: scale(1.25);
-          }
+          } */
 
           .fas {
-            color: #0099ff;
+            /* color: #0099ff; */
+            color: #f5f7f9;
           }
         }
       }
@@ -141,7 +152,7 @@ const PostContainer = styled.div`
       align-items: center;
       border-radius: 50%;
       transition: 0.25s;
-      :hover{
+      :hover {
         opacity: 0.5;
       }
     }
@@ -160,7 +171,8 @@ const PostContainer = styled.div`
       margin-right: 20px;
       z-index: 9999;
 
-      a, button {
+      a,
+      button {
         text-decoration: none;
         border-bottom: 1px solid #23272a;
         padding: 12px;
@@ -211,7 +223,7 @@ const PostContainer = styled.div`
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
       border: none;
       border-radius: 15px;
-      font-family: "Nunito", sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 1rem;
       font-weight: 500;
       color: #ffffff;
@@ -237,7 +249,7 @@ const PostContainer = styled.div`
         margin-top: 16px;
         background: linear-gradient(to right, #000000, #212121, #424949);
         border-radius: 5px;
-        font-family: "Nunito", sans-serif;
+        font-family: 'Nunito', sans-serif;
         font-size: 1rem;
         font-weight: 600;
         color: #ffffff;
@@ -269,7 +281,7 @@ const PostContainer = styled.div`
         padding: 1%;
         background-color: #2c2f33;
         border: none;
-        font-family: "Nunito", sans-serif;
+        font-family: 'Nunito', sans-serif;
         font-size: 1rem;
         font-weight: 600;
         color: #ffffff;
