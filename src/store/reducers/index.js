@@ -49,6 +49,12 @@ export const reducer = (state = initialState, action) => {
       totalPages: action.payload.totalPages
     };
 
+  case 'SET_FLAGGED_POSTS':
+    return {
+      ...state,
+      posts: action.payload,
+    };
+
   case 'START_FETCHING_CURRENT_POST':
     return {
       ...state,

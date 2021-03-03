@@ -357,7 +357,8 @@ export const fetchFlaggedPosts = () => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/mod/posts`)
     .then((res) => {
-      dispatch({ type: 'SET_POSTS', payload: res.data });
+      console.log(res.data);
+      dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
     })
     .catch(() => toast('There was a problem fetching flagged posts.'));
 };
@@ -367,7 +368,7 @@ export const fetchFlaggedComments = () => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/mod/comments`)
     .then((res) => {
-      dispatch({ type: 'SET_POSTS', payload: res.data });
+      dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
     })
     .catch(() => toast('There was a problem fetching flagged comments.'));
 };
