@@ -30,7 +30,7 @@ export const fetchUser = () => (dispatch) => {
     .then((response) =>
       dispatch({ type: 'SET_USER', payload: response.data.user })
     )
-    .catch((error) => console.log(error));
+    .catch(() => toast('There was a problem fetching user.'));
 };
 
 // Fetches all users
@@ -115,7 +115,7 @@ export const updateOnboardedStatusToTrue = () => (dispatch) => {
 export const updateUserRole = (id, role) => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
-    .then(() => toast('Track successfully changed to' + role))
+    .then(() => toast('Role Successfully Updated'))
     .catch(() => toast('There was a problem updating the user\'s role.'));
 };
 
@@ -198,7 +198,6 @@ export const fetchSearch = (search) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/post/search`, { search })
     .then((response) => {
-      console.log('responding', response.data);
       dispatch({ type: 'SET_POSTS', payload: response.data });
     })
     .catch(() => toast('Oh no! There was a problem fetching posts.'));
@@ -237,7 +236,7 @@ export const fetchPopular = () => (dispatch) => {
 export const like = (postID) => (dispatch) => {
   return axios
     .get(`${BACKEND_URL}/api/post/like/${postID}`)
-    .then((response) => console.log(response.data))
+    .then(() => {})
     .catch(() => toast('Oh no! There was a problem liking this post.'));
 };
 
@@ -245,7 +244,7 @@ export const like = (postID) => (dispatch) => {
 export const unlike = (postID) => (dispatch) => {
   return axios
     .delete(`${BACKEND_URL}/api/post/like/${postID}`)
-    .then((response) => console.log(response.data))
+    .then(() => {})
     .catch(() => toast('Hmm, there was a problem unliking this post.'));
 };
 
@@ -263,7 +262,7 @@ export const postComment = (user, postID, comment) => (dispatch) => {
 export const likeComment = (commentID) => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/comment/like/${commentID}`)
-    .then((response) => console.log(response.data))
+    .then(() => {})
     .catch(() => toast('Oh no! There was a problem liking this comment.'));
 };
 
@@ -271,7 +270,7 @@ export const likeComment = (commentID) => (dispatch) => {
 export const unlikeComment = (commentID) => (dispatch) => {
   axios
     .delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
-    .then((response) => console.log(response.data))
+    .then(() => {})
     .catch(() => toast('Uh oh! There was a problem unliking this comment.'));
 };
 
@@ -309,10 +308,12 @@ export const fetchPostByRoom = (roomID, page) => (dispatch) => {
 
 // Fetches all posts in a specific room
 export const fetchPostByRoomByPopular = (roomID, page) => (dispatch) => {
-  axios.get(`${BACKEND_URL}/api/room/${roomID}/popular?page=${page}&limit=10`).then((res) => {
-    console.log(res);
-    dispatch({ type: 'SET_POSTS', payload: res.data });
-  });
+  axios
+    .get(`${BACKEND_URL}/api/room/${roomID}/popular?page=${page}&limit=10`)
+    .then((res) => {
+      dispatch({ type: 'SET_POSTS', payload: res.data });
+    })
+    .catch(() => toast('Oh no! Could not fetch posts.'));
 };
 
 // Updates search state
@@ -324,20 +325,19 @@ export const retrieveFullSearchResults = (search) => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/search/full/${search}`)
     .then((res) => {
-      console.log(res.data);
       dispatch({ type: 'SET_FULL_SEARCH', payload: res.data });
     })
-    .catch((error) => console.log(error));
+    .catch(() => toast('Oh no! Could not retrieve search results.'));
 };
 
 export const flagPost = (id) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/mod/posts/${id}`)
     .then(() => {
-      console.log('Post flagged');
+      toast('Thanks! That post was successfully flagged');
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(() => {
+      toast('Hmm... That post could not be flagged');
     });
 };
 
@@ -345,10 +345,10 @@ export const flagComment = (id) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/mod/comments/${id}`)
     .then(() => {
-      console.log('Comment flagged');
+      toast('Thanks! That post was successfully flagged');
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(() => {
+      toast('Hmm... That comment could not be flagged');
     });
 };
 
@@ -357,7 +357,6 @@ export const fetchFlaggedPosts = () => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/mod/posts`)
     .then((res) => {
-      console.log(res.data);
       dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
     })
     .catch(() => toast('There was a problem fetching flagged posts.'));
@@ -373,47 +372,50 @@ export const fetchFlaggedComments = () => (dispatch) => {
     .catch(() => toast('There was a problem fetching flagged comments.'));
 };
 
+// Archives post (moderator)
 export const archivePost = (postID) => (dispatch) => {
   return axios
     .delete(`${BACKEND_URL}/api/mod/posts/${postID}`)
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error));
+    .then(() => toast('Post Successfully Archived'))
+    .catch(() => toast('Error Archiving Post'));
 };
 
+// Archives comment (moderator)
 export const archiveComment = (commentID) => (dispatch) => {
   return axios
     .delete(`${BACKEND_URL}/api/mod/comments/${commentID}`)
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error));
+    .then(() => toast('Comment Successfully Archived'))
+    .catch(() => toast('Error Archiving Comment'));
 };
 
+// Resolves post (moderator) - keeps post visible
 export const resolvePost = (postID) => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error));
+    .then(() => toast('Post Successfully Resolved'))
+    .catch(() => toast('Error Resolving Post'));
 };
 
+// Resolves comment (moderator) - keeps comment visible
 export const resolveComment = (commentID) => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/mod/comments/${commentID}`)
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error));
+    .then(() => toast('Comment Successfully Resolved'))
+    .catch(() => toast('Error Resolving Comment'));
 };
 
 // Removes a comment (user)
 export const removeCommentsByUserId = (commentId) => (dispatch) => {
-  console.log(commentId);
   return axios
     .delete(`${BACKEND_URL}/api/comment/${commentId}`)
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error));
+    .then(() => toast('Success! Your comment was removed.'))
+    .catch(() => toast('Oh no! There was an error removing your comment'));
 };
 
 // fetch comment(user)
 export const fetchComments = (commentId) => (dispatch) =>  {
   axios
     .get(`${BACKEND_URL}/api/comment/${commentId}`)
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error));
+    .then(() => {})
+    .catch(() => toast('Oh no! There was a problem fetching that comment.'));
 };
