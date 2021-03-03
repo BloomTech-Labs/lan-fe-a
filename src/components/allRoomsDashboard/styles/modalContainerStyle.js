@@ -80,7 +80,7 @@ export const customStyles = {
     maxWidth: '500px',
   },
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
   },
 };
 
