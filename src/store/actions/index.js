@@ -298,9 +298,9 @@ export const fetchPostCommentsByPopular = (postID) => (dispatch) => {
 };
 
 // Fetches all posts in a specific room
-export const fetchPostByRoom = (roomID) => (dispatch) => {
+export const fetchPostByRoom = (roomID, page) => (dispatch) => {
   axios
-    .get(`${BACKEND_URL}/api/room/${roomID}/recent`)
+    .get(`${BACKEND_URL}/api/room/${roomID}/recent?page=${page}&limit=10`)
     .then((res) => {
       dispatch({ type: 'SET_POSTS', payload: res.data });
     })
@@ -308,8 +308,8 @@ export const fetchPostByRoom = (roomID) => (dispatch) => {
 };
 
 // Fetches all posts in a specific room
-export const fetchPostByRoomByPopular = (roomID) => (dispatch) => {
-  axios.get(`${BACKEND_URL}/api/room/${roomID}/popular`).then((res) => {
+export const fetchPostByRoomByPopular = (roomID, page) => (dispatch) => {
+  axios.get(`${BACKEND_URL}/api/room/${roomID}/popular?page=${page}&limit=10`).then((res) => {
     console.log(res);
     dispatch({ type: 'SET_POSTS', payload: res.data });
   });

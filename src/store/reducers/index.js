@@ -4,6 +4,7 @@ const initialState = {
   rooms: [],
   users: [],
   posts: [],
+  totalPages: 1,
   mainSearchResults: {
     users: [],
     rooms: [],
@@ -44,7 +45,8 @@ export const reducer = (state = initialState, action) => {
   case 'SET_POSTS':
     return {
       ...state,
-      posts: action.payload,
+      posts: action.payload.posts,
+      totalPages: action.payload.totalPages
     };
 
   case 'START_FETCHING_CURRENT_POST':
