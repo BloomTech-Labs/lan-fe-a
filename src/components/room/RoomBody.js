@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -14,6 +14,25 @@ const StyledRoomContainer = styled.div`
   padding: 2%;
   .single-room-name {
     color: white;
+  }
+  .pagination {
+      text-align: center;
+    a {
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      margin: auto 3%;
+      transition: all .2s;
+      padding: 7px;
+      &:hover {
+          color: grey;
+      }
+    }
+    .active-page {
+      color: grey;
+      border: 1px solid white;
+      border-radius: 50%;
+    }
   }
 `;
 
@@ -175,6 +194,18 @@ const customStyles = {
 const RoomBody = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [sortValue, setSortValue] = useState('Recent');
+  const [blocks, setBlocks] = useState([]);
+  useEffect(() => {
+    let length = 10;
+    if (length > props.totalPages) length = props.totalPages;
+    let start = props.page - Math.floor(length / 2);
+    start = Math.max(start, 1);
+    start = Math.min(start, 1 + props.totalPages - length);
+    const newBlock = Array.from({length: length}, (el, i) => <Link className={`pag-link${i + 1 == props.page ? ' active-page' : ''}`} to={`/room/${props.id}/page/${start + i}`}>{start + i}</Link>);
+    setBlocks(newBlock);
+  }, [props.page, props.totalPages]);
+  
+
   const handleSortChange = (e) => {
     setSortValue(e.target.value);
     if (e.target.value === 'Recent') {
@@ -198,7 +229,7 @@ const RoomBody = (props) => {
     props.like(postID)
       .then(() => {
         props.fetchUsersLikedPosts();
-        props.fetchPostByRoom(props.id);
+        props.fetchPostByRoom(props.id, props.page);
       });
   };
     
@@ -207,7 +238,7 @@ const RoomBody = (props) => {
     props.unlike(postID)
       .then(() => {
         props.fetchUsersLikedPosts();
-        props.fetchPostByRoom(props.id);
+        props.fetchPostByRoom(props.id, props.page);
       });
   };
       
@@ -251,7 +282,7 @@ const RoomBody = (props) => {
             title: '',
             description: ''
           });
-          props.fetchPostByRoom(props.id);
+          props.fetchPostByRoom(props.id, props.page);
           closeModal();
         })
         .catch(error => {
@@ -322,6 +353,13 @@ const RoomBody = (props) => {
           </>
         );
       })}
+      <div className="pagination">
+        {Number(props.page) > 1 ? <Link className='pag-prev-arrow' to={`/room/${props.id}/page/${Number(props.page) - 1}`}>Prev</Link> : null}
+        {blocks.map((page) => {
+          return page;
+        })}
+        {blocks.length > 1 && Number(props.page) !== props.totalPages ? <Link className='pag-prev-arrow' to={`/room/${props.id}/page/${Number(props.page) + 1}`}>Next</Link> : null}
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -357,6 +395,7 @@ const mapStateToProps = (state) => {
     posts: state.posts,
     rooms: state.rooms,
     usersLikedPosts: state.usersLikedPosts,
+    totalPages: state.totalPages
   };
 };
 
