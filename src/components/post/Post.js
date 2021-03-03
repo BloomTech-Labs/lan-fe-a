@@ -117,23 +117,23 @@ const Post = (props) => {
       <Header history={props.history} />
       {!props.individualPostIsFetching && (
         <PostContainer>
-          <div className="post">
-            <div className="left-section">
+          <div className='post'>
+            <div className='left-section'>
               {props.currentPost.profile_picture && (
                 <img
                   src={props.currentPost.profile_picture}
-                  alt="profile icon"
+                  alt='profile icon'
                   onClick={() =>
                     props.history.push(`/user/${props.currentPost.user_id}`)
                   }
                 />
               )}
             </div>
-            <div className="right-section">
-              <div className="user">
+            <div className='right-section'>
+              <div className='user'>
                 {props.currentPost.display_name && (
                   <p
-                    className="display-name"
+                    className='display-name'
                     onClick={() =>
                       props.history.push(`/user/${props.currentPost.user_id}`)
                     }
@@ -142,35 +142,35 @@ const Post = (props) => {
                   </p>
                 )}
                 {props.currentPost.created_at && (
-                  <p className="timestamp">
+                  <p className='timestamp'>
                     {moment(props.currentPost.created_at).fromNow()}
                   </p>
                 )}
               </div>
-              <div className="labels">
+              <div className='labels'>
                 {props.currentPost.track &&
                   props.currentPost.track === 'Career Coach' && (
-                    <button className="career-coach">CAREER COACH</button>
-                  )}
+                  <button className='career-coach'>CAREER COACH</button>
+                )}
                 {props.currentPost.track &&
                   props.currentPost.track !== 'Career Coach' && (
-                    <button>{props.currentPost.track.toUpperCase()}</button>
-                  )}
+                  <button>{props.currentPost.track.toUpperCase()}</button>
+                )}
 
                 {props.currentPost.category && (
                   <button>{props.currentPost.category.toUpperCase()}</button>
                 )}
               </div>
               {props.currentPost.title && (
-                <p className="question">{props.currentPost.title}</p>
+                <p className='question'>{props.currentPost.title}</p>
               )}
               <div>
                 {editing && (
                   <form onSubmit={(e) => handleUpdatePost(e)}>
                     <textarea
-                      className="edit-post"
-                      name="post field"
-                      type="text-field"
+                      className='edit-post'
+                      name='post field'
+                      type='text-field'
                       value={postInput}
                       onChange={(e) => setPostInput(e.target.value)}
                     />
@@ -191,44 +191,50 @@ const Post = (props) => {
                 ''
               )}
               {props.currentPost.description && (
-                <p className="answer">{props.currentPost.description}</p>
+                <p className='answer'>{props.currentPost.description}</p>
               )}
-              <div className="activity">
+              <div className='activity'>
                 {props.currentPost.likes !== undefined && (
                   <p>
                     {liked ? (
-                      <i
-                        className="fas fa-chevron-up"
-                        onClick={() => unlike(postID)}
-                      ></i>
+                      <>
+                        <i
+                          className='blue fas fa-chevron-up'
+                          onClick={() => unlike(postID)}
+                        ></i>
+                        <span className='blue'>{likes}</span>
+                      </>
                     ) : (
-                      <i
-                        className="fas fa-chevron-up"
-                        onClick={() => like(postID)}
-                      ></i>
+                      <>
+                        <i
+                          className='white fas fa-chevron-up'
+                          onClick={() => like(postID)}
+                        ></i>
+                        <span className='white'>{likes}</span>
+                      </>
                     )}
-                    {likes}
+                    
                   </p>
                 )}
                 <p>
-                  <i className="far fa-comment"></i>
+                  <i className='far fa-comment'></i>
                   {props.currentPostComments.length}
                 </p>
               </div>
             </div>
             <div
-              className="more-options"
+              className='more-options'
               onClick={() => {
                 setMoreOptions(!moreOptions);
                 console.log('clicked');
               }}
             >
-              <p className="fas fa-ellipsis-h"></p>
+              <p className='fas fa-ellipsis-h'></p>
             </div>
             {moreOptions && (
-              <div className="dropdown">
+              <div className='dropdown'>
                 {props.currentPost.user_id === props.user.id ? (
-                  <Link to="/" onClick={() => deletePost(postID)}>
+                  <Link to='/' onClick={() => deletePost(postID)}>
                     Delete Post
                   </Link>
                 ) : (
@@ -240,7 +246,7 @@ const Post = (props) => {
                   ''
                 )}
                 {props.currentPost.user_id !== props.user.id ? (
-                  <button className="flag-button" onClick={handleFlaggingPost}>
+                  <button className='flag-button' onClick={handleFlaggingPost}>
                     Flag Post
                   </button>
                 ) : (
@@ -250,36 +256,36 @@ const Post = (props) => {
             )}
           </div>
 
-          <form autoComplete="off" spellCheck="false" onSubmit={onSubmit}>
-            <label htmlFor="comment">Comment</label>
+          <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
+            <label htmlFor='comment'>Comment</label>
             <textarea
-              name="comment"
-              type="text"
-              placeholder="Add a comment..."
+              name='comment'
+              type='text'
+              placeholder='Add a comment...'
               value={input}
               onChange={onChange}
             />
-            {error && <p className="error">{error}</p>}
-            <div className="button">
-              <button type="submit">Submit</button>
+            {error && <p className='error'>{error}</p>}
+            <div className='button'>
+              <button type='submit'>Submit</button>
             </div>
           </form>
 
-          <div className="comments">
-            <div className="filter">
-              <label htmlFor="sort">SORT</label>
+          <div className='comments'>
+            <div className='filter'>
+              <label htmlFor='sort'>SORT</label>
               <select
-                name="sort"
+                name='sort'
                 value={sortingDropdown}
                 onChange={sortingDropdownOnChange}
               >
-                <option value="Recent">Recent</option>
-                <option value="Popular">Popular</option>
+                <option value='Recent'>Recent</option>
+                <option value='Popular'>Popular</option>
               </select>
             </div>
 
             {props.individualPostCommentsAreFetching && (
-              <div className="no-comments-yet">
+              <div className='no-comments-yet'>
                 <p>Loading</p>
               </div>
             )}
@@ -290,12 +296,12 @@ const Post = (props) => {
               ))}
             {!props.individualPostCommentsAreFetching &&
               props.currentPostComments.length === 0 && (
-                <div className="no-comments-yet">
-                  <p>
-                    <i className="fas fa-exclamation"></i>No comments yet
-                  </p>
-                </div>
-              )}
+              <div className='no-comments-yet'>
+                <p>
+                  <i className='fas fa-exclamation'></i>No comments yet
+                </p>
+              </div>
+            )}
           </div>
         </PostContainer>
       )}

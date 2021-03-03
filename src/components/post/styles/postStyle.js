@@ -117,8 +117,6 @@ const PostContainer = styled.div`
           }
           .fa-chevron-up {
             color: #0099ff;
-          }
-          .fa-chevron-up {
             cursor: pointer;
             transition: 0.1s;
           }
@@ -126,9 +124,13 @@ const PostContainer = styled.div`
           .fa-chevron-up:active {
             transform: scale(1.25);
           }
-          .fas {
-            /* color: #0099ff; */
-            color: #f5f7f9;
+
+          .white {
+            color: #ffffff;
+          }
+
+          .blue {
+            color: #0099ff;
           }
         }
       }

@@ -4,6 +4,8 @@ const CommentContainer = styled.div`
   margin-bottom: 52px;
   display: flex;
   padding: 2%;
+  // that
+  position: relative;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   img {
     margin-right: 12px;
@@ -25,6 +27,10 @@ const CommentContainer = styled.div`
     display: flex;
     align-items: center;
     transition: 0.25s;
+    // that
+    position: absolute;
+    right: 10px;
+    top: 0;
     :hover {
       opacity: 0.5;
     }
@@ -37,11 +43,10 @@ const CommentContainer = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
     flex-direction: column;
-    position: relative;
-    top: 4px;
-    right: 0;
-    margin-right: 20px;
-    z-index: 9999;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    z-index: 10;
 
     a,
     button {
@@ -129,7 +134,11 @@ const CommentContainer = styled.div`
         }
       }
 
-      .fas {
+      .white {
+        color: #ffffff;
+      }
+
+      .blue {
         color: #0099ff;
       }
     }
