@@ -108,6 +108,11 @@ const StyledPost = styled.div`
   }
   .fas {
       color: #0099ff;
+      cursor: pointer;
+  }
+  .far {
+      color: white;
+      cursor: pointer;
   }
 `;
 
@@ -379,18 +384,28 @@ const RoomBody = (props) => {
                 </div>
                 <h3> {post.title} </h3>
                 <p> {post.description} </p>
-                <p
-                  className="single-post-footer"
-                  onClick={() => console.log(`click ${post.id}`)}
-                >
-                  <span>
-                    <i className="fas fa-chevron-up"></i>
-                  </span>
-                  <span>
-                    <i className="far fa-comment"></i>
-                  </span>
-                </p>
               </Link>
+              <p
+                className="single-post-footer"
+              >
+                <span>
+                  {props.usersLikedPosts.find((item) => item.post_id === post.id) ? (
+                    <i
+                      className="fas fa-chevron-up"
+                      onClick={() => handleUnlike(post.id)}
+                    >{post.likes}</i>
+                  ) : (
+                    <i
+                      className="fas far fa-chevron-up"
+                      onClick={() => handleLike(post.id)}
+                    >{post.likes}</i>
+                  )}
+                </span>
+                
+                <span>
+                  <i className="far fa-comment"></i>
+                </span>
+              </p>
             </StyledPost>
           </div>
         );
