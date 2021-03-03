@@ -101,12 +101,22 @@ export const updateUserDisplayName = (userID, displayName) => (dispatch) => {
     );
 };
 
+// Set a user's onboarded status to true
+export const updateOnboardedStatusToTrue = () => (dispatch) => {
+  return axios
+    .put(`${BACKEND_URL}/api/user/onboard`)
+    .then(() => toast('Woo! Glad you are here!'))
+    .catch(() =>
+      toast('Oh no! there was a problem.')
+    );
+};
+
 // Updates a user's role
 export const updateUserRole = (id, role) => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
     .then(() => toast('Track successfully changed to' + role))
-    .catch(() => toast("There was a problem updating the user's role."));
+    .catch(() => toast('There was a problem updating the user\'s role.'));
 };
 
 // Sets user track during onboarding
@@ -225,7 +235,7 @@ export const fetchPopular = () => (dispatch) => {
 
 // Likes a post
 export const like = (postID) => (dispatch) => {
-  axios
+  return axios
     .get(`${BACKEND_URL}/api/post/like/${postID}`)
     .then((response) => console.log(response.data))
     .catch(() => toast('Oh no! There was a problem liking this post.'));
@@ -233,7 +243,7 @@ export const like = (postID) => (dispatch) => {
 
 // Removes like from a post
 export const unlike = (postID) => (dispatch) => {
-  axios
+  return axios
     .delete(`${BACKEND_URL}/api/post/like/${postID}`)
     .then((response) => console.log(response.data))
     .catch(() => toast('Hmm, there was a problem unliking this post.'));
@@ -241,18 +251,9 @@ export const unlike = (postID) => (dispatch) => {
 
 // Creates a comment
 export const postComment = (user, postID, comment) => (dispatch) => {
-  axios
+  return axios
     .post(`${BACKEND_URL}/api/comment`, { postID, comment })
-    .then((response) => {
-      dispatch({
-        type: 'SET_POSTS_COMMENTS',
-        payload: {
-          ...response.data.comment,
-          display_name: user.displayName,
-          profile_picture: user.profilePicture,
-          track: user.track,
-        },
-      });
+    .then(() => {
       toast('Sweet! Comment added.');
     })
     .catch(() => toast('Hmm, there was a problem adding your comment'));
@@ -277,7 +278,7 @@ export const unlikeComment = (commentID) => (dispatch) => {
 // Fetches a post's comments, ordered by recent
 export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
-  axios
+  return axios
     .get(`${BACKEND_URL}/api/comment/recent/${postID}`)
     .then((response) =>
       dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data })
@@ -401,7 +402,7 @@ export const resolveComment = (commentID) => (dispatch) => {
 
 // Removes a comment (user)
 export const removeCommentsByUserId = (commentId) => (dispatch) => {
-  console.log(commentId)
+  console.log(commentId);
   return axios
     .delete(`${BACKEND_URL}/api/comment/${commentId}`)
     .then((response) => console.log(response.data))

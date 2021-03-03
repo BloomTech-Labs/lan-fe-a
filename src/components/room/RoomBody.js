@@ -9,11 +9,7 @@ import replyicon from '../../img/replyicon.png';
 import Modal from 'react-modal';
 import CreatePostContainer from './styles/createPostStyle';
 import AlumniLogo from '../../img/AlumniLogo.svg';
-import {
-  postQuestion,
-  fetchPostByRoom,
-  fetchPostByRoomByPopular,
-} from '../../store/actions';
+import { like, unlike, postQuestion, fetchPostByRoom, fetchPostByRoomByPopular, fetchUsersLikedPosts } from '../../store/actions';
 
 const StyledRoomContainer = styled.div`
   width: 90%;
@@ -80,6 +76,9 @@ const StyledPost = styled.div`
     font-size: 1.1rem;
     font-weight: lighter;
     transition: 0.25s;
+  }
+  .fa-thumbs-up {
+      cursor: pointer;
   }
 `;
 
@@ -203,6 +202,25 @@ const RoomBody = (props) => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  // adds like to post
+  const handleLike = (postID) => {
+    props.like(postID)
+      .then(() => {
+        props.fetchUsersLikedPosts();
+        props.fetchPostByRoom(props.id);
+      });
+  };
+    
+  // removes like from post
+  const handleUnlike = (postID) => {
+    props.unlike(postID)
+      .then(() => {
+        props.fetchUsersLikedPosts();
+        props.fetchPostByRoom(props.id);
+      });
+  };
+      
   const [input, setInput] = useState({
     title: '',
     description: '',
@@ -382,11 +400,10 @@ const mapStateToProps = (state) => {
   return {
     posts: state.posts,
     rooms: state.rooms,
+    usersLikedPosts: state.usersLikedPosts,
   };
 };
 
-export default connect(mapStateToProps, {
-  postQuestion,
-  fetchPostByRoom,
-  fetchPostByRoomByPopular,
-})(RoomBody);
+
+export default connect(mapStateToProps, { like, unlike, postQuestion, fetchPostByRoom, fetchPostByRoomByPopular, fetchUsersLikedPosts })(RoomBody);
+

@@ -4,6 +4,7 @@ import Header from '../common/Header';
 import AllRoomsBody from './AllRoomsBody';
 import redlambda from '../../img/redlambda.png';
 import Modal from 'react-modal';
+import { updateOnboardedStatusToTrue, fetchUser } from '../../store/actions';
 import StyledModalContainer, { customStyles } from './styles/modalContainerStyle';
 
 const AllRoomsDashboard = props => {
@@ -14,13 +15,19 @@ const AllRoomsDashboard = props => {
     setIsOpen(true);
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
+  const handleCloseModal = () => {
+    props.updateOnboardedStatusToTrue()
+      .then(() => {
+        props.fetchUser();
+        setIsOpen(false);
+      });
   };
 
   useEffect(() => {
-    // openModal();
-  }, []);
+    if(props.user.onboarded == false) {
+      openModal();
+    }
+  }, [props.user]);
 
   const incrementSlide = () => setSlide(slide + 1);
   const decrementSlide = () => setSlide(slide - 1);
@@ -31,7 +38,7 @@ const AllRoomsDashboard = props => {
       <AllRoomsBody history={props.history} />
       <Modal
         isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        onRequestClose={handleCloseModal}
         style={customStyles}
         contentLabel='FAQ'
         shouldCloseOnOverlayClick={false}
@@ -106,7 +113,7 @@ const AllRoomsDashboard = props => {
                       <p className='text-align-center'><i>Enjoy the LAN! Thank you for helping others.</i></p>
                       <div className='double-button-container'>
                         <button onClick={decrementSlide}>Previous</button>
-                        <button onClick={closeModal}>Close</button>
+                        <button onClick={handleCloseModal}>Close</button>
                       </div>
                     </StyledModalContainer>
         }
@@ -121,4 +128,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(AllRoomsDashboard);
+export default connect(mapStateToProps, { updateOnboardedStatusToTrue, fetchUser })(AllRoomsDashboard);

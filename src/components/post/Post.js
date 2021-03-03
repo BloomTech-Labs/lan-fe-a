@@ -61,8 +61,10 @@ const Post = (props) => {
     if (input === '') {
       setError('Please enter a comment');
     } else {
-      props.postComment(props.user, postID, input);
-      setInput('');
+      props.postComment(props.user, postID, input).then(() => {
+        props.fetchPostCommentsByRecent(postID);
+        setInput('');
+      });
     }
   };
 
