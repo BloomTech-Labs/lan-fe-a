@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import returnpointer from '../../img/return.png';
 import likeicon from '../../img/likeicon.png';
@@ -195,6 +195,7 @@ const RoomBody = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [blocks, setBlocks] = useState([]);
   const { pathname } = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     // Determine the last number for pagination block
@@ -326,7 +327,7 @@ const RoomBody = (props) => {
             </select>
           </div>
           <button onClick={() => openModal()} className="create-post-button">Create Post</button>
-          <img src={returnpointer} className="return-pointer" alt="return-pointer"/>
+          <img src={returnpointer} className="return-pointer" alt="return-pointer" onClick={() => history.goBack()}/>
         </div>
       </StyledPointer>
       {props.posts.map((post, index) => {
