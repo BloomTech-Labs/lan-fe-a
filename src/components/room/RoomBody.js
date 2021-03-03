@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import returnpointer from '../../img/return.png';
 import likeicon from '../../img/likeicon.png';
@@ -193,27 +193,33 @@ const customStyles = {
 
 const RoomBody = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [sortValue, setSortValue] = useState('Recent');
   const [blocks, setBlocks] = useState([]);
+  const { pathname } = useLocation();
+
   useEffect(() => {
     let length = 10;
     if (length > props.totalPages) length = props.totalPages;
     let start = props.page - Math.floor(length / 2);
     start = Math.max(start, 1);
     start = Math.min(start, 1 + props.totalPages - length);
-    const newBlock = Array.from({length: length}, (el, i) => <Link className={`pag-link${i + 1 == props.page ? ' active-page' : ''}`} to={`/room/${props.id}/page/${start + i}`}>{start + i}</Link>);
+    const newBlock = Array.from({length: length}, (el, i) => <Link key={`page-${i + 1}`} className={`pag-link${i + 1 == props.page ? ' active-page' : ''}`} to={`/room/${props.id}/page/${start + i}`}>{start + i}</Link>);
     setBlocks(newBlock);
   }, [props.page, props.totalPages]);
+
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   
 
   const handleSortChange = (e) => {
-    setSortValue(e.target.value);
+    props.setSortValue(e.target.value);
     if (e.target.value === 'Recent') {
       props.fetchPostByRoom(props.id, props.page);
     } else if (e.target.value === 'Popular') {
       props.fetchPostByRoomByPopular(props.id, props.page);
     } else {
-      setSortValue('Recent');
+      props.setSortValue('Recent');
     }
   };
   
@@ -229,7 +235,11 @@ const RoomBody = (props) => {
     props.like(postID)
       .then(() => {
         props.fetchUsersLikedPosts();
-        props.fetchPostByRoom(props.id, props.page);
+        if (props.sortValue == 'Recent') {
+          props.fetchPostByRoom(props.id, props.page);
+        } else {
+          props.fetchPostByRoomByPopular(props.id, props.page);
+        }
       });
   };
     
@@ -238,7 +248,11 @@ const RoomBody = (props) => {
     props.unlike(postID)
       .then(() => {
         props.fetchUsersLikedPosts();
-        props.fetchPostByRoom(props.id, props.page);
+        if (props.sortValue == 'Recent') {
+          props.fetchPostByRoom(props.id, props.page);
+        } else {
+          props.fetchPostByRoomByPopular(props.id, props.page);
+        }
       });
   };
       
@@ -282,7 +296,11 @@ const RoomBody = (props) => {
             title: '',
             description: ''
           });
-          props.fetchPostByRoom(props.id, props.page);
+          if (props.sortValue == 'Recent') {
+            props.fetchPostByRoom(props.id, props.page);
+          } else {
+            props.fetchPostByRoomByPopular(props.id, props.page);
+          }
           closeModal();
         })
         .catch(error => {
@@ -302,7 +320,7 @@ const RoomBody = (props) => {
         <div className="single-room-navigation">
           <div className='filters'>
             <label htmlFor='sort'>SORT</label>
-            <select name='sort' value={sortValue} onChange={(e) => handleSortChange(e)}>
+            <select name='sort' value={props.sortValue} onChange={(e) => handleSortChange(e)}>
               <option value='Recent'>Recent</option>
               <option value='Popular'>Popular</option>
             </select>
@@ -313,7 +331,7 @@ const RoomBody = (props) => {
       </StyledPointer>
       {props.posts.map((post, index) => {
         return (
-          <>
+          <div key={`post-id-${post.id}`}>
             <StyledPost className="post_card" key={index}>
               <Link to={`/post/${post.id}`}>
                 <div className="profile">
@@ -350,7 +368,7 @@ const RoomBody = (props) => {
                 </Link>
               </p>
             </StyledPost>
-          </>
+          </div>
         );
       })}
       <div className="pagination">

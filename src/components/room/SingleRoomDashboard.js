@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { fetchPostByRoom, fetchRooms } from '../../store/actions';
+import { fetchPostByRoom, fetchPostByRoomByPopular, fetchRooms } from '../../store/actions';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../common/Header';
@@ -13,19 +13,24 @@ const StyledRoomDashboard = styled.div`
 `;
 
 const SingleRoomDashboard = (props) => {
+  const [sortValue, setSortValue] = useState('Recent');
   let { id, page } = useParams();
   useEffect(() => {
     props.fetchRooms();
   }, []);
   useEffect(() => {
-    props.fetchPostByRoom(id, page);
+    if(sortValue == 'Recent') {
+      props.fetchPostByRoom(id, page);
+    } else {
+      props.fetchPostByRoomByPopular(id, page);
+    }
   }, [id, page]);
   return (
     <div>
       <Header history={props.history} />
       <StyledRoomDashboard>
         <Sidebar />
-        <RoomBody rooms={props.rooms} id={id} page={page} />
+        <RoomBody rooms={props.rooms} id={id} page={page} sortValue={sortValue} setSortValue={setSortValue} />
       </StyledRoomDashboard>
     </div>
   );
@@ -38,4 +43,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchPostByRoom, fetchRooms })(SingleRoomDashboard);
+export default connect(mapStateToProps, { fetchPostByRoom, fetchPostByRoomByPopular, fetchRooms })(SingleRoomDashboard);
