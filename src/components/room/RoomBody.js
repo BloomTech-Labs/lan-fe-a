@@ -420,7 +420,7 @@ const RoomBody = (props) => {
                 </span>
                 
                 <span>
-                  <i className="far fa-comment"></i>
+                  <i className="far fa-comment">{post.comments}</i>
                 </span>
               </p>
             </StyledPost>
