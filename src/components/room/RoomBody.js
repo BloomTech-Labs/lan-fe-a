@@ -197,12 +197,13 @@ const RoomBody = (props) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    let length = 10 > props.totalPages ? props.totalPages : 10;
-    let start = props.page - Math.floor(length / 2);
-    start = Math.max(start, 1);
-    start = Math.min(start, 1 + props.totalPages - length);
-    const newBlock = Array.from({length: length}, (el, i) => <Link key={`page-${i + 1}`} className={`pag-link${i + 1 == props.page ? ' active-page' : ''}`} to={`/room/${props.id}/page/${start + i}`}>{start + i}</Link>);
-    setBlocks(newBlock);
+    // Determine the last number for pagination block
+    let last = Math.max (Math.min (props.page + 4, props.totalPages), Math.min (10, props.totalPages));
+    //Determine the first number for pagination block
+    let first = Math.min (Math.max (props.page - 5, 1), Math.max (last - 9, 1));
+    //Create array of Links for pages if Link is for current page add classname active page
+    const pages = Array.from({length: last - first + 1}, (el, i) => <Link key={`page-${i + 1}`} className={`pag-link${i + 1 == props.page ? ' active-page' : ''}`} to={`/room/${props.id}/page/${first + i}`}>{first + i}</Link>);
+    setBlocks(pages);
   }, [props.page, props.totalPages]);
 
   
