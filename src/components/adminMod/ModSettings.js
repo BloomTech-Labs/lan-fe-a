@@ -76,7 +76,7 @@ const AdminSettings = (props) => {
       <Header history={props.history} />
       <ModSettingsContainer>
         <ModStyledAdminHeader>
-          <h2>Admin Settings</h2>
+          <h2>Moderator Settings</h2>
           <div className="display-name">
             <button className="update" onClick={handleFetchPosts}>
               Modify Posts
