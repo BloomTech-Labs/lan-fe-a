@@ -84,7 +84,13 @@ const Post = (props) => {
 
   // deletes post
   const deletePost = (postID) => {
-    props.deletePost(postID);
+    props.deletePost(postID)
+      .then(() => {
+        history.push('/');
+      })
+      .catch(() => {
+        console.log('Could not delete post');
+      });
   };
 
   const sortingDropdownOnChange = (event) => {
