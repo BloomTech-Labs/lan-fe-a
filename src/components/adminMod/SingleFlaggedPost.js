@@ -1,24 +1,47 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { fetchFlaggedPosts, archivePost, resolvePost } from '../../store/actions';
+import {
+  fetchFlaggedPosts,
+  archivePost,
+  resolvePost,
+} from '../../store/actions';
 import { Link } from 'react-router-dom';
 
-const StyledRoom = styled.div`
+const ModStyledRoom = styled.div`
+  /* width: 100%; */
   padding: 2.8%;
   background-color: #141414;
   margin: 1.2rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 12px;
+  i {
+    margin: 0.4% 0;
+    padding: 0 0.3%;
+  }
+  a {
+    text-decoration: none;
+    color: #6495ed;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin: 1% 0;
+    transition: 0.25s;
+    :hover {
+      font-size: 1.4rem;
+    }
+  }
   h4 {
     color: white;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     font-weight: 500;
+    margin: 1% 0;
   }
   p {
     font-size: 1.1rem;
     font-weight: 500;
     color: lightgrey;
+    margin: 1% 0;
   }
   .editable {
     display: flex;
@@ -26,56 +49,34 @@ const StyledRoom = styled.div`
     margin-top: 2.2%;
     margin-bottom: 2%;
   }
-  .input-wrap {
-    padding: 2%;
-    margin: -4%;
+  .mod-button-wrapper {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 90%;
-    border: none;
-    /* width: 40%; */
-    input {
-      min-height: 44px;
-      min-width: 100%;
-      max-width: 100%;
-    }
-    textarea {
-      margin-left: 2%;
-      min-height: 44px;
-      min-width: 100%;
-      max-width: 100%;
-      /* height: 288px; */
-      padding: 10px;
-      background-color: #242323;
-      border: 1px solid #808080;
-      border-radius: 5px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #808080;
+    justify-content: flex-end;
+  }
 
-      ::placeholder {
-        color: dimgray;
-      }
-    }
-  }
-  .button-wrap {
-    margin-bottom: 2.8%;
-  }
   button {
+    width: 9%;
     margin-top: 1.5%;
-    margin-right: 3%;
+    margin-right: 2%;
     padding: 8px 12px;
-    background-color: #212529;
     box-shadow: 2px 2px 8px #212529;
-    border: 1px solid #707b7c;
+    border: 1px solid #808080;
     border-radius: 5px;
     font-family: 'Nunito', sans-serif;
     font-size: 0.9rem;
     color: #ffffff;
     cursor: pointer;
     transition: 0.25s;
+    :first-child {
+      background-color: #f9fcff;
+      background-image: linear-gradient(147deg, #f9fcff 0%, #dee4ea 74%);
+      color: black;
+      font-weight: 700;
+    }
+    :last-child {
+      background: linear-gradient(to right, #141414, #212121, #282828);
+      font-weight: 500;
+    }
     :hover {
       opacity: 0.5;
     }
@@ -86,7 +87,8 @@ const SingleFlaggedPost = (props) => {
   const { post } = props;
 
   const handleResolvePost = (id) => {
-    props.resolvePost(id)
+    props
+      .resolvePost(id)
       .then(() => {
         props.fetchFlaggedPosts();
       })
@@ -96,7 +98,8 @@ const SingleFlaggedPost = (props) => {
   };
 
   const handleArchivePost = (id) => {
-    props.archivePost(id)
+    props
+      .archivePost(id)
       .then(() => {
         props.fetchFlaggedPosts();
       })
@@ -106,15 +109,23 @@ const SingleFlaggedPost = (props) => {
   };
 
   return (
-    <StyledRoom>
+    <ModStyledRoom>
       <div className="not-editable">
         <h4>{post.title}</h4>
-        <Link to={`/post/${post.id}`}>Click Here To See Original Post</Link>
+        <Link to={`/post/${post.id}`}>
+          <i class="far fa-clipboard"></i>Click Here To See Original Post
+        </Link>
         <p>{post.description}</p>
-        <button onClick={() => handleResolvePost(post.id)}>Accept Post</button>
-        <button onClick={() => handleArchivePost(post.id)}>Delete Post</button>
+        <div className="mod-button-wrapper">
+          <button onClick={() => handleArchivePost(post.id)}>
+            Delete Post
+          </button>
+          <button onClick={() => handleResolvePost(post.id)}>
+            Accept Post
+          </button>
+        </div>
       </div>
-    </StyledRoom>
+    </ModStyledRoom>
   );
 };
 

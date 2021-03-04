@@ -3,7 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/Header';
 import SettingsContainer from '../user/styles/settingsStyle';
-import { fetchRooms, fetchUsers, deleteRoom, createRoom } from '../../store/actions';
+import {
+  fetchRooms,
+  fetchUsers,
+  deleteRoom,
+  createRoom,
+} from '../../store/actions';
 import SingleUserCard from './SingleUserCard';
 import SingleRoomCard from './SingleRoomCard';
 
@@ -19,10 +24,6 @@ const StyledAdminHeader = styled.div`
     display: flex;
     width: 98%;
     align-items: baseline;
-    /* border: 1px solid grey; */
-    /* border-top-style: hidden;
-    border-left-style: hidden;
-    border-right-style: hidden; */
   }
   .room-wrapper {
     display: flex;
