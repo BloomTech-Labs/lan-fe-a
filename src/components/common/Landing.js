@@ -37,7 +37,7 @@ const Landing = props => {
                                     Continue with LinkedIn
                 </button>
               </a>
-              <p className='terms'>By continuing, you agree to viewee's Terms and Privacy Policy.</p>
+              <p className='terms'>By continuing, you agree to Lambda Alumni Network's Terms and Privacy Policy.</p>
             </div>
           </div>
         </LandingContainer>

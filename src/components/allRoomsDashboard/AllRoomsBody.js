@@ -15,19 +15,15 @@ const RoomsContainer = styled.div`
     display: flex;
     align-items: center;
   }
-
   .single-room-name {
     display: flex;
-    width: 98%;
     font-weight: 600;
-    margin-left: 25%;
-    /* margin: 1.5% 15% 1.5% 25%; */
     font-size: 2.3rem;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 68px;
     button {
-      /* background-color: #282828; */
-      margin-left: 25%;
-      margin-right: -32%;
       display: flex;
       padding: 15px;
       background: black;
@@ -72,9 +68,6 @@ const RoomsContainer = styled.div`
   }
   @media (min-width: 768px) {
     width: 95%;
-  }
-  @media (min-width: 1024px) {
-    width: 972.8px;
   }
 `;
 

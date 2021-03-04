@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const StyledRoomCard = styled.div`
-    width: 99%;
+    width: 100%;
     background-color: #141414;
     color: white;
     border-radius: 12px;
-    margin: 1.5% 15% 1.5% 25%;
+    margin: 1.5% 0% 1.5% 0%;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 2%;
     transition: 0.25s;
     :hover {
       opacity: 0.5;

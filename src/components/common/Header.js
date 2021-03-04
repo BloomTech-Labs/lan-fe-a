@@ -34,9 +34,8 @@ const Header = props => {
         <img src={AlumniLogo} alt='Lambda School logo' />
         {/* <header>Alumni Network</header> */}
       </div>
-
       <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
-        <input type='text' placeholder='Search for a question' value={searchInput} onChange={onChange} />
+        <input type='text' placeholder='Search' value={searchInput} onChange={onChange} />
         <button type='submit'><i className='fas fa-search'></i></button>
       </form>
 
@@ -44,7 +43,6 @@ const Header = props => {
 
       {hamburgerMenu && <div className='dropdown'>
         <p onClick={() => props.history.push('/faq')}><i className='fas fa-question'></i>FAQ</p>
-        <a href='https://github.com/viewee/frontend/issues' target='_blank' rel='noreferrer noopener'><p><i className='fas fa-bug'></i>Report a Bug</p></a>
         <p onClick={() => props.history.push(`/user/${props.user.id}`)}><i className='fas fa-user'></i>My Profile</p>
         <p onClick={() => props.history.push('/settings')}><i className='fas fa-cog'></i>Settings</p>
         {props.user.role_id === 3 ? (
