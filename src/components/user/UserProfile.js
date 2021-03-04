@@ -26,11 +26,7 @@ const UserProfile = (props) => {
                   <p className="display-name">
                     {props.currentUser.display_name}
                   </p>
-                  {props.currentUser.track === 'Career Coach' && (
-                    <p className="track career-coach">CAREER COACH</p>
-                  )}
-                  {props.currentUser.track &&
-                    props.currentUser.track !== 'Career Coach' && (
+                  {props.currentUser.track && (
                     <p className="track">
                       {props.currentUser.track.toUpperCase()}
                     </p>

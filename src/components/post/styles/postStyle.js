@@ -65,29 +65,6 @@ const PostContainer = styled.div`
         }
       }
 
-      .labels {
-        margin-bottom: 4px;
-        display: flex;
-        align-items: center;
-
-        button {
-          padding: 1px 2px;
-          margin-right: 4px;
-          background: linear-gradient(to right, #0084ff, #0099ff);
-          border: none;
-          border-radius: 3px;
-          font-family: 'Nunito', sans-serif;
-          font-size: 0.625rem;
-          font-weight: 700;
-          color: #ffffff;
-        }
-
-        .career-coach {
-          background: #ffcb37;
-          color: #23272a;
-        }
-      }
-
       .question {
         margin-bottom: 6px;
         font-size: 1.2rem;
