@@ -15,7 +15,9 @@ const StyledSearchResults = styled.div`
 
 const FullSearchResults = (props) => {
   useEffect(() => {
-    props.retrieveFullSearchResults(props.search);
+    if(props.search !== '') {
+      props.retrieveFullSearchResults(props.search);
+    }
   }, [props.search]);
   return (
     <StyledSearchResults>
