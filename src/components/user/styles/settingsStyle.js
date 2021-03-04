@@ -1,41 +1,28 @@
 import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
-  width: 98%;
-  margin: 5% auto;
-  display: flex;
-  flex-wrap: wrap;
+  margin: 0 25%;
   input {
     background-color: #242323;
-    height: 40px;
+    height: 50px;
     width: 35%;
     padding: 8px;
-    margin: 3% 2% 2% 2.2%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 1px solid darkgrey;
     font-family: 'Nunito', sans-serif;
     font-size: 1rem;
     font-weight: 500;
     color: #ffffff;
+    :first-of-type {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+    :last-of-type {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
 
     ::placeholder {
-      color: dimgray;
-    }
-  }
-
-  button {
-    padding: 8px 12px;
-    background-color: #212529;
-    box-shadow: 2px 2px 8px #212529;
-    border: 1px solid #707b7c;
-    border-radius: 3px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.7rem;
-    color: #ffffff;
-    cursor: pointer;
-    transition: 0.25s;
-    :hover {
-      opacity: 0.5;
+      color: lightgrey;
     }
   }
 
@@ -47,15 +34,15 @@ const SettingsContainer = styled.div`
   }
 
   h3 {
+    border: 1px solid grey;
+    border-left-style: hidden;
+    border-right-style: hidden;
+    border-bottom-style: hidden;
     width: 98%;
     padding: 2%;
     font-size: 1.6rem;
     font-weight: 500;
     color: #ffffff;
-    border: 1px solid grey;
-    border-left-style: hidden;
-    border-right-style: hidden;
-    border-bottom-style: hidden;
   }
   // styling users-setting-card
   .users-card-wrapper {
@@ -85,7 +72,7 @@ const SettingsContainer = styled.div`
     button {
       padding: 12px 26px;
       margin-top: 16px;
-      background: linear-gradient(to right, #000000, #212121, #424949);
+      background: linear-gradient(to right, #000000, #212121);
       font-family: 'Nunito', sans-serif;
       font-size: 1rem;
       font-weight: 600;
@@ -94,7 +81,15 @@ const SettingsContainer = styled.div`
       transition: 0.25s;
       border: 1px solid grey;
       height: 50px;
-      /* box-shadow: 3px 3px 6px #888888; */
+      box-shadow: 3px 3px 6px #212121;
+      :first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+      :last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
       :hover {
         opacity: 0.5;
       }

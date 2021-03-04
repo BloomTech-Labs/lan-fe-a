@@ -25,16 +25,16 @@ const StyledRoomContainer = styled.div`
     color: white;
   }
   .pagination {
-      text-align: center;
+    text-align: center;
     a {
       color: white;
       text-decoration: none;
       cursor: pointer;
       margin: auto 3%;
-      transition: all .2s;
+      transition: all 0.2s;
       padding: 7px;
       &:hover {
-          color: grey;
+        color: grey;
       }
     }
     .active-page {
@@ -44,17 +44,17 @@ const StyledRoomContainer = styled.div`
     }
   }
   .prev-next-header {
-      display: flex;
-      justify-content: space-between;
-      color: white;
-      .pag-prev-arrow {
-          text-align: left;
-          width: 100%;
-      }
-      .pag-next-arrow {
-          text-align: right;
-          width: 100%;
-      }
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    .pag-prev-arrow {
+      text-align: left;
+      width: 100%;
+    }
+    .pag-next-arrow {
+      text-align: right;
+      width: 100%;
+    }
   }
 `;
 
@@ -69,7 +69,7 @@ const StyledPost = styled.div`
   justify-content: space-evenly;
   transition: 0.2s;
   :hover {
-    opacity: 0.5;
+    opacity: 0.7;
   }
   a {
     text-decoration: none;
@@ -105,10 +105,7 @@ const StyledPost = styled.div`
     margin-top: 0.8%;
     align-items: center;
   }
-  span {
-    display: flex;
-    margin-right: 2%;
-  }
+
   p {
     justify-self: stretch;
     color: #d8d8d8;
@@ -120,12 +117,17 @@ const StyledPost = styled.div`
     cursor: pointer;
   }
   .fas {
-      color: #0099ff;
-      cursor: pointer;
+    /* color: #0099ff; */
+    color: #6495ed;
+    cursor: pointer;
   }
   .far {
-      color: white;
-      cursor: pointer;
+    margin: 0 2%;
+    color: white;
+    cursor: pointer;
+  }
+  span {
+    margin: 0 1.5%;
   }
 `;
 
@@ -236,19 +238,28 @@ const RoomBody = (props) => {
 
   useEffect(() => {
     // Determine the last number for pagination block
-    let last = Math.max (Math.min (props.page + 4, props.totalPages), Math.min (10, props.totalPages));
+    let last = Math.max(
+      Math.min(props.page + 4, props.totalPages),
+      Math.min(10, props.totalPages)
+    );
     //Determine the first number for pagination block
-    let first = Math.min (Math.max (props.page - 5, 1), Math.max (last - 9, 1));
+    let first = Math.min(Math.max(props.page - 5, 1), Math.max(last - 9, 1));
     //Create array of Links for pages if Link is for current page add classname active page
-    const pages = Array.from({length: last - first + 1}, (el, i) => <Link key={`page-${i + 1}`} className={`pag-link${i + 1 == props.page ? ' active-page' : ''}`} to={`/room/${props.id}/page/${first + i}`}>{first + i}</Link>);
+    const pages = Array.from({ length: last - first + 1 }, (el, i) => (
+      <Link
+        key={`page-${i + 1}`}
+        className={`pag-link${i + 1 == props.page ? ' active-page' : ''}`}
+        to={`/room/${props.id}/page/${first + i}`}
+      >
+        {first + i}
+      </Link>
+    ));
     setBlocks(pages);
   }, [props.page, props.totalPages]);
 
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-  
 
   const handleSortChange = (e) => {
     props.setSortValue(e.target.value);
@@ -270,28 +281,26 @@ const RoomBody = (props) => {
 
   // adds like to post
   const handleLike = (postID) => {
-    props.like(postID)
-      .then(() => {
-        props.fetchUsersLikedPosts();
-        if (props.sortValue == 'Recent') {
-          props.fetchPostByRoom(props.id, props.page);
-        } else {
-          props.fetchPostByRoomByPopular(props.id, props.page);
-        }
-      });
+    props.like(postID).then(() => {
+      props.fetchUsersLikedPosts();
+      if (props.sortValue == 'Recent') {
+        props.fetchPostByRoom(props.id, props.page);
+      } else {
+        props.fetchPostByRoomByPopular(props.id, props.page);
+      }
+    });
   };
 
   // removes like from post
   const handleUnlike = (postID) => {
-    props.unlike(postID)
-      .then(() => {
-        props.fetchUsersLikedPosts();
-        if (props.sortValue == 'Recent') {
-          props.fetchPostByRoom(props.id, props.page);
-        } else {
-          props.fetchPostByRoomByPopular(props.id, props.page);
-        }
-      });
+    props.unlike(postID).then(() => {
+      props.fetchUsersLikedPosts();
+      if (props.sortValue == 'Recent') {
+        props.fetchPostByRoom(props.id, props.page);
+      } else {
+        props.fetchPostByRoomByPopular(props.id, props.page);
+      }
+    });
   };
 
   const [input, setInput] = useState({
@@ -387,8 +396,22 @@ const RoomBody = (props) => {
         </div>
       </StyledPointer>
       <div className="prev-next-header">
-        {Number(props.page) > 1 ? <Link className='pag-prev-arrow' to={`/room/${props.id}/page/${Number(props.page) - 1}`}>Prev</Link> : null}
-        {blocks.length > 1 && Number(props.page) !== props.totalPages ? <Link className='pag-next-arrow' to={`/room/${props.id}/page/${Number(props.page) + 1}`}>Next</Link> : null}
+        {Number(props.page) > 1 ? (
+          <Link
+            className="pag-prev-arrow"
+            to={`/room/${props.id}/page/${Number(props.page) - 1}`}
+          >
+            Prev
+          </Link>
+        ) : null}
+        {blocks.length > 1 && Number(props.page) !== props.totalPages ? (
+          <Link
+            className="pag-next-arrow"
+            to={`/room/${props.id}/page/${Number(props.page) + 1}`}
+          >
+            Next
+          </Link>
+        ) : null}
       </div>
       {props.posts.map((post, index) => {
         return (
@@ -402,23 +425,27 @@ const RoomBody = (props) => {
                 <h3> {post.title} </h3>
                 <p> {post.description} </p>
               </Link>
-              <p
-                className="single-post-footer"
-              >
-                <span>
-                  {props.usersLikedPosts.find((item) => item.post_id === post.id) ? (
-                    <i
-                      className="fas fa-chevron-up"
-                      onClick={() => handleUnlike(post.id)}
-                    >{post.likes}</i>
-                  ) : (
+              <p className="single-post-footer">
+                {props.usersLikedPosts.find(
+                  (item) => item.post_id === post.id
+                ) ? (
+                  <i
+                    className="fas fa-chevron-up"
+                    onClick={() => handleUnlike(post.id)}
+                  >
+                    {post.likes}
+                  </i>
+                ) : (
+                  <span>
                     <i
                       className="fas far fa-chevron-up"
                       onClick={() => handleLike(post.id)}
-                    >{post.likes}</i>
-                  )}
-                </span>
-                
+                    >
+                      {post.likes}
+                    </i>{' '}
+                  </span>
+                )}
+
                 <span>
                   <i className="far fa-comment">{post.comments}</i>
                 </span>
@@ -428,11 +455,25 @@ const RoomBody = (props) => {
         );
       })}
       <div className="pagination">
-        {Number(props.page) > 1 ? <Link className='pag-prev-arrow' to={`/room/${props.id}/page/${Number(props.page) - 1}`}>Prev</Link> : null}
+        {Number(props.page) > 1 ? (
+          <Link
+            className="pag-prev-arrow"
+            to={`/room/${props.id}/page/${Number(props.page) - 1}`}
+          >
+            Prev
+          </Link>
+        ) : null}
         {blocks.map((page) => {
           return page;
         })}
-        {blocks.length > 1 && Number(props.page) !== props.totalPages ? <Link className='pag-next-arrow' to={`/room/${props.id}/page/${Number(props.page) + 1}`}>Next</Link> : null}
+        {blocks.length > 1 && Number(props.page) !== props.totalPages ? (
+          <Link
+            className="pag-next-arrow"
+            to={`/room/${props.id}/page/${Number(props.page) + 1}`}
+          >
+            Next
+          </Link>
+        ) : null}
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -500,7 +541,7 @@ const mapStateToProps = (state) => {
     posts: state.posts,
     rooms: state.rooms,
     usersLikedPosts: state.usersLikedPosts,
-    totalPages: state.totalPages
+    totalPages: state.totalPages,
   };
 };
 

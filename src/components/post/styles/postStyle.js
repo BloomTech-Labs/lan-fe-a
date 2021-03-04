@@ -116,7 +116,8 @@ const PostContainer = styled.div`
             margin-right: 4px;
           }
           .fa-chevron-up {
-            color: #0099ff;
+            /* color: #0099ff; */
+            color: #6495ed;
             cursor: pointer;
             transition: 0.1s;
           }
@@ -130,7 +131,8 @@ const PostContainer = styled.div`
           }
 
           .blue {
-            color: #0099ff;
+            /* color: #0099ff; */
+            color: #6495ed;
           }
         }
       }
