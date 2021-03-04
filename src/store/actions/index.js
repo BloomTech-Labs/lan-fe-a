@@ -187,7 +187,7 @@ export const updatePost = (userID, postID, newDescription) => (dispatch) => {
 
 // Deletes a post
 export const deletePost = (postID) => (dispatch) => {
-  axios
+  return axios
     .delete(`${BACKEND_URL}/api/post/delete/${postID}`)
     .then(() => toast.success('Your post was successfully deleted.'))
     .catch(() => toast.error('Hmm, there was a problem deleting your post.'));
