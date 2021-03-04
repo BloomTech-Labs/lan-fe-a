@@ -45,11 +45,6 @@ const UserContainer = styled.div`
             font-weight: 700;
             color: #ffffff;
           }
-
-          .career-coach {
-            background: #ffcb37;
-            color: #23272a;
-          }
         }
 
         .statistics {
@@ -116,17 +111,17 @@ const UserContainer = styled.div`
 
       :nth-child(1) {
         border-bottom: ${(props) =>
-          props.tab === 'Posts' ? '2px solid dimgray' : ''};
+    props.tab === 'Posts' ? '2px solid dimgray' : ''};
       }
 
       :nth-child(2) {
         border-bottom: ${(props) =>
-          props.tab === 'Comments' ? '2px solid dimgray' : ''};
+    props.tab === 'Comments' ? '2px solid dimgray' : ''};
       }
 
       :nth-child(3) {
         border-bottom: ${(props) =>
-          props.tab === 'Saved' ? '2px solid dimgray' : ''};
+    props.tab === 'Saved' ? '2px solid dimgray' : ''};
       }
     }
   }

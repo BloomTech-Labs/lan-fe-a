@@ -147,20 +147,6 @@ const Post = (props) => {
                   </p>
                 )}
               </div>
-              <div className='labels'>
-                {props.currentPost.track &&
-                  props.currentPost.track === 'Career Coach' && (
-                  <button className='career-coach'>CAREER COACH</button>
-                )}
-                {props.currentPost.track &&
-                  props.currentPost.track !== 'Career Coach' && (
-                  <button>{props.currentPost.track.toUpperCase()}</button>
-                )}
-
-                {props.currentPost.category && (
-                  <button>{props.currentPost.category.toUpperCase()}</button>
-                )}
-              </div>
               {props.currentPost.title && (
                 <p className='question'>{props.currentPost.title}</p>
               )}

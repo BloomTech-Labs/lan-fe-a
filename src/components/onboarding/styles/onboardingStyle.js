@@ -123,29 +123,6 @@ const OnboardingContainer = styled.div`
         }
     }
 
-    .career-coach {
-        margin-bottom: 32px;
-        background: none;
-        border: none;
-        font-family: 'Nunito', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: #ffffff;
-        cursor: pointer;
-
-        i {
-            margin-left: 4px;
-            font-size: 0.625rem;
-            transition: 0.25s;
-        }
-
-        :hover {
-            i {
-                margin-left: 8px;
-            }
-        }
-    }
-
     .continue {
         width: 100%;
         display: flex;
