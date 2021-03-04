@@ -40,7 +40,7 @@ const Onboarding = props => {
   return (
     <OnboardingContainer tracks={tracks}>
       {props.user.displayName && <h1>{props.user.displayName.split(' ')[0]}, what track are you in?</h1>}
-      <p className='instructions'>The questions and replies that you post will automatically be tagged with the track you are in. If you are not in any cohort, choose None.</p>
+      <p className='instructions'>In the future we plan to make resources relevent to your track more readily available. If you are not in any cohort, choose None.</p>
       <div className='tracks'>
         <button className='track' onClick={() => onClick('WEB')}>Web Development</button>
         <button className='track' onClick={() => onClick('DS')}>Data Science</button>

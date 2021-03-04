@@ -77,7 +77,7 @@ const AllRoomsDashboard = props => {
                       <p>This is a great question 😊 Here are a few reasons why we decided not to use a third-party app:</p>
                       <ul>
                         <li>Slack—and a few other community platforms—are very synchronous, in nature. This means that if you don’t login or open the app for a few days, you might completely miss a conversation that could have had a huge impact on you, or your career.</li>
-                        <li>Other community platforms have poor search capabilities. Search is important because fatigue is real, and nobody can hope to answer the same questions over and over again.</li>
+                        <li>Other community platforms have poor search capabilities. Search is important because fatigue is real, and nobody can hope to provide the same material over and over again ad stay useful.</li>
                         <li>Lastly, we think that it is both good and important to build things 🛠</li>
                       </ul>
                       <div className='double-button-container'>
@@ -91,8 +91,8 @@ const AllRoomsDashboard = props => {
                       <h2>How does it work?</h2>
                       <p>We want to keep this simple and clean 🧼 Here are a few ways to engage:</p>
                       <ul>
-                        <li>Post a question—or share information and resources—using the button in the upper-right corner of the webpage.</li>
-                        <li>Upvote a post that you find helpful, and it will move higher in the queue with the “Top Posts” filter applied.</li>
+                        <li>Create a post in a relevent room or share information and resources related to a post in the comments.</li>
+                        <li>Upvote a post that you find helpful, and it will move higher in the queue with the “Popular Posts” filter applied.</li>
                         <li>Comment on posts to say thanks, to ask clarifying questions, or to engage in discussion.</li>
                       </ul>
                       <p>That’s basically it. We’re totally open to building new features. Just email <a href='mailto:alumni@lambdaschool.com'>alumni@lambdaschool.com</a> and we’ll get back to you.</p>
