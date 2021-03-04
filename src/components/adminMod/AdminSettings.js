@@ -16,7 +16,6 @@ const StyledAdminHeader = styled.div`
   display: flex;
   width: 100%;
   justify-content: baseline;
-  /* border: 1px solid grey; */
   h2 {
     margin-right: 42%;
   }
@@ -52,6 +51,33 @@ const StyledRoomContainer = styled.div`
     width: 98%;
     padding: 2%;
     font-size: 1.6rem;
+  }
+  .create-new-room {
+    form {
+      border-radius: 12px;
+      background-color: #141414;
+      padding: 2.8%;
+      margin: 2%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    button {
+      width: 15%;
+      margin-top: 1.5%;
+      margin-left: 5%;
+      padding: 8px 12px;
+      background: linear-gradient(to right, #141414, #212121, #282828);
+      border: 1px solid darkgrey;
+      border-radius: 5px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      color: #ffffff;
+      cursor: pointer;
+      transition: 0.25s;
+      :hover {
+        opacity: 0.5;
+      }
+    }
   }
 `;
 

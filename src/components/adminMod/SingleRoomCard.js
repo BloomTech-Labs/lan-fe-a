@@ -17,11 +17,12 @@ const StyledRoom = styled.div`
   h4 {
     width: 98%;
     color: white;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 500;
+    margin: 1% 0;
   }
   p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     color: lightgrey;
   }
@@ -50,7 +51,6 @@ const StyledRoom = styled.div`
       min-height: 44px;
       min-width: 100%;
       max-width: 100%;
-      /* height: 288px; */
       padding: 10px;
       background-color: #242323;
       border: 1px solid #808080;
@@ -59,6 +59,7 @@ const StyledRoom = styled.div`
       font-size: 1rem;
       font-weight: 500;
       color: #808080;
+      /* height: 288px; */
 
       ::placeholder {
         color: dimgray;
@@ -66,21 +67,28 @@ const StyledRoom = styled.div`
     }
   }
   .button-wrap {
-    margin-bottom: 2.8%;
+    margin-bottom: 1%;
   }
   button {
-    margin-top: 1.5%;
-    margin-right: 3%;
+    width: 15%;
+    margin: 1% 0.5%;
     padding: 8px 12px;
-    background-color: #212529;
-    box-shadow: 2px 2px 8px #212529;
+    background: linear-gradient(to right, #141414, #212121, #282828);
     border: 1px solid #707b7c;
     border-radius: 5px;
     font-family: 'Nunito', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: 700;
     color: #ffffff;
     cursor: pointer;
     transition: 0.25s;
+    :first-of-type {
+      background-color: #f9fcff;
+      background-image: linear-gradient(147deg, #f9fcff 8%, #dee4ea 74%);
+      color: black;
+      font-size: 1rem;
+      font-weight: 700;
+    }
     :hover {
       opacity: 0.5;
     }

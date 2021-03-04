@@ -105,7 +105,6 @@ const SingleFlaggedComment = (props) => {
   return (
     <ModCmtStyledRoom>
       <div className="not-editable">
-        {/* <i class="far fa-comment"></i> */}
         <p>
           <i class="far fa-comments"></i> {comment.comment}
         </p>

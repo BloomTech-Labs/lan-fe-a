@@ -11,31 +11,53 @@ const StyledUser = styled.div`
   color: #000000;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  .user-infor-wrapper{
+  .user-infor-wrapper {
     display: flex;
     margin: 3% auto;
   }
-  .infor-card{
+  .infor-card {
     display: flex;
     flex-direction: column;
     width: 55%;
     margin-left: 3%;
-    /* margin: 0 auto; */
   }
   .user-card {
     display: flex;
     width: 95%;
     flex-direction: column;
+    button {
+      background: linear-gradient(to right, #141414, #212121, #282828);
+      color: #ffffff;
+      border: 1px solid darkgrey;
+      margin: 2% 0;
+      padding: 8px 12px;
+      border-radius: 3px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.25s;
+      :first-of-type {
+        background-color: #f9fcff;
+        background-image: linear-gradient(147deg, #f9fcff 5%, #dee4ea 74%);
+        color: black;
+        font-weight: 700;
+      }
+      :last-child {
+        background: linear-gradient(to right, #141414, #212121, #282828);
+        font-weight: 500;
+      }
+      :hover {
+        opacity: 0.5;
+      }
+    }
   }
   .drop-down {
-    width: 97%;
     display: flex;
-    margin-left: 3.2%;
+    margin: 2% 0;
     height: 35px;
-    background: #2c2f33;
+    background: #212121;
     color: white;
     border-radius: 3px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   .update-role-status {
     color: black;
@@ -72,23 +94,6 @@ const StyledUser = styled.div`
     color: lightgrey;
     margin-left: 1%;
   }
-  button {
-    margin-top: 1.5%;
-    margin-left: 3%;
-    padding: 8px 12px;
-    background-color: #212529;
-    box-shadow: 2px 2px 8px #212529;
-    border: 1px solid #707b7c;
-    border-radius: 3px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.9rem;
-    color: #ffffff;
-    cursor: pointer;
-    transition: 0.25s;
-    :hover {
-      opacity: 0.5;
-    }
-  }
 `;
 
 const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
@@ -118,29 +123,29 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
 
   return (
     <StyledUser>
-      <div className='user-card-wrapper'>
-        <div className='user-infor-wrapper'>
-          <img className='profile-photo' src={user.profile_picture} />
-          <div className='infor-card'>
+      <div className="user-card-wrapper">
+        <div className="user-infor-wrapper">
+          <img className="profile-photo" src={user.profile_picture} />
+          <div className="infor-card">
             <h4>Username - {user.display_name}</h4>
             <p>Email- {user.email}</p>
           </div>
         </div>
-        <div className='user-card'>
+        <div className="user-card">
           <select
             value={roleId}
             onChange={(e) => setRoleId(e.target.value)}
-            name='user_role'
-            id='user_role'
-            className='drop-down'
+            name="user_role"
+            id="user_role"
+            className="drop-down"
           >
-            <option value='1'>Alumni</option>
-            <option value='2'>Moderator</option>
-            <option value='3'>Admin</option>
+            <option value="1">Alumni</option>
+            <option value="2">Moderator</option>
+            <option value="3">Admin</option>
           </select>
           <button onClick={handleSubmit}>Change Role</button>
           <button onClick={handleDeleteUser}>Delete User</button>
-          <span className='update-role-status'>{status}</span>
+          <span className="update-role-status">{status}</span>
         </div>
       </div>
     </StyledUser>
