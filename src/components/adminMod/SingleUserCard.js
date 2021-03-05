@@ -59,10 +59,6 @@ const StyledUser = styled.div`
     color: white;
     border-radius: 3px;
   }
-  .update-role-status {
-    color: black;
-    padding-left: 7px;
-  }
 
   .profile-photo {
     height: 52px;
@@ -98,16 +94,14 @@ const StyledUser = styled.div`
 
 const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
   const [roleId, setRoleId] = useState(user.role_id);
-  const [status, setStatus] = useState('');
 
   const handleSubmit = () => {
     updateUserRole(user.id, roleId)
       .then(() => {
-        setStatus('User Role Updated');
         fetchUsers();
       })
       .catch(() => {
-        setStatus('Unable To Update Role');
+        console.log('Unable to update user');
       });
   };
 
@@ -145,7 +139,6 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
           </select>
           <button onClick={handleSubmit}>Change Role</button>
           <button onClick={handleDeleteUser}>Delete User</button>
-          <span className='update-role-status'>{status}</span>
         </div>
       </div>
     </StyledUser>
