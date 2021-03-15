@@ -63,7 +63,7 @@ export const deleteUser = (id) => (dispatch) => {
 
 // Fetches a user's liked posts
 export const fetchUsersLikedPosts = () => (dispatch) => {
-  axios
+  return axios
     .get(`${BACKEND_URL}/api/user/post/like`)
     .then((response) =>
       dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data })
@@ -216,22 +216,6 @@ export const fetchPost = (postID) => (dispatch) => {
     );
 };
 
-// Fetches posts, ordered by most recent
-export const fetchRecent = () => (dispatch) => {
-  axios
-    .post(`${BACKEND_URL}/api/post/recent`)
-    .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
-    .catch(() => toast.error('Shoot, there was a problem fetching posts.'));
-};
-
-// Fetches posts, ordered by number of likes
-export const fetchPopular = () => (dispatch) => {
-  axios
-    .post(`${BACKEND_URL}/api/post/popular`)
-    .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
-    .catch(() => toast.error('Uh oh! There was a problem fetching posts.'));
-};
-
 // Likes a post
 export const like = (postID) => (dispatch) => {
   return axios
@@ -297,19 +281,9 @@ export const fetchPostCommentsByPopular = (postID) => (dispatch) => {
 };
 
 // Fetches all posts in a specific room
-export const fetchPostByRoom = (roomID, page) => (dispatch) => {
+export const fetchPostByRoom = (roomID, sort, page, limit=10) => (dispatch) => {
   axios
-    .get(`${BACKEND_URL}/api/room/${roomID}/recent?page=${page}&limit=10`)
-    .then((res) => {
-      dispatch({ type: 'SET_POSTS', payload: res.data });
-    })
-    .catch(() => toast.error('Oh no! Could not fetch posts.'));
-};
-
-// Fetches all posts in a specific room
-export const fetchPostByRoomByPopular = (roomID, page) => (dispatch) => {
-  axios
-    .get(`${BACKEND_URL}/api/room/${roomID}/popular?page=${page}&limit=10`)
+    .get(`${BACKEND_URL}/api/room/posts?filter[posts.visible]=1&filter[rooms_to_posts.room_id]=${roomID}&sort=${sort}&page[number]=${page}&page[size]=${limit}`)
     .then((res) => {
       dispatch({ type: 'SET_POSTS', payload: res.data });
     })

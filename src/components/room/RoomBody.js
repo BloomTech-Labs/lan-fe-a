@@ -14,7 +14,6 @@ import {
   unlike,
   postQuestion,
   fetchPostByRoom,
-  fetchPostByRoomByPopular,
   fetchUsersLikedPosts,
 } from '../../store/actions';
 
@@ -122,7 +121,6 @@ const StyledPost = styled.div`
     cursor: pointer;
   }
   .far {
-    margin: 0 2%;
     color: white;
     cursor: pointer;
   }
@@ -261,12 +259,20 @@ const RoomBody = (props) => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  useEffect(() => {
+    if (props.sortValue == 'Recent') {
+      props.fetchPostByRoom(props.id, 'posts.created_at', props.page);
+    } else {
+      props.fetchPostByRoom(props.id, 'posts.likes', props.page);
+    }
+  }, [props.usersLikedPosts]);
+
   const handleSortChange = (e) => {
     props.setSortValue(e.target.value);
     if (e.target.value === 'Recent') {
-      props.fetchPostByRoom(props.id, props.page);
+      props.fetchPostByRoom(props.id, 'posts.created_at', props.page);
     } else if (e.target.value === 'Popular') {
-      props.fetchPostByRoomByPopular(props.id, props.page);
+      props.fetchPostByRoom(props.id, 'posts.likes', props.page);
     } else {
       props.setSortValue('Recent');
     }
@@ -283,11 +289,6 @@ const RoomBody = (props) => {
   const handleLike = (postID) => {
     props.like(postID).then(() => {
       props.fetchUsersLikedPosts();
-      if (props.sortValue == 'Recent') {
-        props.fetchPostByRoom(props.id, props.page);
-      } else {
-        props.fetchPostByRoomByPopular(props.id, props.page);
-      }
     });
   };
 
@@ -295,11 +296,6 @@ const RoomBody = (props) => {
   const handleUnlike = (postID) => {
     props.unlike(postID).then(() => {
       props.fetchUsersLikedPosts();
-      if (props.sortValue == 'Recent') {
-        props.fetchPostByRoom(props.id, props.page);
-      } else {
-        props.fetchPostByRoomByPopular(props.id, props.page);
-      }
     });
   };
 
@@ -345,9 +341,9 @@ const RoomBody = (props) => {
             description: '',
           });
           if (props.sortValue == 'Recent') {
-            props.fetchPostByRoom(props.id, props.page);
+            props.fetchPostByRoom(props.id, 'posts.created_at', props.page);
           } else {
-            props.fetchPostByRoomByPopular(props.id, props.page);
+            props.fetchPostByRoom(props.id, 'posts.likes', props.page);
           }
           closeModal();
         })
@@ -413,10 +409,11 @@ const RoomBody = (props) => {
           </Link>
         ) : null}
       </div>
-      {props.posts.map((post, index) => {
+      {props.posts.map((post) => {
         return (
-          <div key={`post-id-${post.id}`}>
-            <StyledPost className="post_card" key={index}>
+          <div key={`post-id-${post.post_id}`}>
+            {console.log(post)}
+            <StyledPost className="post_card">
               <Link to={`/post/${post.id}`}>
                 <div className="profile">
                   <img className="profile-img" src={post.profile_picture} />
@@ -427,19 +424,21 @@ const RoomBody = (props) => {
               </Link>
               <p className="single-post-footer">
                 {props.usersLikedPosts.find(
-                  (item) => item.post_id === post.id
+                  (item) => item.post_id == post.post_id
                 ) ? (
-                    <i
-                      className="fas fa-chevron-up"
-                      onClick={() => handleUnlike(post.id)}
-                    >
-                      {post.likes}
-                    </i>
+                    <span>
+                      <i
+                        className="fas fa-chevron-up"
+                        onClick={() => handleUnlike(post.post_id)}
+                      >
+                        {post.likes}
+                      </i>
+                    </span>
                   ) : (
                     <span>
                       <i
                         className="fas far fa-chevron-up"
-                        onClick={() => handleLike(post.id)}
+                        onClick={() => handleLike(post.post_id)}
                       >
                         {post.likes}
                       </i>{' '}
@@ -550,6 +549,5 @@ export default connect(mapStateToProps, {
   unlike,
   postQuestion,
   fetchPostByRoom,
-  fetchPostByRoomByPopular,
   fetchUsersLikedPosts,
 })(RoomBody);

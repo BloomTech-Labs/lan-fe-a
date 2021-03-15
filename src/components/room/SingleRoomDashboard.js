@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {
   fetchPostByRoom,
-  fetchPostByRoomByPopular,
   fetchRooms,
 } from '../../store/actions';
 import { useParams } from 'react-router-dom';
@@ -23,9 +22,9 @@ const SingleRoomDashboard = (props) => {
   }, []);
   useEffect(() => {
     if (sortValue == 'Recent') {
-      props.fetchPostByRoom(id, page);
+      props.fetchPostByRoom(id, 'posts.created_at', page);
     } else {
-      props.fetchPostByRoomByPopular(id, page);
+      props.fetchPostByRoom(id, 'posts.likes', page);
     }
   }, [id, page]);
   return (
@@ -54,6 +53,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   fetchPostByRoom,
-  fetchPostByRoomByPopular,
   fetchRooms,
 })(SingleRoomDashboard);
