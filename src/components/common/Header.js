@@ -34,6 +34,18 @@ const Header = props => {
     }
   });
 
+  const viewModeDropdownHandler = e => {
+    setViewModeDropdown(!viewModeDropdown);
+       if (hamburgerMenu) 
+         setHamburgerMenu(false);
+  }
+
+  const profileDropdownHandler = e => {
+    setHamburgerMenu(!hamburgerMenu);
+       if (viewModeDropdown) 
+         setViewModeDropdown(false);
+  }
+  
   return (
     <HeaderContainer>
       <div className='logo' onClick={() => {
@@ -48,10 +60,9 @@ const Header = props => {
         <button type='submit'><i className='fas fa-search'></i></button>
       </form>
 
-
-      <img src={burgerMenu} alt='dropdown menu' width="20px" onClick={() => setViewModeDropdown(!viewModeDropdown)}/>
+      <img src={burgerMenu} alt='dropdown menu' width="20px" onClick={viewModeDropdownHandler}/>
       
-      <img className='profile-picture' src={props.user.profilePicture} alt='profile icon' onClick={() => setHamburgerMenu(!hamburgerMenu)}/>
+      <img className='profile-picture' src={props.user.profilePicture} alt='profile icon' onClick={profileDropdownHandler}/>
 
       {hamburgerMenu && <div className='dropdown'>
         <p onClick={() => props.history.push('/faq')}><i className='fas fa-question'></i>FAQ</p>
