@@ -7,13 +7,17 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/theme';
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App /> 
+      </ThemeProvider>
     </Router>
   </Provider>,
   document.getElementById('root')

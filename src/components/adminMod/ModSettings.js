@@ -6,6 +6,8 @@ import { fetchFlaggedPosts, fetchFlaggedComments } from '../../store/actions';
 import SingleFlaggedPost from './SingleFlaggedPost';
 import SingleFlaggedComment from './SingleFlaggedComment';
 
+import { Button } from '../../styles/Button';
+
 const ModStyledAdminHeader = styled.div`
   display: flex;
   align-items: center;
@@ -18,7 +20,7 @@ const ModStyledAdminHeader = styled.div`
   h2 {
     font-size: 2.2rem;
   }
-  button {
+  /* button {
     padding: 12px 26px;
     margin-top: 16px;
     background: linear-gradient(to right, #000000, #212121);
@@ -34,14 +36,14 @@ const ModStyledAdminHeader = styled.div`
     :first-child {
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
-    }
+    } */
     :last-child {
       border-top-right-radius: 10px;
       border-bottom-right-radius: 10px;
     }
-    :hover {
+    /* :hover {
       opacity: 0.5;
-    }
+    } */
   }
 `;
 
@@ -78,12 +80,12 @@ const AdminSettings = (props) => {
         <ModStyledAdminHeader>
           <h2>Moderator Settings</h2>
           <div className="display-name">
-            <button className="update" onClick={handleFetchPosts}>
+            <Button className="update" onClick={handleFetchPosts}>
               Modify Posts
-            </button>
-            <button className="update" onClick={handleFetchComments}>
+            </Button>
+            <Button className="update" onClick={handleFetchComments}>
               Modify Comments
-            </button>
+            </Button>
           </div>
         </ModStyledAdminHeader>
         {props.user.role_id > 1 ? (

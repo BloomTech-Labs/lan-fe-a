@@ -4,6 +4,7 @@ import { fetchUser, logOut, setSearch, fetchSearch } from '../../store/actions';
 import HeaderContainer from './styles/headerStyle';
 import adminLogo from '../../img/admin.png';
 import AlumniLogo from'../../img/AlumniLogo.svg';
+import burgerMenu from '../../img/burgerMenu.svg';
 
 const Header = props => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
@@ -39,7 +40,10 @@ const Header = props => {
         <button type='submit'><i className='fas fa-search'></i></button>
       </form>
 
-      <img className='profile-picture' src={props.user.profilePicture} alt='profile icon' onClick={() => setHamburgerMenu(!hamburgerMenu)} />
+
+      <img src={burgerMenu} alt='Dropdown menu' width="20px" onClick={() => setHamburgerMenu(!hamburgerMenu)}/>
+      
+      <img className='profile-picture' src={props.user.profilePicture} alt='profile icon' />
 
       {hamburgerMenu && <div className='dropdown'>
         <p onClick={() => props.history.push('/faq')}><i className='fas fa-question'></i>FAQ</p>
