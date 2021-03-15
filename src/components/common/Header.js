@@ -8,6 +8,7 @@ import burgerMenu from '../../img/burgerMenu.svg';
 
 const Header = props => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
+  const [viewModeDropdown, setViewModeDropdown] = useState(false)
   const [searchInput, setSearchInput] = useState('');
   useEffect(() => {
     if (Object.keys(props.user).length === 0) {
@@ -26,6 +27,13 @@ const Header = props => {
     props.history.push('/full-search');
   };
 
+  window.addEventListener('click', e => {
+    if (!e.srcElement.alt) {
+      setViewModeDropdown(false);
+      setHamburgerMenu(false);
+    }
+  });
+
   return (
     <HeaderContainer>
       <div className='logo' onClick={() => {
@@ -41,21 +49,30 @@ const Header = props => {
       </form>
 
 
-      <img src={burgerMenu} alt='Dropdown menu' width="20px" onClick={() => setHamburgerMenu(!hamburgerMenu)}/>
+      <img src={burgerMenu} alt='dropdown menu' width="20px" onClick={() => setViewModeDropdown(!viewModeDropdown)}/>
       
-      <img className='profile-picture' src={props.user.profilePicture} alt='profile icon' />
+      <img className='profile-picture' src={props.user.profilePicture} alt='profile icon' onClick={() => setHamburgerMenu(!hamburgerMenu)}/>
 
       {hamburgerMenu && <div className='dropdown'>
         <p onClick={() => props.history.push('/faq')}><i className='fas fa-question'></i>FAQ</p>
         <p onClick={() => props.history.push(`/user/${props.user.id}`)}><i className='fas fa-user'></i>My Profile</p>
         <p onClick={() => props.history.push('/settings')}><i className='fas fa-cog'></i>Settings</p>
+        {/* {props.user.role_id === 3 ? (
+          <p onClick={() => props.history.push('/admin-settings')}><img src={adminLogo} id='admin' />Admin Settings</p>
+        ) : ''}
+        {props.user.role_id > 1 ? (
+          <p onClick={() => props.history.push('/mod-settings')}><img src={adminLogo} id='mod' />Moderator Settings</p>
+        ) : ''} */}
+        <p onClick={() => props.logOut(props.history)}><i className='fas fa-sign-out-alt'></i>Log Out</p>
+      </div>}
+
+      {viewModeDropdown && <div className='dropdown'>
         {props.user.role_id === 3 ? (
           <p onClick={() => props.history.push('/admin-settings')}><img src={adminLogo} id='admin' />Admin Settings</p>
         ) : ''}
         {props.user.role_id > 1 ? (
           <p onClick={() => props.history.push('/mod-settings')}><img src={adminLogo} id='mod' />Moderator Settings</p>
         ) : ''}
-        <p onClick={() => props.logOut(props.history)}><i className='fas fa-sign-out-alt'></i>Log Out</p>
       </div>}
     </HeaderContainer>
   );
