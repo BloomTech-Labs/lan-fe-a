@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { updateUserRole, fetchUsers, deleteUser } from '../../store/actions';
 import styled from 'styled-components';
+import { Button } from '../../styles/Button';
 
 const StyledUser = styled.div`
   width: 45%;
@@ -25,7 +26,7 @@ const StyledUser = styled.div`
     display: flex;
     width: 95%;
     flex-direction: column;
-    button {
+    /* button {
       background: linear-gradient(to right, #141414, #212121, #282828);
       color: #ffffff;
       border: 1px solid darkgrey;
@@ -49,7 +50,7 @@ const StyledUser = styled.div`
       :hover {
         opacity: 0.5;
       }
-    }
+    } */
   }
   .drop-down {
     display: flex;
@@ -137,8 +138,8 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
             <option value='2'>Moderator</option>
             <option value='3'>Admin</option>
           </select>
-          <button onClick={handleSubmit}>Change Role</button>
-          <button onClick={handleDeleteUser}>Delete User</button>
+          <Button onClick={handleSubmit}>Change Role</Button>
+          <Button onClick={handleDeleteUser}>Delete User</Button>
         </div>
       </div>
     </StyledUser>

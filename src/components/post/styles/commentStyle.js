@@ -48,7 +48,7 @@ const CommentContainer = styled.div`
     right: 10px;
     z-index: 10;
 
-    a,
+    /* a,
     button {
       text-decoration: none;
       border-bottom: 1px solid #23272a;
@@ -74,7 +74,7 @@ const CommentContainer = styled.div`
       :hover {
         opacity: 0.5;
       }
-    }
+    } */
   }
 
   .right-section {

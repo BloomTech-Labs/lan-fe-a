@@ -19,6 +19,7 @@ import moment from 'moment';
 import Header from '../common/Header';
 import Comment from './Comment';
 import PostContainer from './styles/postStyle';
+import { Button } from '../../styles/Button';
 
 const Post = (props) => {
   const postID = Number(props.match.params.id);
@@ -166,7 +167,7 @@ const Post = (props) => {
                       value={postInput}
                       onChange={(e) => setPostInput(e.target.value)}
                     />
-                    <button>Update Post</button>
+                    <Button>Update Post</Button>
                   </form>
                 )}
                 {console.log('post:', props.currentPost, 'user:', props.user)}
@@ -174,7 +175,7 @@ const Post = (props) => {
               {props.currentPost.user_id === props.user.id ? (
                 <div>
                   {editing ? (
-                    <button onClick={() => setEditing(false)}>Cancel</button>
+                    <Button onClick={() => setEditing(false)}>Cancel</Button>
                   ) : (
                     ''
                   )}{' '}
@@ -226,21 +227,21 @@ const Post = (props) => {
             {moreOptions && (
               <div className='dropdown'>
                 {props.currentPost.user_id === props.user.id ? (
-                  <Link to='/' onClick={() => deletePost(postID)}>
+                  <Button as={Link} to='/' onClick={() => deletePost(postID)}>
                     Delete Post
-                  </Link>
+                  </Button>
                 ) : (
                   ''
                 )}
                 {props.currentPost.user_id === props.user.id ? (
-                  <button onClick={() => setEditing(true)}>Edit</button>
+                  <Button onClick={() => setEditing(true)}>Edit</Button>
                 ) : (
                   ''
                 )}
                 {props.currentPost.user_id !== props.user.id ? (
-                  <button className='flag-button' onClick={handleFlaggingPost}>
+                  <Button className='flag-button' onClick={handleFlaggingPost}>
                     Flag Post
-                  </button>
+                  </Button>
                 ) : (
                   ''
                 )}
@@ -259,7 +260,7 @@ const Post = (props) => {
             />
             {error && <p className='error'>{error}</p>}
             <div className='button'>
-              <button type='submit'>Submit</button>
+              <Button type='submit'>Submit</Button>
             </div>
           </form>
 

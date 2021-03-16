@@ -69,7 +69,7 @@ const SettingsContainer = styled.div`
         }
       }
     }
-    button {
+    /* button {
       padding: 12px 26px;
       margin-top: 16px;
       background: linear-gradient(to right, #000000, #212121);
@@ -93,7 +93,7 @@ const SettingsContainer = styled.div`
       :hover {
         opacity: 0.5;
       }
-    }
+    } */
   }
 
   .update {
@@ -129,7 +129,7 @@ const SettingsContainer = styled.div`
       }
     }
 
-    button {
+    /* button {
       padding: 10px 24px;
       background: linear-gradient(to right, #0084ff, #0099ff);
       border: none;
@@ -143,7 +143,7 @@ const SettingsContainer = styled.div`
       :hover {
         opacity: 0.5;
       }
-    }
+    } */
   }
 
   .track {
@@ -200,7 +200,7 @@ const SettingsContainer = styled.div`
       color: #ffffff;
     }
 
-    button {
+    /* button {
       padding: 10px 24px;
       background: linear-gradient(to right, #0084ff, #0099ff);
       border: none;
@@ -224,7 +224,7 @@ const SettingsContainer = styled.div`
           opacity: 0.5;
         }
       }
-    }
+    } */
   }
 
   @media (min-width: 768px) {

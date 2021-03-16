@@ -7,6 +7,7 @@ import {
   fetchFlaggedComments,
 } from '../../store/actions';
 import { Link } from 'react-router-dom';
+import { Button } from '../../styles/Button';
 
 const ModCmtStyledRoom = styled.div`
   padding: 2%;
@@ -41,7 +42,7 @@ const ModCmtStyledRoom = styled.div`
     .mod-cmt-button-wrapper {
       display: flex;
       justify-content: flex-end;
-      button {
+      /* button {
         width: 9%;
         margin-top: 1.5%;
         margin-right: 2%;
@@ -67,7 +68,7 @@ const ModCmtStyledRoom = styled.div`
         :hover {
           opacity: 0.5;
         }
-      }
+      } */
     }
   }
   h4 {
@@ -113,10 +114,11 @@ const SingleFlaggedComment = (props) => {
           Attached Post
         </Link>
         <div className="mod-cmt-button-wrapper">
-          <button onClick={() => handleResolveComment(comment.id)}>Keep</button>
-          <button onClick={() => handleArchiveComment(comment.id)}>
+          {/* these should eventually be switched to icons */}
+          <Button onClick={() => handleResolveComment(comment.id)}>Keep</Button>
+          <Button onClick={() => handleArchiveComment(comment.id)}>
             Delete
-          </button>
+          </Button>
         </div>
       </div>
     </ModCmtStyledRoom>

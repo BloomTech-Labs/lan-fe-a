@@ -5,7 +5,7 @@ export const Button = styled.button`
     border: none;
     margin: 1em;
     padding: 0.25em 1em;
-    border-radius: 3px;
+    border-radius: 5px;
 
     &:hover {
         background: ${props => props.theme.secondary.lightRed}

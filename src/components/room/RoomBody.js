@@ -17,6 +17,7 @@ import {
   fetchPostByRoomByPopular,
   fetchUsersLikedPosts,
 } from '../../store/actions';
+import { Button } from '../../styles/Button';
 
 const StyledRoomContainer = styled.div`
   width: 90%;
@@ -188,7 +189,7 @@ const StyledPointer = styled.div`
     display: flex;
     align-items: center;
   }
-  .create-post-button {
+  /* .create-post-button {
     display: flex;
     align-items: center;
     justify-self: center;
@@ -205,10 +206,10 @@ const StyledPointer = styled.div`
     border: 0.3px solid darkgrey;
     background: linear-gradient(to right, #000000, #212121);
     /* #424949 */
-    :hover {
+    /*:hover {
       opacity: 0.5;
     }
-  }
+  } */
 `;
 
 const customStyles = {
@@ -372,9 +373,9 @@ const RoomBody = (props) => {
           ))}
         {/* add return pointer to go back previous page */}
         <div className="single-room-navigation">
-          <button onClick={() => openModal()} className="create-post-button">
+          <Button onClick={() => openModal()} className="create-post-button">
             Create Post
-          </button>
+          </Button>
           <div className="filters">
             <label htmlFor="sort">SORT</label>
             <select
@@ -517,17 +518,17 @@ const RoomBody = (props) => {
             {error.description && <p className="error">{error.description}</p>}
 
             <div className="buttons">
-              <button
+              <Button
                 className="cancel-button"
                 type="button"
                 onClick={closeModal}
               >
                 Cancel
                 <i className="fas fa-times"></i>
-              </button>
-              <button type="submit">
+              </Button>
+              <Button type="submit">
                 Submit<i className="fas fa-check"></i>
-              </button>
+              </Button>
             </div>
           </form>
         </CreatePostContainer>

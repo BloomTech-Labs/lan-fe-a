@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { fetchRooms, updateRoom, deleteRoom } from '../../store/actions';
+import { Button } from '../../styles/Button';
 
 const StyledRoom = styled.div`
   /* width: 95%; */
@@ -69,7 +70,7 @@ const StyledRoom = styled.div`
   .button-wrap {
     margin-bottom: 1%;
   }
-  button {
+  /* button {
     width: 15%;
     margin: 1% 0.5%;
     padding: 8px 12px;
@@ -92,7 +93,7 @@ const StyledRoom = styled.div`
     :hover {
       opacity: 0.5;
     }
-  }
+  } */
 `;
 
 const SingleRoomCard = (props) => {
@@ -145,14 +146,14 @@ const SingleRoomCard = (props) => {
       <div className="not-editable">
         <h4>{item.room_name}</h4>
         <p>{item.description}</p>
-        <button onClick={editRoom}>Edit</button>
-        <button onClick={() => handleDeleteRoom(item.id)}>Delete</button>
+        <Button onClick={editRoom}>Edit</Button>
+        <Button onClick={() => handleDeleteRoom(item.id)}>Delete</Button>
       </div>
       {isEditable ? (
         <div className="editable">
           <div className="button-wrap">
-            <button onClick={handleUpdateSubmit}>Save</button>
-            <button onClick={handleUpdateCancel}>Cancel</button>
+            <Button onClick={handleUpdateSubmit}>Save</Button>
+            <Button onClick={handleUpdateCancel}>Cancel</Button>
           </div>
 
           <div className="input-wrap">

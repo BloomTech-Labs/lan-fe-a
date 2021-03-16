@@ -141,7 +141,7 @@ const PostContainer = styled.div`
       margin-right: 20px;
       z-index: 9999;
 
-      a,
+      /* a,
       button {
         text-decoration: none;
         border-bottom: 1px solid #23272a;
@@ -167,7 +167,7 @@ const PostContainer = styled.div`
         :hover {
           opacity: 0.5;
         }
-      }
+      } */
     }
   }
 
@@ -210,7 +210,7 @@ const PostContainer = styled.div`
       color: #ea4335;
     }
 
-    .button {
+    /* .button {
       display: flex;
       justify-content: flex-end;
 
@@ -227,11 +227,11 @@ const PostContainer = styled.div`
         transition: 0.25s;
         border: 1px solid grey;
         /* box-shadow: 3px 3px 6px #888888; */
-        :hover {
+        /*:hover {
           opacity: 0.5;
         }
       }
-    }
+    } */
   }
 
   .comments {

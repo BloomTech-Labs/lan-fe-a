@@ -11,6 +11,7 @@ import {
 } from '../../store/actions';
 import SingleUserCard from './SingleUserCard';
 import SingleRoomCard from './SingleRoomCard';
+import { Button } from '../../styles/Button';
 
 const StyledAdminHeader = styled.div`
   display: flex;
@@ -61,7 +62,7 @@ const StyledRoomContainer = styled.div`
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
-    button {
+    /* button {
       width: 15%;
       margin-top: 1.5%;
       margin-left: 5%;
@@ -77,7 +78,7 @@ const StyledRoomContainer = styled.div`
       :hover {
         opacity: 0.5;
       }
-    }
+    } */
   }
 `;
 
@@ -111,22 +112,22 @@ const AdminSettings = (props) => {
           <div className="admin-setting">
             <h2>Admin Settings</h2>
             <div className="display-name">
-              <button
-                className="update"
+              <Button
+                // className="update"
                 onClick={() => {
                   setCurrentMod('Users');
                 }}
               >
                 Modify Users
-              </button>
-              <button
-                className="update"
+              </Button>
+              <Button
+                // className="update"
                 onClick={() => {
                   setCurrentMod('Rooms');
                 }}
               >
                 Modify Rooms
-              </button>
+              </Button>
             </div>
           </div>
         </StyledAdminHeader>
@@ -169,7 +170,7 @@ const AdminSettings = (props) => {
                       name="description"
                       placeholder="Room Description"
                     />
-                    <button>Create Room</button>
+                    <Button>Create Room</Button>
                   </form>
                 </div>
                 {props.rooms.map((item) => {

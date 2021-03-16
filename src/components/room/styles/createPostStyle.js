@@ -77,7 +77,7 @@ const CreatePostContainer = styled.div`
       }
     }
 
-    .buttons {
+    /* .buttons {
       margin-top: 32px;
       display: flex;
       justify-content: flex-end;
@@ -131,7 +131,7 @@ const CreatePostContainer = styled.div`
           margin-left: 4px;
         }
       }
-    }
+    } */
   }
 
   @media (min-width: 768px) {

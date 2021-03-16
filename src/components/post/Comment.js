@@ -10,6 +10,8 @@ import {
 } from '../../store/actions';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
+import { Button } from '../../styles/Button'
+
 
 const Comment = (props) => {
   const [liked, setLiked] = useState(false);
@@ -108,21 +110,21 @@ const Comment = (props) => {
           {moreOptions && (
             <div className="commentdropdown">
               {props.comment.user_id === props.user.id ? (
-                <button onClick={() => removeComments(props.comment.id)}>
+                <Button onClick={() => removeComments(props.comment.id)}>
                   Delete Post
-                </button>
+                </Button>
               ) : (
                 ''
               )}
               {props.comment.user_id === props.user.id ? (
-                <button onClick={() => setEditing(true)}>Edit</button>
+                <Button onClick={() => setEditing(true)}>Edit</Button>
               ) : (
                 ''
               )}
               {props.comment.user_id !== props.user.id ? (
-                <button className="flag-button" onClick={handleFlaggingComment}>
+                <Button className="flag-button" onClick={handleFlaggingComment}>
                   Flag Post
-                </button>
+                </Button>
               ) : (
                 ''
               )}

@@ -7,6 +7,7 @@ import {
   resolvePost,
 } from '../../store/actions';
 import { Link } from 'react-router-dom';
+import { Button } from '../../styles/Button';
 
 const ModStyledRoom = styled.div`
   /* width: 100%; */
@@ -54,7 +55,7 @@ const ModStyledRoom = styled.div`
     justify-content: flex-end;
   }
 
-  button {
+  /* button {
     width: 9%;
     margin-top: 1.5%;
     margin-right: 2%;
@@ -80,7 +81,7 @@ const ModStyledRoom = styled.div`
     :hover {
       opacity: 0.5;
     }
-  }
+  } */
 `;
 
 const SingleFlaggedPost = (props) => {
@@ -117,12 +118,12 @@ const SingleFlaggedPost = (props) => {
         </Link>
         <p>{post.description}</p>
         <div className="mod-button-wrapper">
-          <button onClick={() => handleArchivePost(post.id)}>
+          <Button onClick={() => handleArchivePost(post.id)}>
             Delete Post
-          </button>
-          <button onClick={() => handleResolvePost(post.id)}>
+          </Button>
+          <Button onClick={() => handleResolvePost(post.id)}>
             Accept Post
-          </button>
+          </Button>
         </div>
       </div>
     </ModStyledRoom>
