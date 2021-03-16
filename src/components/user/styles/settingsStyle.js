@@ -69,31 +69,6 @@ const SettingsContainer = styled.div`
         }
       }
     }
-    /* button {
-      padding: 12px 26px;
-      margin-top: 16px;
-      background: linear-gradient(to right, #000000, #212121);
-      font-family: 'Nunito', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #ffffff;
-      cursor: pointer;
-      transition: 0.25s;
-      border: 1px solid grey;
-      height: 50px;
-      box-shadow: 3px 3px 6px #212121;
-      :first-child {
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-      }
-      :last-child {
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-      }
-      :hover {
-        opacity: 0.5;
-      }
-    } */
   }
 
   .update {
@@ -128,22 +103,6 @@ const SettingsContainer = styled.div`
         color: dimgray;
       }
     }
-
-    /* button {
-      padding: 10px 24px;
-      background: linear-gradient(to right, #0084ff, #0099ff);
-      border: none;
-      border-radius: 3px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.875rem;
-      color: #ffffff;
-      cursor: pointer;
-      transition: 0.25s;
-
-      :hover {
-        opacity: 0.5;
-      }
-    } */
   }
 
   .track {
@@ -199,32 +158,6 @@ const SettingsContainer = styled.div`
       font-weight: 500;
       color: #ffffff;
     }
-
-    /* button {
-      padding: 10px 24px;
-      background: linear-gradient(to right, #0084ff, #0099ff);
-      border: none;
-      border-radius: 3px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #ffffff;
-      transition: 0.25s;
-
-      :first-of-type {
-        margin-right: 8px;
-        background: #2c2f33;
-        color: dimgray;
-      }
-
-      :last-child {
-        cursor: pointer;
-
-        :hover {
-          opacity: 0.5;
-        }
-      }
-    } */
   }
 
   @media (min-width: 768px) {

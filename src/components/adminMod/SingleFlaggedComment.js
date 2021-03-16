@@ -42,33 +42,6 @@ const ModCmtStyledRoom = styled.div`
     .mod-cmt-button-wrapper {
       display: flex;
       justify-content: flex-end;
-      /* button {
-        width: 9%;
-        margin-top: 1.5%;
-        margin-right: 2%;
-        padding: 8px 12px;
-        box-shadow: 2px 2px 8px #212529;
-        border: 1px solid #808080;
-        border-radius: 5px;
-        font-family: 'Nunito', sans-serif;
-        font-size: 0.9rem;
-        color: #ffffff;
-        cursor: pointer;
-        transition: 0.25s;
-        :first-child {
-          background-color: #f9fcff;
-          background-image: linear-gradient(147deg, #f9fcff 0%, #dee4ea 74%);
-          color: black;
-          font-weight: 700;
-        }
-        :last-child {
-          background: linear-gradient(to right, #141414, #212121, #282828);
-          font-weight: 500;
-        }
-        :hover {
-          opacity: 0.5;
-        }
-      } */
     }
   }
   h4 {

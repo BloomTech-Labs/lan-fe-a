@@ -47,34 +47,6 @@ const CommentContainer = styled.div`
     top: 30px;
     right: 10px;
     z-index: 10;
-
-    /* a,
-    button {
-      text-decoration: none;
-      border-bottom: 1px solid #23272a;
-      padding: 12px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: #ffffff;
-      cursor: pointer;
-      transition: 0.25s;
-      background-color: unset;
-      border: none;
-      text-align: left;
-      border: 1px solid darkgrey;
-      :nth-child(4) {
-        border-bottom: 1px solid #23272a;
-      }
-
-      i {
-        margin-right: 8px;
-        font-size: 0.875rem;
-      }
-
-      :hover {
-        opacity: 0.5;
-      }
-    } */
   }
 
   .right-section {

@@ -26,31 +26,6 @@ const StyledUser = styled.div`
     display: flex;
     width: 95%;
     flex-direction: column;
-    /* button {
-      background: linear-gradient(to right, #141414, #212121, #282828);
-      color: #ffffff;
-      border: 1px solid darkgrey;
-      margin: 2% 0;
-      padding: 8px 12px;
-      border-radius: 3px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: 0.25s;
-      :first-of-type {
-        background-color: #f9fcff;
-        background-image: linear-gradient(147deg, #f9fcff 5%, #dee4ea 74%);
-        color: black;
-        font-weight: 700;
-      }
-      :last-child {
-        background: linear-gradient(to right, #141414, #212121, #282828);
-        font-weight: 500;
-      }
-      :hover {
-        opacity: 0.5;
-      }
-    } */
   }
   .drop-down {
     display: flex;

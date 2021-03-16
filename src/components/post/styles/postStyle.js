@@ -140,34 +140,6 @@ const PostContainer = styled.div`
       right: 0;
       margin-right: 20px;
       z-index: 9999;
-
-      /* a,
-      button {
-        text-decoration: none;
-        border-bottom: 1px solid #23272a;
-        padding: 12px;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: #ffffff;
-        cursor: pointer;
-        transition: 0.25s;
-        background-color: unset;
-        border: none;
-        text-align: left;
-        border: 1px solid darkgrey;
-        :nth-child(4) {
-          border-bottom: 1px solid #23272a;
-        }
-
-        i {
-          margin-right: 8px;
-          font-size: 0.875rem;
-        }
-
-        :hover {
-          opacity: 0.5;
-        }
-      } */
     }
   }
 
@@ -209,29 +181,6 @@ const PostContainer = styled.div`
       font-weight: 600;
       color: #ea4335;
     }
-
-    /* .button {
-      display: flex;
-      justify-content: flex-end;
-
-      button {
-        padding: 12px 26px;
-        margin-top: 16px;
-        background: linear-gradient(to right, #000000, #212121, #424949);
-        border-radius: 5px;
-        font-family: 'Nunito', sans-serif;
-        font-size: 1rem;
-        font-weight: 600;
-        color: #ffffff;
-        cursor: pointer;
-        transition: 0.25s;
-        border: 1px solid grey;
-        /* box-shadow: 3px 3px 6px #888888; */
-        /*:hover {
-          opacity: 0.5;
-        }
-      }
-    } */
   }
 
   .comments {

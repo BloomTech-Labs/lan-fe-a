@@ -70,30 +70,6 @@ const StyledRoom = styled.div`
   .button-wrap {
     margin-bottom: 1%;
   }
-  /* button {
-    width: 15%;
-    margin: 1% 0.5%;
-    padding: 8px 12px;
-    background: linear-gradient(to right, #141414, #212121, #282828);
-    border: 1px solid #707b7c;
-    border-radius: 5px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #ffffff;
-    cursor: pointer;
-    transition: 0.25s;
-    :first-of-type {
-      background-color: #f9fcff;
-      background-image: linear-gradient(147deg, #f9fcff 8%, #dee4ea 74%);
-      color: black;
-      font-size: 1rem;
-      font-weight: 700;
-    }
-    :hover {
-      opacity: 0.5;
-    }
-  } */
 `;
 
 const SingleRoomCard = (props) => {
