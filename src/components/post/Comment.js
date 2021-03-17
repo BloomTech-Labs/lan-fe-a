@@ -59,22 +59,26 @@ const Comment = (props) => {
       });
   };
 
+  //flags comment
   const handleFlaggingComment = () => {
     props.flagComment(props.comment.id);
-    setMoreOptions(false);
   };
 
+  //opens flagging model
   const openModel = () => {
     setModelIsOpen(true);
+    setMoreOptions(false)
   };
 
+  //closes flagging model
   const closeModel = () => {
     setModelIsOpen(false);
   };
 
+  //flags comment and closes model
   const handleFlagModel = (reason) => {
     handleFlaggingComment();
-    setModelIsOpen(false);
+    closeModel();
   };
 
   return (
@@ -148,7 +152,7 @@ const Comment = (props) => {
         <Model
           isOpen={modelIsOpen}
           onRequestClose={closeModel}
-          contentLabel="Flag Post"
+          contentLabel="Flag Comment"
           ariaHideApp={false} //Hides from screen readers. This isn't ideal, but without it, it throws an error
         >
           <div>
