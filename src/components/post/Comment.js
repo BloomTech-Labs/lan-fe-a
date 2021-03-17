@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   likeComment,
@@ -88,12 +87,12 @@ const Comment = (props) => {
           {liked ? (
             <>
               <i className="blue fas fa-chevron-up" onClick={unlike}></i>
-              <span className='blue'>{likes}</span>
+              <span className="blue">{likes}</span>
             </>
           ) : (
             <>
               <i className="white fas fa-chevron-up" onClick={like}></i>
-              <span className='white'>{likes}</span>
+              <span className="white">{likes}</span>
             </>
           )}
         </p>

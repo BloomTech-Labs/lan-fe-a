@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import './App.less';
 import { PrivateRoute } from './utils/privateRoute';
 import { Toaster } from 'react-hot-toast';
 import AllRoomsDashboard from './components/allRoomsDashboard/AllRoomsDashboard';

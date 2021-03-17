@@ -1,10 +1,12 @@
 import React from 'react';
-import './css/main.css';
+import { Button } from 'antd';
+// import './App.css';
 
 const SampleStyles = () => {
   return (
     <div>
-      <h1>Hello World</h1>
+      <h1 className="title">Hello World</h1>
+      <Button>Hi Button</Button>
     </div>
   );
 };
