@@ -10,11 +10,13 @@ import {
 } from '../../store/actions';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
+import Model from "react-modal";
 
 const Comment = (props) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
   const [editing, setEditing] = useState(false);
+  const [modelIsOpen, setModelIsOpen] = useState(false);
   const [moreOptions, setMoreOptions] = useState(false);
   const { comment } = props;
   useEffect(() => setLikes(props.comment.likes), [props.comment]);
@@ -59,8 +61,17 @@ const Comment = (props) => {
 
   const handleFlaggingComment = () => {
     props.flagComment(props.comment.id);
-    setMoreOptions(!moreOptions);
+    setMoreOptions(false);
   };
+
+  const openModel = () => {
+    setModelIsOpen(true);
+  }
+
+  const handleCloseModel = (reason) => {
+    handleFlaggingComment();
+    setModelIsOpen(false)
+  }
 
   return (
     <CommentContainer>
@@ -88,12 +99,12 @@ const Comment = (props) => {
           {liked ? (
             <>
               <i className="blue fas fa-chevron-up" onClick={unlike}></i>
-              <span className='blue'>{likes}</span>
+              <span className="blue">{likes}</span>
             </>
           ) : (
             <>
               <i className="white fas fa-chevron-up" onClick={like}></i>
-              <span className='white'>{likes}</span>
+              <span className="white">{likes}</span>
             </>
           )}
         </p>
@@ -120,8 +131,8 @@ const Comment = (props) => {
                 ''
               )}
               {props.comment.user_id !== props.user.id ? (
-                <button className="flag-button" onClick={handleFlaggingComment}>
-                  Flag Post
+                <button className="flag-button" onClick={openModel}>
+                  Flag Comment
                 </button>
               ) : (
                 ''
@@ -130,6 +141,18 @@ const Comment = (props) => {
           )}
         </div>
       </div>
+      {modelIsOpen && (
+        <Model isOpen={modelIsOpen} onRequestClose={handleCloseModel} contentLabel="Flag Post">
+          <div>
+            <p>Why are you Flagging this?</p>
+            <button onClick={handleCloseModel}>Spam</button>
+            <button onClick={handleCloseModel}>Bullying or Harrassment</button>
+            <button onClick={handleCloseModel}>Hate Speach or Symbols</button>
+            <button onClick={handleCloseModel}>Nudity or Sexual Content</button>
+            <button onClick={handleCloseModel}>I just dislike it</button>
+          </div>
+        </Model>
+      )}
     </CommentContainer>
   );
 };

@@ -345,7 +345,7 @@ export const flagComment = (id) => (dispatch) => {
   axios
     .post(`${BACKEND_URL}/api/mod/comments/${id}`)
     .then(() => {
-      toast.success('Thanks! That post was successfully flagged');
+      toast.success('Thanks! That comment was successfully flagged');
     })
     .catch(() => {
       toast.error('Hmm... That comment could not be flagged');
