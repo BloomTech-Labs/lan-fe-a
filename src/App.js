@@ -16,26 +16,32 @@ import PageNotFound from './components/common/PageNotFound';
 import SingleRoomDashboard from './components/room/SingleRoomDashboard';
 import FullSearchResults from './components/search/FullSearchResults';
 
+import SampleStyles from './assets/SampleStyles';
+
 const App = () => {
   return (
     <>
       <Switch>
+        <Route path="/sample" component={SampleStyles} />
         <PrivateRoute exact path="/" component={AllRoomsDashboard} />
         <Route path="/welcome" component={Landing} />
         <Route path="/success" component={Success} />
         <PrivateRoute exact path="/onboarding" component={Onboarding} />
         <PrivateRoute path="/post/:id" component={Post} />
-        <PrivateRoute path="/room/:id/page/:page" component={SingleRoomDashboard} />
+        <PrivateRoute
+          path="/room/:id/page/:page"
+          component={SingleRoomDashboard}
+        />
         <PrivateRoute path="/full-search" component={FullSearchResults} />
         <PrivateRoute path="/user/:id" component={User} />
         <PrivateRoute path="/settings" component={Settings} />
-        <PrivateRoute path='/admin-settings' component={AdminSettings}/>
-        <PrivateRoute path='/mod-settings' component={ModSettings}/>
+        <PrivateRoute path="/admin-settings" component={AdminSettings} />
+        <PrivateRoute path="/mod-settings" component={ModSettings} />
         <PrivateRoute path="/faq" component={FAQ} />
         <Route component={PageNotFound} />
       </Switch>
-      <Toaster 
-        position='bottom'
+      <Toaster
+        position="bottom"
         reverseOrder={false}
         toastOptions={{
           success: {
@@ -45,9 +51,9 @@ const App = () => {
           },
           error: {
             style: {
-              border: '2px solid #f94f4f'
-            }
-          }
+              border: '2px solid #f94f4f',
+            },
+          },
         }}
       />
     </>
