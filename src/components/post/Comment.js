@@ -60,8 +60,8 @@ const Comment = (props) => {
   };
 
   //flags comment
-  const handleFlaggingComment = () => {
-    props.flagComment(props.comment.id);
+  const handleFlaggingComment = (reason) => {
+    props.flagComment(props.comment.id, reason);
   };
 
   //opens flagging model
@@ -77,7 +77,7 @@ const Comment = (props) => {
 
   //flags comment and closes model
   const handleFlagModel = (reason) => {
-    handleFlaggingComment();
+    handleFlaggingComment(reason);
     closeModel();
   };
 
@@ -161,21 +161,24 @@ const Comment = (props) => {
             </div>
             <p>Why are you Flagging this?</p>
             <div>
-              <button onClick={handleFlagModel}>Spam</button>
+              <button onClick={() => handleFlagModel("Spam")}>Spam</button>
             </div>
             <div>
-              <button onClick={handleFlagModel}>Bullying or Harrassment</button>
+              <button onClick={() => handleFlagModel("Bullying or Harrassment")}>Bullying or Harrassment</button>
             </div>
             <div>
-              <button onClick={handleFlagModel}>Hate Speach or Symbols</button>
+              <button onClick={() => handleFlagModel("Hate Speach or Symbols")}>Hate Speach or Symbols</button>
             </div>
             <div>
-              <button onClick={handleFlagModel}>
+              <button onClick={() => handleFlagModel("Nudity or Sexual Content")}>
                 Nudity or Sexual Content
               </button>
             </div>
             <div>
-              <button onClick={handleFlagModel}>I just dislike it</button>
+              <button onClick={() => handleFlagModel("I just dislike it")}>I just dislike it</button>
+            </div>
+            <div>
+              <button onClick={() => handleFlagModel("Other")}>Other</button>
             </div>
           </div>
         </Model>
