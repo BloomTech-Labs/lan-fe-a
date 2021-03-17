@@ -67,7 +67,7 @@ const Comment = (props) => {
   //opens flagging model
   const openModel = () => {
     setModelIsOpen(true);
-    setMoreOptions(false)
+    setMoreOptions(false);
   };
 
   //closes flagging model
@@ -161,24 +161,34 @@ const Comment = (props) => {
             </div>
             <p>Why are you Flagging this?</p>
             <div>
-              <button onClick={() => handleFlagModel("Spam")}>Spam</button>
+              <button onClick={() => handleFlagModel('Spam')}>Spam</button>
             </div>
             <div>
-              <button onClick={() => handleFlagModel("Bullying or Harrassment")}>Bullying or Harrassment</button>
+              <button
+                onClick={() => handleFlagModel('Bullying or Harrassment')}
+              >
+                Bullying or Harrassment
+              </button>
             </div>
             <div>
-              <button onClick={() => handleFlagModel("Hate Speach or Symbols")}>Hate Speach or Symbols</button>
+              <button onClick={() => handleFlagModel('Hate Speach or Symbols')}>
+                Hate Speach or Symbols
+              </button>
             </div>
             <div>
-              <button onClick={() => handleFlagModel("Nudity or Sexual Content")}>
+              <button
+                onClick={() => handleFlagModel('Nudity or Sexual Content')}
+              >
                 Nudity or Sexual Content
               </button>
             </div>
             <div>
-              <button onClick={() => handleFlagModel("I just dislike it")}>I just dislike it</button>
+              <button onClick={() => handleFlagModel('I just dislike it')}>
+                I just dislike it
+              </button>
             </div>
             <div>
-              <button onClick={() => handleFlagModel("Other")}>Other</button>
+              <button onClick={() => handleFlagModel('Other')}>Other</button>
             </div>
           </div>
         </Model>
