@@ -25,6 +25,11 @@ const Header = props => {
     props.history.push('/full-search');
   };
 
+  window.addEventListener('click', e => {
+    if (e.toElement.className !== 'profile-picture' ) 
+      setHamburgerMenu(false);
+  });
+
   return (
     <HeaderContainer>
       <div className='logo' onClick={() => {
