@@ -332,7 +332,7 @@ export const retrieveFullSearchResults = (search) => (dispatch) => {
 
 export const flagPost = (id, reason) => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/mod/posts/${id}`)
+    .post(`${BACKEND_URL}/api/mod/posts/${id}`, { reason: reason})
     .then(() => {
       toast.success(`Thanks! That post was successfully flagged as "${reason}"`);
     })
@@ -342,9 +342,8 @@ export const flagPost = (id, reason) => (dispatch) => {
 };
 
 export const flagComment = (id, reason) => (dispatch) => {
-  console.log(reason);
   axios
-    .post(`${BACKEND_URL}/api/mod/comments/${id}`)
+    .post(`${BACKEND_URL}/api/mod/comments/${id}`, { reason: reason})
     .then(() => {
       toast.success(`Thanks! That comment was successfully flagged as "${reason}"`);
     })
