@@ -10,7 +10,7 @@ import {
 } from '../../store/actions';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
-import Model from "react-modal";
+import Model from 'react-modal';
 
 const Comment = (props) => {
   const [liked, setLiked] = useState(false);
@@ -66,17 +66,16 @@ const Comment = (props) => {
 
   const openModel = () => {
     setModelIsOpen(true);
-  }
-  
+  };
+
   const closeModel = () => {
-    setModelIsOpen(false)
-  }
+    setModelIsOpen(false);
+  };
 
   const handleFlagModel = (reason) => {
     handleFlaggingComment();
-    setModelIsOpen(false)
-  }
-
+    setModelIsOpen(false);
+  };
 
   return (
     <CommentContainer>
@@ -117,7 +116,6 @@ const Comment = (props) => {
           className="more-options"
           onClick={() => {
             setMoreOptions(!moreOptions);
-            console.log('clicked');
           }}
         >
           <p className="fas fa-ellipsis-h"></p>
@@ -147,26 +145,33 @@ const Comment = (props) => {
         </div>
       </div>
       {modelIsOpen && (
-        <Model isOpen={modelIsOpen} onRequestClose={closeModel} contentLabel="Flag Post">
+        <Model
+          isOpen={modelIsOpen}
+          onRequestClose={closeModel}
+          contentLabel="Flag Post"
+          ariaHideApp={false} //Hides from screen readers. This isn't ideal, but without it, it throws an error
+        >
           <div>
             <div>
-              <button onClick={closeModel}>Back to Comments</button>     
+              <button onClick={closeModel}>Back to Comments</button>
             </div>
             <p>Why are you Flagging this?</p>
             <div>
               <button onClick={handleFlagModel}>Spam</button>
             </div>
             <div>
-              <button onClick={handleFlagModel}>Bullying or Harrassment</button>              
+              <button onClick={handleFlagModel}>Bullying or Harrassment</button>
             </div>
             <div>
-              <button onClick={handleFlagModel}>Hate Speach or Symbols</button>              
+              <button onClick={handleFlagModel}>Hate Speach or Symbols</button>
             </div>
             <div>
-              <button onClick={handleFlagModel}>Nudity or Sexual Content</button>              
+              <button onClick={handleFlagModel}>
+                Nudity or Sexual Content
+              </button>
             </div>
             <div>
-              <button onClick={handleFlagModel}>I just dislike it</button>     
+              <button onClick={handleFlagModel}>I just dislike it</button>
             </div>
           </div>
         </Model>
