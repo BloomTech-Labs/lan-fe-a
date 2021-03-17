@@ -67,11 +67,16 @@ const Comment = (props) => {
   const openModel = () => {
     setModelIsOpen(true);
   }
+  
+  const closeModel = () => {
+    setModelIsOpen(false)
+  }
 
-  const handleCloseModel = (reason) => {
+  const handleFlagModel = (reason) => {
     handleFlaggingComment();
     setModelIsOpen(false)
   }
+
 
   return (
     <CommentContainer>
@@ -142,14 +147,27 @@ const Comment = (props) => {
         </div>
       </div>
       {modelIsOpen && (
-        <Model isOpen={modelIsOpen} onRequestClose={handleCloseModel} contentLabel="Flag Post">
+        <Model isOpen={modelIsOpen} onRequestClose={closeModel} contentLabel="Flag Post">
           <div>
+            <div>
+              <button onClick={closeModel}>Back to Comments</button>     
+            </div>
             <p>Why are you Flagging this?</p>
-            <button onClick={handleCloseModel}>Spam</button>
-            <button onClick={handleCloseModel}>Bullying or Harrassment</button>
-            <button onClick={handleCloseModel}>Hate Speach or Symbols</button>
-            <button onClick={handleCloseModel}>Nudity or Sexual Content</button>
-            <button onClick={handleCloseModel}>I just dislike it</button>
+            <div>
+              <button onClick={handleFlagModel}>Spam</button>
+            </div>
+            <div>
+              <button onClick={handleFlagModel}>Bullying or Harrassment</button>              
+            </div>
+            <div>
+              <button onClick={handleFlagModel}>Hate Speach or Symbols</button>              
+            </div>
+            <div>
+              <button onClick={handleFlagModel}>Nudity or Sexual Content</button>              
+            </div>
+            <div>
+              <button onClick={handleFlagModel}>I just dislike it</button>     
+            </div>
           </div>
         </Model>
       )}
