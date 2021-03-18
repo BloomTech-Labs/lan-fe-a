@@ -338,22 +338,22 @@ export const retrieveFullSearchResults = (search) => (dispatch) => {
     .catch(() => toast.error('Oh no! Could not retrieve search results.'));
 };
 
-export const flagPost = (id) => (dispatch) => {
+export const flagPost = (id, reason) => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/mod/posts/${id}`)
+    .post(`${BACKEND_URL}/api/mod/posts/${id}`, { reason: reason})
     .then(() => {
-      toast.success('Thanks! That post was successfully flagged');
+      toast.success(`Thanks! That post was successfully flagged as "${reason}"`);
     })
     .catch(() => {
       toast.error('Hmm... That post could not be flagged');
     });
 };
 
-export const flagComment = (id) => (dispatch) => {
+export const flagComment = (id, reason) => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/mod/comments/${id}`)
+    .post(`${BACKEND_URL}/api/mod/comments/${id}`, { reason: reason})
     .then(() => {
-      toast.success('Thanks! That post was successfully flagged');
+      toast.success(`Thanks! That comment was successfully flagged as "${reason}"`);
     })
     .catch(() => {
       toast.error('Hmm... That comment could not be flagged');

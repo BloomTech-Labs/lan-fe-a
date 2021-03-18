@@ -9,11 +9,13 @@ import {
 } from '../../store/actions';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
+import Model from 'react-modal';
 
 const Comment = (props) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
   const [editing, setEditing] = useState(false);
+  const [modelIsOpen, setModelIsOpen] = useState(false);
   const [moreOptions, setMoreOptions] = useState(false);
   const { comment } = props;
   useEffect(() => setLikes(props.comment.likes), [props.comment]);
@@ -56,9 +58,26 @@ const Comment = (props) => {
       });
   };
 
-  const handleFlaggingComment = () => {
-    props.flagComment(props.comment.id);
-    setMoreOptions(!moreOptions);
+  //flags comment
+  const handleFlaggingComment = (reason) => {
+    props.flagComment(props.comment.id, reason);
+  };
+
+  //opens flagging model
+  const openModel = () => {
+    setModelIsOpen(true);
+    setMoreOptions(false);
+  };
+
+  //closes flagging model
+  const closeModel = () => {
+    setModelIsOpen(false);
+  };
+
+  //flags comment and closes model
+  const handleFlagModel = (reason) => {
+    handleFlaggingComment(reason);
+    closeModel();
   };
 
   return (
@@ -100,7 +119,6 @@ const Comment = (props) => {
           className="more-options"
           onClick={() => {
             setMoreOptions(!moreOptions);
-            console.log('clicked');
           }}
         >
           <p className="fas fa-ellipsis-h"></p>
@@ -119,8 +137,8 @@ const Comment = (props) => {
                 ''
               )}
               {props.comment.user_id !== props.user.id ? (
-                <button className="flag-button" onClick={handleFlaggingComment}>
-                  Flag Post
+                <button className="flag-button" onClick={openModel}>
+                  Flag Comment
                 </button>
               ) : (
                 ''
@@ -129,6 +147,51 @@ const Comment = (props) => {
           )}
         </div>
       </div>
+      {modelIsOpen && (
+        <Model
+          isOpen={modelIsOpen}
+          onRequestClose={closeModel}
+          contentLabel="Flag Comment"
+          ariaHideApp={false} //Hides from screen readers. This isn't ideal, but without it, it throws an error
+        >
+          <div>
+            <div>
+              <button onClick={closeModel}>Back to Comments</button>
+            </div>
+            <p>Why are you Flagging this?</p>
+            <div>
+              <button onClick={() => handleFlagModel('Spam')}>Spam</button>
+            </div>
+            <div>
+              <button
+                onClick={() => handleFlagModel('Bullying or Harrassment')}
+              >
+                Bullying or Harrassment
+              </button>
+            </div>
+            <div>
+              <button onClick={() => handleFlagModel('Hate Speach or Symbols')}>
+                Hate Speach or Symbols
+              </button>
+            </div>
+            <div>
+              <button
+                onClick={() => handleFlagModel('Nudity or Sexual Content')}
+              >
+                Nudity or Sexual Content
+              </button>
+            </div>
+            <div>
+              <button onClick={() => handleFlagModel('I just dislike it')}>
+                I just dislike it
+              </button>
+            </div>
+            <div>
+              <button onClick={() => handleFlagModel('Other')}>Other</button>
+            </div>
+          </div>
+        </Model>
+      )}
     </CommentContainer>
   );
 };
