@@ -81,4 +81,5 @@ const mapStateToProps = (state) => {
   };
 };
 
+
 export default connect(mapStateToProps, { fetchRooms })(SampleStyles);
