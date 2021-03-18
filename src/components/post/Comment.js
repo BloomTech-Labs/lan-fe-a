@@ -10,7 +10,7 @@ import {
 } from '../../store/actions';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
-import Model from 'react-modal';
+import StyledModel from './styles/flagModelStyle';
 
 const Comment = (props) => {
   const [liked, setLiked] = useState(false);
@@ -149,49 +149,55 @@ const Comment = (props) => {
         </div>
       </div>
       {modelIsOpen && (
-        <Model
+        <StyledModel
           isOpen={modelIsOpen}
           onRequestClose={closeModel}
           contentLabel="Flag Comment"
           ariaHideApp={false} //Hides from screen readers. This isn't ideal, but without it, it throws an error
         >
-          <div>
-            <div>
-              <button onClick={closeModel}>Back to Comments</button>
+          <div className="fpm">
+            <div className="fpm-top">
+              <div>
+                <button onClick={closeModel}>Back</button>
+              </div>
+              <h1>Reason for Flagging</h1>
             </div>
-            <p>Why are you Flagging this?</p>
-            <div>
-              <button onClick={() => handleFlagModel('Spam')}>Spam</button>
-            </div>
-            <div>
-              <button
-                onClick={() => handleFlagModel('Bullying or Harrassment')}
-              >
-                Bullying or Harrassment
-              </button>
-            </div>
-            <div>
-              <button onClick={() => handleFlagModel('Hate Speach or Symbols')}>
-                Hate Speach or Symbols
-              </button>
-            </div>
-            <div>
-              <button
-                onClick={() => handleFlagModel('Nudity or Sexual Content')}
-              >
-                Nudity or Sexual Content
-              </button>
-            </div>
-            <div>
-              <button onClick={() => handleFlagModel('I just dislike it')}>
-                I just dislike it
-              </button>
-            </div>
-            <div>
-              <button onClick={() => handleFlagModel('Other')}>Other</button>
+            <div className="fpm-bottom">
+              <div>
+                <button onClick={() => handleFlagModel('Spam')}>Spam</button>
+              </div>
+              <div>
+                <button
+                  onClick={() => handleFlagModel('Bullying or Harrassment')}
+                >
+                  Bullying or Harrassment
+                </button>
+              </div>
+              <div>
+                <button
+                  onClick={() => handleFlagModel('Hate Speach or Symbols')}
+                >
+                  Hate Speach or Symbols
+                </button>
+              </div>
+              <div>
+                <button
+                  onClick={() => handleFlagModel('Nudity or Sexual Content')}
+                >
+                  Nudity or Sexual Content
+                </button>
+              </div>
+              <div>
+                <button onClick={() => handleFlagModel('I just dislike it')}>
+                  I just dislike it
+                </button>
+              </div>
+              <div>
+                <button onClick={() => handleFlagModel('Other')}>Other</button>
+              </div>
             </div>
           </div>
-        </Model>
+        </StyledModel>
       )}
     </CommentContainer>
   );
