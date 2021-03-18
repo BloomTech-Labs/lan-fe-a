@@ -5,7 +5,7 @@ import { Button } from 'antd';
 const SampleStyles = () => {
   return (
     <div>
-      <h1 className="title">Hello World</h1>
+      <h1>Hello World</h1>
       <Button>Hi Button</Button>
     </div>
   );
