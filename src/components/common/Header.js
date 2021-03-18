@@ -4,7 +4,7 @@ import { fetchUser, logOut, setSearch, fetchSearch } from '../../store/actions';
 import HeaderContainer from './styles/headerStyle';
 import adminLogo from '../../img/admin.png';
 import AlumniLogo from'../../img/AlumniLogo.svg';
-import { toggleDropdown } from '../../utils/toggleDropDown'
+import { toggleDropdown } from '../../utils/toggleDropdown'
 
 const Header = props => {
   const [searchInput, setSearchInput] = useState('');
@@ -39,8 +39,8 @@ const Header = props => {
         <button type='submit'><i className='fas fa-search'></i></button>
       </form>
 
-      <div className='dropdown-menu'>
-        <img className='profile-picture' src={props.user.profilePicture} alt='profile icon' onClick={toggleDropdown} />
+      <div className='dropdown-menu' onClick={toggleDropdown}>
+        <img className='profile-picture' src={props.user.profilePicture} alt='profile icon'/>
         <div className='dropdown-content hidden'>
           <p onClick={() => props.history.push('/faq')}><i className='fas fa-question'></i>FAQ</p>
           <p onClick={() => props.history.push(`/user/${props.user.id}`)}><i className='fas fa-user'></i>My Profile</p>

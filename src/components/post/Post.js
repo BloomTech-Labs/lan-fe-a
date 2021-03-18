@@ -15,7 +15,7 @@ import {
   updatePost,
   flagPost,
 } from '../../store/actions';
-import { toggleDropdown, toggleDropDown } from '../../utils/toggleDropDown'
+import { toggleDropdown } from '../../utils/toggleDropdown'
 import moment from 'moment';
 import Header from '../common/Header';
 import Comment from './Comment';
