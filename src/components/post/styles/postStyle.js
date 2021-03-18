@@ -115,7 +115,7 @@ const PostContainer = styled.div`
       }
     }
 
-    .more-options {
+    .dropdown-menu {
       color: #ffffff;
       height: 3vh;
       padding: 5px;
@@ -127,7 +127,11 @@ const PostContainer = styled.div`
       }
     }
 
-    .dropdown {
+    .dropdown-content.hidden {
+      display: none
+    }
+    
+    .dropdown-content.visible {
       width: 200px;
       background: #242323;
       border-radius: 3px;

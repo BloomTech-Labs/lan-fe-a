@@ -15,6 +15,7 @@ import {
   updatePost,
   flagPost,
 } from '../../store/actions';
+import { toggleDropdown, toggleDropDown } from '../../utils/toggleDropDown'
 import moment from 'moment';
 import Header from '../common/Header';
 import Comment from './Comment';
@@ -214,17 +215,10 @@ const Post = (props) => {
                 </p>
               </div>
             </div>
-            <div
-              className='more-options'
-              onClick={() => {
-                setMoreOptions(!moreOptions);
-                console.log('clicked');
-              }}
-            >
-              <p className='fas fa-ellipsis-h'></p>
-            </div>
-            {moreOptions && (
-              <div className='dropdown'>
+            {/* DROPDOWN MENU */}
+            <div className='dropdown-menu' >
+              <p className='fas fa-ellipsis-h' onClick={toggleDropdown}></p>
+              <div className='dropdown-content hidden'>
                 {props.currentPost.user_id === props.user.id ? (
                   <Link to='/' onClick={() => deletePost(postID)}>
                     Delete Post
@@ -245,7 +239,7 @@ const Post = (props) => {
                   ''
                 )}
               </div>
-            )}
+            </div>
           </div>
 
           <form autoComplete='off' spellCheck='false' onSubmit={onSubmit}>
