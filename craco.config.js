@@ -1,4 +1,5 @@
 const CracoLessPlugin = require('craco-less');
+const ThemeOverrides = require('./src/assets/GlobalStyleThemes');
 
 module.exports = {
   plugins: [
