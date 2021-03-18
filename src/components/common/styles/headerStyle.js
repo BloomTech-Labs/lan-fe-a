@@ -100,7 +100,11 @@ const HeaderContainer = styled.div`
         }
     }
 
-    .dropdown {
+    .dropdown-content.hidden{
+        display: none
+    }
+
+    .dropdown-content.visible {
         width: 200px;
         background: #2c2f33;
         border-radius: 5px;
@@ -108,7 +112,7 @@ const HeaderContainer = styled.div`
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 60px;
+        top: 80px;
         right: 5%;
         z-index: 9999;
 
@@ -164,7 +168,7 @@ const HeaderContainer = styled.div`
             }
         }
 
-        .dropdown {
+        .dropdown-content {
             right: 2.5%;
         }
     }
