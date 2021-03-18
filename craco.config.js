@@ -1,5 +1,5 @@
 const CracoLessPlugin = require('craco-less');
-const ThemeOverrides = require('./src/assets/GlobalStyleThemes');
+const LambdaThemes = require('./src/assets/GlobalStyleThemes');
 
 module.exports = {
   plugins: [
@@ -8,7 +8,7 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            modifyVars: { '@primary-color': '#1DA57A' },
+            modifyVars: LambdaThemes,
             javascriptEnabled: true,
           },
         },

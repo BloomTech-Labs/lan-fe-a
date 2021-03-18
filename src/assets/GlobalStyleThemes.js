@@ -1,4 +1,4 @@
-export const AntThemes = {
+module.exports = {
   '@primary-color': '#1890ff', // primary color for all components
   '@link-color': '#1890ff', // link color
   '@success-color': '#52c41a', // success state color
