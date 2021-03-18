@@ -8,6 +8,7 @@ import {
   fetchPostCommentsByRecent,
   flagComment,
 } from '../../store/actions';
+import { toggleDropdown } from '../../utils/toggleDropdown';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
 import Model from 'react-modal';
@@ -17,7 +18,6 @@ const Comment = (props) => {
   const [likes, setLikes] = useState(0);
   const [editing, setEditing] = useState(false);
   const [modelIsOpen, setModelIsOpen] = useState(false);
-  const [moreOptions, setMoreOptions] = useState(false);
   const { comment } = props;
   useEffect(() => setLikes(props.comment.likes), [props.comment]);
 
@@ -116,15 +116,10 @@ const Comment = (props) => {
             </>
           )}
         </p>
-        <div
-          className="more-options"
-          onClick={() => {
-            setMoreOptions(!moreOptions);
-          }}
-        >
+        {/* Comment dropdown menu */}
+        <div className="dropdown-menu" onClick={toggleDropdown}>
           <p className="fas fa-ellipsis-h"></p>
-          {moreOptions && (
-            <div className="commentdropdown">
+            <div className="dropdown-content hidden">
               {props.comment.user_id === props.user.id ? (
                 <button onClick={() => removeComments(props.comment.id)}>
                   Delete Post
@@ -145,7 +140,6 @@ const Comment = (props) => {
                 ''
               )}
             </div>
-          )}
         </div>
       </div>
       {modelIsOpen && (
