@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
@@ -113,7 +113,7 @@ const SingleFlaggedPost = (props) => {
       <div className="not-editable">
         <h4>{post.title}</h4>
         <Link to={`/post/${post.id}`}>
-          <i class="far fa-clipboard"></i>Click Here To See Original Post
+          {/* <i class="far fa-clipboard"></i>Click Here To See Original Post */}
         </Link>
         <p>{post.description}</p>
         <div className="mod-button-wrapper">
