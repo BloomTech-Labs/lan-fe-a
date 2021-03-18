@@ -15,6 +15,7 @@ import {
   updatePost,
   flagPost,
 } from '../../store/actions';
+import { toggleDropdown } from '../../utils/toggleDropdown';
 import moment from 'moment';
 import Header from '../common/Header';
 import Comment from './Comment';
@@ -28,7 +29,6 @@ const Post = (props) => {
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
   const [sortingDropdown, setSortingDropdown] = useState('Recent');
-  const [moreOptions, setMoreOptions] = useState(false);
   const [modelIsOpen, setModelIsOpen] = useState(false);
   const [postInput, setPostInput] = useState('');
   const [editing, setEditing] = useState(false);
@@ -232,17 +232,11 @@ const Post = (props) => {
                 </p>
               </div>
             </div>
-            <div
-              className="more-options"
-              onClick={() => {
-                setMoreOptions(!moreOptions);
-                console.log('clicked');
-              }}
-            >
+            {/* Post dropdown menu */}
+            <div className="dropdown-menu" onClick={toggleDropdown}>
               <p className="fas fa-ellipsis-h"></p>
-            </div>
-            {moreOptions && (
-              <div className="dropdown">
+
+              <div className="dropdown-content hidden">
                 {props.currentPost.user_id === props.user.id ? (
                   <Link to="/" onClick={() => deletePost(postID)}>
                     Delete Post
@@ -263,7 +257,7 @@ const Post = (props) => {
                   ''
                 )}
               </div>
-            )}
+            </div>
           </div>
 
           <form autoComplete="off" spellCheck="false" onSubmit={onSubmit}>

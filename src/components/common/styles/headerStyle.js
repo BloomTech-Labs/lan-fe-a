@@ -100,7 +100,11 @@ const HeaderContainer = styled.div`
         }
     }
 
-    .dropdown {
+    .dropdown-content.hidden {
+        display: none;
+    }
+
+    .dropdown-content.visible {
         width: 200px;
         background: #2c2f33;
         border-radius: 5px;
