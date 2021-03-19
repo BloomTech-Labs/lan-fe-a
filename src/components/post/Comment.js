@@ -66,7 +66,6 @@ const Comment = (props) => {
   //opens flagging model
   const openModel = () => {
     setModelIsOpen(true);
-    setMoreOptions(false);
   };
 
   //closes flagging model
@@ -118,27 +117,27 @@ const Comment = (props) => {
         {/* Comment dropdown menu */}
         <div className="dropdown-menu" onClick={toggleDropdown}>
           <p className="fas fa-ellipsis-h"></p>
-            <div className="dropdown-content hidden">
-              {props.comment.user_id === props.user.id ? (
-                <button onClick={() => removeComments(props.comment.id)}>
-                  Delete Post
-                </button>
-              ) : (
-                ''
-              )}
-              {props.comment.user_id === props.user.id ? (
-                <button onClick={() => setEditing(true)}>Edit</button>
-              ) : (
-                ''
-              )}
-              {props.comment.user_id !== props.user.id ? (
-                <button className="flag-button" onClick={openModel}>
-                  Flag Comment
-                </button>
-              ) : (
-                ''
-              )}
-            </div>
+          <div className="dropdown-content hidden">
+            {props.comment.user_id === props.user.id ? (
+              <button onClick={() => removeComments(props.comment.id)}>
+                Delete Post
+              </button>
+            ) : (
+              ''
+            )}
+            {props.comment.user_id === props.user.id ? (
+              <button onClick={() => setEditing(true)}>Edit</button>
+            ) : (
+              ''
+            )}
+            {props.comment.user_id !== props.user.id ? (
+              <button className="flag-button" onClick={openModel}>
+                Flag Comment
+              </button>
+            ) : (
+              ''
+            )}
+          </div>
         </div>
       </div>
       {modelIsOpen && (
