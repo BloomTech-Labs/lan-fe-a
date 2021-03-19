@@ -4,7 +4,10 @@ import { fetchRooms } from '../store/actions';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import {
   UserOutlined,
+  ShopFilled,
   LaptopOutlined,
+  HeartOutlined,
+  ShopOutlined,
   NotificationOutlined,
 } from '@ant-design/icons';
 
@@ -37,13 +40,13 @@ const SampleStyles = (props) => {
             defaultOpenKeys={['sub1']}
             style={{ height: '100%', borderRight: 0 }}
           >
-            <SubMenu key="sub1" icon={<UserOutlined />} title="My Rooms">
+            <SubMenu key="sub1" icon={<HeartOutlined />} title="My Rooms">
               <Item key="1">option1</Item>
               <Item key="2">option2</Item>
               <Item key="3">option3</Item>
               <Item key="4">option4</Item>
             </SubMenu>
-            <SubMenu key="sub2" icon={<LaptopOutlined />} title="Rooms">
+            <SubMenu key="sub2" icon={<ShopOutlined />} title="Rooms">
               {props.rooms.map((room, index) => {
                 return (<Item key={index}>{room.room_name}</Item>);
               })}
