@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchRooms } from '../store/actions';
 import { Layout, Menu, Breadcrumb } from 'antd';
@@ -48,7 +49,13 @@ const SampleStyles = (props) => {
             </SubMenu>
             <SubMenu key="sub2" icon={<ShopOutlined />} title="Rooms">
               {props.rooms.map((room, index) => {
-                return (<Item key={index}>{room.room_name}</Item>);
+                return (
+                  <Item key={index}>
+                    <Link key={index} to={`room/${room.id}/page/1`}>
+                      {room.room_name}
+                    </Link>
+                  </Item>
+                );
               })}
               {/* <Item key="6">option6</Item>
               <Item key="7">option7</Item>
