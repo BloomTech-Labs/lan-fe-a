@@ -13,12 +13,13 @@ import {
   Dropdown,
 } from 'antd';
 import {
-  UserOutlined,
-  ShopFilled,
   LaptopOutlined,
+  NotificationOutlined,
+  UserOutlined,
+  QuestionOutlined,
+  SettingOutlined,
   HeartOutlined,
   ShopOutlined,
-  NotificationOutlined,
 } from '@ant-design/icons';
 import AlumniLogo from '../img/AlumniLogo.svg';
 
@@ -88,13 +89,13 @@ const SampleStyles = (props) => {
               trigger={['click']}
               overlay={
                 <Menu>
-                  <Item>
+                  <Item icon={<QuestionOutlined />}>
                     <Link to='/faq'>FAQ</Link>
                   </Item>
-                  <Item>
+                  <Item icon={<UserOutlined/>}>
                     <Link to={`/user/${props.user.id}`}>My Profile</Link>
                   </Item>
-                  <Item>
+                  <Item icon={<SettingOutlined />}>
                     <Link to='/settings'>Settings</Link>
                   </Item>
                 </Menu>
