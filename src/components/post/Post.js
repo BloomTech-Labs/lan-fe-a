@@ -32,6 +32,8 @@ const Post = (props) => {
   const [modelIsOpen, setModelIsOpen] = useState(false);
   const [postInput, setPostInput] = useState('');
   const [editing, setEditing] = useState(false);
+  const [note, setNote] = useState('');
+  const [reason, setReason] = useState('');
 
   useEffect(() => {
     props.fetchPost(postID);
@@ -117,7 +119,7 @@ const Post = (props) => {
 
   // Flag a post
   const handleFlaggingPost = (reason) => {
-    props.flagPost(postID, reason);
+    props.flagPost(postID, reason, note);
   };
 
   //opens flagging model
@@ -136,6 +138,16 @@ const Post = (props) => {
     handleFlaggingPost(reason);
     closeModel();
   };
+
+  //Handles note input on model
+  const handleNoteChange = (evt) => {
+    setNote(evt.target.value);
+  };
+
+  //Sets reason for flagging
+  const handleSetReason = (reason) => {
+    setReason(reason)
+  }
 
   return (
     <>
@@ -329,20 +341,20 @@ const Post = (props) => {
                 </div>
                 <div className="fpm-bottom">
                   <div>
-                    <button onClick={() => handleFlagModel('Spam')}>
+                    <button onClick={() => handleSetReason('Spam')}>
                       Spam
                     </button>
                   </div>
                   <div>
                     <button
-                      onClick={() => handleFlagModel('Bullying or Harrassment')}
+                      onClick={() => handleSetReason('Bullying or Harrassment')}
                     >
                       Bullying or Harrassment
                     </button>
                   </div>
                   <div>
                     <button
-                      onClick={() => handleFlagModel('Hate Speach or Symbols')}
+                      onClick={() => handleSetReason('Hate Speach or Symbols')}
                     >
                       Hate Speach or Symbols
                     </button>
@@ -350,7 +362,7 @@ const Post = (props) => {
                   <div>
                     <button
                       onClick={() =>
-                        handleFlagModel('Nudity or Sexual Content')
+                        handleSetReason('Nudity or Sexual Content')
                       }
                     >
                       Nudity or Sexual Content
@@ -358,16 +370,33 @@ const Post = (props) => {
                   </div>
                   <div>
                     <button
-                      onClick={() => handleFlagModel('I just dislike it')}
+                      onClick={() => handleSetReason('I just dislike it')}
                     >
                       I just dislike it
                     </button>
                   </div>
                   <div>
-                    <button onClick={() => handleFlagModel('Other')}>
+                    <button onClick={() => handleSetReason('Other')}>
                       Other
                     </button>
                   </div>
+                  <div>
+                    <form>
+                      <p>Note</p>
+                      <input
+                        type="text"
+                        name="note"
+                        value={note}
+                        onChange={handleNoteChange}
+                      />
+                    </form>
+                  </div>
+                </div>
+                <div>
+                  <p>Selected reason: {reason}</p>
+                </div>
+                <div>
+                    <button onClick={() => handleFlagModel(reason)}>Submit</button>
                 </div>
               </div>
             </StyledModel>

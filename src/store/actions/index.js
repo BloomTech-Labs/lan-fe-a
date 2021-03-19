@@ -50,7 +50,9 @@ export const logOut = (history) => (dispatch) => {
       history.push('/welcome');
       toast.success('You have been successfully logged out. See ya later!');
     })
-    .catch(() => toast.error('Uh oh. You have not been successfully logged out.'));
+    .catch(() =>
+      toast.error('Uh oh. You have not been successfully logged out.')
+    );
 };
 
 // Deletes user
@@ -68,7 +70,9 @@ export const fetchUsersLikedPosts = () => (dispatch) => {
     .then((response) =>
       dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data })
     )
-    .catch(() => toast.error('Hmmm, there was a problem fetching liked posts.'));
+    .catch(() =>
+      toast.error('Hmmm, there was a problem fetching liked posts.')
+    );
 };
 
 // Fetches a user's liked comments
@@ -78,7 +82,9 @@ export const fetchUsersLikedComments = () => (dispatch) => {
     .then((response) =>
       dispatch({ type: 'SET_USERS_LIKED_COMMENTS', payload: response.data })
     )
-    .catch(() => toast.error('Hmmm, there was a problem fetching liked comments.'));
+    .catch(() =>
+      toast.error('Hmmm, there was a problem fetching liked comments.')
+    );
 };
 
 // Fetches a user's profile, different from auth fetch
@@ -106,9 +112,7 @@ export const updateOnboardedStatusToTrue = () => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/user/onboard`)
     .then(() => toast.success('Woo! Glad you are here!'))
-    .catch(() =>
-      toast.error('Oh no! there was a problem.')
-    );
+    .catch(() => toast.error('Oh no! there was a problem.'));
 };
 
 // Updates a user's role
@@ -116,7 +120,7 @@ export const updateUserRole = (id, role) => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
     .then(() => toast.success('Role Successfully Updated'))
-    .catch(() => toast.error('There was a problem updating the user\'s role.'));
+    .catch(() => toast.error("There was a problem updating the user's role."));
 };
 
 // Sets user track during onboarding
@@ -263,7 +267,9 @@ export const likeComment = (commentID) => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/comment/like/${commentID}`)
     .then(() => {})
-    .catch(() => toast.error('Oh no! There was a problem liking this comment.'));
+    .catch(() =>
+      toast.error('Oh no! There was a problem liking this comment.')
+    );
 };
 
 // Removes like from a comment
@@ -271,7 +277,9 @@ export const unlikeComment = (commentID) => (dispatch) => {
   axios
     .delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
     .then(() => {})
-    .catch(() => toast.error('Uh oh! There was a problem unliking this comment.'));
+    .catch(() =>
+      toast.error('Uh oh! There was a problem unliking this comment.')
+    );
 };
 
 // Fetches a post's comments, ordered by recent
@@ -330,22 +338,26 @@ export const retrieveFullSearchResults = (search) => (dispatch) => {
     .catch(() => toast.error('Oh no! Could not retrieve search results.'));
 };
 
-export const flagPost = (id, reason) => (dispatch) => {
+export const flagPost = (id, reason, note) => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/mod/posts/${id}`, { reason: reason})
+    .post(`${BACKEND_URL}/api/mod/posts/${id}`, { reason: reason, note: note })
     .then(() => {
-      toast.success(`Thanks! That post was successfully flagged as "${reason}"`);
+      toast.success(
+        `Thanks! That post was successfully flagged as "${reason}"`
+      );
     })
     .catch(() => {
       toast.error('Hmm... That post could not be flagged');
     });
 };
 
-export const flagComment = (id, reason) => (dispatch) => {
+export const flagComment = (id, reason, note) => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/mod/comments/${id}`, { reason: reason})
+    .post(`${BACKEND_URL}/api/mod/comments/${id}`, { reason: reason, note: note })
     .then(() => {
-      toast.success(`Thanks! That comment was successfully flagged as "${reason}"`);
+      toast.success(
+        `Thanks! That comment was successfully flagged as "${reason}"`
+      );
     })
     .catch(() => {
       toast.error('Hmm... That comment could not be flagged');
@@ -409,13 +421,17 @@ export const removeCommentsByUserId = (commentId) => (dispatch) => {
   return axios
     .delete(`${BACKEND_URL}/api/comment/${commentId}`)
     .then(() => toast.success('Success! Your comment was removed.'))
-    .catch(() => toast.error('Oh no! There was an error removing your comment'));
+    .catch(() =>
+      toast.error('Oh no! There was an error removing your comment')
+    );
 };
 
 // fetch comment(user)
-export const fetchComments = (commentId) => (dispatch) =>  {
+export const fetchComments = (commentId) => (dispatch) => {
   axios
     .get(`${BACKEND_URL}/api/comment/${commentId}`)
     .then(() => {})
-    .catch(() => toast.error('Oh no! There was a problem fetching that comment.'));
+    .catch(() =>
+      toast.error('Oh no! There was a problem fetching that comment.')
+    );
 };
