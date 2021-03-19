@@ -120,7 +120,7 @@ export const updateUserRole = (id, role) => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
     .then(() => toast.success('Role Successfully Updated'))
-    .catch(() => toast.error("There was a problem updating the user's role."));
+    .catch(() => toast.error('There was a problem updating the user\'s role.'));
 };
 
 // Sets user track during onboarding
