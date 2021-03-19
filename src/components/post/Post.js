@@ -300,12 +300,12 @@ const Post = (props) => {
               ))}
             {!props.individualPostCommentsAreFetching &&
               props.currentPostComments.length === 0 && (
-                <div className="no-comments-yet">
-                  <p>
-                    <i className="fas fa-exclamation"></i>No comments yet
-                  </p>
-                </div>
-              )}
+              <div className="no-comments-yet">
+                <p>
+                  <i className="fas fa-exclamation"></i>No comments yet
+                </p>
+              </div>
+            )}
           </div>
           {modelIsOpen && (
             <Model
