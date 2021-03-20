@@ -15,6 +15,7 @@ const SiderMenu = (props) => {
       style={{ height: '100%', borderRight: 0 }}
     >
       <Menu.SubMenu key="sub1" icon={<HeartOutlined />} title="My Rooms">
+        {/* pending implementation of associating rooms to a user */}
         <Menu.Item key="1">option1</Menu.Item>
         <Menu.Item key="2">option2</Menu.Item>
         <Menu.Item key="3">option3</Menu.Item>
