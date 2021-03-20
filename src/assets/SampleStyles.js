@@ -1,7 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchRooms, fetchRecent, fetchUser } from '../store/actions';
+import {
+  fetchRooms,
+  fetchRecent,
+  fetchUser,
+  retrieveFullSearchResults,
+  setSearch
+} from '../store/actions';
 import {
   Layout,
   Menu,
@@ -13,13 +19,12 @@ import {
   Dropdown,
 } from 'antd';
 import {
-  LaptopOutlined,
-  NotificationOutlined,
   UserOutlined,
   QuestionOutlined,
   SettingOutlined,
   HeartOutlined,
   ShopOutlined,
+  FileOutlined
 } from '@ant-design/icons';
 import AlumniLogo from '../img/AlumniLogo.svg';
 
@@ -36,10 +41,17 @@ const SampleStyles = (props) => {
     }
   }, []);
 
+  const handleSearchChange = (e) => {
+    if (e.target.value !== '') {
+      props.retrieveFullSearchResults(e.target.value);
+    } else {
+      setSearch('');
+    }
+  };
+
   return (
     <Layout>
       <Header className="header" style={{ width: '100%' }}>
-        {/* <div className="logo" /> */}
         <Row
           style={{
             width: '100%',
@@ -69,11 +81,42 @@ const SampleStyles = (props) => {
               justifyContent: 'center',
             }}
           >
-            <Search
-              placeholder="input search text"
-              onSearch={(e) => console.log('search implementation pending')}
-              enterButton
-            />
+            <Dropdown
+              placement="bottomCenter"
+              trigger={['click']}
+              overlay={
+                <Menu>
+                  {props.searchResults.posts.map(p => (
+                    <Item icon={<FileOutlined />} key={p.id}>
+                      <Link to={`post/${p.id}`}>
+                        {p.title}                      
+                      </Link>
+                    </Item>
+                  ))}
+                  {props.searchResults.users.map(u => (
+                    <Item icon={<UserOutlined />} key={u.id}>
+                      <Link to={`user/${u.id}`} >
+                        {u.display_name}  
+                      </Link>
+                    </Item>
+                  ))}
+                  {props.searchResults.rooms.map(r => (
+                    <Item icon={<ShopOutlined />} key={r.id}>
+                      <Link to={`room/${r.id}/page/1`}>
+                        {r.room_name}  
+                      </Link>
+                    </Item>
+                  ))}
+                </Menu>
+              }
+            >
+              <Search
+                placeholder="input search text"
+                onChange={handleSearchChange}
+                onSearch={(e) => console.log(e)}
+                enterButton
+              />
+            </Dropdown>
           </Col>
           <Col
             span={6}
@@ -90,13 +133,13 @@ const SampleStyles = (props) => {
               overlay={
                 <Menu>
                   <Item icon={<QuestionOutlined />}>
-                    <Link to='/faq'>FAQ</Link>
+                    <Link to="/faq">FAQ</Link>
                   </Item>
-                  <Item icon={<UserOutlined/>}>
+                  <Item icon={<UserOutlined />}>
                     <Link to={`/user/${props.user.id}`}>My Profile</Link>
                   </Item>
                   <Item icon={<SettingOutlined />}>
-                    <Link to='/settings'>Settings</Link>
+                    <Link to="/settings">Settings</Link>
                   </Item>
                 </Menu>
               }
@@ -105,13 +148,6 @@ const SampleStyles = (props) => {
             </Dropdown>
           </Col>
         </Row>
-        {/* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Item key="1">nav 1</Item>
-          <Item key="2">
-            <Search placeholder="input search text" onSearch={e => console.log(e.value)} enterButton />
-          </Item>
-          <Item key="3">nav 3</Item>
-        </Menu> */}
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">
@@ -163,13 +199,19 @@ const SampleStyles = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     user: state.user,
     rooms: state.rooms,
     posts: state.posts,
+    searchResults: state.mainSearchResults,
   };
 };
 
-export default connect(mapStateToProps, { fetchRooms, fetchRecent, fetchUser })(
-  SampleStyles
-);
+export default connect(mapStateToProps, {
+  fetchRooms,
+  fetchRecent,
+  fetchUser,
+  retrieveFullSearchResults,
+  setSearch
+})(SampleStyles);
