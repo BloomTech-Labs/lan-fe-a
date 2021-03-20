@@ -8,8 +8,8 @@ import { HeartOutlined, ShopOutlined } from '@ant-design/icons';
 const SiderMenu = (props) => {
   return (
     <Menu
-      mode={localStorage.getItem('menuMode')}
-      theme={localStorage.getItem('menuTheme')}
+      mode={localStorage.getItem('menuMode') || 'inline'}
+      theme={localStorage.getItem('menuTheme') || 'light'}
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['sub1']}
       style={{ height: '100%', borderRight: 0 }}
