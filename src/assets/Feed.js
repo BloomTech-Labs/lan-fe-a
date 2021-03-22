@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchRecent, fetchPostByRoom, fetchRooms } from '../store/actions';
@@ -8,7 +7,7 @@ import { Layout, Card, Avatar } from 'antd';
 
 const Feed = (props) => {
   const { id } = useParams();
-  const { Header, Footer, Sider, Content } = Layout;
+  const { Header, Content } = Layout;
 
   useEffect(() => {
     if (id) {
