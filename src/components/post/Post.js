@@ -23,6 +23,7 @@ import PostContainer from './styles/postStyle';
 import StyledModel from './styles/flagModelStyle';
 
 const Post = (props) => {
+  
   const postID = Number(props.match.params.id);
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
@@ -72,19 +73,31 @@ const Post = (props) => {
     }
   };
 
-  // adds like to post
-  const like = (postID) => {
-    setLiked(true);
-    setLikes(likes + 1);
-    props.like(postID);
+  const onClickLikesHandler = (postID) => {
+    if(!liked) {
+      setLikes(likes + 1);
+      setLiked(!liked);
+      props.like(postID);
+    }else {
+      setLikes(likes - 1);
+      setLiked(!liked);
+      props.unlike(postID);
+    }
   };
 
-  // removes like from post
-  const unlike = (postID) => {
-    setLiked(false);
-    setLikes(likes - 1);
-    props.unlike(postID);
-  };
+  // adds like to post
+  // const like = (postID) => {
+  //   setLiked(true);
+  //   setLikes(likes + 1);
+  //   props.like(postID);
+  // };
+
+  // // removes like from post
+  // const unlike = (postID) => {
+  //   setLiked(false);
+  //   setLikes(likes - 1);
+  //   props.unlike(postID);
+  // };
 
   // deletes post
   const deletePost = (postID) => {
@@ -145,8 +158,8 @@ const Post = (props) => {
 
   //Sets reason for flagging
   const handleSetReason = (reason) => {
-    setReason(reason)
-  }
+    setReason(reason);
+  };
 
   return (
     <>
@@ -222,7 +235,7 @@ const Post = (props) => {
                       <>
                         <i
                           className="blue fas fa-chevron-up"
-                          onClick={() => unlike(postID)}
+                          onClick={onClickLikesHandler}
                         ></i>
                         <span className="blue">{likes}</span>
                       </>
@@ -230,7 +243,7 @@ const Post = (props) => {
                       <>
                         <i
                           className="white fas fa-chevron-up"
-                          onClick={() => like(postID)}
+                          onClick={onClickLikesHandler}
                         ></i>
                         <span className="white">{likes}</span>
                       </>
@@ -389,7 +402,9 @@ const Post = (props) => {
                   <p>Selected reason: {reason}</p>
                 </div>
                 <div>
-                    <button onClick={() => handleFlagModel(reason)}>Submit</button>
+                  <button onClick={() => handleFlagModel(reason)}>
+                    Submit
+                  </button>
                 </div>
               </div>
             </StyledModel>
