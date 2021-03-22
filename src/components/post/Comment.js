@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   likeComment,
@@ -8,6 +7,7 @@ import {
   fetchPostCommentsByRecent,
   flagComment,
 } from '../../store/actions';
+import { toggleDropdown } from '../../utils/toggleDropdown';
 import moment from 'moment';
 import CommentContainer from './styles/commentStyle.js';
 import StyledModel from './styles/flagModelStyle';
@@ -20,6 +20,7 @@ const Comment = (props) => {
   const [moreOptions, setMoreOptions] = useState(false);
   const [note, setNote] = useState('');
   const [reason, setReason] = useState('');
+
   const { comment } = props;
   useEffect(() => setLikes(props.comment.likes), [props.comment]);
 
@@ -69,7 +70,6 @@ const Comment = (props) => {
   //opens flagging model
   const openModel = () => {
     setModelIsOpen(true);
-    setMoreOptions(false);
   };
 
   //closes flagging model
@@ -128,36 +128,30 @@ const Comment = (props) => {
             </>
           )}
         </p>
-        <div
-          className="more-options"
-          onClick={() => {
-            setMoreOptions(!moreOptions);
-          }}
-        >
+        {/* Comment dropdown menu */}
+        <div className="dropdown-menu" onClick={toggleDropdown}>
           <p className="fas fa-ellipsis-h"></p>
-          {moreOptions && (
-            <div className="commentdropdown">
-              {props.comment.user_id === props.user.id ? (
-                <button onClick={() => removeComments(props.comment.id)}>
-                  Delete Post
-                </button>
-              ) : (
-                ''
-              )}
-              {props.comment.user_id === props.user.id ? (
-                <button onClick={() => setEditing(true)}>Edit</button>
-              ) : (
-                ''
-              )}
-              {props.comment.user_id !== props.user.id ? (
-                <button className="flag-button" onClick={openModel}>
-                  Flag Comment
-                </button>
-              ) : (
-                ''
-              )}
-            </div>
-          )}
+          <div className="dropdown-content hidden">
+            {props.comment.user_id === props.user.id ? (
+              <button onClick={() => removeComments(props.comment.id)}>
+                Delete Post
+              </button>
+            ) : (
+              ''
+            )}
+            {props.comment.user_id === props.user.id ? (
+              <button onClick={() => setEditing(true)}>Edit</button>
+            ) : (
+              ''
+            )}
+            {props.comment.user_id !== props.user.id ? (
+              <button className="flag-button" onClick={openModel}>
+                Flag Comment
+              </button>
+            ) : (
+              ''
+            )}
+          </div>
         </div>
       </div>
       {modelIsOpen && (

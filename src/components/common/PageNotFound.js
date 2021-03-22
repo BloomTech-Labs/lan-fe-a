@@ -2,7 +2,7 @@ import React from 'react';
 import PageNotFoundContainer from './styles/pageNotFoundStyle';
 import Header from './Header';
 
-const PageNotFound = props => {
+const PageNotFound = (props) => {
   return (
     <>
       <Header history={props.history} />

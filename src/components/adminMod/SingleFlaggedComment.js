@@ -105,11 +105,10 @@ const SingleFlaggedComment = (props) => {
   return (
     <ModCmtStyledRoom>
       <div className="not-editable">
-        <p>
-          <i class="far fa-comments"></i> {comment.comment}
-        </p>
+        {/* //! THESE ARE ICONS - To be replaced with Ant icons  */}
+        <p>{/* <i class="far fa-comments"></i> {comment.comment} */}</p>
         <Link to={`/post/${comment.post_id}`}>
-          <i class="fas fa-link"></i>
+          {/* <i class="fas fa-link"></i> */}
           Attached Post
         </Link>
         <div className="mod-cmt-button-wrapper">
