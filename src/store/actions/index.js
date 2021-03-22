@@ -223,7 +223,7 @@ export const fetchPost = (postID) => (dispatch) => {
 // Fetches posts, ordered by most recent
 export const fetchRecent = () => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/post/recent`)
+    .get(`${BACKEND_URL}/api/post/recent`)
     .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
     .catch(() => toast.error('Shoot, there was a problem fetching posts.'));
 };
@@ -338,22 +338,26 @@ export const retrieveFullSearchResults = (search) => (dispatch) => {
     .catch(() => toast.error('Oh no! Could not retrieve search results.'));
 };
 
-export const flagPost = (id, reason) => (dispatch) => {
+export const flagPost = (id, reason, note) => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/mod/posts/${id}`, { reason: reason})
+    .post(`${BACKEND_URL}/api/mod/posts/${id}`, { reason: reason, note: note })
     .then(() => {
-      toast.success(`Thanks! That post was successfully flagged as "${reason}"`);
+      toast.success(
+        `Thanks! That post was successfully flagged as "${reason}"`
+      );
     })
     .catch(() => {
       toast.error('Hmm... That post could not be flagged');
     });
 };
 
-export const flagComment = (id, reason) => (dispatch) => {
+export const flagComment = (id, reason, note) => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/mod/comments/${id}`, { reason: reason})
+    .post(`${BACKEND_URL}/api/mod/comments/${id}`, { reason: reason, note: note })
     .then(() => {
-      toast.success(`Thanks! That comment was successfully flagged as "${reason}"`);
+      toast.success(
+        `Thanks! That comment was successfully flagged as "${reason}"`
+      );
     })
     .catch(() => {
       toast.error('Hmm... That comment could not be flagged');
