@@ -19,6 +19,7 @@ const SampleStyles = (props) => {
 
   const { Header, Content, Sider } = Layout;
   useEffect(() => {
+    props.fetchRooms();
     // props.fetchRecent(); // This is throwing an internal server error
     if (Object.keys(props.user).length === 0) {
       props.fetchUser();
