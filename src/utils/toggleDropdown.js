@@ -32,11 +32,13 @@ const globalClickListener = (event) => {
     event.target.parentElement.classList.contains('dropdown-menu')
   ) {
     // do nothing.
+
     // the onClick handler will hide the correct dropdown
     return null;
   }
 
   // case 2: the dismissal click was NOT on another dropdown element
+
   const visibleElement = document.querySelector('.visible');
   if (visibleElement) {
     visibleElement.classList.add('hidden');
@@ -49,3 +51,4 @@ const globalClickListener = (event) => {
   // finally, remove event listener
   document.removeEventListener('click', globalClickListener);
 };
+

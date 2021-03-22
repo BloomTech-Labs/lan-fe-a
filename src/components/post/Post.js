@@ -20,7 +20,7 @@ import moment from 'moment';
 import Header from '../common/Header';
 import Comment from './Comment';
 import PostContainer from './styles/postStyle';
-import Model from 'react-modal';
+import StyledModel from './styles/flagModelStyle';
 
 const Post = (props) => {
   const postID = Number(props.match.params.id);
@@ -32,6 +32,8 @@ const Post = (props) => {
   const [modelIsOpen, setModelIsOpen] = useState(false);
   const [postInput, setPostInput] = useState('');
   const [editing, setEditing] = useState(false);
+  const [note, setNote] = useState('');
+  const [reason, setReason] = useState('');
 
   useEffect(() => {
     props.fetchPost(postID);
@@ -117,13 +119,12 @@ const Post = (props) => {
 
   // Flag a post
   const handleFlaggingPost = (reason) => {
-    props.flagPost(postID, reason);
+    props.flagPost(postID, reason, note);
   };
 
   //opens flagging model
   const openModel = () => {
     setModelIsOpen(true);
-    setMoreOptions(false);
   };
 
   //closes flagging model
@@ -136,6 +137,16 @@ const Post = (props) => {
     handleFlaggingPost(reason);
     closeModel();
   };
+
+  //Handles note input on model
+  const handleNoteChange = (evt) => {
+    setNote(evt.target.value);
+  };
+
+  //Sets reason for flagging
+  const handleSetReason = (reason) => {
+    setReason(reason)
+  }
 
   return (
     <>
@@ -308,59 +319,87 @@ const Post = (props) => {
             )}
           </div>
           {modelIsOpen && (
-            <Model
+            <StyledModel
               isOpen={modelIsOpen}
               onRequestClose={closeModel}
               contentLabel="Flag Post"
               ariaHideApp={false} //Hides from screen readers. This isn't ideal, but without it, it throws an error
             >
-              <div>
-                <div>
-                  <button onClick={closeModel}>Back to Comments</button>
+              <div className="fpm">
+                <div className="fpm-top">
+                  <div>
+                    <button onClick={closeModel}>Back</button>
+                  </div>
+                  <h1>Reason for Flagging</h1>
                 </div>
-                <p>Why are you Flagging this?</p>
-                <div>
-                  <button onClick={() => handleFlagModel('Spam')}>Spam</button>
+                <div className="fpm-bottom">
+                  <div>
+                    <button onClick={() => handleSetReason('Spam')}>
+                      Spam
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => handleSetReason('Bullying or Harrassment')}
+                    >
+                      Bullying or Harrassment
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => handleSetReason('Hate Speach or Symbols')}
+                    >
+                      Hate Speach or Symbols
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() =>
+                        handleSetReason('Nudity or Sexual Content')
+                      }
+                    >
+                      Nudity or Sexual Content
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => handleSetReason('I just dislike it')}
+                    >
+                      I just dislike it
+                    </button>
+                  </div>
+                  <div>
+                    <button onClick={() => handleSetReason('Other')}>
+                      Other
+                    </button>
+                  </div>
+                  <div>
+                    <form>
+                      <p>Note</p>
+                      <input
+                        type="text"
+                        name="note"
+                        value={note}
+                        onChange={handleNoteChange}
+                      />
+                    </form>
+                  </div>
                 </div>
                 <div>
-                  <button
-                    onClick={() => handleFlagModel('Bullying or Harrassment')}
-                  >
-                    Bullying or Harrassment
-                  </button>
+                  <p>Selected reason: {reason}</p>
                 </div>
                 <div>
-                  <button
-                    onClick={() => handleFlagModel('Hate Speach or Symbols')}
-                  >
-                    Hate Speach or Symbols
-                  </button>
-                </div>
-                <div>
-                  <button
-                    onClick={() => handleFlagModel('Nudity or Sexual Content')}
-                  >
-                    Nudity or Sexual Content
-                  </button>
-                </div>
-                <div>
-                  <button onClick={() => handleFlagModel('I just dislike it')}>
-                    I just dislike it
-                  </button>
-                </div>
-                <div>
-                  <button onClick={() => handleFlagModel('Other')}>
-                    Other
-                  </button>
+                    <button onClick={() => handleFlagModel(reason)}>Submit</button>
                 </div>
               </div>
-            </Model>
+            </StyledModel>
           )}
         </PostContainer>
       )}
     </>
   );
 };
+
 const mapStateToProps = (state) => {
   return {
     user: state.user,
