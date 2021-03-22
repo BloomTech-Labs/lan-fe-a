@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchRecent, fetchPostByRoom, fetchRooms } from '../store/actions';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Layout, Card, Avatar } from 'antd';
+import { Layout } from 'antd';
+
+import Post from './Post';
 
 const Feed = (props) => {
   const { id } = useParams();
@@ -42,21 +43,7 @@ const Feed = (props) => {
       </Header>
       <Content>
         {props.posts.map((p) => (
-          <Card
-            style={{margin: '30px 0px'}}
-            actions={[
-              <SettingOutlined key="setting" />,
-              <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
-            ]}
-            key={p.id}
-            title={<Card.Meta
-              avatar={<Avatar src={p.profile_picture} />}
-              title={p.title}
-            />}
-          >
-            <p>{p.description}</p>
-          </Card>
+          <Post key={p.id} post={p} />
         ))}
       </Content>
     </Layout>
