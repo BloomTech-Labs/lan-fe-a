@@ -27,8 +27,11 @@ export const toggleDropdown = (event) => {
 
 const globalClickListener = (event) => {
   // case 1: the dismissal click was on another dropdown element (or bubbled to a dropdown element)
-  if (event.target.classList.contains('dropdown-menu') || event.target.parentElement.classList.contains('dropdown-menu')) {
-    // do nothing. 
+  if (
+    event.target.classList.contains('dropdown-menu') ||
+    event.target.parentElement.classList.contains('dropdown-menu')
+  ) {
+    // do nothing.
     // the onClick handler will hide the correct dropdown
     return null;
   }

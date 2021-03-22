@@ -6,6 +6,8 @@ import ProfileSettings from '../user/styles/profilesettings';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
+import { Switch } from 'antd';
+
 const UserSettings = (props) => {
   const [displayName, setDisplayName] = useState(false);
   const [deactivate, setDeactivate] = useState(false);
@@ -84,7 +86,32 @@ const UserSettings = (props) => {
               <button type="submit">Submit</button>
             </form>
           )}
-
+          <div style={{ display: 'inline' }}>
+            <Switch
+              onChange={(val) =>
+                localStorage.setItem('menuMode', val ? 'vertical' : 'inline')
+              }
+              style={{
+                width: 50,
+                borderRadius: 25,
+                height: 25,
+                display: 'inline',
+              }}
+            />{' '}
+            Change menu mode
+            <Switch
+              onChange={(val) =>
+                localStorage.setItem('menuTheme', val ? 'dark' : 'light')
+              }
+              style={{
+                width: 50,
+                borderRadius: 25,
+                height: 25,
+                display: 'inline',
+              }}
+            />{' '}
+            Change menu theme
+          </div>
           <button
             className="track"
             onClick={() => props.history.push('/onboarding')}

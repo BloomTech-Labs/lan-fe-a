@@ -223,7 +223,7 @@ export const fetchPost = (postID) => (dispatch) => {
 // Fetches posts, ordered by most recent
 export const fetchRecent = () => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/post/recent`)
+    .get(`${BACKEND_URL}/api/post/recent`)
     .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
     .catch(() => toast.error('Shoot, there was a problem fetching posts.'));
 };
