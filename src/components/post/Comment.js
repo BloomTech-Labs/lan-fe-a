@@ -17,6 +17,10 @@ const Comment = (props) => {
   const [likes, setLikes] = useState(0);
   const [editing, setEditing] = useState(false);
   const [modelIsOpen, setModelIsOpen] = useState(false);
+  const [moreOptions, setMoreOptions] = useState(false);
+  const [note, setNote] = useState('');
+  const [reason, setReason] = useState('');
+
   const { comment } = props;
   useEffect(() => setLikes(props.comment.likes), [props.comment]);
 
@@ -77,6 +81,16 @@ const Comment = (props) => {
   const handleFlagModel = (reason) => {
     handleFlaggingComment(reason);
     closeModel();
+  };
+
+  //Handles note input on model
+  const handleNoteChange = (evt) => {
+    setNote(evt.target.value);
+  };
+
+  //Sets reason for flagging
+  const handleSetReason = (reason) => {
+    setReason(reason);
   };
 
   return (
@@ -156,36 +170,55 @@ const Comment = (props) => {
             </div>
             <div className="fpm-bottom">
               <div>
-                <button onClick={() => handleFlagModel('Spam')}>Spam</button>
+                <button onClick={() => handleSetReason('Spam')}>Spam</button>
               </div>
               <div>
                 <button
-                  onClick={() => handleFlagModel('Bullying or Harrassment')}
+                  onClick={() => handleSetReason('Bullying or Harrassment')}
                 >
                   Bullying or Harrassment
                 </button>
               </div>
               <div>
                 <button
-                  onClick={() => handleFlagModel('Hate Speach or Symbols')}
+                  onClick={() => handleSetReason('Hate Speach or Symbols')}
                 >
                   Hate Speach or Symbols
                 </button>
               </div>
               <div>
                 <button
-                  onClick={() => handleFlagModel('Nudity or Sexual Content')}
+                  onClick={() => handleSetReason('Nudity or Sexual Content')}
                 >
                   Nudity or Sexual Content
                 </button>
               </div>
               <div>
-                <button onClick={() => handleFlagModel('I just dislike it')}>
+                <button onClick={() => handleSetReason('I just dislike it')}>
                   I just dislike it
                 </button>
               </div>
               <div>
-                <button onClick={() => handleFlagModel('Other')}>Other</button>
+                <button onClick={() => handleSetReason('Other')}>Other</button>
+              </div>
+              <div>
+                <p>Selected reason: {reason}</p>
+              </div>
+              <div>
+                <div>
+                  <form>
+                    <p>Note</p>
+                    <input
+                      type="text"
+                      name="note"
+                      value={note}
+                      onChange={handleNoteChange}
+                    />
+                  </form>
+                </div>
+              </div>
+              <div>
+                <button onClick={() => handleFlagModel(reason)}>Submit</button>
               </div>
             </div>
           </div>
