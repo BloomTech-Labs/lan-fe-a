@@ -21,7 +21,7 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     props.fetchRooms();
-    props.fetchRecent(); // This is throwing an internal server error
+    // props.fetchRecent(); // This is throwing an internal server error
     if (Object.keys(props.user).length === 0) {
       props.fetchUser();
     }
