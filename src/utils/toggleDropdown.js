@@ -27,13 +27,18 @@ export const toggleDropdown = (event) => {
 
 const globalClickListener = (event) => {
   // case 1: the dismissal click was on another dropdown element (or bubbled to a dropdown element)
-  if (event.target.classList.contains('dropdown-menu') || event.target.parentElement.classList.contains('dropdown-menu')) {
-    // do nothing. 
+  if (
+    event.target.classList.contains('dropdown-menu') ||
+    event.target.parentElement.classList.contains('dropdown-menu')
+  ) {
+    // do nothing.
+
     // the onClick handler will hide the correct dropdown
     return null;
   }
 
-  // case 2: the dismissal click was NOT on another dropdown element 
+  // case 2: the dismissal click was NOT on another dropdown element
+
   const visibleElement = document.querySelector('.visible');
   if (visibleElement) {
     visibleElement.classList.add('hidden');
@@ -46,3 +51,4 @@ const globalClickListener = (event) => {
   // finally, remove event listener
   document.removeEventListener('click', globalClickListener);
 };
+

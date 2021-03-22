@@ -120,7 +120,7 @@ export const updateUserRole = (id, role) => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
     .then(() => toast.success('Role Successfully Updated'))
-    .catch(() => toast.error("There was a problem updating the user's role."));
+    .catch(() => toast.error('There was a problem updating the user\'s role.'));
 };
 
 // Sets user track during onboarding
@@ -223,7 +223,7 @@ export const fetchPost = (postID) => (dispatch) => {
 // Fetches posts, ordered by most recent
 export const fetchRecent = () => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/post/recent`)
+    .get(`${BACKEND_URL}/api/post/recent`)
     .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
     .catch(() => toast.error('Shoot, there was a problem fetching posts.'));
 };
