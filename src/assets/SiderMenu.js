@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Menu } from 'antd';
-import { HeartOutlined, ShopOutlined } from '@ant-design/icons';
+import { HeartOutlined, ShopOutlined, PlusSquareOutlined } from '@ant-design/icons';
 
 const SiderMenu = (props) => {
   return (
@@ -31,6 +31,7 @@ const SiderMenu = (props) => {
             </Menu.Item>
           );
         })}
+        <Menu.Item icon={<PlusSquareOutlined />}>Create Room</Menu.Item>
       </Menu.SubMenu>
     </Menu>
   );
