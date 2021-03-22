@@ -36,7 +36,8 @@ const globalClickListener = (event) => {
     return null;
   }
 
-  // case 2: the dismissal click was NOT on another dropdown element 
+  // case 2: the dismissal click was NOT on another dropdown element
+
   const visibleElement = document.querySelector('.visible');
   if (visibleElement) {
     visibleElement.classList.add('hidden');
