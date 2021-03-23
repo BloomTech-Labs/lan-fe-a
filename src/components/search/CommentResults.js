@@ -15,7 +15,6 @@ const CommentResults = (props) => {
       ) : (
         <p>No matching comments</p>
       )}
-      
     </div>
   );
 };

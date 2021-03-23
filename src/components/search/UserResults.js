@@ -12,13 +12,12 @@ const UserResults = (props) => {
               {console.log(user.display_name)}
               <p>{user.email}</p>
               <p>{user.display_name}</p>
-            </div> 
-          )
+            </div>
+          );
         })
       ) : (
         <p>No matching users</p>
       )}
-      
     </div>
   );
 };

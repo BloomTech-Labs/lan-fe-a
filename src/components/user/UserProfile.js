@@ -70,29 +70,29 @@ const UserProfile = (props) => {
 
           {tab === 'Posts'
             ? props.currentUser.posts.map((item, index) => (
-              <div
-                key={index}
-                className="card"
-                onClick={() => props.history.push(`/post/${item.id}`)}
-              >
-                <p className="timestamp">
-                  {moment(item.created_at).fromNow()}
-                </p>
-                <p className="content">{item.title}</p>
-              </div>
-            ))
+                <div
+                  key={index}
+                  className="card"
+                  onClick={() => props.history.push(`/post/${item.id}`)}
+                >
+                  <p className="timestamp">
+                    {moment(item.created_at).fromNow()}
+                  </p>
+                  <p className="content">{item.title}</p>
+                </div>
+              ))
             : props.currentUser.comments.map((item, index) => (
-              <div
-                key={index}
-                className="card"
-                onClick={() => props.history.push(`/post/${item.post_id}`)}
-              >
-                <p className="timestamp">
-                  {moment(item.created_at).fromNow()}
-                </p>
-                <p className="content">{item.comment}</p>
-              </div>
-            ))}
+                <div
+                  key={index}
+                  className="card"
+                  onClick={() => props.history.push(`/post/${item.post_id}`)}
+                >
+                  <p className="timestamp">
+                    {moment(item.created_at).fromNow()}
+                  </p>
+                  <p className="content">{item.comment}</p>
+                </div>
+              ))}
         </UserContainer>
       ) : (
         <Loader message={false} />

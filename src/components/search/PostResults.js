@@ -16,7 +16,6 @@ const PostResults = (props) => {
       ) : (
         <p>No matching posts</p>
       )}
-      
     </div>
   );
 };
