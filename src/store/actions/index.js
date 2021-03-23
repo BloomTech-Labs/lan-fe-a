@@ -2,17 +2,22 @@
 /* eslint-disable no-unused-vars */
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import axiosWithAuth from '../../utils/axiosWithAuth';
 axios.defaults.withCredentials = true;
 
 const BACKEND_URL =
   process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
 // Authentication
-export const success = (history) => (dispatch) => {
+export const success = (history, jwt) => (dispatch) => {
+  localStorage.setItem('token', jwt);
   axios
-    .get(`${BACKEND_URL}/api/user`, { credentials: true })
+    .get(`${BACKEND_URL}/api/user`, {
+      headers: {
+        authorization: jwt,
+      }
+    })
     .then((response) => {
-      localStorage.setItem('id', response.data.user.id);
       if (response.data.user.track === null) {
         history.push('/onboarding');
       } else {
@@ -25,7 +30,7 @@ export const success = (history) => (dispatch) => {
 
 // Fetches logged in user
 export const fetchUser = () => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/user`)
     .then((response) =>
       dispatch({ type: 'SET_USER', payload: response.data.user })
@@ -35,7 +40,7 @@ export const fetchUser = () => (dispatch) => {
 
 // Fetches all users
 export const fetchUsers = () => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/admin/users/`)
     .then((response) => dispatch({ type: 'SET_USERS', payload: response.data }))
     .catch(() => toast.error('There was a problem fetching users.'));
@@ -43,21 +48,13 @@ export const fetchUsers = () => (dispatch) => {
 
 // Logs out user
 export const logOut = (history) => (dispatch) => {
-  axios
-    .get(`${BACKEND_URL}/api/auth/logout`)
-    .then((response) => {
-      localStorage.removeItem('id');
-      history.push('/welcome');
-      toast.success('You have been successfully logged out. See ya later!');
-    })
-    .catch(() =>
-      toast.error('Uh oh. You have not been successfully logged out.')
-    );
+  localStorage.removeItem('token');
+  history.push('/');
 };
 
 // Deletes user
 export const deleteUser = (id) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/admin/users/${id}`)
     .then(() => toast.success('User has been deleted.'))
     .catch(() => toast.error('There was a problem deleting the user.'));
@@ -65,7 +62,7 @@ export const deleteUser = (id) => (dispatch) => {
 
 // Fetches a user's liked posts
 export const fetchUsersLikedPosts = () => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/user/post/like`)
     .then((response) =>
       dispatch({ type: 'SET_USERS_LIKED_POSTS', payload: response.data })
@@ -77,7 +74,7 @@ export const fetchUsersLikedPosts = () => (dispatch) => {
 
 // Fetches a user's liked comments
 export const fetchUsersLikedComments = () => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/user/comment/like`)
     .then((response) =>
       dispatch({ type: 'SET_USERS_LIKED_COMMENTS', payload: response.data })
@@ -89,7 +86,7 @@ export const fetchUsersLikedComments = () => (dispatch) => {
 
 // Fetches a user's profile, different from auth fetch
 export const fetchUserProfile = (userID) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/user/${userID}`)
     .then((response) =>
       dispatch({ type: 'SET_CURRENT_USER', payload: response.data })
@@ -99,7 +96,7 @@ export const fetchUserProfile = (userID) => (dispatch) => {
 
 // Updates a user's display name
 export const updateUserDisplayName = (userID, displayName) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .put(`${BACKEND_URL}/api/user/displayname`, { userID, displayName })
     .then(() => toast.success('Woo! Display name changed to ' + displayName))
     .catch(() =>
@@ -109,7 +106,7 @@ export const updateUserDisplayName = (userID, displayName) => (dispatch) => {
 
 // Set a user's onboarded status to true
 export const updateOnboardedStatusToTrue = () => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .put(`${BACKEND_URL}/api/user/onboard`)
     .then(() => toast.success('Woo! Glad you are here!'))
     .catch(() => toast.error('Oh no! there was a problem.'));
@@ -117,7 +114,7 @@ export const updateOnboardedStatusToTrue = () => (dispatch) => {
 
 // Updates a user's role
 export const updateUserRole = (id, role) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
     .then(() => toast.success('Role Successfully Updated'))
     .catch(() => toast.error('There was a problem updating the user\'s role.'));
@@ -125,7 +122,7 @@ export const updateUserRole = (id, role) => (dispatch) => {
 
 // Sets user track during onboarding
 export const setTrack = (track, token) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .put(`${BACKEND_URL}/api/user/track`, { track, token })
     .then(() => toast.success('Woo! Track successfully set to ' + track))
     .catch(() => toast.error('Uh oh! There was a problem setting your track.'));
@@ -133,7 +130,7 @@ export const setTrack = (track, token) => (dispatch) => {
 
 // Fetches all rooms
 export const fetchRooms = () => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .get(`${BACKEND_URL}/api/room`)
     .then((response) => dispatch({ type: 'SET_ROOMS', payload: response.data }))
     .catch(() => {
@@ -143,7 +140,7 @@ export const fetchRooms = () => (dispatch) => {
 
 // Creates a room
 export const createRoom = (room) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .post(`${BACKEND_URL}/api/room`, { ...room })
     .then(() => toast.success('Room Successfully Created'))
     .catch(() => toast.error('There was a problem creating the room.'));
@@ -151,7 +148,7 @@ export const createRoom = (room) => (dispatch) => {
 
 // Updates a room
 export const updateRoom = (id, room) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .put(`${BACKEND_URL}/api/admin/rooms/${id}`, room)
     .then(() => toast.success('Room Successfully Updated'))
     .catch(() => toast.error('There was a problem updating the room.'));
@@ -159,7 +156,7 @@ export const updateRoom = (id, room) => (dispatch) => {
 
 // Deletes a room
 export const deleteRoom = (id) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/room/${id}`)
     .then(() => toast.success('Room Successfully Deleted'))
     .catch(() => toast.error('There was a problem deleting the room.'));
@@ -169,7 +166,7 @@ export const deleteRoom = (id) => (dispatch) => {
 export const postQuestion = (title, description, room, history) => (
   dispatch
 ) => {
-  return axios
+  return axiosWithAuth()
     .post(`${BACKEND_URL}/api/post/create`, {
       title: title,
       description: description,
@@ -181,7 +178,7 @@ export const postQuestion = (title, description, room, history) => (
 
 // Updates a post
 export const updatePost = (userID, postID, newDescription) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .put(`${BACKEND_URL}/api/post/update/${userID}/${postID}`, {
       newDescription,
     })
@@ -191,7 +188,7 @@ export const updatePost = (userID, postID, newDescription) => (dispatch) => {
 
 // Deletes a post
 export const deletePost = (postID) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/post/delete/${postID}`)
     .then(() => toast.success('Your post was successfully deleted.'))
     .catch(() => toast.error('Hmm, there was a problem deleting your post.'));
@@ -199,7 +196,7 @@ export const deletePost = (postID) => (dispatch) => {
 
 // Fetches posts based on user search input
 export const fetchSearch = (search) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .post(`${BACKEND_URL}/api/post/search`, { search })
     .then((response) => {
       dispatch({ type: 'SET_POSTS', payload: response.data });
@@ -210,7 +207,7 @@ export const fetchSearch = (search) => (dispatch) => {
 // Fetches a post
 export const fetchPost = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST' });
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/post/${postID}`)
     .then((response) =>
       dispatch({ type: 'SET_CURRENT_POST', payload: response.data })
@@ -222,7 +219,7 @@ export const fetchPost = (postID) => (dispatch) => {
 
 // Fetches posts, ordered by most recent
 export const fetchRecent = () => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/post/recent`)
     .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
     .catch(() => toast.error('Shoot, there was a problem fetching posts.'));
@@ -230,7 +227,7 @@ export const fetchRecent = () => (dispatch) => {
 
 // Fetches posts, ordered by number of likes
 export const fetchPopular = () => (dispatch) => {
-  axios
+  axiosWithAuth()
     .post(`${BACKEND_URL}/api/post/popular`)
     .then((response) => dispatch({ type: 'SET_POSTS', payload: response.data }))
     .catch(() => toast.error('Uh oh! There was a problem fetching posts.'));
@@ -238,7 +235,7 @@ export const fetchPopular = () => (dispatch) => {
 
 // Likes a post
 export const like = (postID) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .get(`${BACKEND_URL}/api/post/like/${postID}`)
     .then(() => {})
     .catch(() => toast.error('Oh no! There was a problem liking this post.'));
@@ -246,7 +243,7 @@ export const like = (postID) => (dispatch) => {
 
 // Removes like from a post
 export const unlike = (postID) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/post/like/${postID}`)
     .then(() => {})
     .catch(() => toast.error('Hmm, there was a problem unliking this post.'));
@@ -254,7 +251,7 @@ export const unlike = (postID) => (dispatch) => {
 
 // Creates a comment
 export const postComment = (user, postID, comment) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .post(`${BACKEND_URL}/api/comment`, { postID, comment })
     .then(() => {
       toast.success('Sweet! Comment added.');
@@ -264,7 +261,7 @@ export const postComment = (user, postID, comment) => (dispatch) => {
 
 // Likes a comment
 export const likeComment = (commentID) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/like/${commentID}`)
     .then(() => {})
     .catch(() =>
@@ -274,7 +271,7 @@ export const likeComment = (commentID) => (dispatch) => {
 
 // Removes like from a comment
 export const unlikeComment = (commentID) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
     .then(() => {})
     .catch(() =>
@@ -285,7 +282,7 @@ export const unlikeComment = (commentID) => (dispatch) => {
 // Fetches a post's comments, ordered by recent
 export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
-  return axios
+  return axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/recent/${postID}`)
     .then((response) =>
       dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data })
@@ -296,7 +293,7 @@ export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
 // Fetches a post's comments, ordered by number of likes
 export const fetchPostCommentsByPopular = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/popular/${postID}`)
     .then((response) =>
       dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data })
@@ -306,7 +303,7 @@ export const fetchPostCommentsByPopular = (postID) => (dispatch) => {
 
 // Fetches all posts in a specific room
 export const fetchPostByRoom = (roomID, page) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/room/${roomID}/recent?page=${page}&limit=10`)
     .then((res) => {
       dispatch({ type: 'SET_POSTS', payload: res.data });
@@ -316,7 +313,7 @@ export const fetchPostByRoom = (roomID, page) => (dispatch) => {
 
 // Fetches all posts in a specific room
 export const fetchPostByRoomByPopular = (roomID, page) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/room/${roomID}/popular?page=${page}&limit=10`)
     .then((res) => {
       dispatch({ type: 'SET_POSTS', payload: res.data });
@@ -330,7 +327,7 @@ export const setSearch = (search) => (dispatch) => {
 };
 
 export const retrieveFullSearchResults = (search) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/search/full/${search}`)
     .then((res) => {
       dispatch({ type: 'SET_FULL_SEARCH', payload: res.data });
@@ -339,7 +336,7 @@ export const retrieveFullSearchResults = (search) => (dispatch) => {
 };
 
 export const flagPost = (id, reason, note) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .post(`${BACKEND_URL}/api/mod/posts/${id}`, { reason: reason, note: note })
     .then(() => {
       toast.success(
@@ -352,7 +349,7 @@ export const flagPost = (id, reason, note) => (dispatch) => {
 };
 
 export const flagComment = (id, reason, note) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .post(`${BACKEND_URL}/api/mod/comments/${id}`, { reason: reason, note: note })
     .then(() => {
       toast.success(
@@ -366,7 +363,7 @@ export const flagComment = (id, reason, note) => (dispatch) => {
 
 // Fetches flagged posts
 export const fetchFlaggedPosts = () => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/mod/posts`)
     .then((res) => {
       dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
@@ -376,7 +373,7 @@ export const fetchFlaggedPosts = () => (dispatch) => {
 
 // Fetches flagged comments
 export const fetchFlaggedComments = () => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/mod/comments`)
     .then((res) => {
       dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
@@ -386,7 +383,7 @@ export const fetchFlaggedComments = () => (dispatch) => {
 
 // Archives post (moderator)
 export const archivePost = (postID) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/mod/posts/${postID}`)
     .then(() => toast.success('Post Successfully Archived'))
     .catch(() => toast.error('Error Archiving Post'));
@@ -394,7 +391,7 @@ export const archivePost = (postID) => (dispatch) => {
 
 // Archives comment (moderator)
 export const archiveComment = (commentID) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/mod/comments/${commentID}`)
     .then(() => toast.success('Comment Successfully Archived'))
     .catch(() => toast.error('Error Archiving Comment'));
@@ -402,7 +399,7 @@ export const archiveComment = (commentID) => (dispatch) => {
 
 // Resolves post (moderator) - keeps post visible
 export const resolvePost = (postID) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
     .then(() => toast.success('Post Successfully Resolved'))
     .catch(() => toast.error('Error Resolving Post'));
@@ -410,7 +407,7 @@ export const resolvePost = (postID) => (dispatch) => {
 
 // Resolves comment (moderator) - keeps comment visible
 export const resolveComment = (commentID) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .put(`${BACKEND_URL}/api/mod/comments/${commentID}`)
     .then(() => toast.success('Comment Successfully Resolved'))
     .catch(() => toast.error('Error Resolving Comment'));
@@ -418,7 +415,7 @@ export const resolveComment = (commentID) => (dispatch) => {
 
 // Removes a comment (user)
 export const removeCommentsByUserId = (commentId) => (dispatch) => {
-  return axios
+  return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/comment/${commentId}`)
     .then(() => toast.success('Success! Your comment was removed.'))
     .catch(() =>
@@ -428,7 +425,7 @@ export const removeCommentsByUserId = (commentId) => (dispatch) => {
 
 // fetch comment(user)
 export const fetchComments = (commentId) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/${commentId}`)
     .then(() => {})
     .catch(() =>
