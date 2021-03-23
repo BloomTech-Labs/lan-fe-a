@@ -59,7 +59,6 @@ const Dashboard = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     user: state.user,
     rooms: state.rooms,

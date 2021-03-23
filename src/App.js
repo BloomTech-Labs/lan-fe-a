@@ -17,13 +17,14 @@ import PageNotFound from './components/common/PageNotFound';
 import SingleRoomDashboard from './components/room/SingleRoomDashboard';
 import FullSearchResults from './components/search/FullSearchResults';
 
-import Dashboard from './assets/Dashboard';
+import SampleStyles from './assets/SampleStyles';
 
 const App = () => {
   return (
     <>
       <Switch>
-        <Route path="/sample" component={Dashboard} />
+        <Route path="/sample/:id" component={SampleStyles} />
+        <Route path="/sample" component={SampleStyles} />
         <PrivateRoute exact path="/" component={AllRoomsDashboard} />
         <Route path="/welcome" component={Landing} />
         <Route path="/success" component={Success} />

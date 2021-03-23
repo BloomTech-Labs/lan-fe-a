@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createRoom, fetchRooms } from '../store/actions/index';
-import { Menu, Modal, Form, Input, Button } from 'antd';
+import { fetchPostByRoom, createRoom, fetchRooms } from '../store/actions';
+import { Menu, Form, Modal, Input } from 'antd';
 import {
   HeartOutlined,
   ShopOutlined,
@@ -29,16 +29,16 @@ const SiderMenu = (props) => {
     >
       <Menu.SubMenu key="sub1" icon={<HeartOutlined />} title="My Rooms">
         {/* pending implementation of associating rooms to a user */}
-        <Menu.Item key="1">option1</Menu.Item>
-        <Menu.Item key="2">option2</Menu.Item>
-        <Menu.Item key="3">option3</Menu.Item>
-        <Menu.Item key="4">option4</Menu.Item>
       </Menu.SubMenu>
       <Menu.SubMenu key="sub2" icon={<ShopOutlined />} title="Rooms">
         {props.rooms.map((room, index) => {
           return (
             <Menu.Item key={index}>
-              <Link key={index} to={`room/${room.id}/page/1`}>
+              <Link
+                key={index}
+                to={`/sample/${room.id}`}
+                onClick={() => props.fetchPostByRoom(room.id, 1)}
+              >
                 {room.room_name}
               </Link>
             </Menu.Item>
@@ -87,9 +87,6 @@ const SiderMenu = (props) => {
           >
             <Input.TextArea placeholder="Description" />
           </Form.Item>
-          {/* <Form.Item>
-            <Button /> 
-          </Form.Item> */}
         </Form>
       </Modal>
     </Menu>
@@ -102,4 +99,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { createRoom, fetchRooms })(SiderMenu);
+export default connect(mapStateToProps, {
+  fetchPostByRoom,
+  createRoom,
+  fetchRooms,
+})(SiderMenu);

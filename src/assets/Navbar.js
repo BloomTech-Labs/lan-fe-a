@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { retrieveFullSearchResults } from '../store/actions';
+import { Link } from 'react-router-dom';
 import { Row, Col } from 'antd';
 
 import AlumniLogo from '../img/AlumniLogo.svg';
@@ -18,13 +19,10 @@ const Navbar = (props) => {
       }}
     >
       <Col span={6} style={{ display: 'flex', justifyContent: 'flex-start' }}>
-        <div
-          style={{ width: '60%', maxWidth: '200px' }}
-          onClick={() => {
-            props.history.push('/');
-          }}
-        >
-          <img src={AlumniLogo} width="100%" />
+        <div style={{ width: '60%', maxWidth: '200px' }}>
+          <Link to='/' >
+            <img src={AlumniLogo} width="100%" />
+          </Link>
         </div>
       </Col>
       <Col

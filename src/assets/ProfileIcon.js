@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Menu, Avatar, Dropdown, Space } from 'antd';
@@ -6,15 +6,16 @@ import {
   UserOutlined,
   QuestionOutlined,
   SettingOutlined,
-  DownOutlined
+  DownOutlined,
 } from '@ant-design/icons';
 
 const ProfileIcon = (props) => {
+  const [rotation, setRotation] = useState(0);
   return (
     <Dropdown
-      placement="bottomRight"
-      arrow
+      placement="bottomCenter"
       trigger={['click']}
+      onVisibleChange={() => setRotation(rotation + 180)}
       overlay={
         <Menu>
           <Menu.Item icon={<QuestionOutlined />}>
@@ -29,12 +30,12 @@ const ProfileIcon = (props) => {
         </Menu>
       }
     >
-      <Space size='small'>
+      <Space size="small" style={{ height: '88%' }}>
         <Avatar src={props.user.profilePicture} size="large" />
         <p style={{ display: 'inline', color: 'white' }}>
           {props.user.displayName}
         </p>
-        <DownOutlined style={{color: 'white'}}/>
+        <DownOutlined style={{ color: 'white' }} rotate={rotation}/>
       </Space>
     </Dropdown>
   );
