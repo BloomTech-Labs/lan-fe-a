@@ -24,21 +24,31 @@ const Feed = (props) => {
     } else {
       return {
         room_name: 'ROOM NOT FOUND',
-        description: ''
+        description: '',
       };
     }
   };
 
   return (
     <Layout>
-      <Header style={{ padding: '0px 0px', background: '#f0f2f5', display: 'flex', justifyContent: 'flex-start', height: 'auto' }}>
-        <div style={{ display: 'flex', flexFlow: 'column wrap', alignSelf: 'flex-start'}}>
-          <h2 >
-            {findRoom(id).room_name}
-          </h2>
-          <p >
-            {findRoom(id).description}
-          </p>
+      <Header
+        style={{
+          padding: '0px 0px',
+          background: '#f0f2f5',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          height: 'auto',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexFlow: 'column wrap',
+            alignSelf: 'flex-start',
+          }}
+        >
+          <h2>{findRoom(id).room_name}</h2>
+          <p>{findRoom(id).description}</p>
         </div>
       </Header>
       <Content>
