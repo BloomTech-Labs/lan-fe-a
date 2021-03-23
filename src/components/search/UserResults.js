@@ -1,4 +1,3 @@
-/* eslint-disable semi */
 import React from 'react';
 
 const UserResults = (props) => {
