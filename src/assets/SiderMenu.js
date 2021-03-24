@@ -38,7 +38,7 @@ const SiderMenu = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    rooms: state.rooms
+    rooms: state.rooms,
   };
 };
 

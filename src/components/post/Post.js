@@ -145,8 +145,8 @@ const Post = (props) => {
 
   //Sets reason for flagging
   const handleSetReason = (reason) => {
-    setReason(reason)
-  }
+    setReason(reason);
+  };
 
   return (
     <>
@@ -311,12 +311,12 @@ const Post = (props) => {
               ))}
             {!props.individualPostCommentsAreFetching &&
               props.currentPostComments.length === 0 && (
-              <div className="no-comments-yet">
-                <p>
-                  <i className="fas fa-exclamation"></i>No comments yet
-                </p>
-              </div>
-            )}
+                <div className="no-comments-yet">
+                  <p>
+                    <i className="fas fa-exclamation"></i>No comments yet
+                  </p>
+                </div>
+              )}
           </div>
           {modelIsOpen && (
             <StyledModel
@@ -389,7 +389,9 @@ const Post = (props) => {
                   <p>Selected reason: {reason}</p>
                 </div>
                 <div>
-                    <button onClick={() => handleFlagModel(reason)}>Submit</button>
+                  <button onClick={() => handleFlagModel(reason)}>
+                    Submit
+                  </button>
                 </div>
               </div>
             </StyledModel>

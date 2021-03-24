@@ -15,7 +15,7 @@ const StyledSearchResults = styled.div`
 
 const FullSearchResults = (props) => {
   useEffect(() => {
-    if(props.search !== '') {
+    if (props.search !== '') {
       props.retrieveFullSearchResults(props.search);
     }
   }, [props.search]);
@@ -38,4 +38,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { retrieveFullSearchResults })(FullSearchResults);
+export default connect(mapStateToProps, { retrieveFullSearchResults })(
+  FullSearchResults
+);

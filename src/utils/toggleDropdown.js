@@ -51,4 +51,3 @@ const globalClickListener = (event) => {
   // finally, remove event listener
   document.removeEventListener('click', globalClickListener);
 };
-
