@@ -40,12 +40,12 @@ const Room = (props) => {
   };
 
   return (
-    <Drawer width="50vw" visible={props.visible} onClose={handleClose}>
+    <Drawer width="65vw" closable={false} visible={props.visible} onClose={handleClose}>
       <Layout>
         <Header
           style={{
             padding: '0px 0px',
-            background: '#f0f2f5',
+            background: '#fff',
             display: 'flex',
             justifyContent: 'flex-start',
             height: 'auto',
@@ -62,7 +62,7 @@ const Room = (props) => {
             <p>{findRoom(id).description}</p>
           </div>
         </Header>
-        <Content>
+        <Content style={{background: '#fff'}}>
           {props.posts.map((p) => (
             <Post key={p.id} post={p} />
           ))}
