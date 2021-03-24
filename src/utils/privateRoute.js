@@ -5,11 +5,11 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => {
+      render={(props) => {
         if (localStorage.getItem('id')) {
           return <Component {...props} />;
         } else {
-          return <Redirect to='/welcome' />;
+          return <Redirect to="/welcome" />;
         }
       }}
     />

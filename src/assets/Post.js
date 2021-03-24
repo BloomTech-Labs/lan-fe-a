@@ -10,6 +10,7 @@ import { Card, Avatar } from 'antd';
 const Post = (props) => {
   return (
     <Card
+      onClick={props.onClick}
       style={{ margin: '30px 0px' }}
       actions={[
         <SettingOutlined key="setting" />,

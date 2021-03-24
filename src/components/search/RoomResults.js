@@ -16,7 +16,6 @@ const RoomResults = (props) => {
       ) : (
         <p>No matching rooms</p>
       )}
-      
     </div>
   );
 };

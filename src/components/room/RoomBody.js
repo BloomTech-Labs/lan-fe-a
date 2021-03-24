@@ -429,22 +429,22 @@ const RoomBody = (props) => {
                 {props.usersLikedPosts.find(
                   (item) => item.post_id === post.id
                 ) ? (
+                  <i
+                    className="fas fa-chevron-up"
+                    onClick={() => handleUnlike(post.id)}
+                  >
+                    {post.likes}
+                  </i>
+                ) : (
+                  <span>
                     <i
-                      className="fas fa-chevron-up"
-                      onClick={() => handleUnlike(post.id)}
+                      className="fas far fa-chevron-up"
+                      onClick={() => handleLike(post.id)}
                     >
                       {post.likes}
-                    </i>
-                  ) : (
-                    <span>
-                      <i
-                        className="fas far fa-chevron-up"
-                        onClick={() => handleLike(post.id)}
-                      >
-                        {post.likes}
-                      </i>{' '}
-                    </span>
-                  )}
+                    </i>{' '}
+                  </span>
+                )}
 
                 <span>
                   <i className="far fa-comment">{post.comments}</i>

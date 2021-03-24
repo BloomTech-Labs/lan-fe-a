@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import {
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch,
+} from 'react-router-dom';
 import {
   fetchPostByRoom,
   fetchRooms,
@@ -12,6 +18,7 @@ import Post from './Post';
 
 const Room = (props) => {
   const { id } = useParams();
+  const { path, url } = useRouteMatch();
   const { Header, Content } = Layout;
 
   useEffect(() => {
@@ -39,35 +46,48 @@ const Room = (props) => {
   };
 
   return (
-    <Drawer width="65vw" closable={false} visible={props.visible} onClose={handleClose}>
-      <Layout>
-        <Header
-          style={{
-            padding: '0px 0px',
-            background: '#fff',
-            display: 'flex',
-            justifyContent: 'flex-start',
-            height: 'auto',
-          }}
-        >
-          <div
+    <>
+      <Drawer
+        width="65vw"
+        closable={false}
+        visible={props.visible}
+        onClose={handleClose}
+      >
+        <Layout>
+          <Header
             style={{
+              padding: '0px 0px',
+              background: '#fff',
               display: 'flex',
-              flexFlow: 'column wrap',
-              alignSelf: 'flex-start',
+              justifyContent: 'flex-start',
+              height: 'auto',
             }}
           >
-            <h2>{findRoom(id).room_name}</h2>
-            <p>{findRoom(id).description}</p>
-          </div>
-        </Header>
-        <Content style={{background: '#fff'}}>
-          {props.posts.map((p) => (
-            <Post key={p.id} post={p} />
-          ))}
-        </Content>
-      </Layout>
-    </Drawer>
+            <div
+              style={{
+                display: 'flex',
+                flexFlow: 'column wrap',
+                alignSelf: 'flex-start',
+              }}
+            >
+              <h2>{findRoom(id).room_name}</h2>
+              <p>{findRoom(id).description}</p>
+            </div>
+          </Header>
+          <Content style={{ background: '#fff' }}>
+            {props.posts.map((p) => (
+              <Post key={p.id} post={p} onClick={() => window.history.pushState({}, null, `${url}/post/${p.id}`)}/>
+            ))}
+          </Content>
+        </Layout>
+      </Drawer>
+      
+      <Switch>
+        <Route path={`${path}/post/:id`}>
+          <p>discussion page</p>
+        </Route>
+      </Switch>
+    </>
   );
 };
 
@@ -75,7 +95,7 @@ const mapStateToProps = (state) => {
   return {
     posts: state.posts,
     rooms: state.rooms,
-    visible: state.isDrawerVisible
+    visible: state.isDrawerVisible,
   };
 };
 
