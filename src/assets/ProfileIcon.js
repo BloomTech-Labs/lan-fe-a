@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logOut } from '../store/actions/index';
 import { Menu, Avatar, Dropdown, Space } from 'antd';
 import {
   UserOutlined,
@@ -27,6 +28,9 @@ const ProfileIcon = (props) => {
           <Menu.Item icon={<SettingOutlined />}>
             <Link to="/settings">Settings</Link>
           </Menu.Item>
+          <Menu.Item>
+            <Link onClick={() => props.logOut(window.history)}>Logout</Link>
+          </Menu.Item>
         </Menu>
       }
     >
@@ -47,4 +51,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ProfileIcon);
+export default connect(mapStateToProps, { logOut })(ProfileIcon);

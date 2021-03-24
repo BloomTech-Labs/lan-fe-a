@@ -47,7 +47,7 @@ export const logOut = (history) => (dispatch) => {
     .get(`${BACKEND_URL}/api/auth/logout`)
     .then((response) => {
       localStorage.removeItem('id');
-      history.push('/welcome');
+      window.location.href = '/welcome';
       toast.success('You have been successfully logged out. See ya later!');
     })
     .catch(() =>
