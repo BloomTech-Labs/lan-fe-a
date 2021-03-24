@@ -5,18 +5,14 @@ import {
   fetchRecent,
   fetchUser,
   retrieveFullSearchResults,
-  setSearch
+  setSearch,
 } from '../store/actions';
-import {
-  Layout,
-  Breadcrumb,
-} from 'antd';
+import { Layout, Breadcrumb } from 'antd';
 import Navbar from './Navbar';
 import SiderMenu from './SiderMenu';
 import Feed from './Feed';
 
 const Dashboard = (props) => {
-
   const { Header, Content, Sider } = Layout;
 
   useEffect(() => {
@@ -30,7 +26,7 @@ const Dashboard = (props) => {
   return (
     <Layout>
       <Header className="header" style={{ width: '100%' }}>
-        <Navbar/>
+        <Navbar />
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">
@@ -50,7 +46,7 @@ const Dashboard = (props) => {
               minHeight: 280,
             }}
           >
-            <Feed/>
+            <Feed />
           </Content>
         </Layout>
       </Layout>
@@ -73,5 +69,5 @@ export default connect(mapStateToProps, {
   fetchRecent,
   fetchUser,
   retrieveFullSearchResults,
-  setSearch
+  setSearch,
 })(Dashboard);
