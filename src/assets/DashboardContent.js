@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { fetchRecent, fetchPostByRoom, fetchRooms } from '../store/actions';
 import { Layout } from 'antd';
 
-const Feed = (props) => {
+// import Feed from './Feed';
+
+const DashboardContent = () => {
   const { Header, Content } = Layout;
 
   return (
@@ -35,11 +37,11 @@ const Feed = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return state;
 };
 
 export default connect(mapStateToProps, {
   fetchRecent,
   fetchPostByRoom,
   fetchRooms,
-})(Feed);
+})(DashboardContent);
