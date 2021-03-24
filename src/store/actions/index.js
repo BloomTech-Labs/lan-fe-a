@@ -120,7 +120,7 @@ export const updateUserRole = (id, role) => (dispatch) => {
   return axios
     .put(`${BACKEND_URL}/api/admin/users/${id}/${role}`)
     .then(() => toast.success('Role Successfully Updated'))
-    .catch(() => toast.error('There was a problem updating the user\'s role.'));
+    .catch(() => toast.error("There was a problem updating the user's role."));
 };
 
 // Sets user track during onboarding
@@ -353,7 +353,10 @@ export const flagPost = (id, reason, note) => (dispatch) => {
 
 export const flagComment = (id, reason, note) => (dispatch) => {
   axios
-    .post(`${BACKEND_URL}/api/mod/comments/${id}`, { reason: reason, note: note })
+    .post(`${BACKEND_URL}/api/mod/comments/${id}`, {
+      reason: reason,
+      note: note,
+    })
     .then(() => {
       toast.success(
         `Thanks! That comment was successfully flagged as "${reason}"`

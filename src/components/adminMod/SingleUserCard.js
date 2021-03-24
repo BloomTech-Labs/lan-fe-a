@@ -117,25 +117,25 @@ const SingleUserCard = ({ user, updateUserRole, fetchUsers, deleteUser }) => {
 
   return (
     <StyledUser>
-      <div className='user-card-wrapper'>
-        <div className='user-infor-wrapper'>
-          <img className='profile-photo' src={user.profile_picture} />
-          <div className='infor-card'>
+      <div className="user-card-wrapper">
+        <div className="user-infor-wrapper">
+          <img className="profile-photo" src={user.profile_picture} />
+          <div className="infor-card">
             <h4>Username - {user.display_name}</h4>
             <p>Email- {user.email}</p>
           </div>
         </div>
-        <div className='user-card'>
+        <div className="user-card">
           <select
             value={roleId}
             onChange={(e) => setRoleId(e.target.value)}
-            name='user_role'
-            id='user_role'
-            className='drop-down'
+            name="user_role"
+            id="user_role"
+            className="drop-down"
           >
-            <option value='1'>Alumni</option>
-            <option value='2'>Moderator</option>
-            <option value='3'>Admin</option>
+            <option value="1">Alumni</option>
+            <option value="2">Moderator</option>
+            <option value="3">Admin</option>
           </select>
           <button onClick={handleSubmit}>Change Role</button>
           <button onClick={handleDeleteUser}>Delete User</button>

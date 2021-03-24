@@ -10,7 +10,7 @@ const Feed = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    posts: state.posts
+    posts: state.posts,
   };
 };
 
