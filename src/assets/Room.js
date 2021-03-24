@@ -73,9 +73,7 @@ const Room = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    user: state.user,
     posts: state.posts,
     rooms: state.rooms,
     visible: state.isDrawerVisible
@@ -83,7 +81,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  fetchRecent,
   fetchPostByRoom,
   fetchRooms,
   setDrawerVisibility,

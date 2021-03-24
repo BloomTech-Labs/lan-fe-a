@@ -20,7 +20,8 @@ const initialState = {
   usersLikedComments: [],
   individualPostIsFetching: false,
   individualPostCommentsAreFetching: false,
-  isDrawerVisible: false
+  isDrawerVisible: false,
+  isNewRoomModalVisible: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -121,10 +122,16 @@ export const reducer = (state = initialState, action) => {
       individualPostCommentsAreFetching: false,
     };
 
-  case 'SET_DRAWER_vISIBILITY':
+  case 'SET_DRAWER_VISIBILITY':
     return {
       ...state,
       isDrawerVisible: action.payload
+    };
+  
+  case 'SET_NEW_ROOM_MODAL_VISIBILITY':
+    return {
+      ...state,
+      isNewRoomModalVisible: action.payload
     };
 
   default:

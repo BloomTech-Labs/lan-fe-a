@@ -1,33 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { fetchRecent, fetchPostByRoom, fetchRooms } from '../store/actions';
 import { Layout } from 'antd';
 
-import Post from './Post';
-
 const Feed = (props) => {
-  const { id } = useParams();
   const { Header, Content } = Layout;
-
-  useEffect(() => {
-    if (id) {
-      props.fetchPostByRoom(id, 1);
-      props.fetchRooms();
-    }
-  }, []);
-
-  const findRoom = (id) => {
-    const currentRoom = props.rooms.filter((r) => r.id === parseInt(id))[0];
-    if (currentRoom) {
-      return currentRoom;
-    } else {
-      return {
-        room_name: 'ROOM NOT FOUND',
-        description: '',
-      };
-    }
-  };
 
   return (
     <Layout>
@@ -47,14 +24,11 @@ const Feed = (props) => {
             alignSelf: 'flex-start',
           }}
         >
-          <h2>{findRoom(id).room_name}</h2>
-          <p>{findRoom(id).description}</p>
+          <h2>Feed</h2>
         </div>
       </Header>
       <Content>
-        {props.posts.map((p) => (
-          <Post key={p.id} post={p} />
-        ))}
+        <p>Posts...</p>
       </Content>
     </Layout>
   );
@@ -62,9 +36,6 @@ const Feed = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
-    posts: state.posts,
-    rooms: state.rooms,
   };
 };
 

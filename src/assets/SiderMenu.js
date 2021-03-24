@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchPostByRoom, createRoom, fetchRooms, setDrawerVisibility } from '../store/actions';
+import {
+  fetchPostByRoom,
+  createRoom,
+  fetchRooms,
+  setDrawerVisibility,
+  setNewRoomModalVisibility,
+} from '../store/actions';
 import { Menu, Form, Modal, Input } from 'antd';
 import {
   HeartOutlined,
@@ -9,17 +15,10 @@ import {
   PlusSquareOutlined,
 } from '@ant-design/icons';
 
+import CreateNewRoomModal from './CreateNewRoomModal';
+
 const SiderMenu = (props) => {
   const { url } = useRouteMatch();
-
-  const [newRoomModalVisible, setNewRoomModalVisible] = useState(false);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-
-  const inputHandler = (prevValues, curValues) => {
-    setTitle(curValues.title);
-    setDescription(curValues.description);
-  };
 
   return (
     <Menu
@@ -33,11 +32,11 @@ const SiderMenu = (props) => {
         {/* pending implementation of associating rooms to a user */}
       </Menu.SubMenu>
       <Menu.SubMenu key="sub2" icon={<ShopOutlined />} title="Rooms">
-        {props.rooms.map((room, index) => {
+        {props.rooms.map((room) => {
           return (
-            <Menu.Item key={index}>
+            <Menu.Item key={room.id}>
               <Link
-                key={index}
+                key={room.id}
                 to={`${url}/room/${room.id}`}
                 onClick={() => {
                   props.fetchPostByRoom(room.id, 1);
@@ -50,50 +49,13 @@ const SiderMenu = (props) => {
           );
         })}
         <Menu.Item
-          onClick={() => setNewRoomModalVisible(true)}
+          onClick={() => props.setNewRoomModalVisibility(true)}
           icon={<PlusSquareOutlined />}
         >
           Create Room
         </Menu.Item>
       </Menu.SubMenu>
-      <Modal
-        title="Create Room"
-        centered
-        visible={newRoomModalVisible}
-        okButtonProps={{ htmlType: 'submit' }}
-        onOk={() => {
-          props
-            .createRoom({ room_name: title, description: description })
-            .then(() => {
-              setTitle('');
-              setDescription('');
-              props.fetchRooms();
-            })
-            .catch(() => {
-              console.log('failed to create room');
-            });
-          console.log(title, description);
-          setNewRoomModalVisible(false);
-        }}
-        onCancel={() => setNewRoomModalVisible(false)}
-      >
-        <Form>
-          <Form.Item
-            name="title"
-            rules={[{ required: true, message: 'Title required' }]}
-            shouldUpdate={inputHandler}
-          >
-            <Input placeholder="Title" />
-          </Form.Item>
-          <Form.Item
-            name="description"
-            rules={[{ required: true, message: 'Description required' }]}
-            shouldUpdate={inputHandler}
-          >
-            <Input.TextArea placeholder="Description" />
-          </Form.Item>
-        </Form>
-      </Modal>
+      <CreateNewRoomModal />
     </Menu>
   );
 };
@@ -108,5 +70,6 @@ export default connect(mapStateToProps, {
   fetchPostByRoom,
   createRoom,
   fetchRooms,
-  setDrawerVisibility
+  setDrawerVisibility,
+  setNewRoomModalVisibility
 })(SiderMenu);
