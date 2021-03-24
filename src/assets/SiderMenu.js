@@ -1,37 +1,60 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import {
+  fetchPostByRoom,
+  fetchRooms,
+  setDrawerVisibility,
+  setNewRoomModalVisibility,
+} from '../store/actions';
 import { Menu } from 'antd';
-import { HeartOutlined, ShopOutlined } from '@ant-design/icons';
+import {
+  HeartOutlined,
+  ShopOutlined,
+  PlusSquareOutlined,
+} from '@ant-design/icons';
+
+import CreateNewRoomModal from './CreateNewRoomModal';
 
 const SiderMenu = (props) => {
+  const { url } = useRouteMatch();
+
   return (
     <Menu
-      mode={localStorage.getItem('menuMode')}
-      theme={localStorage.getItem('menuTheme')}
+      mode={localStorage.getItem('menuMode') || 'inline'}
+      theme={localStorage.getItem('menuTheme') || 'light'}
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['sub1']}
       style={{ height: '100%', borderRight: 0 }}
     >
       <Menu.SubMenu key="sub1" icon={<HeartOutlined />} title="My Rooms">
         {/* pending implementation of associating rooms to a user */}
-        <Menu.Item key="1">option1</Menu.Item>
-        <Menu.Item key="2">option2</Menu.Item>
-        <Menu.Item key="3">option3</Menu.Item>
-        <Menu.Item key="4">option4</Menu.Item>
       </Menu.SubMenu>
       <Menu.SubMenu key="sub2" icon={<ShopOutlined />} title="Rooms">
-        {props.rooms.map((room, index) => {
+        {props.rooms.map((room) => {
           return (
-            <Menu.Item key={index}>
-              <Link key={index} to={`room/${room.id}/page/1`}>
+            <Menu.Item key={room.id}>
+              <Link
+                key={room.id}
+                to={`${url}/room/${room.id}`}
+                onClick={() => {
+                  props.fetchPostByRoom(room.id, 1);
+                  props.setDrawerVisibility(true);
+                }}
+              >
                 {room.room_name}
               </Link>
             </Menu.Item>
           );
         })}
+        <Menu.Item
+          onClick={() => props.setNewRoomModalVisibility(true)}
+          icon={<PlusSquareOutlined />}
+        >
+          Create Room
+        </Menu.Item>
       </Menu.SubMenu>
+      <CreateNewRoomModal />
     </Menu>
   );
 };
@@ -42,4 +65,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SiderMenu);
+export default connect(mapStateToProps, {
+  fetchPostByRoom,
+  fetchRooms,
+  setDrawerVisibility,
+  setNewRoomModalVisibility,
+})(SiderMenu);

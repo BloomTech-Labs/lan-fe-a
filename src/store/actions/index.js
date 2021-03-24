@@ -15,7 +15,7 @@ export const success = (history, jwt) => (dispatch) => {
     .get(`${BACKEND_URL}/api/user`, {
       headers: {
         authorization: jwt,
-      }
+      },
     })
     .then((response) => {
       if (response.data.user.track === null) {
@@ -350,7 +350,10 @@ export const flagPost = (id, reason, note) => (dispatch) => {
 
 export const flagComment = (id, reason, note) => (dispatch) => {
   axiosWithAuth()
-    .post(`${BACKEND_URL}/api/mod/comments/${id}`, { reason: reason, note: note })
+    .post(`${BACKEND_URL}/api/mod/comments/${id}`, {
+      reason: reason,
+      note: note,
+    })
     .then(() => {
       toast.success(
         `Thanks! That comment was successfully flagged as "${reason}"`
@@ -431,4 +434,12 @@ export const fetchComments = (commentId) => (dispatch) => {
     .catch(() =>
       toast.error('Oh no! There was a problem fetching that comment.')
     );
+};
+
+export const setDrawerVisibility = (bool) => (dispatch) => {
+  dispatch({ type: 'SET_DRAWER_VISIBILITY', payload: bool });
+};
+
+export const setNewRoomModalVisibility = (bool) => (dispatch) => {
+  dispatch({ type: 'SET_NEW_ROOM_MODAL_VISIBILITY', payload: bool });
 };
