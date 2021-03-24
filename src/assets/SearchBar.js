@@ -1,11 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { retrieveFullSearchResults } from '../store/actions';
-import { Link } from 'react-router-dom';
+import {
+  retrieveFullSearchResults,
+  fetchPostByRoom,
+  setDrawerVisibility,
+} from '../store/actions';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { Menu, Dropdown, Input } from 'antd';
 import { UserOutlined, ShopOutlined, FileOutlined } from '@ant-design/icons';
 
 const SearchBar = (props) => {
+  const { url } = useRouteMatch();
+
   const handleSearchChange = (e) => {
     if (e.target.value !== '') {
       props.retrieveFullSearchResults(e.target.value);
@@ -19,18 +25,26 @@ const SearchBar = (props) => {
       overlay={
         <Menu>
           {props.searchResults.posts.map((p) => (
-            <Menu.Item icon={<FileOutlined />} key={p.id}>
+            <Menu.Item icon={<FileOutlined />} key={`${p.title}-${p.id}`}>
               <Link to={`post/${p.id}`}>{p.title}</Link>
             </Menu.Item>
           ))}
           {props.searchResults.users.map((u) => (
-            <Menu.Item icon={<UserOutlined />} key={u.id}>
+            <Menu.Item icon={<UserOutlined />} key={`${u.display_name}-${u.id}`}>
               <Link to={`user/${u.id}`}>{u.display_name}</Link>
             </Menu.Item>
           ))}
           {props.searchResults.rooms.map((r) => (
-            <Menu.Item icon={<ShopOutlined />} key={r.id}>
-              <Link to={`room/${r.id}/page/1`}>{r.room_name}</Link>
+            <Menu.Item icon={<ShopOutlined />} key={`${r.display_name}-${r.id}`}>
+              <Link
+                to={`${url}/room/${r.id}`}
+                onClick={() => {
+                  props.fetchPostByRoom(r.id, 1);
+                  props.setDrawerVisibility(true);
+                }}
+              >
+                {r.room_name}
+              </Link>
             </Menu.Item>
           ))}
         </Menu>
@@ -55,4 +69,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   retrieveFullSearchResults,
+  fetchPostByRoom,
+  setDrawerVisibility,
 })(SearchBar);

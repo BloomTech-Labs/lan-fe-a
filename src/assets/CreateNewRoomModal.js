@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import {
-  fetchPostByRoom,
   createRoom,
   fetchRooms,
   setNewRoomModalVisibility,
 } from '../store/actions';
-import { Menu, Form, Modal, Input } from 'antd';
+import { Form, Modal, Input } from 'antd';
 
 const CreateNewRoomButton = (props) => {
   const [title, setTitle] = useState('');
@@ -65,7 +64,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  fetchPostByRoom,
   createRoom,
   fetchRooms,
   setNewRoomModalVisibility,

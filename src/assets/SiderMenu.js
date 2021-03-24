@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   fetchPostByRoom,
-  createRoom,
   fetchRooms,
   setDrawerVisibility,
   setNewRoomModalVisibility,
 } from '../store/actions';
-import { Menu, Form, Modal, Input } from 'antd';
+import { Menu } from 'antd';
 import {
   HeartOutlined,
   ShopOutlined,
@@ -68,7 +67,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   fetchPostByRoom,
-  createRoom,
   fetchRooms,
   setDrawerVisibility,
   setNewRoomModalVisibility

@@ -30,7 +30,7 @@ const ProfileIcon = (props) => {
             <Link to="/settings">Settings</Link>
           </Menu.Item>
           <Menu.Item icon={<LogoutOutlined />}>
-            <Link onClick={() => props.logOut(window.history)}>Logout</Link>
+            <Link to="/welcome" onClick={() => props.logOut(window.history)}>Logout</Link>
           </Menu.Item>
         </Menu>
       }

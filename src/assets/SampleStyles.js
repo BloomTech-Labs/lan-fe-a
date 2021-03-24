@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   fetchRooms,
@@ -11,11 +11,11 @@ import {
 import { Layout, Breadcrumb } from 'antd';
 import Navbar from './Navbar';
 import SiderMenu from './SiderMenu';
-import Feed from './Feed';
+import DashboardContent from './DashboardContent';
 import Room from './Room';
 
 const SampleStyles = (props) => {
-  const { path, url } = useRouteMatch();
+  const { path } = useRouteMatch();
 
   const { Header, Content, Sider } = Layout;
   useEffect(() => {
@@ -50,7 +50,7 @@ const SampleStyles = (props) => {
                 minHeight: 280,
               }}
             >
-              <Feed />
+              <DashboardContent />
             </Content>
           </Layout>
         </Layout>
