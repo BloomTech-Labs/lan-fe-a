@@ -23,7 +23,6 @@ import PostContainer from './styles/postStyle';
 import StyledModel from './styles/flagModelStyle';
 
 const Post = (props) => {
-  
   const postID = Number(props.match.params.id);
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
@@ -73,31 +72,18 @@ const Post = (props) => {
     }
   };
 
+  // handles liking and unliking a post (makes call based on postID being passed in)
   const onClickLikesHandler = (postID) => {
-    if(!liked) {
+    if (!liked) {
       setLikes(likes + 1);
       setLiked(!liked);
       props.like(postID);
-    }else {
+    } else {
       setLikes(likes - 1);
       setLiked(!liked);
       props.unlike(postID);
     }
   };
-
-  // adds like to post
-  // const like = (postID) => {
-  //   setLiked(true);
-  //   setLikes(likes + 1);
-  //   props.like(postID);
-  // };
-
-  // // removes like from post
-  // const unlike = (postID) => {
-  //   setLiked(false);
-  //   setLikes(likes - 1);
-  //   props.unlike(postID);
-  // };
 
   // deletes post
   const deletePost = (postID) => {
@@ -324,12 +310,12 @@ const Post = (props) => {
               ))}
             {!props.individualPostCommentsAreFetching &&
               props.currentPostComments.length === 0 && (
-              <div className="no-comments-yet">
-                <p>
-                  <i className="fas fa-exclamation"></i>No comments yet
-                </p>
-              </div>
-            )}
+                <div className="no-comments-yet">
+                  <p>
+                    <i className="fas fa-exclamation"></i>No comments yet
+                  </p>
+                </div>
+              )}
           </div>
           {modelIsOpen && (
             <StyledModel
