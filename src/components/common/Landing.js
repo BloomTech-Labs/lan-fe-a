@@ -10,12 +10,6 @@ const BACKEND_URL =
 const Landing = (props) => {
   const [fetching, setFetching] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.getItem('id')) {
-      props.history.push('/');
-    }
-  }, []);
-
   return (
     <>
       {fetching ? (
