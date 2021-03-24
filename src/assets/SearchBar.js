@@ -30,12 +30,18 @@ const SearchBar = (props) => {
             </Menu.Item>
           ))}
           {props.searchResults.users.map((u) => (
-            <Menu.Item icon={<UserOutlined />} key={`${u.display_name}-${u.id}`}>
+            <Menu.Item
+              icon={<UserOutlined />}
+              key={`${u.display_name}-${u.id}`}
+            >
               <Link to={`user/${u.id}`}>{u.display_name}</Link>
             </Menu.Item>
           ))}
           {props.searchResults.rooms.map((r) => (
-            <Menu.Item icon={<ShopOutlined />} key={`${r.display_name}-${r.id}`}>
+            <Menu.Item
+              icon={<ShopOutlined />}
+              key={`${r.display_name}-${r.id}`}
+            >
               <Link
                 to={`${url}/room/${r.id}`}
                 onClick={() => {

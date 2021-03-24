@@ -439,10 +439,10 @@ export const fetchComments = (commentId) => (dispatch) => {
     );
 };
 
-export const setDrawerVisibility = bool => dispatch => {
-  dispatch({type: 'SET_DRAWER_VISIBILITY', payload: bool});
+export const setDrawerVisibility = (bool) => (dispatch) => {
+  dispatch({ type: 'SET_DRAWER_VISIBILITY', payload: bool });
 };
 
-export const setNewRoomModalVisibility = bool => dispatch => {
-  dispatch({type: 'SET_NEW_ROOM_MODAL_VISIBILITY', payload: bool});
+export const setNewRoomModalVisibility = (bool) => (dispatch) => {
+  dispatch({ type: 'SET_NEW_ROOM_MODAL_VISIBILITY', payload: bool });
 };

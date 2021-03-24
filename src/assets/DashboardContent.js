@@ -35,8 +35,7 @@ const Feed = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, {

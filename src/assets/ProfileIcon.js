@@ -8,7 +8,7 @@ import {
   QuestionOutlined,
   SettingOutlined,
   DownOutlined,
-  LogoutOutlined
+  LogoutOutlined,
 } from '@ant-design/icons';
 
 const ProfileIcon = (props) => {
@@ -30,7 +30,9 @@ const ProfileIcon = (props) => {
             <Link to="/settings">Settings</Link>
           </Menu.Item>
           <Menu.Item icon={<LogoutOutlined />}>
-            <Link to="/welcome" onClick={() => props.logOut(window.history)}>Logout</Link>
+            <Link to="/welcome" onClick={() => props.logOut(window.history)}>
+              Logout
+            </Link>
           </Menu.Item>
         </Menu>
       }
@@ -40,7 +42,7 @@ const ProfileIcon = (props) => {
         <p style={{ display: 'inline', color: 'white' }}>
           {props.user.displayName}
         </p>
-        <DownOutlined style={{ color: 'white' }} rotate={rotation}/>
+        <DownOutlined style={{ color: 'white' }} rotate={rotation} />
       </Space>
     </Dropdown>
   );

@@ -59,7 +59,7 @@ const CreateNewRoomButton = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    visible: state.isNewRoomModalVisible 
+    visible: state.isNewRoomModalVisible,
   };
 };
 

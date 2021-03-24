@@ -20,7 +20,7 @@ const Navbar = (props) => {
     >
       <Col span={6} style={{ display: 'flex', justifyContent: 'flex-start' }}>
         <div style={{ width: '60%', maxWidth: '200px' }}>
-          <Link to='/' >
+          <Link to="/">
             <img src={AlumniLogo} width="100%" />
           </Link>
         </div>
@@ -33,7 +33,7 @@ const Navbar = (props) => {
           justifyContent: 'center',
         }}
       >
-        <SearchBar/>
+        <SearchBar />
       </Col>
       <Col
         span={6}

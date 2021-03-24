@@ -69,5 +69,5 @@ export default connect(mapStateToProps, {
   fetchPostByRoom,
   fetchRooms,
   setDrawerVisibility,
-  setNewRoomModalVisibility
+  setNewRoomModalVisibility,
 })(SiderMenu);

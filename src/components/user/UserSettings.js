@@ -88,9 +88,11 @@ const UserSettings = (props) => {
           )}
           <div style={{ display: 'inline' }}>
             <Switch
-              checkedChildren='vertical'
-              unCheckedChildren='inline'
-              defaultChecked={localStorage.getItem('menuMode') === 'vertical' ? true : false}
+              checkedChildren="vertical"
+              unCheckedChildren="inline"
+              defaultChecked={
+                localStorage.getItem('menuMode') === 'vertical' ? true : false
+              }
               onChange={(val) =>
                 localStorage.setItem('menuMode', val ? 'vertical' : 'inline')
               }
@@ -103,9 +105,11 @@ const UserSettings = (props) => {
             />{' '}
             Change menu mode
             <Switch
-              checkedChildren='dark'
-              unCheckedChildren='light'
-              defaultChecked={localStorage.getItem('menuTheme') === 'dark' ? true : false}
+              checkedChildren="dark"
+              unCheckedChildren="light"
+              defaultChecked={
+                localStorage.getItem('menuTheme') === 'dark' ? true : false
+              }
               onChange={(val) =>
                 localStorage.setItem('menuTheme', val ? 'dark' : 'light')
               }

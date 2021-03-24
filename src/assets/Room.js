@@ -76,12 +76,18 @@ const Room = (props) => {
           </Header>
           <Content style={{ background: '#fff' }}>
             {props.posts.map((p) => (
-              <Post key={p.id} post={p} onClick={() => window.history.pushState({}, null, `${url}/post/${p.id}`)}/>
+              <Post
+                key={p.id}
+                post={p}
+                onClick={() =>
+                  window.history.pushState({}, null, `${url}/post/${p.id}`)
+                }
+              />
             ))}
           </Content>
         </Layout>
       </Drawer>
-      
+
       <Switch>
         <Route path={`${path}/post/:id`}>
           <p>discussion page</p>
