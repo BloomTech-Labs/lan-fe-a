@@ -12,14 +12,8 @@
     "ecmaFeatures": {
       "jsx": true
     },
-<<<<<<< HEAD
-    "ecmaVersion": 12,
-    "sourceType": "module",
-    "allowImportExportEverywhere": true
-=======
     "ecmaVersion": 2018,
     "sourceType": "module"
->>>>>>> 08eea9aceee3433252c9a710deaaf74ed7af2e3c
   },
   "plugins": ["react", "prettier"],
   "rules": {
