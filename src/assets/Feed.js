@@ -61,7 +61,6 @@ const Feed = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     user: state.user,
     posts: state.posts,

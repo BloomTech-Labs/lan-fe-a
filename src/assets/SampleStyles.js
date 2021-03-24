@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
+import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   fetchRooms,
   fetchRecent,
   fetchUser,
   retrieveFullSearchResults,
-  setSearch
+  setSearch,
 } from '../store/actions';
-import {
-  Layout,
-  Breadcrumb,
-} from 'antd';
+import { Layout, Breadcrumb } from 'antd';
 import Navbar from './Navbar';
 import SiderMenu from './SiderMenu';
 import Feed from './Feed';
+import Room from './Room';
 
 const SampleStyles = (props) => {
+  const { path, url } = useRouteMatch();
 
   const { Header, Content, Sider } = Layout;
   useEffect(() => {
@@ -27,33 +27,41 @@ const SampleStyles = (props) => {
   }, []);
 
   return (
-    <Layout>
-      <Header className="header" style={{ width: '100%' }}>
-        <Navbar/>
-      </Header>
+    <>
       <Layout>
-        <Sider width={200} className="site-layout-background">
-          <SiderMenu />
-        </Sider>
-        <Layout style={{ padding: '0 24px 24px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
-          <Content
-            className="site-layout-background"
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-            }}
-          >
-            <Feed/>
-          </Content>
+        <Header className="header" style={{ width: '100%' }}>
+          <Navbar />
+        </Header>
+        <Layout>
+          <Sider width={200} className="site-layout-background">
+            <SiderMenu />
+          </Sider>
+          <Layout style={{ padding: '0 24px 24px' }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>List</Breadcrumb.Item>
+              <Breadcrumb.Item>App</Breadcrumb.Item>
+            </Breadcrumb>
+            <Content
+              className="site-layout-background"
+              style={{
+                padding: 24,
+                margin: 0,
+                minHeight: 280,
+              }}
+            >
+              <Feed />
+            </Content>
+          </Layout>
         </Layout>
       </Layout>
-    </Layout>
+
+      <Switch>
+        <Route path={`${path}/room/:id`}>
+          <Room />
+        </Route>
+      </Switch>
+    </>
   );
 };
 
@@ -71,5 +79,5 @@ export default connect(mapStateToProps, {
   fetchRecent,
   fetchUser,
   retrieveFullSearchResults,
-  setSearch
+  setSearch,
 })(SampleStyles);

@@ -20,6 +20,7 @@ const initialState = {
   usersLikedComments: [],
   individualPostIsFetching: false,
   individualPostCommentsAreFetching: false,
+  isDrawerVisible: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -118,6 +119,12 @@ export const reducer = (state = initialState, action) => {
       ...state,
       currentPostComments: action.payload,
       individualPostCommentsAreFetching: false,
+    };
+
+  case 'SET_DRAWER_vISIBILITY':
+    return {
+      ...state,
+      isDrawerVisible: action.payload
     };
 
   default:

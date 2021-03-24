@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchPostByRoom, createRoom, fetchRooms } from '../store/actions';
+import { fetchPostByRoom, createRoom, fetchRooms, setDrawerVisibility } from '../store/actions';
 import { Menu, Form, Modal, Input } from 'antd';
 import {
   HeartOutlined,
@@ -10,6 +10,8 @@ import {
 } from '@ant-design/icons';
 
 const SiderMenu = (props) => {
+  const { url } = useRouteMatch();
+
   const [newRoomModalVisible, setNewRoomModalVisible] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -36,8 +38,11 @@ const SiderMenu = (props) => {
             <Menu.Item key={index}>
               <Link
                 key={index}
-                to={`/sample/${room.id}`}
-                onClick={() => props.fetchPostByRoom(room.id, 1)}
+                to={`${url}/room/${room.id}`}
+                onClick={() => {
+                  props.fetchPostByRoom(room.id, 1);
+                  props.setDrawerVisibility(true);
+                }}
               >
                 {room.room_name}
               </Link>
@@ -103,4 +108,5 @@ export default connect(mapStateToProps, {
   fetchPostByRoom,
   createRoom,
   fetchRooms,
+  setDrawerVisibility
 })(SiderMenu);

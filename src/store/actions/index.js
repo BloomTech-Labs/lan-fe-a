@@ -435,3 +435,7 @@ export const fetchComments = (commentId) => (dispatch) => {
       toast.error('Oh no! There was a problem fetching that comment.')
     );
 };
+
+export const setDrawerVisibility = bool => dispatch => {
+  dispatch({type: 'SET_DRAWER_vISIBILITY', payload: bool});
+} ;

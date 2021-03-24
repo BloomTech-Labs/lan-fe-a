@@ -23,7 +23,7 @@ const App = () => {
   return (
     <>
       <Switch>
-        <Route path="/sample/:id" component={SampleStyles} />
+        {/* <Route path="/sample/:id" component={SampleStyles} /> */}
         <Route path="/sample" component={SampleStyles} />
         <PrivateRoute exact path="/" component={AllRoomsDashboard} />
         <Route path="/welcome" component={Landing} />
