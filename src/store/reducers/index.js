@@ -122,6 +122,18 @@ export const reducer = (state = initialState, action) => {
         individualPostCommentsAreFetching: false,
       };
 
+    case 'SET_DRAWER_VISIBILITY':
+      return {
+        ...state,
+        isDrawerVisible: action.payload,
+      };
+
+    case 'SET_NEW_ROOM_MODAL_VISIBILITY':
+      return {
+        ...state,
+        isNewRoomModalVisible: action.payload,
+      };
+
     default:
       return state;
   }
