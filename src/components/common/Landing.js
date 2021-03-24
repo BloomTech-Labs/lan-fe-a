@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Loader from './Loader';
 import LandingContainer from './styles/landingStyle';
 import linkedin from '../../img/linkedin.svg';
@@ -7,7 +7,7 @@ import whitelambda from '../../img/whitelambda.png';
 const BACKEND_URL =
   process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
-const Landing = (props) => {
+const Landing = () => {
   const [fetching, setFetching] = useState(false);
 
   return (
