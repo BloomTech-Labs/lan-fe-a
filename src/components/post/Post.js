@@ -311,12 +311,12 @@ const Post = (props) => {
               ))}
             {!props.individualPostCommentsAreFetching &&
               props.currentPostComments.length === 0 && (
-                <div className="no-comments-yet">
-                  <p>
-                    <i className="fas fa-exclamation"></i>No comments yet
-                  </p>
-                </div>
-              )}
+              <div className="no-comments-yet">
+                <p>
+                  <i className="fas fa-exclamation"></i>No comments yet
+                </p>
+              </div>
+            )}
           </div>
           {modelIsOpen && (
             <StyledModel
@@ -389,13 +389,9 @@ const Post = (props) => {
                   <p>Selected reason: {reason}</p>
                 </div>
                 <div>
-<<<<<<< HEAD
-                  <button onClick={() => handleFlagModel(reason)}>Submit</button>
-=======
                   <button onClick={() => handleFlagModel(reason)}>
                     Submit
                   </button>
->>>>>>> 08eea9aceee3433252c9a710deaaf74ed7af2e3c
                 </div>
               </div>
             </StyledModel>
