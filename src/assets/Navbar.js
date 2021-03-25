@@ -19,7 +19,7 @@ const Navbar = (props) => {
       }}
     >
       <Col span={6} style={{ display: 'flex', justifyContent: 'flex-start' }}>
-        <div style={{ width: '60%', maxWidth: '200px' }}>
+        <div style={{ width: '60%', maxWidth: '150px' }}>
           <Link to="/">
             <img src={AlumniLogo} width="100%" />
           </Link>

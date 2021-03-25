@@ -31,7 +31,11 @@ const Dashboard = (props) => {
       <Layout>
         <Header
           className="header"
-          style={{ width: '100%', background: '#fff' }}
+          style={{
+            width: '100%',
+            background: '#fff',
+            borderBottom: 'thin solid grey',
+          }}
         >
           <Navbar />
         </Header>
