@@ -1,11 +1,14 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
+import { setFlaggingModalVisibility } from '../store/actions/index';
 import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
 import { Card, Avatar } from 'antd';
+
+import FlaggingModal from './FlaggingModal';
 
 const Post = (props) => {
   return (
@@ -15,7 +18,10 @@ const Post = (props) => {
       actions={[
         <SettingOutlined key="setting" />,
         <EditOutlined key="edit" />,
-        <EllipsisOutlined key="ellipsis" />,
+        <EllipsisOutlined
+          key="ellipsis"
+          onClick={() => props.setFlaggingModalVisibility(true)}
+        />,
       ]}
       title={
         <Card.Meta
@@ -25,8 +31,15 @@ const Post = (props) => {
       }
     >
       <p>{props.post.description}</p>
+      <FlaggingModal postId={props.post.id} />
     </Card>
   );
 };
 
-export default Post;
+const mapStateToProps = (state) => {
+  return {
+    visible: state.isFlaggingModalVisible,
+  };
+};
+
+export default connect(mapStateToProps, { setFlaggingModalVisibility })(Post);
