@@ -16,25 +16,27 @@ const CreateNewRoomButton = (props) => {
     setDescription(curValues.description);
   };
 
+  const handleSubmition = (e) => {
+    props
+      .createRoom({ room_name: title, description: description })
+      .then(() => {
+        setTitle('');
+        setDescription('');
+        props.fetchRooms();
+      })
+      .catch(() => {
+        console.log('failed to create room');
+      });
+    props.setNewRoomModalVisibility(false);
+  };
+
   return (
     <Modal
       title="Create Room"
       centered
       visible={props.visible}
       okButtonProps={{ htmlType: 'submit' }}
-      onOk={() => {
-        props
-          .createRoom({ room_name: title, description: description })
-          .then(() => {
-            setTitle('');
-            setDescription('');
-            props.fetchRooms();
-          })
-          .catch(() => {
-            console.log('failed to create room');
-          });
-        props.setNewRoomModalVisibility(false);
-      }}
+      onOk={handleSubmition}
       onCancel={() => props.setNewRoomModalVisibility(false)}
     >
       <Form>
