@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons';
 import { Card, Avatar } from 'antd';
 
-const Post = (props) => {
+const DiscussionCard = (props) => {
   return (
     <Card
       onClick={props.onClick}
@@ -19,14 +19,14 @@ const Post = (props) => {
       ]}
       title={
         <Card.Meta
-          avatar={<Avatar src={props.post.profile_picture} />}
-          title={props.post.title}
+          avatar={<Avatar src={props.discussion.profile_picture} />}
+          title={props.discussion.title}
         />
       }
     >
-      <p>{props.post.description}</p>
+      <p>{props.discussion.description}</p>
     </Card>
   );
 };
 
-export default Post;
+export default DiscussionCard;

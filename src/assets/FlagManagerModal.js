@@ -18,12 +18,12 @@ const FlagManagerModal = (props) => {
     //fetch reasons for flagging
     //fetch flags by discussion or comment id
     setFlaggingReasons();
+    setFlagList();
   }, []);
 
   handleApprove = (params) => {};
   handleArchive = (params) => {};
   handleEscalate = (params) => {};
-  handleContactUser = (params) => {};
 
   return (
     <div>

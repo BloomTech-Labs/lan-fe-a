@@ -30,7 +30,7 @@ const DashboardContent = () => {
         </div>
       </Header>
       <Content>
-        <p>Posts...</p>
+        <p>Discussions...</p>
       </Content>
     </Layout>
   );
