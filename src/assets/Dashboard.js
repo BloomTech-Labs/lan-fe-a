@@ -28,7 +28,7 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <Layout>
+      <Layout style={{ height: '100vh' }}>
         <Header className="header" style={{ width: '100%' }}>
           <Navbar />
         </Header>
