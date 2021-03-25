@@ -28,15 +28,8 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <Layout>
-        <Header
-          className="header"
-          style={{
-            width: '100%',
-            background: '#fff',
-            borderBottom: 'thin solid grey',
-          }}
-        >
+      <Layout style={{ height: '100vh' }}>
+        <Header className="header" style={{ width: '100%' }}>
           <Navbar />
         </Header>
         <Layout>

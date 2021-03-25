@@ -39,10 +39,8 @@ const ProfileIcon = (props) => {
     >
       <Space size="small" style={{ height: '88%' }}>
         <Avatar src={props.user.profilePicture} size="large" />
-        <p style={{ display: 'inline', color: 'black' }}>
-          {props.user.displayName}
-        </p>
-        <DownOutlined style={{ color: 'black' }} rotate={rotation} />
+        <p style={{ display: 'inline' }}>{props.user.displayName}</p>
+        <DownOutlined rotate={rotation} />
       </Space>
     </Dropdown>
   );
