@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
-import { Card, Avatar } from 'antd';
+import { Card, Avatar, Modal } from 'antd';
+
+import FlagManagerModal from './FlagManagerModal';
 
 const DiscussionCard = (props) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <Card
       onClick={props.onClick}
       style={{ margin: '30px 0px' }}
       actions={[
         <SettingOutlined key="setting" />,
-        <EditOutlined key="edit" />,
+        // vvv Reformat to flag chip that routes you to
+        // vvv  discussion with view by set to "flagged"
+        <EditOutlined
+          key="edit"
+          onClick={() => {
+            setShowModal(true);
+          }}
+        />,
         <EllipsisOutlined key="ellipsis" />,
       ]}
       title={
@@ -25,6 +36,7 @@ const DiscussionCard = (props) => {
       }
     >
       <p>{props.discussion.description}</p>
+      <FlagManagerModal visible={showModal} setVisible={setShowModal} />
     </Card>
   );
 };
