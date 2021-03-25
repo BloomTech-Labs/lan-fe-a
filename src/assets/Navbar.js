@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { Row, Col } from 'antd';
 
 import LambdaLogo from './LambdaLogo';
-import AlumniLogo from '../img/AlumniLogo.svg';
 import ProfileIcon from './ProfileIcon';
 import SearchBar from './SearchBar';
 
@@ -27,7 +26,6 @@ const Navbar = (props) => {
               fill={'black'}
               style={{ border: 'thin black solid' }}
             />
-            {/* <img src={AlumniLogo} width="100%" /> */}
           </Link>
         </div>
       </Col>
