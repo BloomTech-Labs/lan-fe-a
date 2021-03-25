@@ -29,7 +29,10 @@ const Dashboard = (props) => {
   return (
     <>
       <Layout>
-        <Header className="header" style={{ width: '100%' }}>
+        <Header
+          className="header"
+          style={{ width: '100%', background: '#fff' }}
+        >
           <Navbar />
         </Header>
         <Layout>
