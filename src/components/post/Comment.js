@@ -16,7 +16,6 @@ const Comment = (props) => {
   const [likes, setLikes] = useState(0);
   const [editing, setEditing] = useState(false);
   const [moreOptions, setMoreOptions] = useState(false);
-  const { comment } = props;
   useEffect(() => setLikes(props.comment.likes), [props.comment]);
 
   useEffect(() => {
@@ -46,11 +45,11 @@ const Comment = (props) => {
   };
 
   //removes a comment by UserId
-  const removeComments = () => {
+  const removeComments = (commentId) => {
     props
-      .removeCommentsByUserId(comment.id)
+      .removeCommentsByUserId(commentId)
       .then(() => {
-        props.fetchPostCommentsByRecent(comment.post_id);
+        props.fetchPostCommentsByRecent(props.comment.post_id);
       })
       .catch((err) => {
         console.log(err);
