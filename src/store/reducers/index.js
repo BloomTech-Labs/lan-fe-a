@@ -22,6 +22,7 @@ const initialState = {
   individualPostCommentsAreFetching: false,
   isDrawerVisible: false,
   isNewRoomModalVisible: false,
+  isFlaggingModalVisible: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -132,6 +133,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         isNewRoomModalVisible: action.payload,
+      };
+
+    case 'SET_FLAGGING_MODAL':
+      return {
+        ...state,
+        isFlaggingModalVisible: action.payload,
       };
 
     default:
