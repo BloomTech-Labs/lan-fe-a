@@ -19,8 +19,7 @@
   "rules": {
 	"no-console": "warn",
 	"react/prop-types": 0,
-  "no-unused-vars": ["warn", { "vars": "all", "args": "after-used"}],
-  "endOfLine": 0
+  "no-unused-vars": ["warn", { "vars": "all", "args": "after-used"}]
 },
   "overrides": [
     {
