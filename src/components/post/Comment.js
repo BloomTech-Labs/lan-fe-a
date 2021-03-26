@@ -48,20 +48,6 @@ const Comment = (props) => {
     }
   };
 
-  // likes comment
-  // const like = () => {
-  //   setLiked(true);
-  //   setLikes(likes + 1);
-  //   props.likeComment(props.comment.id);
-  // };
-
-  // // removes like from comment
-  // const unlike = () => {
-  //   setLiked(false);
-  //   setLikes(likes - 1);
-  //   props.unlikeComment(props.comment.id);
-  // };
-
   //removes a comment by UserId
   const removeComments = () => {
     props
