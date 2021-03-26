@@ -18,8 +18,8 @@ const DiscussionCard = (props) => {
       style={{ margin: '30px 0px' }}
       actions={[
         <SettingOutlined key="setting" />,
-        // vvv Reformat to flag chip that routes you to
-        // vvv  discussion with view by set to "flagged"
+        //! vvv Reformat to flag chip that routes you to
+        //! vvv  discussion with view by set to "flagged"
         <EditOutlined
           key="edit"
           onClick={() => {

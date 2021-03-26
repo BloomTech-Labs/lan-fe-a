@@ -93,7 +93,7 @@ const FlagManagerModal = (props) => {
           </Row>
           <Row justify="space-around">
             <Button
-              type="default"
+              type="primary"
               icon={<RiseOutlined />}
               style={{
                 background: 'rgba(247, 195, 37, .57)',
@@ -105,7 +105,7 @@ const FlagManagerModal = (props) => {
             </Button>
           </Row>
           <Row>
-            <FlagChip flagged="5" comments="0" />
+            <FlagChip flagged="10" comments="0" />
             <FlagChip flagged="5" comments="12" />
             <FlagChip flagged="0" comments="12" />
           </Row>

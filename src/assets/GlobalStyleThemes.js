@@ -18,7 +18,7 @@ module.exports = {
 
   /* ---------- Base Scaffolding Variables ---------------------- */
   '@body-background': 'green', //background color for '<body>'
-  '@font-family': '"Suisse Intl Regular", sans-serif',
+  '@font-family': '"Poppins", sans-serif',
   '@font-size-base': '14px', // major text font size
 
   /* -------------------- Layout ------------------------------- */
