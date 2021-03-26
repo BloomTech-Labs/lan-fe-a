@@ -4,7 +4,7 @@ import { retrieveFullSearchResults } from '../store/actions';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'antd';
 
-import AlumniLogo from '../img/AlumniLogo.svg';
+import LambdaLogo from './LambdaLogo';
 import ProfileIcon from './ProfileIcon';
 import SearchBar from './SearchBar';
 
@@ -19,9 +19,13 @@ const Navbar = (props) => {
       }}
     >
       <Col span={6} style={{ display: 'flex', justifyContent: 'flex-start' }}>
-        <div style={{ width: '60%', maxWidth: '150px' }}>
+        <div style={{ width: 150, minWidth: 150 }}>
           <Link to="/">
-            <img src={AlumniLogo} width="100%" />
+            <LambdaLogo
+              fillOpacity={0.87}
+              fill={'black'}
+              style={{ border: 'thin black solid' }}
+            />
           </Link>
         </div>
       </Col>
