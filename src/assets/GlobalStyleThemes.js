@@ -135,4 +135,29 @@ module.exports = {
   '@menu-dark-selected-item-icon-color': '@white',
   '@menu-dark-selected-item-text-color': '@white',
   '@menu-dark-item-hover-bg': 'transparent',
+
+  /* --------------------------------- Select --------------------------------- */
+  '@select-border-color': '@border-color-base',
+  '@select-item-selected-color': '@text-color',
+  '@select-item-selected-font-weight': '600',
+  '@select-dropdown-bg': '@component-background',
+  '@select-item-selected-bg': '@primary-1',
+  '@select-item-active-bg': '@item-hover-bg',
+  '@select-dropdown-vertical-padding': '@dropdown-vertical-padding',
+  '@select-dropdown-font-size': '@dropdown-font-size',
+  '@select-dropdown-line-height': '@dropdown-line-height',
+  '@select-dropdown-height': '32px',
+  '@select-background': '@component-background',
+  '@select-clear-background': '@select-background',
+  '@select-selection-item-bg': '@background-color-base',
+  '@select-selection-item-border-color': '@border-color-split',
+  '@select-single-item-height-lg': '40px',
+  '@select-multiple-item-height':
+    '@input-height-base - @input-padding-vertical-base * 2; // Normal 24p',
+  '@select-multiple-item-height-lg': '32px',
+  '@select-multiple-item-spacing-half':
+    'ceil((@input-padding-vertical-base / 2))',
+  '@select-multiple-disabled-background': '@input-disabled-bg',
+  '@select-multiple-item-disabled-color': '#bfbfbf',
+  '@select-multiple-item-disabled-border-color': '@select-border-color',
 };

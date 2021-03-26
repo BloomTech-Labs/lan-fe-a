@@ -93,7 +93,7 @@ const FlagManagerModal = (props) => {
           </Row>
           <Row justify="space-around">
             <Button
-              type="primary"
+              type="default"
               icon={<RiseOutlined />}
               style={{
                 background: 'rgba(247, 195, 37, .57)',

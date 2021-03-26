@@ -7,7 +7,7 @@ import {
   setDrawerVisibility,
   setNewRoomModalVisibility,
 } from '../store/actions';
-import { Menu } from 'antd';
+import { Menu, Button } from 'antd';
 import {
   HeartOutlined,
   ShopOutlined,
@@ -51,7 +51,9 @@ const SiderMenu = (props) => {
           onClick={() => props.setNewRoomModalVisibility(true)}
           icon={<PlusSquareOutlined />}
         >
-          Create Room
+          <Button type="primary" style={{ color: '#000' }}>
+            Create Room
+          </Button>
         </Menu.Item>
       </Menu.SubMenu>
       <CreateNewRoomModal />
