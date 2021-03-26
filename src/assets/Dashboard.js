@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
@@ -9,10 +10,16 @@ import {
   setSearch,
 } from '../store/actions';
 import { Layout, Breadcrumb } from 'antd';
+
 import Navbar from './Navbar';
 import SiderMenu from './SiderMenu';
 import DashboardContent from './DashboardContent';
 import Room from './Room';
+
+const DashboardHeaderStyles = styled(Layout.Header)`
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 30);
+`;
 
 const Dashboard = (props) => {
   const { path } = useRouteMatch();
@@ -28,10 +35,10 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <Layout>
-        <Header className="header" style={{ width: '100%' }}>
+      <Layout style={{ height: '100vh' }}>
+        <DashboardHeaderStyles>
           <Navbar />
-        </Header>
+        </DashboardHeaderStyles>
         <Layout>
           <Sider width={200} className="site-layout-background">
             <SiderMenu />
