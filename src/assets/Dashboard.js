@@ -29,6 +29,7 @@ const Dashboard = (props) => {
   return (
     <>
       <Layout style={{ height: '100vh' }}>
+        {/* //!Is this width style below needed? - Maxwell */}
         <Header className="header" style={{ width: '100%' }}>
           <Navbar />
         </Header>

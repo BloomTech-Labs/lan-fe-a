@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
+import { FlagChip } from './FlagChip';
 import { Modal, Layout, Button, Row, Col, Menu, Divider } from 'antd';
-import {
-  CheckOutlined,
-  ForwardOutlined,
-  DeleteOutlined,
-} from '@ant-design/icons';
+import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const FlagManagerModal = (props) => {
   const { visible, setVisible } = props;
@@ -70,10 +67,9 @@ const FlagManagerModal = (props) => {
             <Col>
               <Button
                 type="default"
-                // shape="round"
                 icon={<CheckOutlined />}
                 style={{
-                  background: 'rgba(33, 120, 104, .5)',
+                  background: 'rgba(33, 120, 104, .57)',
                   color: 'rgba(33, 120, 104)',
                 }}
                 onClick={handleApprove}
@@ -87,7 +83,7 @@ const FlagManagerModal = (props) => {
               type="default"
               icon={<DeleteOutlined />}
               style={{
-                background: 'rgba(211, 69, 91, .5)',
+                background: 'rgba(211, 69, 91, .57)',
                 color: 'rgba(211, 69, 91)',
               }}
               onClick={handleArchive}
@@ -98,18 +94,26 @@ const FlagManagerModal = (props) => {
           <Row justify="space-around">
             <Button
               type="default"
-              icon={<ForwardOutlined />}
+              icon={<RiseOutlined />}
               style={{
-                background: 'rgba(247, 195, 37, .4)',
-                color: 'rgba(229, 177, 22)',
+                background: 'rgba(247, 195, 37, .57)',
+                color: 'rgba(219, 175, 46)',
               }}
               onClick={handleEscalate}
             >
               Escalate
             </Button>
           </Row>
+          <Row>
+            <Col>
+              <FlagChip flagged="5" comments="4" />
+            </Col>
+          </Row>
         </Sider>
-        <Content>{flagList}</Content>
+        <Content>
+          {flagList}
+          <FlagChip />
+        </Content>
       </Layout>
     </Modal>
   );
