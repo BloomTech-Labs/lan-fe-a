@@ -30,7 +30,7 @@ const Post = (props) => {
       }
     >
       <p>{props.post.description}</p>
-      <UserFlaggingModal />
+      <UserFlaggingModal postId={props.post.id} />
     </Card>
   );
 };
