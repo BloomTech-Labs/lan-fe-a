@@ -73,7 +73,7 @@ const Post = (props) => {
   };
 
   // handles liking and unliking a post (makes call based on postID being passed in)
-  const onClickLikesHandler = (postID) => {
+  const onClickLikesHandler = () => {
     if (!liked) {
       setLikes(likes + 1);
       setLiked(!liked);
