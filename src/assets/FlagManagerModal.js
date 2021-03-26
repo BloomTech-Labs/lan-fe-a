@@ -105,15 +105,12 @@ const FlagManagerModal = (props) => {
             </Button>
           </Row>
           <Row>
-            <Col>
-              <FlagChip flagged="5" comments="4" />
-            </Col>
+            <FlagChip flagged="5" comments="0" />
+            <FlagChip flagged="5" comments="12" />
+            <FlagChip flagged="0" comments="12" />
           </Row>
         </Sider>
-        <Content>
-          {flagList}
-          <FlagChip />
-        </Content>
+        <Content>{flagList}</Content>
       </Layout>
     </Modal>
   );

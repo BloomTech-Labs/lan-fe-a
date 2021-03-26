@@ -8,10 +8,12 @@ export const FlagChip = ({ flagged, comments }) => {
       className="flag-chip"
       type="ghost"
       shape="round"
-      style={{ borderColor: '#D3455B', color: '#D3455B' }}
+      style={{ color: '#D3455B', border: '2px solid #D3455B' }}
     >
-      <FlagFilled style={{ color: '#D3455B' }} /> {`${flagged}`}
-      <MessageFilled style={{ color: '#D3455B' }} /> {`${comments}`}
+      {flagged > 0 && <FlagFilled style={{ color: '#D3455B' }} />}
+      {flagged > 0 && flagged}
+      {comments > 0 && <MessageFilled style={{ color: '#D3455B' }} />}
+      {comments > 0 && comments}
     </Button>
   );
 };
