@@ -32,7 +32,6 @@ const globalClickListener = (event) => {
     event.target.parentElement.classList.contains('dropdown-menu')
   ) {
     // do nothing.
-
     // the onClick handler will hide the correct dropdown
     return null;
   }
