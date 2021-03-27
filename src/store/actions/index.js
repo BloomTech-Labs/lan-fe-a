@@ -443,3 +443,7 @@ export const setDrawerVisibility = (bool) => (dispatch) => {
 export const setNewRoomModalVisibility = (bool) => (dispatch) => {
   dispatch({ type: 'SET_NEW_ROOM_MODAL_VISIBILITY', payload: bool });
 };
+
+export const setFlaggingModalVisibility = (bool) => (dispatch) => {
+  dispatch({ type: 'SET_FLAGGING_MODAL', payload: bool });
+};

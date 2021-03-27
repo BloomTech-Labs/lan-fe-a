@@ -72,18 +72,17 @@ const Post = (props) => {
     }
   };
 
-  // adds like to post
-  const like = (postID) => {
-    setLiked(true);
-    setLikes(likes + 1);
-    props.like(postID);
-  };
-
-  // removes like from post
-  const unlike = (postID) => {
-    setLiked(false);
-    setLikes(likes - 1);
-    props.unlike(postID);
+  // handles liking and unliking a post (makes call based on postID being passed in)
+  const onClickLikesHandler = () => {
+    if (!liked) {
+      setLikes(likes + 1);
+      setLiked(!liked);
+      props.like(postID);
+    } else {
+      setLikes(likes - 1);
+      setLiked(!liked);
+      props.unlike(postID);
+    }
   };
 
   // deletes post
@@ -222,7 +221,7 @@ const Post = (props) => {
                       <>
                         <i
                           className="blue fas fa-chevron-up"
-                          onClick={() => unlike(postID)}
+                          onClick={onClickLikesHandler}
                         ></i>
                         <span className="blue">{likes}</span>
                       </>
@@ -230,7 +229,7 @@ const Post = (props) => {
                       <>
                         <i
                           className="white fas fa-chevron-up"
-                          onClick={() => like(postID)}
+                          onClick={onClickLikesHandler}
                         ></i>
                         <span className="white">{likes}</span>
                       </>

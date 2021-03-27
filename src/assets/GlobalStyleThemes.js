@@ -1,5 +1,6 @@
 module.exports = {
   '@border-radius-base': '4px', // major border radius
+  '@white': '#fff', //
   '@box-shadow-base':
     '0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05)', // major shadow for layers
 
@@ -17,7 +18,7 @@ module.exports = {
   '@border-color-base': '#d9d9d9', // major border color
 
   /* ---------- Base Scaffolding Variables ---------------------- */
-  '@body-background': 'green', //background color for '<body>'
+  '@body-background': '@black', //background color for '<body>'
   '@font-family': '"Poppins", sans-serif',
   '@font-size-base': '14px', // major text font size
 

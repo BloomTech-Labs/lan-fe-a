@@ -36,18 +36,16 @@ const Comment = (props) => {
     }
   }, [props.usersLikedComments]);
 
-  // likes comment
-  const like = () => {
-    setLiked(true);
-    setLikes(likes + 1);
-    props.likeComment(props.comment.id);
-  };
-
-  // removes like from comment
-  const unlike = () => {
-    setLiked(false);
-    setLikes(likes - 1);
-    props.unlikeComment(props.comment.id);
+  const onClickCommentLikesHandler = () => {
+    if (!liked) {
+      setLikes(likes + 1);
+      setLiked(!liked);
+      props.likeComment(props.comment.id);
+    } else {
+      setLikes(likes - 1);
+      setLiked(!liked);
+      props.unlikeComment(props.comment.id);
+    }
   };
 
   //removes a comment by UserId
@@ -118,12 +116,18 @@ const Comment = (props) => {
         <p className="likes">
           {liked ? (
             <>
-              <i className="blue fas fa-chevron-up" onClick={unlike}></i>
+              <i
+                className="blue fas fa-chevron-up"
+                onClick={onClickCommentLikesHandler}
+              ></i>
               <span className="blue">{likes}</span>
             </>
           ) : (
             <>
-              <i className="white fas fa-chevron-up" onClick={like}></i>
+              <i
+                className="white fas fa-chevron-up"
+                onClick={onClickCommentLikesHandler}
+              ></i>
               <span className="white">{likes}</span>
             </>
           )}
