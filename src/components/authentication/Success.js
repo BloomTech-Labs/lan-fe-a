@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { connect } from 'react-redux';
 import Loader from '../common/Loader';
 import { fetchUser } from '../../store/actions/index';
+import toast from 'react-hot-toast';
 
 const Success = (props) => {
   const { jwt } = useParams();
@@ -18,6 +19,7 @@ const Success = (props) => {
   // render onboarding or nah
   if (props.user.onboarded) {
     props.history.push('/');
+    toast.success('Welcome to the Lambda Alumni Network!');
   } else {
     props.history.push('/onboarding');
   }
