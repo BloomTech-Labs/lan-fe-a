@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import axiosWithAuth from './axiosWithAuth';
+import toast from 'react-hot-toast';
 
 /* eslint-disable no-undef */
 const BACKEND_URL =
@@ -18,8 +19,9 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
           setActiveSession(true);
         }
       })
-      .catch((err) => {
-        console.log('privateRoute err', err);
+      .catch((error) => {
+        localStorage.removeItem('token');
+        toast.error(error.message);
       });
   }, []);
 
@@ -27,11 +29,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        if (activeSession) {
-          return <Component {...props} />;
-        } else {
-          <Redirect to="/welcome" />;
-        }
+        activeSession ? <Component {...props} /> : <Redirect to="/welcome" />;
       }}
     />
   );
