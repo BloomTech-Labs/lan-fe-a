@@ -29,7 +29,11 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        activeSession ? <Component {...props} /> : <Redirect to="/welcome" />;
+        if (activeSession) {
+          return <Component {...props} />;
+        } else {
+          <Redirect to="/welcome" />;
+        }
       }}
     />
   );
