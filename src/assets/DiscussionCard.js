@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-
+import { connect } from 'react-redux';
+import { setFlaggingModalVisibility } from '../store/actions/index';
 import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
 import { Card, Avatar, Modal } from 'antd';
-
+import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
 
 const DiscussionCard = (props) => {
@@ -26,7 +27,10 @@ const DiscussionCard = (props) => {
             setShowModal(true);
           }}
         />,
-        <EllipsisOutlined key="ellipsis" />,
+        <EllipsisOutlined
+          key="ellipsis"
+          onClick={() => props.setFlaggingModalVisibility(true)}
+        />,
       ]}
       title={
         <Card.Meta
@@ -37,8 +41,19 @@ const DiscussionCard = (props) => {
     >
       <p>{props.discussion.description}</p>
       <FlagManagerModal visible={showModal} setVisible={setShowModal} />
+      <UserFlaggingModal postId={props.discussion.id} />
     </Card>
   );
 };
 
-export default DiscussionCard;
+const mapStateToProps = (state) => {
+  return {
+    discussions: state.posts,
+    rooms: state.rooms,
+    visible: state.isDrawerVisible,
+  };
+};
+
+export default connect(mapStateToProps, { setFlaggingModalVisibility })(
+  DiscussionCard
+);
