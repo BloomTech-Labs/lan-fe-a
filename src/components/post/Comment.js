@@ -49,11 +49,11 @@ const Comment = (props) => {
   };
 
   //removes a comment by UserId
-  const removeComments = () => {
+  const removeComments = (commentId) => {
     props
-      .removeCommentsByUserId(comment.id)
+      .removeCommentsByUserId(commentId)
       .then(() => {
-        props.fetchPostCommentsByRecent(comment.post_id);
+        props.fetchPostCommentsByRecent(props.comment.post_id);
       })
       .catch((err) => {
         console.log(err);
