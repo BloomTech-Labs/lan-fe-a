@@ -16,6 +16,8 @@ import SiderMenu from './SiderMenu';
 import DashboardContent from './DashboardContent';
 import Room from './Room';
 
+//! Lets get styled compoenents related stuff separated from
+//! the component and imported via a "styles folder" - M
 const DashboardHeaderStyles = styled(Layout.Header)`
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 30);

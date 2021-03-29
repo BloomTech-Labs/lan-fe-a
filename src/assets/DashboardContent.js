@@ -30,7 +30,7 @@ const DashboardContent = () => {
         </div>
       </Header>
       <Content>
-        <p>Posts...</p>
+        <p>(Dynamic Newsfeed Here)</p>
       </Content>
     </Layout>
   );
