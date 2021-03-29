@@ -14,7 +14,7 @@ import {
 } from '../store/actions';
 import { Layout, Drawer } from 'antd';
 
-import Post from './Post';
+import DiscussionCard from './DiscussionCard';
 
 const Room = (props) => {
   const { id } = useParams();
@@ -75,12 +75,16 @@ const Room = (props) => {
             </div>
           </Header>
           <Content style={{ background: '#fff' }}>
-            {props.posts.map((p) => (
-              <Post
-                key={p.id}
-                post={p}
+            {props.discussions.map((d) => (
+              <DiscussionCard
+                key={d.id}
+                discussion={d}
                 onClick={() =>
-                  window.history.pushState({}, null, `${url}/post/${p.id}`)
+                  window.history.pushState(
+                    {},
+                    null,
+                    `${url}/discussion/${d.id}`
+                  )
                 }
               />
             ))}
@@ -89,8 +93,8 @@ const Room = (props) => {
       </Drawer>
 
       <Switch>
-        <Route path={`${path}/post/:id`}>
-          <p>discussion page</p>
+        <Route path={`${path}/discussion/:id`}>
+          <p>Discussion page</p>
         </Route>
       </Switch>
     </>
@@ -99,7 +103,7 @@ const Room = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts,
+    discussions: state.posts,
     rooms: state.rooms,
     visible: state.isDrawerVisible,
   };
