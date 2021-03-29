@@ -18,9 +18,10 @@ const Success = (props) => {
 
   // render onboarding or nah
   if (props.user.onboarded) {
-    props.history.push('/');
     toast.success('Welcome to the Lambda Alumni Network!');
+    props.history.push('/');
   } else {
+    toast.success('Welcome to the Lambda Alumni Network!');
     props.history.push('/onboarding');
   }
 
