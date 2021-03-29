@@ -22,7 +22,7 @@ const FlagManagerModal = (props) => {
     'I just dislike it',
     'Other',
   ]);
-  console.log('here', flaggingReasons);
+  const [flagFilter, setFlagFilter] = useState('All');
   const [flagList, setFlagList] = useState('this is the list of flags');
 
   useEffect(() => {
@@ -31,6 +31,15 @@ const FlagManagerModal = (props) => {
     // setFlaggingReasons();
     // setFlagList();
   }, []);
+
+  useEffect(() => {
+    //change flagging list to show only ones that match the filter
+    console.log('use effect has run');
+  }, [flagFilter]);
+
+  const handleFilterChange = (e) => {
+    setFlagFilter(flaggingReasons[e.key]);
+  };
 
   const handleApprove = () => {
     console.log('clicked Approve');
@@ -58,7 +67,11 @@ const FlagManagerModal = (props) => {
           <Row>
             <Menu defaultSelectedKeys={['0']}>
               {flaggingReasons.map((reason, idx) => {
-                return <Menu.Item key={idx}>{reason}</Menu.Item>;
+                return (
+                  <Menu.Item key={idx} onClick={handleFilterChange}>
+                    {reason}
+                  </Menu.Item>
+                );
               })}
             </Menu>
           </Row>
@@ -108,6 +121,7 @@ const FlagManagerModal = (props) => {
             <FlagChip flagged="10" comments="0" />
             <FlagChip flagged="5" comments="12" />
             <FlagChip flagged="0" comments="12" />
+            <FlagChip flagged="0" comments="0" />
           </Row>
         </Sider>
         <Content>{flagList}</Content>
