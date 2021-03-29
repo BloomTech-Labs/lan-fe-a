@@ -41,6 +41,7 @@ const DiscussionCard = (props) => {
     >
       <p>{props.discussion.description}</p>
       <FlagManagerModal visible={showModal} setVisible={setShowModal} />
+      {/* //!Change below prop to discussionId and fix in FlaggingModal Component */}
       <UserFlaggingModal postId={props.discussion.id} />
     </Card>
   );
