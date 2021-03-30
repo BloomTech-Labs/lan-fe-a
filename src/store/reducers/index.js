@@ -4,6 +4,7 @@ const initialState = {
   rooms: [],
   users: [],
   posts: [],
+  pinnedPosts: [],
   totalPages: 1,
   mainSearchResults: {
     users: [],
@@ -50,6 +51,12 @@ export const reducer = (state = initialState, action) => {
         ...state,
         posts: action.payload.posts,
         totalPages: action.payload.totalPages,
+      };
+
+    case 'SET_PINNED_POSTS':
+      return {
+        ...state,
+        pinnedPosts: action.payload,
       };
 
     case 'SET_FLAGGED_POSTS':

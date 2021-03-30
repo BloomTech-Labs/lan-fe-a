@@ -10,9 +10,11 @@ import {
 import {
   fetchPostByRoom,
   fetchRooms,
+  getPinnedPosts,
   setDrawerVisibility,
 } from '../store/actions';
 import { Layout, Drawer } from 'antd';
+import { PushpinFilled, PushpinOutlined } from '@ant-design/icons';
 
 import DiscussionCard from './DiscussionCard';
 
@@ -25,6 +27,7 @@ const Room = (props) => {
     if (id) {
       props.fetchPostByRoom(id, 1);
       props.fetchRooms();
+      props.getPinnedPosts(id);
     }
   }, []);
 
@@ -75,9 +78,18 @@ const Room = (props) => {
             </div>
           </Header>
           <Content style={{ background: '#fff' }}>
+            {/* PINNED POSTS */}
+            {props.pinnedPosts.map((element) => (
+              <DiscussionCard
+                key={element.id}
+                pinPost="true"
+                discussion={element}
+              />
+            ))}
             {props.discussions.map((d) => (
               <DiscussionCard
                 key={d.id}
+                pinPost="false"
                 discussion={d}
                 onClick={() =>
                   window.history.pushState(
@@ -106,11 +118,13 @@ const mapStateToProps = (state) => {
     discussions: state.posts,
     rooms: state.rooms,
     visible: state.isDrawerVisible,
+    pinnedPosts: state.pinnedPosts,
   };
 };
 
 export default connect(mapStateToProps, {
   fetchPostByRoom,
   fetchRooms,
+  getPinnedPosts,
   setDrawerVisibility,
 })(Room);

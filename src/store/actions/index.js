@@ -281,7 +281,7 @@ export const fetchPostCommentsByPopular = (postID) => (dispatch) => {
     .catch(() => toast.error('Looks like there was trouble loading comments.'));
 };
 
-// Fetches all posts in a specific room
+// Fetches all posts in a specific room (sorted by New)
 export const fetchPostByRoom = (roomID, page) => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/room/${roomID}/recent?page=${page}&limit=10`)
@@ -291,7 +291,19 @@ export const fetchPostByRoom = (roomID, page) => (dispatch) => {
     .catch(() => toast.error('Oh no! Could not fetch posts.'));
 };
 
-// Fetches all posts in a specific room
+// Get pinned post(s) for a room when given the room id
+export const getPinnedPosts = (roomID) => (dispatch) => {
+  axiosWithAuth()
+    .get(`${BACKEND_URL}/api/room/${roomID}/pinned`)
+    .then((res) => {
+      dispatch({ type: 'SET_PINNED_POSTS', payload: res.data });
+    })
+    .catch((err) => {
+      toast.error(err.message);
+    });
+};
+
+// Fetches all posts in a specific room (sorted by upvotes/likes)
 export const fetchPostByRoomByPopular = (roomID, page) => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/room/${roomID}/popular?page=${page}&limit=10`)
