@@ -7,7 +7,7 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import { Card, Avatar, Modal } from 'antd';
-// import UserFlaggingModal from './UserFlaggingModal';
+import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
 
 const DiscussionCard = (props) => {
@@ -42,7 +42,7 @@ const DiscussionCard = (props) => {
       <p>{props.discussion.description}</p>
       <FlagManagerModal visible={showModal} setVisible={setShowModal} />
       {/* //!Change below prop to discussionId and fix in FlaggingModal Component */}
-      {/* <UserFlaggingModal postId={props.discussion.id} /> */}
+      <UserFlaggingModal postId={props.discussion.id} />
     </Card>
   );
 };

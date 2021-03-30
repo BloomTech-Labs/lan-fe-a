@@ -6,7 +6,7 @@ import {
   fetchRooms,
   setDrawerVisibility,
 } from '../store/actions';
-import { Layout } from 'antd';
+import { Layout, Drawer } from 'antd';
 
 import DiscussionCard from './DiscussionCard';
 
@@ -35,7 +35,7 @@ const Room = (props) => {
   };
 
   return (
-    <>
+    <Drawer visible={props.visible}>
       <Layout>
         <Header
           style={{
@@ -62,27 +62,23 @@ const Room = (props) => {
             <DiscussionCard
               key={d.id}
               discussion={d}
-              onClick={() => {
-                window.history.pushState({}, null, `${url}/discussion/${d.id}`);
-                props.setDrawerVisibility(true);
-              }}
+              onClick={() =>
+                window.history.pushState({}, null, `${url}/discussion/${d.id}`)
+              }
             />
           ))}
         </Content>
       </Layout>
-      <Switch>
-        <Route path={`${path}/discussion/:id`}>
-          <p>Discussion page</p>
-        </Route>
-      </Switch>
-    </>
+    </Drawer>
   );
 };
 
 const mapStateToProps = (state) => {
+    console.log(state);
   return {
     discussions: state.posts,
     rooms: state.rooms,
+    visible: state.isDrawerVisible,
   };
 };
 
