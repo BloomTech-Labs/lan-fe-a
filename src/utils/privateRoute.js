@@ -8,15 +8,15 @@ const BACKEND_URL =
   process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [activeSession, setActiveSession] = useState(false);
+  const [activeToken, setActiveToken] = useState(false);
 
-  // ask the db if this user has an active session
+  // ask the db if this user has an active token
   useEffect(() => {
     axiosWithAuth()
       .get(`${BACKEND_URL}/api/user`)
       .then((response) => {
         if (response.data.user) {
-          setActiveSession(true);
+          setActiveToken(true);
         }
       })
       .catch((error) => {
@@ -29,7 +29,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        if (activeSession) {
+        if (activeToken) {
           return <Component {...props} />;
         } else {
           <Redirect to="/welcome" />;
