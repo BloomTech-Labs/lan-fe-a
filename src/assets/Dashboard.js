@@ -59,17 +59,18 @@ const Dashboard = (props) => {
                 minHeight: 280,
               }}
             >
-              <DashboardContent />
+              <Switch>
+                <Route path={`${path}/room/:id`}>
+                  <Room />
+                </Route>
+                <Route exact path={`${path}/`}>
+                  <DashboardContent />
+                </Route>
+              </Switch>
             </Content>
           </Layout>
         </Layout>
       </Layout>
-
-      <Switch>
-        <Route path={`${path}/room/:id`}>
-          <Room />
-        </Route>
-      </Switch>
     </>
   );
 };
