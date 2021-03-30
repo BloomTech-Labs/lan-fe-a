@@ -2,8 +2,41 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
 import { FlagChip } from './FlagChip';
-import { Modal, Layout, Button, Row, Col, Menu, Divider } from 'antd';
+import {
+  Modal,
+  Layout,
+  Button,
+  Row,
+  Col,
+  Menu,
+  Divider,
+  List,
+  Avatar,
+  Typography,
+} from 'antd';
 import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
+
+const { Title } = Typography;
+const flagsData = [
+  {
+    flagReason: 'Spam',
+    flagger: 'John Adams',
+    description:
+      'I really hate this comment and it insults my mother and has been posted in every single group so its spammy',
+  },
+  {
+    flagReason: 'Bullying Or Harrassment',
+    flagger: 'Sarah Walsh',
+    description:
+      'I really hate this comment and it insults my aunt and is very mean',
+  },
+  {
+    flagReason: 'Spam',
+    flagger: 'Saoirse Weaver',
+    description:
+      'I really hate this comment and it insults my mother and has been posted in every single group so its spammy',
+  },
+];
 
 const FlagManagerModal = (props) => {
   const { visible, setVisible } = props;
@@ -22,8 +55,8 @@ const FlagManagerModal = (props) => {
     'I just dislike it',
     'Other',
   ]);
-  const [flagFilter, setFlagFilter] = useState('All');
-  const [flagList, setFlagList] = useState('this is the list of flags');
+  const [flagFilter, setFlagFilter] = useState();
+  const [flagList, setFlagList] = useState(flagsData);
 
   useEffect(() => {
     //fetch reasons for flagging
@@ -33,8 +66,16 @@ const FlagManagerModal = (props) => {
   }, []);
 
   useEffect(() => {
-    //change flagging list to show only ones that match the filter
-    console.log('use effect has run');
+    if (flagFilter === 'All') {
+      setFlagList(flagsData);
+    } else {
+      const result = flagList.filter((flag) => {
+        console.log('the reasons:', flag.flagReason);
+        console.log('the filter:', flagFilter);
+        flag.flagReason === flagFilter;
+      });
+      console.log('new:', result);
+    }
   }, [flagFilter]);
 
   const handleFilterChange = (e) => {
@@ -61,6 +102,7 @@ const FlagManagerModal = (props) => {
       centered
       onCancel={handleCancel}
       footer={null}
+      className="manage-flag-modal"
     >
       <Layout>
         <Sider>
@@ -77,19 +119,17 @@ const FlagManagerModal = (props) => {
           </Row>
           <Divider />
           <Row justify="space-around">
-            <Col>
-              <Button
-                type="default"
-                icon={<CheckOutlined />}
-                style={{
-                  background: 'rgba(33, 120, 104, .57)',
-                  color: 'rgba(33, 120, 104)',
-                }}
-                onClick={handleApprove}
-              >
-                Accept
-              </Button>
-            </Col>
+            <Button
+              type="default"
+              icon={<CheckOutlined />}
+              style={{
+                background: 'rgba(33, 120, 104, .57)',
+                color: 'rgba(33, 120, 104)',
+              }}
+              onClick={handleApprove}
+            >
+              Accept
+            </Button>
           </Row>
           <Row justify="space-around">
             <Button
@@ -124,9 +164,26 @@ const FlagManagerModal = (props) => {
             <FlagChip flagged="0" comments="0" />
           </Row>
         </Sider>
-        <Content>
-          {/* check out infinite List load on ant design */}
-          {flagList}
+        <Content className="flag-list">
+          <List
+            itemLayout="horizontal"
+            dataSource={flagList}
+            renderItem={(item) => (
+              <List.Item>
+                <List.Item.Meta
+                  avatar={
+                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                  }
+                  title={
+                    <span>
+                      {item.flagger} flagged this for {item.flagReason}
+                    </span>
+                  }
+                  description={item.description}
+                />
+              </List.Item>
+            )}
+          />
         </Content>
       </Layout>
     </Modal>

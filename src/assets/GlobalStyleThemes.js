@@ -20,7 +20,7 @@ module.exports = {
   /* ---------- Base Scaffolding Variables ---------------------- */
   '@body-background': '@black', //background color for '<body>'
   '@font-family': '"Poppins", sans-serif',
-  '@font-size-base': '14px', // major text font size
+  '@font-size-base': '14px', // major texnpm t font size
 
   /* -------------------- Layout ------------------------------- */
   '@layout-body-background': '#f0f2f5',
@@ -110,7 +110,7 @@ module.exports = {
   '@menu-inline-submenu-bg': '@background-color-light', //change to white
   '@menu-highlight-color': '@primary-color',
   '@menu-highlight-danger-color': '@error-color',
-  '@menu-item-active-bg': '@primary-color',
+  '@menu-item-active-bg': '@primary-6',
   '@menu-item-active-danger-bg': '@red-1',
   '@menu-item-active-border-width': '3px',
   '@menu-item-group-title-color': '@text-color-secondary',
@@ -123,8 +123,6 @@ module.exports = {
   '@menu-icon-size': '@menu-item-font-size',
   '@menu-icon-size-lg': '@font-size-lg',
   '@menu-item-group-title-font-size': '@menu-item-font-size',
-
-  '@ant-menu-item-selected': 'green',
 
   // dark theme
   '@menu-dark-color': '@text-color-secondary-dark',

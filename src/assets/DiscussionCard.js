@@ -15,37 +15,41 @@ const DiscussionCard = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <Card
-      onClick={props.onClick}
-      style={{ margin: '30px 0px' }}
-      actions={[
-        <SettingOutlined key="setting" />,
-        //! vvv Reformat to flag chip that routes you to
-        //! vvv  discussion with view by set to "flagged"
-        <EditOutlined
-          key="edit"
-          onClick={() => {
-            setShowModal(true);
-          }}
-        />,
-        <EllipsisOutlined
-          key="ellipsis"
-          onClick={() => props.setFlaggingModalVisibility(true)}
-        />,
-      ]}
-      title={
-        <Card.Meta
-          avatar={<Avatar src={props.discussion.profile_picture} />}
-          title={props.discussion.title}
-        />
-      }
-    >
-      <p>{props.discussion.description}</p>
-      <FlagChip flagged="10" comments="0" />
-      <FlagManagerModal visible={showModal} setVisible={setShowModal} />
-      {/* //!Change below prop to discussionId and fix in FlaggingModal Component */}
-      <UserFlaggingModal postId={props.discussion.id} />
-    </Card>
+    <div className="discussion-card">
+      <Card
+        className="discussion-card"
+        hoverable="true"
+        onClick={props.onClick}
+        style={{ margin: '30px 0px' }}
+        actions={[
+          <SettingOutlined key="setting" />,
+          //! vvv Reformat to flag chip that routes you to
+          //! vvv  discussion with view by set to "flagged"
+          <EditOutlined
+            key="edit"
+            onClick={() => {
+              setShowModal(true);
+            }}
+          />,
+          <EllipsisOutlined
+            key="ellipsis"
+            onClick={() => props.setFlaggingModalVisibility(true)}
+          />,
+        ]}
+        title={
+          <Card.Meta
+            avatar={<Avatar src={props.discussion.profile_picture} />}
+            title={props.discussion.title}
+          />
+        }
+      >
+        <p>{props.discussion.description}</p>
+        <FlagChip flagged="10" comments="0" />
+        <FlagManagerModal visible={showModal} setVisible={setShowModal} />
+        {/* //!Change below prop to discussionId and fix in FlaggingModal Component */}
+        <UserFlaggingModal postId={props.discussion.id} />
+      </Card>
+    </div>
   );
 };
 
