@@ -20,7 +20,7 @@ import Room from './Room';
 //! the component and imported via a "styles folder" - M
 const DashboardHeaderStyles = styled(Layout.Header)`
   width: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 30);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 `;
 
 const Dashboard = (props) => {

@@ -124,7 +124,10 @@ const FlagManagerModal = (props) => {
             <FlagChip flagged="0" comments="0" />
           </Row>
         </Sider>
-        <Content>{flagList}</Content>
+        <Content>
+          {/* check out infinite List load on ant design */}
+          {flagList}
+        </Content>
       </Layout>
     </Modal>
   );

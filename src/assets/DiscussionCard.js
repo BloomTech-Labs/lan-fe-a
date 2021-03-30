@@ -7,8 +7,9 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import { Card, Avatar, Modal } from 'antd';
-// import UserFlaggingModal from './UserFlaggingModal';
+import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
+import { FlagChip } from './FlagChip';
 
 const DiscussionCard = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -40,9 +41,10 @@ const DiscussionCard = (props) => {
       }
     >
       <p>{props.discussion.description}</p>
+      <FlagChip flagged="10" comments="0" />
       <FlagManagerModal visible={showModal} setVisible={setShowModal} />
       {/* //!Change below prop to discussionId and fix in FlaggingModal Component */}
-      {/* <UserFlaggingModal postId={props.discussion.id} /> */}
+      <UserFlaggingModal postId={props.discussion.id} />
     </Card>
   );
 };

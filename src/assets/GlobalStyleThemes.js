@@ -107,10 +107,10 @@ module.exports = {
   '@menu-bg': '@component-background',
   '@menu-popup-bg': '@component-background',
   '@menu-item-color': '@text-color',
-  '@menu-inline-submenu-bg': '@background-color-light',
+  '@menu-inline-submenu-bg': '@background-color-light', //change to white
   '@menu-highlight-color': '@primary-color',
   '@menu-highlight-danger-color': '@error-color',
-  '@menu-item-active-bg': '@primary-1',
+  '@menu-item-active-bg': '@primary-color',
   '@menu-item-active-danger-bg': '@red-1',
   '@menu-item-active-border-width': '3px',
   '@menu-item-group-title-color': '@text-color-secondary',
@@ -124,6 +124,8 @@ module.exports = {
   '@menu-icon-size-lg': '@font-size-lg',
   '@menu-item-group-title-font-size': '@menu-item-font-size',
 
+  '@ant-menu-item-selected': 'green',
+
   // dark theme
   '@menu-dark-color': '@text-color-secondary-dark',
   '@menu-dark-danger-color': '@error-color',
@@ -136,6 +138,10 @@ module.exports = {
   '@menu-dark-selected-item-icon-color': '@white',
   '@menu-dark-selected-item-text-color': '@white',
   '@menu-dark-item-hover-bg': 'transparent',
+
+  /* -------------------------------- Dropdown -------------------------------- */
+  '@dropdown-selected-color': '@primary-color',
+  '@dropdown-menu-submenu-disabled-bg': '@component-background',
 
   /* --------------------------------- Select --------------------------------- */
   '@select-border-color': '@border-color-base',
