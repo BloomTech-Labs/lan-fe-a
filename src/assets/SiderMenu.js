@@ -51,9 +51,7 @@ const SiderMenu = (props) => {
           onClick={() => props.setNewRoomModalVisibility(true)}
           icon={<PlusSquareOutlined />}
         >
-          <Button type="primary" style={{ color: '#000' }}>
-            Create Room
-          </Button>
+          Create Room
         </Menu.Item>
       </Menu.SubMenu>
       <CreateNewRoomModal />

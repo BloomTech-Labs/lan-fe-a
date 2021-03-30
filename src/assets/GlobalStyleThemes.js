@@ -20,7 +20,7 @@ module.exports = {
   /* ---------- Base Scaffolding Variables ---------------------- */
   '@body-background': '@black', //background color for '<body>'
   '@font-family': '"Poppins", sans-serif',
-  '@font-size-base': '14px', // major text font size
+  '@font-size-base': '14px', // major texnpm t font size
 
   /* -------------------- Layout ------------------------------- */
   '@layout-body-background': '#f0f2f5',
@@ -107,10 +107,10 @@ module.exports = {
   '@menu-bg': '@component-background',
   '@menu-popup-bg': '@component-background',
   '@menu-item-color': '@text-color',
-  '@menu-inline-submenu-bg': '@background-color-light',
+  '@menu-inline-submenu-bg': '@background-color-light', //change to white
   '@menu-highlight-color': '@primary-color',
   '@menu-highlight-danger-color': '@error-color',
-  '@menu-item-active-bg': '@primary-1',
+  '@menu-item-active-bg': '@primary-6',
   '@menu-item-active-danger-bg': '@red-1',
   '@menu-item-active-border-width': '3px',
   '@menu-item-group-title-color': '@text-color-secondary',
@@ -136,6 +136,10 @@ module.exports = {
   '@menu-dark-selected-item-icon-color': '@white',
   '@menu-dark-selected-item-text-color': '@white',
   '@menu-dark-item-hover-bg': 'transparent',
+
+  /* -------------------------------- Dropdown -------------------------------- */
+  '@dropdown-selected-color': '@primary-color',
+  '@dropdown-menu-submenu-disabled-bg': '@component-background',
 
   /* --------------------------------- Select --------------------------------- */
   '@select-border-color': '@border-color-base',

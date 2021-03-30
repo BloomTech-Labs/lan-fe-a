@@ -74,7 +74,7 @@ const Room = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log(state);
+  console.log(state);
   return {
     discussions: state.posts,
     rooms: state.rooms,
