@@ -8,26 +8,6 @@ axios.defaults.withCredentials = true;
 const BACKEND_URL =
   process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
-// Authentication
-export const success = (history, jwt) => (dispatch) => {
-  localStorage.setItem('token', jwt);
-  axios
-    .get(`${BACKEND_URL}/api/user`, {
-      headers: {
-        authorization: jwt,
-      },
-    })
-    .then((response) => {
-      if (response.data.user.track === null) {
-        history.push('/onboarding');
-      } else {
-        history.push('/');
-      }
-      toast.success('Welcome to the Lambda Alumni Network!');
-    })
-    .catch(() => toast.error('Oh no! An error has occurred.'));
-};
-
 // Fetches logged in user
 export const fetchUser = () => (dispatch) => {
   axiosWithAuth()
