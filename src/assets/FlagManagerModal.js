@@ -17,35 +17,12 @@ import {
 import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
 const { Title } = Typography;
 
-const flagsData = [
-  {
-    flagReason: 'Spam',
-    flagger: 'John Adams',
-    flaggerAvatar: '',
-    description:
-      'I really hate this comment and it insults my mother and has been posted in every single group so its spammy',
-  },
-  {
-    flagReason: 'Bullying or Harassment',
-    flagger: 'Sarah Walsh',
-    flaggerAvatar: '',
-    description:
-      'I really hate this comment and it insults my aunt and is very mean',
-  },
-  {
-    flagReason: 'Spam',
-    flagger: 'Saoirse Weaver',
-    flaggerAvatar: '',
-    description:
-      'I really hate this comment and it insults my mother and has been posted in every single group so its spammy',
-  },
-];
-
 const FlagManagerModal = (props) => {
   const { visible, setVisible } = props;
   const { id } = useParams;
-  const { path, url } = useRouteMatch;
   const { Sider, Content } = Layout;
+  const { flagsData } = props;
+  console.log('props', props);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -62,10 +39,7 @@ const FlagManagerModal = (props) => {
   const [flagList, setFlagList] = useState(flagsData);
 
   useEffect(() => {
-    //fetch reasons for flagging
-    //fetch flags by discussion or comment id
-    // setFlaggingReasons();
-    // setFlagList();
+    setFlagList(flagsData);
   }, []);
 
   useEffect(() => {
@@ -104,6 +78,7 @@ const FlagManagerModal = (props) => {
       onCancel={handleCancel}
       footer={null}
       className="manage-flag-modal"
+      width={800}
     >
       <Layout>
         <Sider>
@@ -158,14 +133,8 @@ const FlagManagerModal = (props) => {
               Escalate
             </Button>
           </Row>
-          <Row>
-            <FlagChip flags="10" commentsFlagged="0" />
-            <FlagChip flags="5" commentsFlagged="12" />
-            <FlagChip flags="0" commentsFlagged="12" />
-            <FlagChip flags="0" commentsFlagged="0" />
-          </Row>
         </Sider>
-        <Content className="flag-list">
+        <Content className="flag-list" styl>
           <List
             itemLayout="horizontal"
             dataSource={flagList}
@@ -177,10 +146,12 @@ const FlagManagerModal = (props) => {
                   }
                   title={
                     <span>
-                      {item.flagger} flagged this for {item.flagReason}
+                      {item.flagger_name} flagged this for {item.reason}
                     </span>
                   }
-                  description={item.description}
+                  description={
+                    item.note ? item.note : <i>No additional comment</i>
+                  }
                 />
               </List.Item>
             )}

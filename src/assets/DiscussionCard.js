@@ -27,12 +27,13 @@ const DiscussionCard = (props) => {
   const { path, url } = useRouteMatch();
 
   const [showModal, setShowModal] = useState(false);
-
+  let flagLength = props.discussion.flags.length;
   return (
-    <Link
-      to={`${url}/discussion/${props.discussion.id}?view=popular`}
-      className="discussion-card"
-    >
+    // <Link
+    //   to={`${url}/discussion/${props.discussion.id}?view=popular`}
+    //   className="discussion-card"
+    // >
+    <div className="discussion-card">
       <Card
         hoverable="true"
         style={{ margin: '30px 0px' }}
@@ -60,10 +61,17 @@ const DiscussionCard = (props) => {
       >
         <p>{props.discussion.description}</p>
         <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
-          <FlagChip flags={props.discussion.flags.length} commentsFlagged="0" />
+          <FlagChip
+            flags={props.discussion.flags.length}
+            // commentsFlagged={props.discussion.commentsFlagged.length}
+          />
         </Link>
         <UserFlaggingModal discussionID={props.discussion.id} />
-        <FlagManagerModal visible={showModal} setVisible={setShowModal} />
+        <FlagManagerModal
+          visible={showModal}
+          setVisible={setShowModal}
+          flagsData={props.discussion.flags}
+        />
       </Card>
       <Switch>
         <Route
@@ -71,7 +79,8 @@ const DiscussionCard = (props) => {
           component={DiscussionDrawer}
         ></Route>
       </Switch>
-    </Link>
+    </div>
+    // </Link>
   );
 };
 
