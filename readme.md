@@ -22,3 +22,49 @@ Team A Members...
 
 1. Once you have cloned the repository, download the dependencies with `npm install`.
 2. Start the server with `npm start`.
+
+
+### Organisation
+
+    index.js
+    |--App.js
+        |--Dashboard.js <--page
+            |--SiderMenu.js <--component
+                |--CreateNewRoomModal.js
+            |--Navbar.js
+                |--LambdaLogo.js <--subComponent
+                |--ProfileIcon.js
+                |--SearchBar.js
+            |--RoomContent.js
+                |--DiscussionCard.js
+                    |--UserFlaggingModal.js
+                    |--FlagManagerModal.js
+                    |--FlagChip.js
+                |--Feed.js (not yet implemented)
+            |--DashboardContent.js
+                |--Feed.js (net yet implemented)
+
+
+    src
+    |--store
+    |--styles
+    |--assets
+    |--utils 
+    |--components
+        |--modals
+            |--CreateNewRoomModal.js
+            |--UserFlaggingModal.js
+            |--FlagManagerModal.js
+        |--subComponents
+            |--ProfileIcon.js
+            |--LambdaLogo.js
+            |--SearchBar.js
+            |--FlagChip.js
+        |--SiderMenu.js
+        |--Navbar.js
+        |--RoomContent.js
+        |--DashboardContent.js
+    |--pages
+        |--Dashboard.js
+    |--App.js
+    |--Index.js

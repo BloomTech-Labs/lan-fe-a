@@ -1,24 +1,40 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { setFlaggingModalVisibility } from '../store/actions/index';
+import {
+  setFlaggingModalVisibility,
+  fetchPost,
+  setDrawerVisibility,
+} from '../store/actions/index';
 import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
 import { Card, Avatar, Modal } from 'antd';
+import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
 import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
 import { FlagChip } from './FlagChip';
+import DiscussionDrawer from './DiscussionDrawer';
 
 const DiscussionCard = (props) => {
+  const { path, url } = useRouteMatch();
+
   const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="discussion-card">
       <Card
         hoverable="true"
-        onClick={props.onClick}
+        onClick={() => {
+          window.history.pushState(
+            {},
+            null,
+            `${url}/discussion/${props.discussion.id}`
+          );
+          props.fetchPost(props.discussion.id);
+          props.setDrawerVisibility(true);
+        }}
         style={{ margin: '30px 0px' }}
         actions={[
           <SettingOutlined key="setting" />,
@@ -43,23 +59,31 @@ const DiscussionCard = (props) => {
         }
       >
         <p>{props.discussion.description}</p>
-        <FlagChip flagged="10" comments="0" />
-        <FlagManagerModal visible={showModal} setVisible={setShowModal} />
+        <FlagChip flagged="10" comments="0" onClick={props.onClick} />
+        {/* <FlagManagerModal visible={showModal} setVisible={setShowModal} /> */}
         {/* //!Change below prop to discussionId and fix in UserFlaggingModal Component */}
-        <UserFlaggingModal postId={props.discussion.id} />
+        {/* <UserFlaggingModal postId={props.discussion.id} /> */}
       </Card>
+      <Switch>
+        <Route
+          path={`${path}/discussion/:discussionID`}
+          component={DiscussionDrawer}
+        ></Route>
+      </Switch>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
+  console.log(state.isDrawerVisible);
   return {
     discussions: state.posts,
     rooms: state.rooms,
-    visible: state.isDrawerVisible,
   };
 };
 
-export default connect(mapStateToProps, { setFlaggingModalVisibility })(
-  DiscussionCard
-);
+export default connect(mapStateToProps, {
+  setFlaggingModalVisibility,
+  fetchPost,
+  setDrawerVisibility,
+})(DiscussionCard);

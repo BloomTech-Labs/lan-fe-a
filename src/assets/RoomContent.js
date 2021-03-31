@@ -5,25 +5,26 @@ import {
   fetchPostByRoom,
   fetchRooms,
   setDrawerVisibility,
+  fetchPost,
 } from '../store/actions';
 import { Layout } from 'antd';
 
 import DiscussionCard from './DiscussionCard';
+import DiscussionDrawer from './DiscussionDrawer';
 
-const Room = (props) => {
-  const { id } = useParams();
-  const { path, url } = useRouteMatch();
+const RoomContent = (props) => {
+  const { roomID } = useParams();
   const { Header, Content } = Layout;
 
   useEffect(() => {
-    if (id) {
-      props.fetchPostByRoom(id, 1);
-      props.fetchRooms();
+    if (roomID) {
+      props.fetchPostByRoom(roomID, 1);
+      // props.fetchRooms();
     }
   }, []);
 
-  const findRoom = (id) => {
-    const currentRoom = props.rooms.filter((r) => r.id === parseInt(id))[0];
+  const findRoom = (_id) => {
+    const currentRoom = props.rooms.filter((r) => r.id === parseInt(_id))[0];
     if (currentRoom) {
       return currentRoom;
     } else {
@@ -53,28 +54,16 @@ const Room = (props) => {
               alignSelf: 'flex-start',
             }}
           >
-            <h2>{findRoom(id).room_name}</h2>
-            <p>{findRoom(id).description}</p>
+            <h2>{findRoom(roomID).room_name}</h2>
+            <p>{findRoom(roomID).description}</p>
           </div>
         </Header>
         <Content style={{ background: '#fff' }}>
           {props.discussions.map((d) => (
-            <DiscussionCard
-              key={d.id}
-              discussion={d}
-              onClick={() => {
-                window.history.pushState({}, null, `${url}/discussion/${d.id}`);
-                props.setDrawerVisibility(true);
-              }}
-            />
+            <DiscussionCard key={d.id} discussion={d} />
           ))}
         </Content>
       </Layout>
-      <Switch>
-        <Route path={`${path}/discussion/:id`}>
-          <p>Discussion page</p>
-        </Route>
-      </Switch>
     </>
   );
 };
@@ -90,4 +79,5 @@ export default connect(mapStateToProps, {
   fetchPostByRoom,
   fetchRooms,
   setDrawerVisibility,
-})(Room);
+  fetchPost,
+})(RoomContent);

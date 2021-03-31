@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchRecent } from '../store/actions';
 
-const Feed = () => {
+const FeedContent = () => {
   return <h2>Feed</h2>;
 };
 
@@ -10,4 +10,4 @@ const mapStateToProps = (state) => {
   return state;
 };
 
-export default connect(mapStateToProps, { fetchRecent })(Feed);
+export default connect(mapStateToProps, { fetchRecent })(FeedContent);

@@ -5,37 +5,35 @@ import {
   fetchPostByRoom,
   fetchRooms,
   setDrawerVisibility,
+  fetchPost,
+  fetchPostCommentsByRecent,
+  fetchPostCommentsByPopular,
 } from '../store/actions';
-import { Layout, Drawer } from 'antd';
+import { Layout, Drawer, Typography } from 'antd';
 
 import DiscussionCard from './DiscussionCard';
 
-const Room = (props) => {
-  const { id } = useParams();
+const DiscussionDrawer = (props) => {
+  const { discussionID } = useParams();
   const { path, url } = useRouteMatch();
   const { Header, Content } = Layout;
 
   useEffect(() => {
-    if (id) {
-      props.fetchPostByRoom(id, 1);
-      props.fetchRooms();
+    if (discussionID) {
+      props.setDrawerVisibility(true);
+      props.fetchPost(discussionID);
     }
   }, []);
 
-  const findRoom = (id) => {
-    const currentRoom = props.rooms.filter((r) => r.id === parseInt(id))[0];
-    if (currentRoom) {
-      return currentRoom;
-    } else {
-      return {
-        room_name: 'ROOM NOT FOUND',
-        description: '',
-      };
-    }
-  };
-
   return (
-    <Drawer visible={props.visible}>
+    <Drawer
+      visible={props.visible}
+      width="65%"
+      onClose={() => {
+        history.back();
+        props.setDrawerVisibility(false);
+      }}
+    >
       <Layout>
         <Header
           style={{
@@ -45,7 +43,8 @@ const Room = (props) => {
             justifyContent: 'flex-start',
             height: 'auto',
           }}
-        >
+        ></Header>
+        <Content style={{ background: '#fff' }}>
           <div
             style={{
               display: 'flex',
@@ -53,20 +52,11 @@ const Room = (props) => {
               alignSelf: 'flex-start',
             }}
           >
-            <h2>{findRoom(id).room_name}</h2>
-            <p>{findRoom(id).description}</p>
+            <Typography.Title level={3}>
+              {props.currentPost.title}
+            </Typography.Title>
+            <Typography.Text>{props.currentPost.description}</Typography.Text>
           </div>
-        </Header>
-        <Content style={{ background: '#fff' }}>
-          {props.discussions.map((d) => (
-            <DiscussionCard
-              key={d.id}
-              discussion={d}
-              onClick={() =>
-                window.history.pushState({}, null, `${url}/discussion/${d.id}`)
-              }
-            />
-          ))}
         </Content>
       </Layout>
     </Drawer>
@@ -74,11 +64,11 @@ const Room = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     discussions: state.posts,
     rooms: state.rooms,
     visible: state.isDrawerVisible,
+    currentPost: state.currentPost,
   };
 };
 
@@ -86,4 +76,7 @@ export default connect(mapStateToProps, {
   fetchPostByRoom,
   fetchRooms,
   setDrawerVisibility,
-})(Room);
+  fetchPost,
+  fetchPostCommentsByRecent,
+  fetchPostCommentsByPopular,
+})(DiscussionDrawer);

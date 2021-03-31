@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import {
   fetchPostByRoom,
   fetchRooms,
-  setDrawerVisibility,
   setNewRoomModalVisibility,
 } from '../store/actions';
 import { Menu, Button } from 'antd';
@@ -39,7 +38,6 @@ const SiderMenu = (props) => {
                 to={`${url}/room/${room.id}`}
                 onClick={() => {
                   props.fetchPostByRoom(room.id, 1);
-                  props.setDrawerVisibility(true);
                 }}
               >
                 {room.room_name}
@@ -68,6 +66,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   fetchPostByRoom,
   fetchRooms,
-  setDrawerVisibility,
   setNewRoomModalVisibility,
 })(SiderMenu);
