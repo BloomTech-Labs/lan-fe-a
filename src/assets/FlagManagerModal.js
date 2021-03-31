@@ -26,7 +26,7 @@ const flagsData = [
       'I really hate this comment and it insults my mother and has been posted in every single group so its spammy',
   },
   {
-    flagReason: 'Bullying or Harrassment',
+    flagReason: 'Bullying or Harassment',
     flagger: 'Sarah Walsh',
     flaggerAvatar: '',
     description:
@@ -52,7 +52,7 @@ const FlagManagerModal = (props) => {
   const [flaggingReasons, setFlaggingReasons] = useState([
     'All',
     'Spam',
-    'Bullying or Harrassment',
+    'Bullying or Harassment',
     'Hate Speech or Symbols',
     'Nudity or Sexual Content',
     'I just dislike it',
