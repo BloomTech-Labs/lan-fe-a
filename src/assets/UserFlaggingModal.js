@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { setFlaggingModalVisibility, flagPost } from '../store/actions';
@@ -26,7 +26,7 @@ const StyledRadioGroup = styled(Radio.Group)`
   gap: 15px;
 `;
 
-const CreateNewRoomButton = (props) => {
+const UserFlaggingModal = (props) => {
   const [note, setNote] = useState('');
   const [selection, setSelection] = useState('');
   const [rule, setRule] = useState('');
@@ -93,4 +93,4 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   setFlaggingModalVisibility,
   flagPost,
-})(CreateNewRoomButton);
+})(UserFlaggingModal);

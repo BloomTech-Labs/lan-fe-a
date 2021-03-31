@@ -26,15 +26,6 @@ const DiscussionCard = (props) => {
     <div className="discussion-card">
       <Card
         hoverable="true"
-        onClick={() => {
-          window.history.pushState(
-            {},
-            null,
-            `${url}/discussion/${props.discussion.id}`
-          );
-          props.fetchPost(props.discussion.id);
-          props.setDrawerVisibility(true);
-        }}
         style={{ margin: '30px 0px' }}
         actions={[
           <SettingOutlined key="setting" />,
@@ -59,10 +50,9 @@ const DiscussionCard = (props) => {
         }
       >
         <p>{props.discussion.description}</p>
-        <FlagChip flags={props.discussion.flags.length} commentsFlagged="5" />
-        <FlagManagerModal visible={showModal} setVisible={setShowModal} />
-        {/* //!Change below prop to discussionId and fix in UserFlaggingModal Component */}
+        <FlagChip flags={props.discussion.flags.length} commentsFlagged="0" />
         <UserFlaggingModal discussionID={props.discussion.id} />
+        <FlagManagerModal visible={showModal} setVisible={setShowModal} />
       </Card>
       <Switch>
         <Route

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
@@ -15,12 +15,6 @@ import DiscussionCard from './DiscussionCard';
 const RoomContent = (props) => {
   const { roomID } = useParams();
   const { Header, Content } = Layout;
-
-  useEffect(() => {
-    if (roomID) {
-      props.fetchPostsAndFlagsByRoom(roomID, 1);
-    }
-  }, []);
 
   const findRoom = (_id) => {
     const currentRoom = props.rooms.filter((r) => r.id === parseInt(_id))[0];
@@ -72,6 +66,7 @@ const mapStateToProps = (state) => {
   return {
     discussions: state.posts,
     rooms: state.rooms,
+    discussion: state.posts,
   };
 };
 
