@@ -26,15 +26,15 @@ const DiscussionCard = (props) => {
     <div className="discussion-card">
       <Card
         hoverable="true"
-        onClick={() => {
-          window.history.pushState(
-            {},
-            null,
-            `${url}/discussion/${props.discussion.id}`
-          );
-          props.fetchPost(props.discussion.id);
-          props.setDrawerVisibility(true);
-        }}
+        // onClick={() => {
+        //   window.history.pushState(
+        //     {},
+        //     null,
+        //     `${url}/discussion/${props.discussion.id}`
+        //   );
+        //   props.fetchPost(props.discussion.id);
+        //   props.setDrawerVisibility(true);
+        // }}
         style={{ margin: '30px 0px' }}
         actions={[
           <SettingOutlined key="setting" />,
@@ -59,7 +59,8 @@ const DiscussionCard = (props) => {
         }
       >
         <p>{props.discussion.description}</p>
-        <FlagChip flagged="10" comments="5" />
+        <UserFlaggingModal />
+        <FlagChip flagged={props.discussion.flags.length} />
         <FlagManagerModal visible={showModal} setVisible={setShowModal} />
         {/* //!Change below prop to discussionId and fix in UserFlaggingModal Component */}
         {/* <UserFlaggingModal postId={props.discussion.id} /> */}
@@ -75,7 +76,6 @@ const DiscussionCard = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.isDrawerVisible);
   return {
     discussions: state.posts,
     rooms: state.rooms,
