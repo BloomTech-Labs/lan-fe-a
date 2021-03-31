@@ -58,12 +58,12 @@ const Dashboard = (props) => {
                 <PrivateRoute
                   path={`${path}/room/:roomID`}
                   component={RoomContent}
-                ></PrivateRoute>
+                />
                 <PrivateRoute
                   exact
                   path={`${path}/`}
                   component={DashboardContent}
-                ></PrivateRoute>
+                />
               </Switch>
             </Content>
           </Layout>

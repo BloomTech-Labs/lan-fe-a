@@ -71,7 +71,7 @@ const DiscussionCard = (props) => {
         <PrivateRoute
           path={`${path}/discussion/:discussionID`}
           component={DiscussionDrawer}
-        ></PrivateRoute>
+        />
       </Switch>
     </Link>
   );
