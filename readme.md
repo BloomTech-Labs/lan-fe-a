@@ -24,5 +24,5 @@ Team A Members...
 2. Start the server with `npm start`.
 
 
-### Organisation
+### Organization
 
