@@ -64,10 +64,6 @@ const Dashboard = (props) => {
                   path={`${path}/`}
                   component={DashboardContent}
                 ></Route>
-                {/* <Route
-                  path={`${path}/room/:roomID/discussion/:discussionID`}
-                  component={DiscussionDrawer}
-                ></Route> */}
               </Switch>
             </Content>
           </Layout>
@@ -78,7 +74,6 @@ const Dashboard = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     user: state.user,
     rooms: state.rooms,
