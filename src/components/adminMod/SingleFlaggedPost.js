@@ -85,9 +85,9 @@ const ModStyledRoom = styled.div`
 `;
 
 const SingleFlaggedPost = (props) => {
+  const { post } = props;
   const [modalIsOpen, setModelIsOpen] = useState(false);
   const [filterReason, setFilterReason] = useState('All');
-  const { post } = props;
   const [flags, setFlags] = useState(post.flags);
 
   useEffect(() => {
@@ -140,36 +140,28 @@ const SingleFlaggedPost = (props) => {
   return (
     <ModStyledRoom>
       <div className="not-editable">
-        <h4>{post.title}</h4>
         <Link to={`/post/${post.id}`}>
           {/* <i class="far fa-clipboard"></i>Click Here To See Original Post */}
+          <h4>{post.title}</h4>
         </Link>
         <p>{post.description}</p>
         <p>Num of Flags: {post.flags.length}</p>
         <div className="mod-button-wrapper">
           <button onClick={handleOpenModal}>View Flags</button>
-          <button onClick={() => handleArchivePost(post.id)}>
-            Delete Post
-          </button>
-          <button onClick={() => handleResolvePost(post.id)}>
-            Accept Post
-          </button>
+          <button onClick={() => handleArchivePost(post.id)}>Archive</button>
+          <button onClick={() => handleResolvePost(post.id)}>Keep</button>
         </div>
       </div>
       {modalIsOpen && (
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={handleCloseModal}
-          contentLabel="Flag Post"
+          contentLabel="Flagged Post"
           ariaHideApp={false}
         >
           <div>
-            <button onClick={() => handleArchivePost(post.id)}>
-              Delete Post
-            </button>
-            <button onClick={() => handleResolvePost(post.id)}>
-              Accept Post
-            </button>
+            <button onClick={() => handleArchivePost(post.id)}>Archive</button>
+            <button onClick={() => handleResolvePost(post.id)}>Keep</button>
           </div>
           <div>
             <h1>Flagged Post</h1>

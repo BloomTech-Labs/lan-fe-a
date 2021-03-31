@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
@@ -7,6 +7,7 @@ import {
   fetchFlaggedComments,
 } from '../../store/actions';
 import { Link } from 'react-router-dom';
+import Modal from 'react-modal';
 
 const ModCmtStyledRoom = styled.div`
   padding: 2%;
@@ -79,12 +80,27 @@ const ModCmtStyledRoom = styled.div`
 
 const SingleFlaggedComment = (props) => {
   const { comment } = props;
+  const [modalIsOpen, setModelIsOpen] = useState(false);
+  const [filterReason, setFilterReason] = useState('All');
+  const [flags, setFlags] = useState(comment.flags);
+
+  useEffect(() => {
+    if (filterReason != 'All') {
+      const filteredFlags = comment.flags.filter((flag) => {
+        return flag.reason === filterReason;
+      });
+      setFlags(filteredFlags);
+    } else {
+      setFlags(comment.flags);
+    }
+  }, [filterReason]);
 
   const handleResolveComment = (id) => {
     props
       .resolveComment(id)
       .then(() => {
         props.fetchFlaggedComments();
+        setModelIsOpen(false);
       })
       .catch((err) => {
         console.log(err);
@@ -96,11 +112,26 @@ const SingleFlaggedComment = (props) => {
       .archiveComment(id)
       .then(() => {
         props.fetchFlaggedComments();
+        setModelIsOpen(false);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  const handleOpenModal = () => {
+    setModelIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModelIsOpen(false);
+  };
+
+  const handleFilterByReason = (reason) => {
+    setFilterReason(reason);
+  };
+
+  console.log(comment);
 
   return (
     <ModCmtStyledRoom>
@@ -109,15 +140,66 @@ const SingleFlaggedComment = (props) => {
         <p>{/* <i class="far fa-comments"></i> {comment.comment} */}</p>
         <Link to={`/post/${comment.post_id}`}>
           {/* <i class="fas fa-link"></i> */}
-          Attached Post
+          Original Post
         </Link>
+        <h4>{comment.comment}</h4>
         <div className="mod-cmt-button-wrapper">
+          <button onClick={handleOpenModal}>View Flags</button>
           <button onClick={() => handleResolveComment(comment.id)}>Keep</button>
           <button onClick={() => handleArchiveComment(comment.id)}>
-            Delete
+            Archive
           </button>
         </div>
       </div>
+      {modalIsOpen && (
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={handleCloseModal}
+          contentLabel="Flagged Comment"
+          ariaHideApp={false}
+        >
+          <div>
+            <button onClick={() => handleArchiveComment(comment.id)}>
+              Archive
+            </button>
+            <button onClick={() => handleResolveComment(comment.id)}>
+              Keep
+            </button>
+          </div>
+          <div>
+            <h1>Flagged Comment</h1>
+            <p>{comment.title}</p>
+            <p>{comment.description}</p>
+          </div>
+          <h3>Filter by Reason</h3>
+          <div>
+            <button onClick={() => handleFilterByReason('All')}>All</button>
+            {props.reasons.map((reason) => {
+              return (
+                <button
+                  onClick={() => handleFilterByReason(reason.reason)}
+                  key={reason.reason}
+                >
+                  {reason.reason}
+                </button>
+              );
+            })}
+          </div>
+          {flags.map((flag, index) => {
+            return (
+              <div className="reason-card" key={index}>
+                <h3>{flag.flagger_name}</h3>
+                <p>
+                  Flagged this as <strong>{flag.reason}</strong>
+                </p>
+                <p>
+                  <strong>Note:</strong> {flag.note ? flag.note : 'null'}
+                </p>
+              </div>
+            );
+          })}
+        </Modal>
+      )}
     </ModCmtStyledRoom>
   );
 };
@@ -125,6 +207,7 @@ const SingleFlaggedComment = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    reasons: state.reasons,
   };
 };
 
