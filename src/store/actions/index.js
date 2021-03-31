@@ -354,6 +354,19 @@ export const fetchFlaggedPosts = () => (dispatch) => {
     .catch(() => toast.error('There was a problem fetching flagged posts.'));
 };
 
+// Fetch all posts in a room, flag data included
+export const fetchPostsAndFlagsByRoom = (roomID, pageNumber) => (dispatch) => {
+  axiosWithAuth()
+    .get(`${BACKEND_URL}/api/mod/posts/${roomID}`)
+    .then((res) => {
+      console.log('res from backend', res);
+      dispatch({ type: 'SET_POSTS', payload: res.data });
+    })
+    .catch(() =>
+      toast.error('There was a problem fetching flagged post information.')
+    );
+};
+
 // Fetches flagged comments
 export const fetchFlaggedComments = () => (dispatch) => {
   axiosWithAuth()

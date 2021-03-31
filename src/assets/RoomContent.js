@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   fetchPostByRoom,
   fetchRooms,
   setDrawerVisibility,
   fetchPost,
+  fetchPostsAndFlagsByRoom,
 } from '../store/actions';
 import { Layout } from 'antd';
 
 import DiscussionCard from './DiscussionCard';
-import DiscussionDrawer from './DiscussionDrawer';
 
 const RoomContent = (props) => {
   const { roomID } = useParams();
@@ -18,8 +18,7 @@ const RoomContent = (props) => {
 
   useEffect(() => {
     if (roomID) {
-      props.fetchPostByRoom(roomID, 1);
-      // props.fetchRooms();
+      props.fetchPostsAndFlagsByRoom(roomID, 1);
     }
   }, []);
 
@@ -80,4 +79,5 @@ export default connect(mapStateToProps, {
   fetchRooms,
   setDrawerVisibility,
   fetchPost,
+  fetchPostsAndFlagsByRoom,
 })(RoomContent);

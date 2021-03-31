@@ -59,8 +59,8 @@ const DiscussionCard = (props) => {
         }
       >
         <p>{props.discussion.description}</p>
-        <FlagChip flagged="10" comments="0" onClick={props.onClick} />
-        {/* <FlagManagerModal visible={showModal} setVisible={setShowModal} /> */}
+        <FlagChip flagged="10" comments="5" />
+        <FlagManagerModal visible={showModal} setVisible={setShowModal} />
         {/* //!Change below prop to discussionId and fix in UserFlaggingModal Component */}
         {/* <UserFlaggingModal postId={props.discussion.id} /> */}
       </Card>
