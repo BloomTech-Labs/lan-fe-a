@@ -316,6 +316,7 @@ export const retrieveFullSearchResults = (search) => (dispatch) => {
 };
 
 export const flagPost = (id, reason, note) => (dispatch) => {
+  console.log('pre dispatch id:', id, '\n reason:', reason, '\n note:');
   axiosWithAuth()
     .post(`${BACKEND_URL}/api/mod/posts/${id}`, { reason: reason, note: note })
     .then(() => {

@@ -31,7 +31,7 @@ const UserFlaggingModal = (props) => {
   const [selection, setSelection] = useState('');
   const [rule, setRule] = useState('');
 
-  const handleSubmition = (e) => {
+  const handleSubmission = (e) => {
     e.preventDefault();
     if (selection) {
       props.flagPost(props.discussionID, selection, note);
@@ -55,7 +55,7 @@ const UserFlaggingModal = (props) => {
       centered
       visible={props.visible}
       okButtonProps={{ htmlType: 'submit' }}
-      onOk={handleSubmition}
+      onOk={handleSubmission}
       onCancel={handleCancellation}
     >
       <Form>

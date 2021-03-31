@@ -11,7 +11,13 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import { Card, Avatar, Modal } from 'antd';
-import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
+import {
+  Switch,
+  Route,
+  useParams,
+  useRouteMatch,
+  Link,
+} from 'react-router-dom';
 import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
 import { FlagChip } from './FlagChip';
@@ -23,7 +29,10 @@ const DiscussionCard = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="discussion-card">
+    <Link
+      to={`${url}/discussion/${props.discussion.id}?view=popular`}
+      className="discussion-card"
+    >
       <Card
         hoverable="true"
         style={{ margin: '30px 0px' }}
@@ -50,7 +59,9 @@ const DiscussionCard = (props) => {
         }
       >
         <p>{props.discussion.description}</p>
-        <FlagChip flags={props.discussion.flags.length} commentsFlagged="0" />
+        <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
+          <FlagChip flags={props.discussion.flags.length} commentsFlagged="0" />
+        </Link>
         <UserFlaggingModal discussionID={props.discussion.id} />
         <FlagManagerModal visible={showModal} setVisible={setShowModal} />
       </Card>
@@ -60,7 +71,7 @@ const DiscussionCard = (props) => {
           component={DiscussionDrawer}
         ></Route>
       </Switch>
-    </div>
+    </Link>
   );
 };
 
