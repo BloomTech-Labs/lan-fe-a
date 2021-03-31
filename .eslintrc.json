@@ -5,9 +5,9 @@
     "commonjs": true
   },
   "extends": [
-    "eslint:recommended", 
-    "plugin:react/recommended", 
-    "plugin:prettier/recommended"],
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -15,12 +15,12 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["react"],
   "rules": {
-	"no-console": "warn",
-	"react/prop-types": 0,
-  "no-unused-vars": ["warn", { "vars": "all", "args": "after-used"}]
-},
+    "no-console": "warn",
+    "react/prop-types": 0,
+    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used" }]
+  },
   "overrides": [
     {
       "files": ["**/*.test.js"],
