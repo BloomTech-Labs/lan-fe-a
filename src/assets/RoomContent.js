@@ -51,7 +51,7 @@ const RoomContent = (props) => {
             <p>{findRoom(roomID).description}</p>
           </div>
         </Header>
-        <Content style={{ background: '#fff' }}>
+        <Content>
           {props.discussions &&
             props.discussions.map((d) => (
               <DiscussionCard key={d.id} discussion={d} />
