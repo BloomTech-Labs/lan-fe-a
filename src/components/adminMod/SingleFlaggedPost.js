@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
@@ -7,6 +7,7 @@ import {
   resolvePost,
 } from '../../store/actions';
 import { Link } from 'react-router-dom';
+import Modal from 'react-modal';
 
 const ModStyledRoom = styled.div`
   /* width: 100%; */
@@ -84,6 +85,7 @@ const ModStyledRoom = styled.div`
 `;
 
 const SingleFlaggedPost = (props) => {
+  const [modalIsOpen, setModelIsOpen] = useState(false);
   const { post } = props;
 
   const handleResolvePost = (id) => {
@@ -108,6 +110,14 @@ const SingleFlaggedPost = (props) => {
       });
   };
 
+  const handleOpenModal = () => {
+    setModelIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModelIsOpen(false);
+  };
+
   return (
     <ModStyledRoom>
       <div className="not-editable">
@@ -116,7 +126,9 @@ const SingleFlaggedPost = (props) => {
           {/* <i class="far fa-clipboard"></i>Click Here To See Original Post */}
         </Link>
         <p>{post.description}</p>
+        <p>Num of Flags: {post.flags.length}</p>
         <div className="mod-button-wrapper">
+          <button onClick={handleOpenModal}>View Flags</button>
           <button onClick={() => handleArchivePost(post.id)}>
             Delete Post
           </button>
@@ -125,6 +137,29 @@ const SingleFlaggedPost = (props) => {
           </button>
         </div>
       </div>
+      {modalIsOpen && (
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={handleCloseModal}
+          contentLabel="Flag Post"
+          ariaHideApp={false}
+        >
+          <h1>Reasons</h1>
+          {post.flags.map((flag, index) => {
+            return (
+              <div className="reason-card" key={index}>
+                <h3>{flag.flagger_name}</h3>
+                <p>
+                  Flagged this as <strong>{flag.reason}</strong>
+                </p>
+                <p>
+                  <strong>Note:</strong> {flag.note ? flag.note : 'null'}
+                </p>
+              </div>
+            );
+          })}
+        </Modal>
+      )}
     </ModStyledRoom>
   );
 };

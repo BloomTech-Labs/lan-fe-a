@@ -347,9 +347,10 @@ export const flagComment = (id, reason, note) => (dispatch) => {
 // Fetches flagged posts
 export const fetchFlaggedPosts = () => (dispatch) => {
   axiosWithAuth()
-    .get(`${BACKEND_URL}/api/mod/posts`)
+    .get(`${BACKEND_URL}/api/mod/posts/flagged`)
     .then((res) => {
       dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
+      console.log(res.data);
     })
     .catch(() => toast.error('There was a problem fetching flagged posts.'));
 };
@@ -357,7 +358,7 @@ export const fetchFlaggedPosts = () => (dispatch) => {
 // Fetches flagged comments
 export const fetchFlaggedComments = () => (dispatch) => {
   axiosWithAuth()
-    .get(`${BACKEND_URL}/api/mod/comments`)
+    .get(`${BACKEND_URL}/api/mod/comments/flagged`)
     .then((res) => {
       dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
     })
