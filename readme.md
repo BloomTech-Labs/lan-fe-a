@@ -22,3 +22,7 @@ Team A Members...
 
 1. Once you have cloned the repository, download the dependencies with `npm install`.
 2. Start the server with `npm start`.
+
+
+### Organization
+

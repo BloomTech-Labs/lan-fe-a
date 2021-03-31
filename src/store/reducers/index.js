@@ -18,6 +18,7 @@ const initialState = {
   filter: '',
   usersLikedPosts: [],
   usersLikedComments: [],
+  isLoading: false,
   individualPostIsFetching: false,
   individualPostCommentsAreFetching: false,
   isDrawerVisible: false,
@@ -48,7 +49,7 @@ export const reducer = (state = initialState, action) => {
     case 'SET_POSTS':
       return {
         ...state,
-        posts: action.payload.posts,
+        posts: action.payload,
         totalPages: action.payload.totalPages,
       };
 

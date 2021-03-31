@@ -316,6 +316,7 @@ export const retrieveFullSearchResults = (search) => (dispatch) => {
 };
 
 export const flagPost = (id, reason, note) => (dispatch) => {
+  console.log('pre dispatch id:', id, '\n reason:', reason, '\n note:');
   axiosWithAuth()
     .post(`${BACKEND_URL}/api/mod/posts/${id}`, { reason: reason, note: note })
     .then(() => {
@@ -352,6 +353,18 @@ export const fetchFlaggedPosts = () => (dispatch) => {
       dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
     })
     .catch(() => toast.error('There was a problem fetching flagged posts.'));
+};
+
+// Fetch all posts in a room, flag data included
+export const fetchPostsAndFlagsByRoom = (roomID, pageNumber) => (dispatch) => {
+  axiosWithAuth()
+    .get(`${BACKEND_URL}/api/mod/posts/${roomID}`)
+    .then((res) => {
+      dispatch({ type: 'SET_POSTS', payload: res.data });
+    })
+    .catch(() =>
+      toast.error('There was a problem fetching flagged post information.')
+    );
 };
 
 // Fetches flagged comments

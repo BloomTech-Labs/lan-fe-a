@@ -14,14 +14,9 @@ import { Layout, Breadcrumb } from 'antd';
 import Navbar from './Navbar';
 import SiderMenu from './SiderMenu';
 import DashboardContent from './DashboardContent';
-import Room from './Room';
-
-//! Lets get styled compoenents related stuff separated from
-//! the component and imported via a "styles folder" - M
-const DashboardHeaderStyles = styled(Layout.Header)`
-  width: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 30);
-`;
+import RoomContent from './RoomContent';
+import { DashboardHeaderStyles } from '../styles/components/DashboardStyles';
+import DiscussionDrawer from './DiscussionDrawer';
 
 const Dashboard = (props) => {
   const { path } = useRouteMatch();
@@ -59,17 +54,21 @@ const Dashboard = (props) => {
                 minHeight: 280,
               }}
             >
-              <DashboardContent />
+              <Switch>
+                <Route
+                  path={`${path}/room/:roomID`}
+                  component={RoomContent}
+                ></Route>
+                <Route
+                  exact
+                  path={`${path}/`}
+                  component={DashboardContent}
+                ></Route>
+              </Switch>
             </Content>
           </Layout>
         </Layout>
       </Layout>
-
-      <Switch>
-        <Route path={`${path}/room/:id`}>
-          <Room />
-        </Route>
-      </Switch>
     </>
   );
 };
