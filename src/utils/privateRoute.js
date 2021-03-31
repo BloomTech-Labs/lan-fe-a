@@ -20,6 +20,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
         }
       })
       .catch((error) => {
+        window.location.href = '/welcome';
         localStorage.removeItem('token');
         toast.error(error.message);
       });
@@ -32,7 +33,11 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
         if (activeToken) {
           return <Component {...props} />;
         } else {
-          <Redirect to="/welcome" />;
+          window.history.pushState(
+            { redirect_time: Date.now() },
+            '',
+            '/welcome'
+          );
         }
       }}
     />
