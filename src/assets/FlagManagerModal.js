@@ -15,24 +15,27 @@ import {
   Typography,
 } from 'antd';
 import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
-
 const { Title } = Typography;
+
 const flagsData = [
   {
     flagReason: 'Spam',
     flagger: 'John Adams',
+    flaggerAvatar: '',
     description:
       'I really hate this comment and it insults my mother and has been posted in every single group so its spammy',
   },
   {
-    flagReason: 'Bullying Or Harrassment',
+    flagReason: 'Bullying or Harrassment',
     flagger: 'Sarah Walsh',
+    flaggerAvatar: '',
     description:
       'I really hate this comment and it insults my aunt and is very mean',
   },
   {
     flagReason: 'Spam',
     flagger: 'Saoirse Weaver',
+    flaggerAvatar: '',
     description:
       'I really hate this comment and it insults my mother and has been posted in every single group so its spammy',
   },
@@ -70,11 +73,9 @@ const FlagManagerModal = (props) => {
       setFlagList(flagsData);
     } else {
       const result = flagList.filter((flag) => {
-        console.log('the reasons:', flag.flagReason);
-        console.log('the filter:', flagFilter);
-        flag.flagReason === flagFilter;
+        return flag.flagReason === flagFilter;
       });
-      console.log('new:', result);
+      setFlagList(result);
     }
   }, [flagFilter]);
 

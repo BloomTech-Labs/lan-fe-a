@@ -11,6 +11,7 @@ import {
   fetchPostByRoom,
   fetchRooms,
   setDrawerVisibility,
+  fetchPostsAndFlagsByRoom,
 } from '../store/actions';
 import { Layout, Drawer } from 'antd';
 
@@ -23,10 +24,12 @@ const Room = (props) => {
 
   useEffect(() => {
     if (id) {
-      props.fetchPostByRoom(id, 1);
-      props.fetchRooms();
+      props.fetchPostsAndFlagsByRoom(id, 1);
+      // props.fetchRooms();
     }
   }, []);
+
+  console.log('discussions', props.discussions);
 
   const findRoom = (id) => {
     const currentRoom = props.rooms.filter((r) => r.id === parseInt(id))[0];
@@ -75,19 +78,20 @@ const Room = (props) => {
             </div>
           </Header>
           <Content style={{ background: '#fff' }}>
-            {props.discussions.map((d) => (
-              <DiscussionCard
-                key={d.id}
-                discussion={d}
-                onClick={() =>
-                  window.history.pushState(
-                    {},
-                    null,
-                    `${url}/discussion/${d.id}`
-                  )
-                }
-              />
-            ))}
+            {props.discussions &&
+              props.discussions.map((d) => (
+                <DiscussionCard
+                  key={d.id}
+                  discussion={d}
+                  onClick={() =>
+                    window.history.pushState(
+                      {},
+                      null,
+                      `${url}/discussion/${d.id}`
+                    )
+                  }
+                />
+              ))}
           </Content>
         </Layout>
       </Drawer>
@@ -113,4 +117,5 @@ export default connect(mapStateToProps, {
   fetchPostByRoom,
   fetchRooms,
   setDrawerVisibility,
+  fetchPostsAndFlagsByRoom,
 })(Room);

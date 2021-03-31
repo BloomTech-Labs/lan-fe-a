@@ -6,6 +6,7 @@ import {
   fetchRooms,
   setDrawerVisibility,
   setNewRoomModalVisibility,
+  fetchPostsAndFlagsByRoom,
 } from '../store/actions';
 import { Menu, Button } from 'antd';
 import {
@@ -38,7 +39,8 @@ const SiderMenu = (props) => {
                 key={room.id}
                 to={`${url}/room/${room.id}`}
                 onClick={() => {
-                  props.fetchPostByRoom(room.id, 1);
+                  // props.fetchPostByRoom(room.id, 1);
+                  props.fetchPostsAndFlagsByRoom(room.id, 1);
                   props.setDrawerVisibility(true);
                 }}
               >
@@ -70,4 +72,5 @@ export default connect(mapStateToProps, {
   fetchRooms,
   setDrawerVisibility,
   setNewRoomModalVisibility,
+  fetchPostsAndFlagsByRoom,
 })(SiderMenu);

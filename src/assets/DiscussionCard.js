@@ -17,7 +17,6 @@ const DiscussionCard = (props) => {
   return (
     <div className="discussion-card">
       <Card
-        className="discussion-card"
         hoverable="true"
         onClick={props.onClick}
         style={{ margin: '30px 0px' }}
@@ -44,7 +43,7 @@ const DiscussionCard = (props) => {
         }
       >
         <p>{props.discussion.description}</p>
-        <FlagChip flagged="10" comments="0" />
+        <FlagChip flagged="10" comments="5" />
         <FlagManagerModal visible={showModal} setVisible={setShowModal} />
         {/* //!Change below prop to discussionId and fix in UserFlaggingModal Component */}
         <UserFlaggingModal postId={props.discussion.id} />
