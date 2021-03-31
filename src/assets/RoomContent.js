@@ -58,9 +58,10 @@ const RoomContent = (props) => {
           </div>
         </Header>
         <Content style={{ background: '#fff' }}>
-          {props.discussions.map((d) => (
-            <DiscussionCard key={d.id} discussion={d} />
-          ))}
+          {props.discussions &&
+            props.discussions.map((d) => (
+              <DiscussionCard key={d.id} discussion={d} />
+            ))}
         </Content>
       </Layout>
     </>

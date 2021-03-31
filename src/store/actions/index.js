@@ -359,7 +359,7 @@ export const fetchPostsAndFlagsByRoom = (roomID, pageNumber) => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/mod/posts/${roomID}`)
     .then((res) => {
-      console.log('res from backend', res);
+      console.log('res from backend', res.data);
       dispatch({ type: 'SET_POSTS', payload: res.data });
     })
     .catch(() =>
