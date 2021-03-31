@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
@@ -86,13 +86,27 @@ const ModStyledRoom = styled.div`
 
 const SingleFlaggedPost = (props) => {
   const [modalIsOpen, setModelIsOpen] = useState(false);
+  const [filterReason, setFilterReason] = useState('All');
   const { post } = props;
+  const [flags, setFlags] = useState(post.flags);
+
+  useEffect(() => {
+    if (filterReason != 'All') {
+      const filteredFlags = post.flags.filter((flag) => {
+        return flag.reason === filterReason;
+      });
+      setFlags(filteredFlags);
+    } else {
+      setFlags(post.flags);
+    }
+  }, [filterReason]);
 
   const handleResolvePost = (id) => {
     props
       .resolvePost(id)
       .then(() => {
         props.fetchFlaggedPosts();
+        setModelIsOpen(false);
       })
       .catch((err) => {
         console.log(err);
@@ -104,6 +118,7 @@ const SingleFlaggedPost = (props) => {
       .archivePost(id)
       .then(() => {
         props.fetchFlaggedPosts();
+        setModelIsOpen(false);
       })
       .catch((err) => {
         console.log(err);
@@ -116,6 +131,10 @@ const SingleFlaggedPost = (props) => {
 
   const handleCloseModal = () => {
     setModelIsOpen(false);
+  };
+
+  const handleFilterByReason = (reason) => {
+    setFilterReason(reason);
   };
 
   return (
@@ -144,8 +163,34 @@ const SingleFlaggedPost = (props) => {
           contentLabel="Flag Post"
           ariaHideApp={false}
         >
-          <h1>Reasons</h1>
-          {post.flags.map((flag, index) => {
+          <div>
+            <button onClick={() => handleArchivePost(post.id)}>
+              Delete Post
+            </button>
+            <button onClick={() => handleResolvePost(post.id)}>
+              Accept Post
+            </button>
+          </div>
+          <div>
+            <h1>Flagged Post</h1>
+            <p>{post.title}</p>
+            <p>{post.description}</p>
+          </div>
+          <h3>Filter by Reason</h3>
+          <div>
+            <button onClick={() => handleFilterByReason('All')}>All</button>
+            {props.reasons.map((reason) => {
+              return (
+                <button
+                  onClick={() => handleFilterByReason(reason.reason)}
+                  key={reason.reason}
+                >
+                  {reason.reason}
+                </button>
+              );
+            })}
+          </div>
+          {flags.map((flag, index) => {
             return (
               <div className="reason-card" key={index}>
                 <h3>{flag.flagger_name}</h3>
@@ -167,6 +212,7 @@ const SingleFlaggedPost = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    reasons: state.reasons,
   };
 };
 

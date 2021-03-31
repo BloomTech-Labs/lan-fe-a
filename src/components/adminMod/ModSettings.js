@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Header from '../common/Header';
-import { fetchFlaggedPosts, fetchFlaggedComments } from '../../store/actions';
+import {
+  fetchFlaggedPosts,
+  fetchFlaggedComments,
+  fetchReasons,
+} from '../../store/actions';
 import SingleFlaggedPost from './SingleFlaggedPost';
 import SingleFlaggedComment from './SingleFlaggedComment';
 
@@ -59,6 +63,10 @@ const AdminSettings = (props) => {
 
   useEffect(() => {
     props.fetchFlaggedPosts();
+  }, []);
+
+  useEffect(() => {
+    props.fetchReasons();
   }, []);
 
   const handleFetchPosts = () => {
@@ -123,4 +131,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   fetchFlaggedPosts,
   fetchFlaggedComments,
+  fetchReasons,
 })(AdminSettings);

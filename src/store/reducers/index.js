@@ -58,6 +58,12 @@ export const reducer = (state = initialState, action) => {
         posts: action.payload,
       };
 
+    case 'SET_REASONS':
+      return {
+        ...state,
+        reasons: action.payload,
+      };
+
     case 'START_FETCHING_CURRENT_POST':
       return {
         ...state,

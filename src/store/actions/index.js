@@ -417,6 +417,16 @@ export const fetchComments = (commentId) => (dispatch) => {
     );
 };
 
+// Fetched reasons
+export const fetchReasons = () => (dispatch) => {
+  axiosWithAuth()
+    .get(`${BACKEND_URL}/api/mod/reasons`)
+    .then((res) => {
+      dispatch({ type: 'SET_REASONS', payload: res.data });
+    })
+    .catch(() => toast.error('There was a problem fetching reasons'));
+};
+
 export const setDrawerVisibility = (bool) => (dispatch) => {
   dispatch({ type: 'SET_DRAWER_VISIBILITY', payload: bool });
 };
