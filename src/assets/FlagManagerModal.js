@@ -46,8 +46,8 @@ const FlagManagerModal = (props) => {
     if (flagFilter === 'All') {
       setFlagList(flagsData);
     } else {
-      const result = flagList.filter((flag) => {
-        return flag.flagReason === flagFilter;
+      const result = flagsData.filter((flag) => {
+        return flag.reason === flagFilter;
       });
       setFlagList(result);
     }

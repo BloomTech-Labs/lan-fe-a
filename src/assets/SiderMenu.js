@@ -23,7 +23,7 @@ const SiderMenu = (props) => {
     <Menu
       mode={localStorage.getItem('menuMode') || 'inline'}
       theme={localStorage.getItem('menuTheme') || 'light'}
-      defaultSelectedKeys={['0']}
+      // defaultSelectedKeys={['0']}
       defaultOpenKeys={['sub2']}
       style={{ height: '100%', borderRight: 0 }}
     >
