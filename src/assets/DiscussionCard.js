@@ -59,10 +59,10 @@ const DiscussionCard = (props) => {
         }
       >
         <p>{props.discussion.description}</p>
-        <FlagChip flagged="10" comments="5" />
+        <FlagChip flags={props.discussion.flags.length} commentsFlagged="5" />
         <FlagManagerModal visible={showModal} setVisible={setShowModal} />
         {/* //!Change below prop to discussionId and fix in UserFlaggingModal Component */}
-        {/* <UserFlaggingModal postId={props.discussion.id} /> */}
+        <UserFlaggingModal discussionID={props.discussion.id} />
       </Card>
       <Switch>
         <Route
@@ -75,7 +75,6 @@ const DiscussionCard = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.isDrawerVisible);
   return {
     discussions: state.posts,
     rooms: state.rooms,

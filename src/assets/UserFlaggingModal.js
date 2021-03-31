@@ -34,7 +34,7 @@ const CreateNewRoomButton = (props) => {
   const handleSubmition = (e) => {
     e.preventDefault();
     if (selection) {
-      props.flagPost(props.postId, selection, note);
+      props.flagPost(props.discussionID, selection, note);
       props.setFlaggingModalVisibility(false);
       setNote('');
       setRule('');
