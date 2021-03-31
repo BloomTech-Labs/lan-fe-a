@@ -11,12 +11,12 @@ import {
 } from '../store/actions';
 import { Layout, Breadcrumb } from 'antd';
 
+import { PrivateRoute } from '../utils/privateRoute';
 import Navbar from './Navbar';
 import SiderMenu from './SiderMenu';
 import DashboardContent from './DashboardContent';
 import RoomContent from './RoomContent';
 import { DashboardHeaderStyles } from '../styles/components/DashboardStyles';
-import DiscussionDrawer from './DiscussionDrawer';
 
 const Dashboard = (props) => {
   const { path } = useRouteMatch();
@@ -55,15 +55,15 @@ const Dashboard = (props) => {
               }}
             >
               <Switch>
-                <Route
+                <PrivateRoute
                   path={`${path}/room/:roomID`}
                   component={RoomContent}
-                ></Route>
-                <Route
+                ></PrivateRoute>
+                <PrivateRoute
                   exact
                   path={`${path}/`}
                   component={DashboardContent}
-                ></Route>
+                ></PrivateRoute>
               </Switch>
             </Content>
           </Layout>
