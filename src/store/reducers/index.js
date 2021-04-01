@@ -16,6 +16,7 @@ const initialState = {
   search: '',
   sort: '',
   filter: '',
+  flagReasons: [],
   usersLikedPosts: [],
   usersLikedComments: [],
   isLoading: false,
@@ -140,6 +141,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         isFlaggingModalVisible: action.payload,
+      };
+    case 'FETCH_FLAGREASONS_SUCCESS':
+      return {
+        ...state,
+        flagReasons: action.payload,
       };
 
     default:

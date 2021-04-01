@@ -377,6 +377,16 @@ export const fetchFlaggedComments = () => (dispatch) => {
     .catch(() => toast.error('There was a problem fetching flagged comments.'));
 };
 
+//Fetches list of flag reasons (moderator)
+export const fetchFlagReasons = () => (dispatch) => {
+  axiosWithAuth()
+    .get(`${BACKEND_URL}/api/mod/reasons`)
+    .then((res) => {
+      dispatch({ type: 'FETCH_FLAGREASONS_SUCCESS', payload: res.data });
+    })
+    .catch((err) => toast.error(err.message));
+};
+
 // Archives post (moderator)
 export const archivePost = (postID) => (dispatch) => {
   return axiosWithAuth()

@@ -8,8 +8,8 @@ import { Form, Modal, Input, Radio, Alert } from 'antd';
 
 const reasons = [
   'Spam',
-  'Bullying or Harrassment',
-  'Hate Speach or Symbols',
+  'Bullying or Harassment',
+  'Hate Speech or Symbols',
   'Nudity or Sexual Content',
   'I just dislike it',
   'Other',
