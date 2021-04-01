@@ -18,6 +18,8 @@ import {
   useRouteMatch,
   Link,
 } from 'react-router-dom';
+
+import { PrivateRoute } from '../utils/privateRoute';
 import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
 import { FlagChip } from './FlagChip';
@@ -74,10 +76,10 @@ const DiscussionCard = (props) => {
         />
       </Card>
       <Switch>
-        <Route
+        <PrivateRoute
           path={`${path}/discussion/:discussionID`}
           component={DiscussionDrawer}
-        ></Route>
+        />
       </Switch>
     </div>
     // </Link>

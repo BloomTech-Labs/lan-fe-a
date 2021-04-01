@@ -29,7 +29,7 @@ export const fetchUsers = () => (dispatch) => {
 // Logs out user
 export const logOut = (history) => (dispatch) => {
   localStorage.removeItem('token');
-  history.push('/welcome');
+  window.history.pushState({ logout_time: Date.now() }, '', '/welcome');
 };
 
 // Deletes user
