@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 /* -------------------------------------------------------------------------- */
 /*     IMPLEMENT THIS COMPONENT AS PART OF TERNARY/CONDITIONAL STATEMENTS     */
-/*    TO DETERMINE WHETHER OR NOT CODE SHOULD RUN BASED ON USER PERMISSIONS   */
+/*   TO DETERMINE WHETHER OR NOT CODE SHOULD RUN BASED ON USER PERMISSIONS    */
 /*                                                                            */
 /*                                            - Follow me @MarkZuckerberg     */
 /* -------------------------------------------------------------------------- */
