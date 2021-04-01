@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 /* -------------------------------------------------------------------------- */
-/*        USE THIS COMPONENT AS PART OF TERNARY/CONDITIONAL STATEMENTS        */
+/*     IMPLEMENT THIS COMPONENT AS PART OF TERNARY/CONDITIONAL STATEMENTS     */
 /*    TO DETERMINE WHETHER OR NOT CODE SHOULD RUN BASED ON USER PERMISSIONS   */
 /*                                                                            */
 /*                                            - Follow me @MarkZuckerberg     */
