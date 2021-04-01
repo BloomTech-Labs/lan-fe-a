@@ -91,7 +91,10 @@ const DiscussionCard = (props) => {
         }
         description={
           <Space>
-            Posted by {props.item.display_name}
+            Posted by
+            <Link to={`/user/${props.item.user_id}`}>
+              {props.item.display_name}
+            </Link>
             <Divider type="vertical" />
             {moment(props.item.created_at).fromNow()}
           </Space>
