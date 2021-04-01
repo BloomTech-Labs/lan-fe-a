@@ -8,6 +8,7 @@ import {
   fetchUser,
   retrieveFullSearchResults,
   setSearch,
+  fetchFlagReasons,
 } from '../store/actions';
 import { Layout, Breadcrumb } from 'antd';
 
@@ -24,6 +25,7 @@ const Dashboard = (props) => {
   const { Header, Content, Sider } = Layout;
   useEffect(() => {
     props.fetchRooms();
+    props.fetchFlagReasons();
     // props.fetchRecent(); // This is throwing an internal server error
     if (Object.keys(props.user).length === 0) {
       props.fetchUser();
@@ -88,4 +90,5 @@ export default connect(mapStateToProps, {
   fetchUser,
   retrieveFullSearchResults,
   setSearch,
+  fetchFlagReasons,
 })(Dashboard);

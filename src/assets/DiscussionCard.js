@@ -27,7 +27,7 @@ const DiscussionCard = (props) => {
   const { path, url } = useRouteMatch();
 
   const [showModal, setShowModal] = useState(false);
-  let flagLength = props.discussion.flags.length;
+
   return (
     // <Link
     //   to={`${url}/discussion/${props.discussion.id}?view=popular`}
@@ -62,8 +62,8 @@ const DiscussionCard = (props) => {
         <p>{props.discussion.description}</p>
         <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
           <FlagChip
-            flags={props.discussion.flags.length}
-            // commentsFlagged={props.discussion.commentsFlagged.length}
+            flags={`${props.discussion.flags.length}`}
+            commentsFlagged={`${props.discussion.flaggedComments.length}`}
           />
         </Link>
         <UserFlaggingModal discussionID={props.discussion.id} />

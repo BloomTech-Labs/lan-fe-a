@@ -1,52 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
-import { FlagChip } from './FlagChip';
 import {
   Modal,
   Layout,
   Button,
   Row,
-  Col,
   Menu,
   Divider,
   List,
   Avatar,
   Typography,
 } from 'antd';
-import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
 const { Title } = Typography;
+import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const FlagManagerModal = (props) => {
-  const { visible, setVisible } = props;
+  const { visible, setVisible, flagsData, reasons } = props;
   const { id } = useParams;
   const { Sider, Content } = Layout;
-  const { flagsData } = props;
-  console.log('props', props);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [flaggingReasons, setFlaggingReasons] = useState([
-    'All',
-    'Spam',
-    'Bullying or Harassment',
-    'Hate Speech or Symbols',
-    'Nudity or Sexual Content',
-    'I just dislike it',
-    'Other',
-  ]);
+  const [flaggingReasons, setFlaggingReasons] = useState(reasons);
   const [flagFilter, setFlagFilter] = useState();
   const [flagList, setFlagList] = useState(flagsData);
 
   useEffect(() => {
+    setFlagFilter('All');
     setFlagList(flagsData);
   }, []);
 
+  //Updates the list of flags based on the filter option selected
   useEffect(() => {
     if (flagFilter === 'All') {
       setFlagList(flagsData);
     } else {
-      const result = flagsData.filter((flag) => {
+      let result = flagsData.filter((flag) => {
         return flag.reason === flagFilter;
       });
       setFlagList(result);
@@ -54,7 +44,7 @@ const FlagManagerModal = (props) => {
   }, [flagFilter]);
 
   const handleFilterChange = (e) => {
-    setFlagFilter(flaggingReasons[e.key]);
+    setFlagFilter(e.key);
   };
 
   const handleApprove = () => {
@@ -83,11 +73,14 @@ const FlagManagerModal = (props) => {
       <Layout>
         <Sider>
           <Row>
-            <Menu defaultSelectedKeys={['0']}>
-              {flaggingReasons.map((reason, idx) => {
+            <Menu defaultSelectedKeys={['All']}>
+              <Menu.Item key="All" onClick={handleFilterChange}>
+                All
+              </Menu.Item>
+              {reasons.map((reason) => {
                 return (
-                  <Menu.Item key={idx} onClick={handleFilterChange}>
-                    {reason}
+                  <Menu.Item key={reason.reason} onClick={handleFilterChange}>
+                    {reason.reason}
                   </Menu.Item>
                 );
               })}
@@ -141,9 +134,7 @@ const FlagManagerModal = (props) => {
             renderItem={(item) => (
               <List.Item>
                 <List.Item.Meta
-                  avatar={
-                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                  }
+                  avatar={<Avatar src={`${item.flagger_profile_picture}`} />}
                   title={
                     <span>
                       {item.flagger_name} flagged this for {item.reason}
@@ -162,8 +153,10 @@ const FlagManagerModal = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => {
+  return {
+    reasons: state.flagReasons,
+  };
+};
 
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FlagManagerModal);
+export default connect(mapStateToProps)(FlagManagerModal);
