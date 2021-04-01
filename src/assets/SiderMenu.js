@@ -28,7 +28,7 @@ const SiderMenu = (props) => {
       style={{ height: '100%', borderRight: 0 }}
     >
       <Menu.SubMenu key="sub1" icon={<HeartOutlined />} title="My Rooms">
-        {/* pending implementation of associating rooms to a user */}
+        {/* //! pending implementation of associating rooms to a user */}
       </Menu.SubMenu>
       <Menu.SubMenu key="sub2" icon={<ShopOutlined />} title="Rooms">
         {props.rooms.map((room, idx) => {
