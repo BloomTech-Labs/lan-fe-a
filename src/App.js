@@ -23,7 +23,7 @@ const App = () => {
   return (
     <>
       <Switch>
-        <Route path="/sample" component={Dashboard} />
+        <PrivateRoute path="/sample" component={Dashboard} />
         <PrivateRoute exact path="/" component={AllRoomsDashboard} />
         <Route path="/welcome" component={Landing} />
         <Route path="/success/:jwt" component={Success} />

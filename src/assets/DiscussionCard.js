@@ -13,6 +13,8 @@ import {
   EllipsisOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
+
+import { PrivateRoute } from '../utils/privateRoute';
 import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
 import DiscussionDrawer from './DiscussionDrawer';
@@ -75,10 +77,10 @@ const DiscussionCard = (props) => {
         />
       </Card>
       <Switch>
-        <Route
+        <PrivateRoute
           path={`${path}/discussion/:discussionID`}
           component={DiscussionDrawer}
-        ></Route>
+        />
       </Switch>
     </div>
     // </Link>

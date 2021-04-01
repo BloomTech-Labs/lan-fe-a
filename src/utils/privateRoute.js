@@ -8,20 +8,15 @@ const BACKEND_URL =
   process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [activeToken, setActiveToken] = useState(false);
-
   // ask the db if this user has an active token
   useEffect(() => {
     axiosWithAuth()
       .get(`${BACKEND_URL}/api/user`)
-      .then((response) => {
-        if (response.data.user) {
-          setActiveToken(true);
-        }
-      })
+      .then()
       .catch((error) => {
         localStorage.removeItem('token');
         toast.error(error.message);
+        window.location.href = '/welcome';
       });
   }, []);
 
@@ -29,10 +24,10 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        if (activeToken) {
+        if (localStorage.getItem('token')) {
           return <Component {...props} />;
         } else {
-          <Redirect to="/welcome" />;
+          window.location.href = '/welcome';
         }
       }}
     />
