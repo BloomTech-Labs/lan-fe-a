@@ -7,7 +7,7 @@ import { fetchRecent } from '../store/actions';
 import { List, Space, Divider } from 'antd';
 import {
   MessageOutlined,
-  LikeOutlined,
+  ArrowUpOutlined,
   EllipsisOutlined,
   MoreOutlined,
 } from '@ant-design/icons';
@@ -43,7 +43,7 @@ const Feed = (props) => {
           grid={{ column: 4 }}
           actions={[
             <IconText
-              icon={LikeOutlined}
+              icon={ArrowUpOutlined}
               text={item.likes}
               key="list-vertical-like-o"
             />,
@@ -73,15 +73,17 @@ const Feed = (props) => {
             }
           />
           {item.description}
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'flex-end',
-            }}
-          >
-            <FlagChip flags={item.flags.length} />
-          </div>
+          {item.flags && (
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <FlagChip flags={item.flags.length} />
+            </div>
+          )}
           <Switch>
             <Route
               path={`${path}/discussion/:discussionID`}
