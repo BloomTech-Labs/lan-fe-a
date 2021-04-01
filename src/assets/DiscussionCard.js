@@ -51,7 +51,10 @@ const DiscussionCard = (props) => {
           />,
           <EllipsisOutlined
             key="ellipsis"
-            onClick={() => props.setFlaggingModalVisibility(true)}
+            onClick={() => {
+              props.setFlaggingModalVisibility(true);
+              console.log('on click', props.discussionID);
+            }}
           />,
         ]}
         title={
