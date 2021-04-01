@@ -8,7 +8,7 @@ import {
   fetchPost,
   fetchPostsAndFlagsByRoom,
 } from '../store/actions';
-import { Layout } from 'antd';
+import { Layout, Input, Form, Collapse, Button } from 'antd';
 
 import DiscussionCard from './DiscussionCard';
 import Feed from './Feed';
@@ -53,6 +53,24 @@ const RoomContent = (props) => {
           </div>
         </Header>
         <Content>
+          <Collapse defaultActiveKey={['1']} ghost>
+            <Collapse.Panel
+              header={<Button type="primary">New Discussion</Button>}
+              showArrow={false}
+            >
+              <Form>
+                <Form.Item>
+                  <Input placeholder="Title" />
+                </Form.Item>
+                <Form.Item>
+                  <Input.TextArea placeholder="What would you like to say?" />
+                </Form.Item>
+                <Form.Item>
+                  <Button htmlType="submit">Submit</Button>
+                </Form.Item>
+              </Form>
+            </Collapse.Panel>
+          </Collapse>
           <Feed />
         </Content>
       </Layout>
