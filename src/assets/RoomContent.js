@@ -7,6 +7,7 @@ import {
   setDrawerVisibility,
   fetchPost,
   fetchPostsAndFlagsByRoom,
+  postQuestion,
 } from '../store/actions';
 import { Layout, Input, Form, Collapse, Button } from 'antd';
 
@@ -21,21 +22,21 @@ const RoomContent = (props) => {
 
   const handleSubmission = (e) => {
     console.log('submission');
-    // props
-    //   .createRoom({ room_name: title, description: description })
-    //   .then(() => {
-    //     setTitle('');
-    //     setDescription('');
-    //     if (props.user.role_id < 2) {
-    //       props.fetchPostByRoom(roomID, 1);
-    //     } else {
-    //       props.fetchPostsAndFlagsByRoom(roomID);
-    //     }
-    //     // props.fetchRooms();
-    //   })
-    //   .catch(() => {
-    //     console.log('failed to create room');
-    //   });
+    props
+      .postQuestion({ room_name: title, description: description, roomID })
+      .then(() => {
+        setTitle('');
+        setDescription('');
+        if (props.user.role_id < 2) {
+          props.fetchPostByRoom(roomID, 1);
+        } else {
+          props.fetchPostsAndFlagsByRoom(roomID);
+        }
+        // props.fetchRooms();
+      })
+      .catch(() => {
+        console.log('failed to create room');
+      });
   };
 
   const inputHandler = (prevValues, curValues) => {
@@ -127,4 +128,5 @@ export default connect(mapStateToProps, {
   setDrawerVisibility,
   fetchPost,
   fetchPostsAndFlagsByRoom,
+  postQuestion,
 })(RoomContent);
