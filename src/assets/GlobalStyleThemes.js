@@ -43,7 +43,7 @@ module.exports = {
   '@layout-trigger-color-light': '@text-color',
 
   /* --------------------- Buttons -------------------------------- */
-  '@btn-font-weight': '550',
+  '@btn-font-weight': '400',
   '@btn-border-radius-base': '@border-radius-base',
   '@btn-border-radius-sm': '@border-radius-base',
   '@btn-border-width': '@border-width-base',

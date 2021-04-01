@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import {
-  setFlaggingModalVisibility,
-  fetchPost,
-  setDrawerVisibility,
-} from '../store/actions/index';
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from '@ant-design/icons';
-import { Card, Avatar, Modal } from 'antd';
-import {
   Switch,
   Route,
   useParams,
   useRouteMatch,
   Link,
 } from 'react-router-dom';
+import { Card, Avatar, Modal } from 'antd';
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
 import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
-import { FlagChip } from './FlagChip';
 import DiscussionDrawer from './DiscussionDrawer';
+import { FlagChip } from './FlagChip';
+import {
+  setFlaggingModalVisibility,
+  fetchPost,
+  setDrawerVisibility,
+} from '../store/actions/index';
 
 const DiscussionCard = (props) => {
   const { path, url } = useRouteMatch();
@@ -71,6 +71,7 @@ const DiscussionCard = (props) => {
           visible={showModal}
           setVisible={setShowModal}
           flagsData={props.discussion.flags}
+          discussionID={props.discussion.id}
         />
       </Card>
       <Switch>

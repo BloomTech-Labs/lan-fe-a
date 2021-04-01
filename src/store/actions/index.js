@@ -407,7 +407,7 @@ export const archiveComment = (commentID) => (dispatch) => {
 export const resolvePost = (postID) => (dispatch) => {
   return axiosWithAuth()
     .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
-    .then(() => toast.success('Post Successfully Resolved'))
+    .then(() => toast.success('The discussion post was approved!'))
     .catch(() => toast.error('Error Resolving Post'));
 };
 

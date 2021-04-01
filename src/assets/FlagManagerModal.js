@@ -10,19 +10,26 @@ import {
   Divider,
   List,
   Avatar,
-  Typography,
+  Popconfirm,
 } from 'antd';
-const { Title } = Typography;
+
 import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
+import { archivePost, resolvePost } from '../store/actions/index';
 
 const FlagManagerModal = (props) => {
-  const { visible, setVisible, flagsData, reasons } = props;
+  const {
+    visible,
+    setVisible,
+    flagsData,
+    reasons,
+    archivePost,
+    discussionID,
+    resolvePost,
+  } = props;
   const { id } = useParams;
   const { Sider, Content } = Layout;
 
   const [isLoading, setIsLoading] = useState(false);
-
-  const [flaggingReasons, setFlaggingReasons] = useState(reasons);
   const [flagFilter, setFlagFilter] = useState();
   const [flagList, setFlagList] = useState(flagsData);
 
@@ -48,13 +55,16 @@ const FlagManagerModal = (props) => {
   };
 
   const handleApprove = () => {
-    console.log('clicked Approve');
+    //! Currently, flags.length stays the same after a post approval. Needs logic to ensure flags are removed from the given discussion post and/or marked as 'checked' so they no longer appear in the given cards' flag chip.
+    resolvePost(discussionID);
+    setVisible(false);
   };
   const handleEscalate = () => {
     console.log('clicked Escalate');
   };
   const handleArchive = () => {
-    console.log('clicked Archive');
+    archivePost(discussionID);
+    setVisible(false);
   };
   const handleCancel = () => {
     setVisible(false);
@@ -101,17 +111,23 @@ const FlagManagerModal = (props) => {
             </Button>
           </Row>
           <Row justify="space-around">
-            <Button
-              type="default"
-              icon={<DeleteOutlined />}
-              style={{
-                background: 'rgba(211, 69, 91, .57)',
-                color: 'rgba(211, 69, 91)',
-              }}
-              onClick={handleArchive}
+            <Popconfirm
+              title="Are you sure you want to archive this discussion?"
+              onConfirm={handleArchive}
+              okText="Yes"
+              cancelText="No"
             >
-              Archive
-            </Button>
+              <Button
+                type="default"
+                icon={<DeleteOutlined />}
+                style={{
+                  background: 'rgba(211, 69, 91, .57)',
+                  color: 'rgba(211, 69, 91)',
+                }}
+              >
+                Archive
+              </Button>
+            </Popconfirm>
           </Row>
           <Row justify="space-around">
             <Button
@@ -159,4 +175,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(FlagManagerModal);
+export default connect(mapStateToProps, { archivePost, resolvePost })(
+  FlagManagerModal
+);
