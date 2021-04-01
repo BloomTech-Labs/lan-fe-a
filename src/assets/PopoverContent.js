@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { List, Button } from 'antd';
 import { FlagOutlined, PushpinOutlined } from '@ant-design/icons';
 import UserFlaggingModal from './UserFlaggingModal';
-import FlagManagerModal from './FlagManagerModal';
+// import FlagManagerModal from './FlagManagerModal';
 
 const PopoverContent = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -35,7 +35,7 @@ const PopoverContent = (props) => {
           </Button>
         </Link>
       </List.Item>
-      <List.Item>
+      {/* <List.Item>
         <Link>
           <Button
             style={{ background: 'Blue' }} // connect these colours with global stylesheets
@@ -52,7 +52,7 @@ const PopoverContent = (props) => {
           flagsData={props.discussion.flags || null}
           discussionID={props.discussion.id}
         />
-      </List.Item>
+      </List.Item> */}
     </List>
   );
 };

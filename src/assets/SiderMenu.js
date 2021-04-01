@@ -7,7 +7,7 @@ import {
   setNewRoomModalVisibility,
   fetchPostsAndFlagsByRoom,
 } from '../store/actions';
-import { Menu, Button } from 'antd';
+import { Menu } from 'antd';
 import {
   HeartOutlined,
   ShopOutlined,

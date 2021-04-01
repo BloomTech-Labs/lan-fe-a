@@ -7,29 +7,15 @@ import {
   fetchPost,
   setDrawerVisibility,
 } from '../store/actions/index';
-// import {
-//   EditOutlined,
-//   EllipsisOutlined,
-//   SettingOutlined,
-// } from '@ant-design/icons';
 import {
   MessageOutlined,
   ArrowUpOutlined,
   EllipsisOutlined,
-  MoreOutlined,
 } from '@ant-design/icons';
-import { Card, Avatar, Modal, List, Popover, Space, Divider } from 'antd';
-import {
-  Switch,
-  Route,
-  useParams,
-  useRouteMatch,
-  Link,
-} from 'react-router-dom';
+import { List, Popover, Space, Divider } from 'antd';
+import { Switch, useRouteMatch, Link } from 'react-router-dom';
 
 import { PrivateRoute } from '../utils/privateRoute';
-import UserFlaggingModal from './UserFlaggingModal';
-import FlagManagerModal from './FlagManagerModal';
 import { FlagChip } from './FlagChip';
 import DiscussionDrawer from './DiscussionDrawer';
 import PopoverContent from './PopoverContent';
