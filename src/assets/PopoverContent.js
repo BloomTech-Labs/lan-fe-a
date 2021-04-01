@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { setFlaggingModalVisibility } from '../store/actions/index';
 import { Link } from 'react-router-dom';
 import { List, Button } from 'antd';
 import { FlagOutlined, PushpinOutlined } from '@ant-design/icons';
 import UserFlaggingModal from './UserFlaggingModal';
+import FlagManagerModal from './FlagManagerModal';
 
 const PopoverContent = (props) => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <List>
       <List.Item>
@@ -33,8 +35,33 @@ const PopoverContent = (props) => {
           </Button>
         </Link>
       </List.Item>
+      <List.Item>
+        <Link>
+          <Button
+            style={{ background: 'Blue' }} // connect these colours with global stylesheets
+            onClick={() => setShowModal(true)}
+            icon={<FlagOutlined />}
+            type="text"
+          >
+            Mod
+          </Button>
+        </Link>
+        <FlagManagerModal
+          visible={showModal}
+          setVisible={setShowModal}
+          flagsData={props.discussion.flags || null}
+          discussionID={props.discussion.id}
+        />
+      </List.Item>
     </List>
   );
 };
-
-export default connect(null, { setFlaggingModalVisibility })(PopoverContent);
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    discussion: state.posts,
+  };
+};
+export default connect(mapStateToProps, { setFlaggingModalVisibility })(
+  PopoverContent
+);
