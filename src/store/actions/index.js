@@ -286,7 +286,8 @@ export const fetchPostByRoom = (roomID, page) => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/room/${roomID}/recent?page=${page}&limit=10`)
     .then((res) => {
-      dispatch({ type: 'SET_POSTS', payload: res.data });
+      console.log(res.data);
+      dispatch({ type: 'SET_POSTS', payload: res.data.posts });
     })
     .catch(() => toast.error('Oh no! Could not fetch posts.'));
 };

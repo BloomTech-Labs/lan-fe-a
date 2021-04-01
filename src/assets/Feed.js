@@ -1,37 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import moment from 'moment';
-import { fetchRecent } from '../store/actions';
-import { List, Space, Divider, Select } from 'antd';
 import {
-  MessageOutlined,
-  ArrowUpOutlined,
-  EllipsisOutlined,
-  MoreOutlined,
-} from '@ant-design/icons';
+  Link,
+  useRouteMatch,
+  Switch,
+  Route,
+  useParams,
+} from 'react-router-dom';
+import { connect } from 'react-redux';
+import {
+  fetchPostByRoom,
+  fetchPostsAndFlagsByRoom,
+} from '../store/actions/index';
+import moment from 'moment';
+import { List, Space, Divider, Select } from 'antd';
 
-import DiscussionDrawer from './DiscussionDrawer';
-import { FlagChip } from './FlagChip';
 import DiscussionCard from './DiscussionCard';
-
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
-
-const DiscussionHeaderStyles = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 const Feed = (props) => {
   const [popoverVisibility, setPopoverVisibility] = useState(false);
-  const { path, url } = useRouteMatch();
+  const { roomID } = useParams();
+
+  useEffect(() => {
+    if (roomID) {
+      if (props.user.role_id < 2) props.fetchPostByRoom(roomID, 1);
+      else props.fetchPostsAndFlagsByRoom(roomID, 1);
+    }
+  }, []);
 
   return (
     <>
@@ -128,7 +123,11 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     discussion: state.posts,
+    user: state.user,
   };
 };
 
-export default connect(mapStateToProps, { fetchRecent })(Feed);
+export default connect(mapStateToProps, {
+  fetchPostByRoom,
+  fetchPostsAndFlagsByRoom,
+})(Feed);
