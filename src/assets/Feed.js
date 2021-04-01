@@ -4,7 +4,7 @@ import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { fetchRecent } from '../store/actions';
-import { List, Space, Divider, Popover } from 'antd';
+import { List, Space, Divider, Select } from 'antd';
 import {
   MessageOutlined,
   ArrowUpOutlined,
@@ -35,7 +35,14 @@ const Feed = (props) => {
 
   return (
     <>
-      <Divider orientation="right">View by: </Divider>
+      <Divider orientation="right">
+        {`View by: `}
+        <Select defaultValue="popular">
+          <Select.Option value="popular">Popular</Select.Option>
+          <Select.Option value="recent">Recent</Select.Option>
+          <Select.Option value="Popular">Flagged</Select.Option>
+        </Select>
+      </Divider>
       <List
         itemLayout="vertical"
         size="large"
