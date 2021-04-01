@@ -9,7 +9,7 @@ const DashboardContent = () => {
   const { Header, Content } = Layout;
 
   return (
-    <Layout>
+    <Layout style={{ minHeight: '100vh' }}>
       <Header
         style={{
           padding: '0px 0px',

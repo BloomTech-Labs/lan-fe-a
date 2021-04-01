@@ -16,12 +16,11 @@ import SiderMenu from './SiderMenu';
 import DashboardContent from './DashboardContent';
 import RoomContent from './RoomContent';
 import { DashboardHeaderStyles } from '../styles/components/DashboardStyles';
-import DiscussionDrawer from './DiscussionDrawer';
 
 const Dashboard = (props) => {
   const { path } = useRouteMatch();
 
-  const { Header, Content, Sider } = Layout;
+  const { Content, Sider } = Layout;
   useEffect(() => {
     props.fetchRooms();
     // props.fetchRecent(); // This is throwing an internal server error
@@ -32,7 +31,7 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <Layout style={{ height: '100vh' }}>
+      <Layout>
         <DashboardHeaderStyles>
           <Navbar />
         </DashboardHeaderStyles>

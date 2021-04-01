@@ -30,7 +30,7 @@ const RoomContent = (props) => {
 
   return (
     <>
-      <Layout>
+      <Layout style={{ minHeight: '100vh' }}>
         <Header
           style={{
             padding: '0px 0px',
