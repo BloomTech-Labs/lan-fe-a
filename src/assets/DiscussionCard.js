@@ -60,7 +60,7 @@ const DiscussionCard = (props) => {
         <IconText
           icon={ArrowUpOutlined}
           text={props.item.likes}
-          key="list-vertical-like-o"
+          key="like-or-upvote"
         />,
         <IconText
           icon={MessageOutlined}
@@ -99,15 +99,16 @@ const DiscussionCard = (props) => {
       />
       {props.item.description}
       {props.item.flags && (
-        <div
+        <Link
           style={{
             width: '100%',
             display: 'flex',
             justifyContent: 'flex-end',
           }}
+          to={`${url}/discussion/${props.item.id}?view=flagged`}
         >
           <FlagChip flags={props.item.flags.length} />
-        </div>
+        </Link>
       )}
       <Switch>
         <Route
