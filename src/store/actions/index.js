@@ -29,7 +29,7 @@ export const fetchUsers = () => (dispatch) => {
 // Logs out user
 export const logOut = (history) => (dispatch) => {
   localStorage.removeItem('token');
-  history.push('/welcome');
+  window.history.pushState({ logout_time: Date.now() }, '', '/welcome');
 };
 
 // Deletes user
@@ -375,6 +375,16 @@ export const fetchFlaggedComments = () => (dispatch) => {
       dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
     })
     .catch(() => toast.error('There was a problem fetching flagged comments.'));
+};
+
+//Fetches list of flag reasons (moderator)
+export const fetchFlagReasons = () => (dispatch) => {
+  axiosWithAuth()
+    .get(`${BACKEND_URL}/api/mod/reasons`)
+    .then((res) => {
+      dispatch({ type: 'FETCH_FLAGREASONS_SUCCESS', payload: res.data });
+    })
+    .catch((err) => toast.error(err.message));
 };
 
 // Archives post (moderator)

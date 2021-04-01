@@ -8,9 +8,11 @@ import {
   fetchUser,
   retrieveFullSearchResults,
   setSearch,
+  fetchFlagReasons,
 } from '../store/actions';
 import { Layout, Breadcrumb } from 'antd';
 
+import { PrivateRoute } from '../utils/privateRoute';
 import Navbar from './Navbar';
 import SiderMenu from './SiderMenu';
 import DashboardContent from './DashboardContent';
@@ -23,6 +25,7 @@ const Dashboard = (props) => {
   const { Content, Sider } = Layout;
   useEffect(() => {
     props.fetchRooms();
+    props.fetchFlagReasons();
     // props.fetchRecent(); // This is throwing an internal server error
     if (Object.keys(props.user).length === 0) {
       props.fetchUser();
@@ -54,15 +57,15 @@ const Dashboard = (props) => {
               }}
             >
               <Switch>
-                <Route
+                <PrivateRoute
                   path={`${path}/room/:roomID`}
                   component={RoomContent}
-                ></Route>
-                <Route
+                />
+                <PrivateRoute
                   exact
                   path={`${path}/`}
                   component={DashboardContent}
-                ></Route>
+                />
               </Switch>
             </Content>
           </Layout>
@@ -87,4 +90,5 @@ export default connect(mapStateToProps, {
   fetchUser,
   retrieveFullSearchResults,
   setSearch,
+  fetchFlagReasons,
 })(Dashboard);

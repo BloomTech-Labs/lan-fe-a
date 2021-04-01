@@ -23,17 +23,17 @@ const SiderMenu = (props) => {
     <Menu
       mode={localStorage.getItem('menuMode') || 'inline'}
       theme={localStorage.getItem('menuTheme') || 'light'}
-      defaultSelectedKeys={['1']}
-      defaultOpenKeys={['sub1']}
+      // defaultSelectedKeys={['0']}
+      defaultOpenKeys={['sub2']}
       style={{ height: '100%', borderRight: 0 }}
     >
       <Menu.SubMenu key="sub1" icon={<HeartOutlined />} title="My Rooms">
         {/* pending implementation of associating rooms to a user */}
       </Menu.SubMenu>
       <Menu.SubMenu key="sub2" icon={<ShopOutlined />} title="Rooms">
-        {props.rooms.map((room) => {
+        {props.rooms.map((room, idx) => {
           return (
-            <Menu.Item key={room.id}>
+            <Menu.Item key={idx}>
               <Link
                 key={room.id}
                 to={`${url}/room/${room.id}`}
