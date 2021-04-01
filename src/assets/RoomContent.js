@@ -11,6 +11,7 @@ import {
 import { Layout } from 'antd';
 
 import DiscussionCard from './DiscussionCard';
+import Feed from './Feed';
 
 const RoomContent = (props) => {
   const { roomID } = useParams();
@@ -34,7 +35,7 @@ const RoomContent = (props) => {
         <Header
           style={{
             padding: '0px 0px',
-            background: '#fff',
+            background: 'none',
             display: 'flex',
             justifyContent: 'flex-start',
             height: 'auto',
@@ -52,10 +53,7 @@ const RoomContent = (props) => {
           </div>
         </Header>
         <Content>
-          {props.discussions &&
-            props.discussions.map((d) => (
-              <DiscussionCard key={d.id} discussion={d} />
-            ))}
+          <Feed />
         </Content>
       </Layout>
     </>
