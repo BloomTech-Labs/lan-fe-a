@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import {
@@ -14,8 +14,34 @@ import DiscussionCard from './DiscussionCard';
 import Feed from './Feed';
 
 const RoomContent = (props) => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const { roomID } = useParams();
   const { Header, Content } = Layout;
+
+  const handleSubmission = (e) => {
+    console.log('submission');
+    // props
+    //   .createRoom({ room_name: title, description: description })
+    //   .then(() => {
+    //     setTitle('');
+    //     setDescription('');
+    //     if (props.user.role_id < 2) {
+    //       props.fetchPostByRoom(roomID, 1);
+    //     } else {
+    //       props.fetchPostsAndFlagsByRoom(roomID);
+    //     }
+    //     // props.fetchRooms();
+    //   })
+    //   .catch(() => {
+    //     console.log('failed to create room');
+    //   });
+  };
+
+  const inputHandler = (prevValues, curValues) => {
+    setTitle(curValues.title);
+    setDescription(curValues.description);
+  };
 
   const findRoom = (_id) => {
     const currentRoom = props.rooms.filter((r) => r.id === parseInt(_id))[0];
@@ -58,11 +84,19 @@ const RoomContent = (props) => {
               header={<Button type="primary">New Discussion</Button>}
               showArrow={false}
             >
-              <Form>
-                <Form.Item>
+              <Form onFinish={handleSubmission}>
+                <Form.Item
+                  name="title"
+                  rules={[{ required: true, message: 'Title required' }]}
+                  shouldUpdate={inputHandler}
+                >
                   <Input placeholder="Title" />
                 </Form.Item>
-                <Form.Item>
+                <Form.Item
+                  name="description"
+                  rules={[{ required: true, message: 'Description required' }]}
+                  shouldUpdate={inputHandler}
+                >
                   <Input.TextArea placeholder="What would you like to say?" />
                 </Form.Item>
                 <Form.Item>
@@ -83,6 +117,7 @@ const mapStateToProps = (state) => {
     discussions: state.posts,
     rooms: state.rooms,
     discussion: state.posts,
+    user: state.user,
   };
 };
 
