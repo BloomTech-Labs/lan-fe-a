@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import {
-  setFlaggingModalVisibility,
+  fetchPostsAndFlagsByRoom,
   fetchPost,
   setDrawerVisibility,
 } from '../store/actions/index';
@@ -11,14 +11,19 @@ import {
   MessageOutlined,
   ArrowUpOutlined,
   EllipsisOutlined,
+  PushpinOutlined,
+  FlagOutlined,
 } from '@ant-design/icons';
-import { List, Popover, Space, Divider } from 'antd';
-import { Switch, useRouteMatch, Link } from 'react-router-dom';
+import { List, Space, Divider, Menu, Dropdown } from 'antd';
+import { Switch, useRouteMatch, Link, useParams } from 'react-router-dom';
 
 import { PrivateRoute } from '../utils/privateRoute';
 import { FlagChip } from './FlagChip';
+import UserFlaggingModal from './UserFlaggingModal';
+import FlagManagerModal from './FlagManagerModal';
 import DiscussionDrawer from './DiscussionDrawer';
-import PopoverContent from './PopoverContent';
+import DCardDropdown from './DCardDropdown';
+import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -35,10 +40,41 @@ const DiscussionHeaderStyles = styled.div`
 
 const DiscussionCard = (props) => {
   const { path, url } = useRouteMatch();
-  const [popoverVisibility, setPopoverVisibility] = useState(false);
+  const { roomID } = useParams();
+  const [showModal, setShowModal] = useState(false);
+  const [showFlagModal, setShowFlagModal] = useState(false);
+
+  useEffect(() => {
+    if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
+  }, [props.discussion.flags.length]);
+
+  const dropdownMenu = (
+    <Menu>
+      <Menu.Item key="0">
+        <a>
+          <PushpinOutlined /> Pin
+        </a>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="1">
+        <a onClick={() => setShowFlagModal(true)}>
+          <FlagOutlined /> Flag Discussion
+        </a>
+      </Menu.Item>
+      {props.discussion.flags.length > 0 && <Menu.Divider />}
+      {props.discussion.flags.length > 0 && (
+        <Menu.Item key="3">
+          <a onClick={() => setShowModal(true)}>
+            <FlagOutlined /> Moderate
+          </a>
+        </Menu.Item>
+      )}
+    </Menu>
+  );
 
   return (
     <List.Item
+      className="discussion-card"
       key={props.discussion.title}
       style={{ background: 'white' }}
       grid={{ column: 4 }}
@@ -61,21 +97,14 @@ const DiscussionCard = (props) => {
             <Link to={`${url}/discussion/${props.discussion.id}?view=popular`}>
               {props.discussion.title}
             </Link>
-            <Popover
-              placement="topRight"
-              content={
-                <PopoverContent
-                  setPopoverVisibility={setPopoverVisibility}
-                  discussion={props.discussion}
-                />
-              }
-              trigger="click"
-              visible={popoverVisibility}
-              onVisibleChange={(visible) => setPopoverVisibility(visible)}
-            >
-              {/* <MoreOutlined /> */}
-              <EllipsisOutlined />
-            </Popover>
+            <Dropdown overlay={dropdownMenu} trigger={['click']}>
+              <a
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              >
+                <EllipsisOutlined />
+              </a>
+            </Dropdown>
           </DiscussionHeaderStyles>
         }
         description={
@@ -99,9 +128,27 @@ const DiscussionCard = (props) => {
           }}
           to={`${url}/discussion/${props.discussion.id}?view=flagged`}
         >
-          <FlagChip flags={props.discussion.flags.length} />
+          {/* FLAG CHIP PROPS NEED TOBE PASSED IN AS PROPS */}
+          {<CheckIfModOrAdmin /> && (
+            <FlagChip
+              flags={`${props.discussion.flags.length}`}
+              commentsFlagged={`${props.discussion.flaggedComments.length}`}
+            />
+          )}
         </Link>
       )}
+      <FlagManagerModal
+        visible={showModal}
+        setVisible={setShowModal}
+        flagsData={props.discussion.flags ? props.discussion.flags : undefined}
+        discussionID={props.discussion.id}
+      />
+      <UserFlaggingModal
+        visible={showFlagModal}
+        setVisible={setShowFlagModal}
+        discussionID={props.discussion.id}
+      />
+
       <Switch>
         <PrivateRoute
           path={`${path}/discussion/:discussionID`}
@@ -114,12 +161,13 @@ const DiscussionCard = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     rooms: state.rooms,
   };
 };
 
 export default connect(mapStateToProps, {
-  setFlaggingModalVisibility,
+  fetchPostsAndFlagsByRoom,
   fetchPost,
   setDrawerVisibility,
 })(DiscussionCard);

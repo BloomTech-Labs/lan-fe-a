@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { setFlaggingModalVisibility, flagPost } from '../store/actions';
+import { flagPost } from '../store/actions';
 import { Form, Modal, Input, Radio, Alert } from 'antd';
 
 //  TEMPORARY
@@ -35,7 +35,7 @@ const UserFlaggingModal = (props) => {
     e.preventDefault();
     if (selection) {
       props.flagPost(props.discussionID, selection, note);
-      props.setFlaggingModalVisibility(false);
+      props.setVisible(false);
       setNote('');
       setRule('');
     } else {
@@ -44,7 +44,7 @@ const UserFlaggingModal = (props) => {
   };
 
   const handleCancellation = () => {
-    props.setFlaggingModalVisibility(false);
+    props.setVisible(false);
     setSelection('');
     setRule('');
   };
@@ -86,11 +86,10 @@ const UserFlaggingModal = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    visible: state.isFlaggingModalVisible,
+    // visible: state.isFlaggingModalVisible,
   };
 };
 
 export default connect(mapStateToProps, {
-  setFlaggingModalVisibility,
   flagPost,
 })(UserFlaggingModal);

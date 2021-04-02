@@ -8,8 +8,19 @@ import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
+/* -------------------------------------------------------------------------- */
+/*                 This component can be deleted - deprecated.                */
+/* -------------------------------------------------------------------------- */
+
 const PopoverContent = (props) => {
+  // const { popoverVisibility, setPopoverVisibility } = props;
   const [showModal, setShowModal] = useState(false);
+
+  const handleModalVisibleSwap = () => {
+    setShowModal(true);
+    props.handleVisibleChange();
+  };
+
   return (
     <div>
       <List>
@@ -29,7 +40,7 @@ const PopoverContent = (props) => {
           {/* <Link> */}
           <Button
             style={{ background: 'yellow' }} // connect these colours with global stylesheets
-            onClick={() => props.setFlaggingModalVisibility(true)}
+            onClick={() => props.setFlaggingModalVisibility(false)}
             icon={<FlagOutlined />}
             type="text"
           >
@@ -41,7 +52,7 @@ const PopoverContent = (props) => {
           {/* <Link> */}
           <Button
             style={{ background: 'lightblue' }} // connect these colours with global stylesheets
-            onClick={() => setShowModal(true)}
+            onClick={handleModalVisibleSwap}
             icon={<FlagOutlined />}
             type="text"
           >
@@ -60,9 +71,7 @@ const PopoverContent = (props) => {
   );
 };
 const mapStateToProps = (state) => {
-  return {
-    // discussion: state.posts,
-  };
+  return {};
 };
 export default connect(mapStateToProps, { setFlaggingModalVisibility })(
   PopoverContent

@@ -1,18 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
-import {
-  Modal,
-  Layout,
-  Button,
-  Row,
-  Menu,
-  Divider,
-  List,
-  Avatar,
-  Popconfirm,
-  Space,
-} from 'antd';
+import { Modal, Layout, Button, Menu, List, Avatar, Popconfirm } from 'antd';
 
 import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
 import { archivePost, resolvePost } from '../store/actions/index';
@@ -30,7 +19,6 @@ const FlagManagerModal = (props) => {
   const { id } = useParams;
   const { Sider, Content } = Layout;
 
-  const [isLoading, setIsLoading] = useState(false);
   const [flagFilter, setFlagFilter] = useState();
   const [flagList, setFlagList] = useState(flagsData);
 
