@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   fetchPostByRoom,
   fetchRooms,
@@ -10,7 +10,7 @@ import {
 } from '../store/actions';
 import { Layout } from 'antd';
 
-import DiscussionCard from './DiscussionCard';
+import Feed from './Feed';
 
 const RoomContent = (props) => {
   const { roomID } = useParams();
@@ -30,11 +30,11 @@ const RoomContent = (props) => {
 
   return (
     <>
-      <Layout>
+      <Layout style={{ minHeight: '100vh' }}>
         <Header
           style={{
             padding: '0px 0px',
-            background: '#fff',
+            background: 'none',
             display: 'flex',
             justifyContent: 'flex-start',
             height: 'auto',
@@ -51,11 +51,8 @@ const RoomContent = (props) => {
             <p>{findRoom(roomID).description}</p>
           </div>
         </Header>
-        <Content style={{ background: '#fff' }}>
-          {props.discussions &&
-            props.discussions.map((d) => (
-              <DiscussionCard key={d.id} discussion={d} />
-            ))}
+        <Content>
+          <Feed />
         </Content>
       </Layout>
     </>

@@ -7,7 +7,7 @@ import {
   setNewRoomModalVisibility,
   fetchPostsAndFlagsByRoom,
 } from '../store/actions';
-import { Menu, Button } from 'antd';
+import { Menu } from 'antd';
 import {
   HeartOutlined,
   ShopOutlined,
@@ -38,8 +38,8 @@ const SiderMenu = (props) => {
                 key={room.id}
                 to={`${url}/room/${room.id}`}
                 onClick={() => {
-                  // props.fetchPostByRoom(room.id, 1);
-                  props.fetchPostsAndFlagsByRoom(room.id, 1);
+                  if (props.user.role_id < 2) props.fetchPostByRoom(room.id, 1);
+                  else props.fetchPostsAndFlagsByRoom(room.id, 1);
                 }}
               >
                 {room.room_name}
@@ -62,6 +62,7 @@ const SiderMenu = (props) => {
 const mapStateToProps = (state) => {
   return {
     rooms: state.rooms,
+    user: state.user,
   };
 };
 

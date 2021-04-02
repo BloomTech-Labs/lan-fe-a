@@ -22,7 +22,7 @@ import { DashboardHeaderStyles } from '../styles/components/DashboardStyles';
 const Dashboard = (props) => {
   const { path } = useRouteMatch();
 
-  const { Header, Content, Sider } = Layout;
+  const { Content, Sider } = Layout;
   useEffect(() => {
     props.fetchRooms();
     props.fetchFlagReasons();
@@ -34,7 +34,7 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <Layout style={{ height: '100vh' }}>
+      <Layout>
         <DashboardHeaderStyles>
           <Navbar />
         </DashboardHeaderStyles>

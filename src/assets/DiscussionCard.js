@@ -1,91 +1,113 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
-import {
-  Switch,
-  Route,
-  useParams,
-  useRouteMatch,
-  Link,
-} from 'react-router-dom';
-import { Card, Avatar, Modal } from 'antd';
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from '@ant-design/icons';
-
-import { PrivateRoute } from '../utils/privateRoute';
-import UserFlaggingModal from './UserFlaggingModal';
-import FlagManagerModal from './FlagManagerModal';
-import DiscussionDrawer from './DiscussionDrawer';
-import { FlagChip } from './FlagChip';
+import moment from 'moment';
 import {
   setFlaggingModalVisibility,
   fetchPost,
   setDrawerVisibility,
 } from '../store/actions/index';
+import {
+  MessageOutlined,
+  ArrowUpOutlined,
+  EllipsisOutlined,
+} from '@ant-design/icons';
+import { List, Popover, Space, Divider } from 'antd';
+import { Switch, useRouteMatch, Link } from 'react-router-dom';
+
+import { PrivateRoute } from '../utils/privateRoute';
+import { FlagChip } from './FlagChip';
+import DiscussionDrawer from './DiscussionDrawer';
+import PopoverContent from './PopoverContent';
+
+const IconText = ({ icon, text }) => (
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
+
+const DiscussionHeaderStyles = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const DiscussionCard = (props) => {
   const { path, url } = useRouteMatch();
 
+  const [popoverVisibility, setPopoverVisibility] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   return (
-    // <Link
-    //   to={`${url}/discussion/${props.discussion.id}?view=popular`}
-    //   className="discussion-card"
-    // >
-    <div className="discussion-card">
-      <Card
-        hoverable="true"
-        style={{ margin: '30px 0px' }}
-        actions={[
-          <SettingOutlined key="setting" />,
-          //! vvv Reformat to flag chip that routes you to
-          //! vvv  discussion with view by set to "flagged"
-          <EditOutlined
-            key="edit"
-            onClick={() => {
-              setShowModal(true);
-            }}
-          />,
-          <EllipsisOutlined
-            key="ellipsis"
-            onClick={() => {
-              props.setFlaggingModalVisibility(true);
-            }}
-          />,
-        ]}
+    <List.Item
+      key={props.item.title}
+      style={{ background: 'white' }}
+      grid={{ column: 4 }}
+      actions={[
+        <IconText
+          icon={ArrowUpOutlined}
+          text={props.item.likes}
+          key="like-or-upvote"
+        />,
+        <IconText
+          icon={MessageOutlined}
+          text={props.item.comments}
+          key="list-vertical-message"
+        />,
+      ]}
+    >
+      <List.Item.Meta
         title={
-          <Card.Meta
-            avatar={<Avatar src={props.discussion.profile_picture} />}
-            title={props.discussion.title}
-          />
+          <DiscussionHeaderStyles>
+            <Link to={`${url}/discussion/${props.item.id}?view=popular`}>
+              {props.item.title}
+            </Link>
+            <Popover
+              placement="topRight"
+              content={
+                <PopoverContent setPopoverVisibility={setPopoverVisibility} />
+              }
+              trigger="click"
+              visible={popoverVisibility}
+              onVisibleChange={(visible) => setPopoverVisibility(visible)}
+            >
+              {/* <MoreOutlined /> */}
+              <EllipsisOutlined />
+            </Popover>
+          </DiscussionHeaderStyles>
         }
-      >
-        <p>{props.discussion.description}</p>
-        <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
-          <FlagChip
-            flags={`${props.discussion.flags.length}`}
-            commentsFlagged={`${props.discussion.flaggedComments.length}`}
-          />
+        description={
+          <Space>
+            Posted by
+            <Link to={`/user/${props.item.user_id}`}>
+              {props.item.display_name}
+            </Link>
+            <Divider type="vertical" />
+            {moment(props.item.created_at).fromNow()}
+          </Space>
+        }
+      />
+      {props.item.description}
+      {props.item.flags && (
+        <Link
+          style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
+          to={`${url}/discussion/${props.item.id}?view=flagged`}
+        >
+          <FlagChip flags={props.item.flags.length} />
         </Link>
-        <UserFlaggingModal discussionID={props.discussion.id} />
-        <FlagManagerModal
-          visible={showModal}
-          setVisible={setShowModal}
-          flagsData={props.discussion.flags}
-          discussionID={props.discussion.id}
-        />
-      </Card>
+      )}
       <Switch>
         <PrivateRoute
           path={`${path}/discussion/:discussionID`}
           component={DiscussionDrawer}
         />
       </Switch>
-    </div>
-    // </Link>
+    </List.Item>
   );
 };
 
