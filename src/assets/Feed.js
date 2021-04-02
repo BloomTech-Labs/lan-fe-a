@@ -36,7 +36,7 @@ const Feed = (props) => {
         renderItem={(item) => {
           return (
             <>
-              <DiscussionCard item={item} />
+              <DiscussionCard discussion={item} />
               <br />
             </>
           );
