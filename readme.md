@@ -11,6 +11,7 @@ Team A Members...
 - [Product Canvas](https://docs.google.com/document/d/1-EyxKbikGrsTf08nTBxqso0zCdZ0HnKnJG7sbXu-d3s/edit#heading=h.n2quesrx1caj)
 - [Trello Board](https://trello.com/b/NOH7uQ8q/lambda-alumni-network)
 - [Design Files](https://projects.invisionapp.com/share/DRJBSR53VNS#/screens?browse)
+- [figma Designs](https://www.figma.com/file/dvN117XfF6S5YWGqMIM3LV/Lambda-alumni?node-id=0%3A1)
 
 ### Tech Stack
 
