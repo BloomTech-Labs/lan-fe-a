@@ -12,6 +12,7 @@ Team A Members...
 - [Trello Board](https://trello.com/b/NOH7uQ8q/lambda-alumni-network)
 - [Design Files](https://projects.invisionapp.com/share/DRJBSR53VNS#/screens?browse)
 - [figma Designs](https://www.figma.com/file/dvN117XfF6S5YWGqMIM3LV/Lambda-alumni?node-id=0%3A1)
+- [Whimsical Wireframs](https://whimsical.com/wireframes-PjJsJNkRaogympxVVASpjv)
 
 ### Tech Stack
 
