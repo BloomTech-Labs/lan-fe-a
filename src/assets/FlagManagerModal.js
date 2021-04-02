@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, useParams, useRouteMatch } from 'react-router-dom';
 import {
   Modal,
   Layout,
   Button,
-  Row,
   Menu,
-  Divider,
   List,
   Avatar,
   Popconfirm,
-  Space,
 } from 'antd';
 
 import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -27,10 +23,9 @@ const FlagManagerModal = (props) => {
     discussionID,
     resolvePost,
   } = props;
-  const { id } = useParams;
   const { Sider, Content } = Layout;
 
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false); // for future loading screen
   const [flagFilter, setFlagFilter] = useState();
   const [flagList, setFlagList] = useState(flagsData);
 

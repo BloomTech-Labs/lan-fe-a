@@ -73,7 +73,6 @@ const DiscussionCard = (props) => {
               visible={popoverVisibility}
               onVisibleChange={(visible) => setPopoverVisibility(visible)}
             >
-              {/* <MoreOutlined /> */}
               <EllipsisOutlined />
             </Popover>
           </DiscussionHeaderStyles>

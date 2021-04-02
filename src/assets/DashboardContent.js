@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { fetchRecent, fetchPostByRoom, fetchRooms } from '../store/actions';
 import { Layout } from 'antd';
 
-// import Feed from './Feed';
-
 const DashboardContent = () => {
   const { Header, Content } = Layout;
 

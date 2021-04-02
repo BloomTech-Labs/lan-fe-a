@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { retrieveFullSearchResults } from '../store/actions';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'antd';
 
@@ -8,7 +7,7 @@ import LambdaLogo from './LambdaLogo';
 import ProfileIcon from './ProfileIcon';
 import SearchBar from './SearchBar';
 
-const Navbar = (props) => {
+const Navbar = () => {
   return (
     <Row
       style={{
@@ -60,6 +59,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  retrieveFullSearchResults,
-})(Navbar);
+export default connect(mapStateToProps, null)(Navbar);

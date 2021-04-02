@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   fetchPostByRoom,
   fetchRooms,
@@ -11,11 +11,9 @@ import {
 } from '../store/actions';
 import { Layout, Drawer, Typography } from 'antd';
 
-import DiscussionCard from './DiscussionCard';
 
 const DiscussionDrawer = (props) => {
   const { discussionID } = useParams();
-  const { path, url } = useRouteMatch();
   const { Header, Content } = Layout;
 
   useEffect(() => {
