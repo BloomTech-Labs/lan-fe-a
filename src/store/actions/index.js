@@ -153,7 +153,7 @@ export const postQuestion = (title, description, room, history) => (
       room_id: room,
     })
     .then(() => toast.success('Nice! Your new post was just published.'))
-    .catch((err) => console.log(err.response));
+    .catch(() => toast.error('Wait! There was a problem creating your post.'));
 };
 
 // Updates a post
