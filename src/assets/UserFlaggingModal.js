@@ -85,9 +85,7 @@ const UserFlaggingModal = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-    // visible: state.isFlaggingModalVisible,
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, {

@@ -9,7 +9,8 @@ import FlagManagerModal from './FlagManagerModal';
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
 /* -------------------------------------------------------------------------- */
-/*     Use this component to separate discussion card dropdown menu logic     */
+/*    OPTIONAL: Use this component to separate                                */
+/*           discussion card dropdown menu logic                              */
 /* -------------------------------------------------------------------------- */
 
 const DCardDropwdown = (props) => {
