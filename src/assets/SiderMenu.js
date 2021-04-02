@@ -7,7 +7,7 @@ import {
   setNewRoomModalVisibility,
   fetchPostsAndFlagsByRoom,
 } from '../store/actions';
-import { Menu, Button } from 'antd';
+import { Menu } from 'antd';
 import {
   HeartOutlined,
   ShopOutlined,
@@ -23,23 +23,23 @@ const SiderMenu = (props) => {
     <Menu
       mode={localStorage.getItem('menuMode') || 'inline'}
       theme={localStorage.getItem('menuTheme') || 'light'}
-      defaultSelectedKeys={['1']}
-      defaultOpenKeys={['sub1']}
+      // defaultSelectedKeys={['0']}
+      defaultOpenKeys={['sub2']}
       style={{ height: '100%', borderRight: 0 }}
     >
       <Menu.SubMenu key="sub1" icon={<HeartOutlined />} title="My Rooms">
-        {/* pending implementation of associating rooms to a user */}
+        {/* //! pending implementation of associating rooms to a user */}
       </Menu.SubMenu>
       <Menu.SubMenu key="sub2" icon={<ShopOutlined />} title="Rooms">
-        {props.rooms.map((room) => {
+        {props.rooms.map((room, idx) => {
           return (
-            <Menu.Item key={room.id}>
+            <Menu.Item key={idx}>
               <Link
                 key={room.id}
                 to={`${url}/room/${room.id}`}
                 onClick={() => {
-                  // props.fetchPostByRoom(room.id, 1);
-                  props.fetchPostsAndFlagsByRoom(room.id, 1);
+                  if (props.user.role_id < 2) props.fetchPostByRoom(room.id, 1);
+                  else props.fetchPostsAndFlagsByRoom(room.id, 1);
                 }}
               >
                 {room.room_name}
@@ -62,6 +62,7 @@ const SiderMenu = (props) => {
 const mapStateToProps = (state) => {
   return {
     rooms: state.rooms,
+    user: state.user,
   };
 };
 

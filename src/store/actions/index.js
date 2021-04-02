@@ -29,7 +29,7 @@ export const fetchUsers = () => (dispatch) => {
 // Logs out user
 export const logOut = (history) => (dispatch) => {
   localStorage.removeItem('token');
-  history.push('/welcome');
+  window.history.pushState({ logout_time: Date.now() }, '', '/welcome');
 };
 
 // Deletes user
@@ -286,7 +286,7 @@ export const fetchPostByRoom = (roomID, page) => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/room/${roomID}/recent?page=${page}&limit=10`)
     .then((res) => {
-      dispatch({ type: 'SET_POSTS', payload: res.data });
+      dispatch({ type: 'SET_POSTS', payload: res.data.posts });
     })
     .catch(() => toast.error('Oh no! Could not fetch posts.'));
 };
@@ -377,6 +377,16 @@ export const fetchFlaggedComments = () => (dispatch) => {
     .catch(() => toast.error('There was a problem fetching flagged comments.'));
 };
 
+//Fetches list of flag reasons (moderator)
+export const fetchFlagReasons = () => (dispatch) => {
+  axiosWithAuth()
+    .get(`${BACKEND_URL}/api/mod/reasons`)
+    .then((res) => {
+      dispatch({ type: 'FETCH_FLAGREASONS_SUCCESS', payload: res.data });
+    })
+    .catch((err) => toast.error(err.message));
+};
+
 // Archives post (moderator)
 export const archivePost = (postID) => (dispatch) => {
   return axiosWithAuth()
@@ -397,7 +407,7 @@ export const archiveComment = (commentID) => (dispatch) => {
 export const resolvePost = (postID) => (dispatch) => {
   return axiosWithAuth()
     .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
-    .then(() => toast.success('Post Successfully Resolved'))
+    .then(() => toast.success('The discussion post was approved!'))
     .catch(() => toast.error('Error Resolving Post'));
 };
 

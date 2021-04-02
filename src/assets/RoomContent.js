@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   fetchPostByRoom,
   fetchRooms,
@@ -11,7 +11,6 @@ import {
 } from '../store/actions';
 import { Layout, Input, Form, Collapse, Button } from 'antd';
 
-import DiscussionCard from './DiscussionCard';
 import Feed from './Feed';
 
 const RoomContent = (props) => {
