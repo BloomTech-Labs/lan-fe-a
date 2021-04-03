@@ -6,6 +6,11 @@ import { Modal, Layout, Button, Menu, List, Avatar, Popconfirm } from 'antd';
 import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
 import { archivePost, resolvePost } from '../store/actions/index';
 
+/* -------------------------------------------------------------------------- */
+/*          flagList needs an infinite load scroll feature implemented        */
+/*        see "scrolling loaded" at https://ant.design/components/list/       */
+/* -------------------------------------------------------------------------- */
+
 const FlagManagerModal = (props) => {
   const {
     visible,
