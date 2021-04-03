@@ -14,13 +14,7 @@ import {
   FlagOutlined,
 } from '@ant-design/icons';
 import { List, Space, Divider, Menu, Dropdown } from 'antd';
-import {
-  Switch,
-  useRouteMatch,
-  Link,
-  useParams,
-  useHistory,
-} from 'react-router-dom';
+import { Switch, useRouteMatch, Link, useParams } from 'react-router-dom';
 
 import { PrivateRoute } from '../utils/privateRoute';
 import { FlagChip } from './FlagChip';
