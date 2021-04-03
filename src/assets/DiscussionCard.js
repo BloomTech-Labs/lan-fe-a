@@ -38,7 +38,6 @@ const IconText = ({ icon, text }) => (
 );
 
 const DiscussionCard = (props) => {
-  const history = useHistory();
   const { path, url } = useRouteMatch();
   const { roomID } = useParams();
   const [showModal, setShowModal] = useState(false);
@@ -47,10 +46,6 @@ const DiscussionCard = (props) => {
   useEffect(() => {
     if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
   }, [props.discussion.flags.length]);
-
-  const redirect = () => {
-    history.push(`${url}/discussion/${props.discussion.id}?view=flagged`);
-  };
 
   const dropdownMenu = (
     <Menu>
@@ -65,8 +60,12 @@ const DiscussionCard = (props) => {
           <FlagOutlined /> Flag Discussion
         </a>
       </Menu.Item>
-      {props.discussion.flags.length > 0 && <Menu.Divider />}
-      {props.discussion.flags.length > 0 && (
+
+      {<CheckIfModOrAdmin /> && props.discussion.flags.length > 0 && (
+        <Menu.Divider />
+      )}
+
+      {<CheckIfModOrAdmin /> && props.discussion.flags.length > 0 && (
         <Menu.Item key="3">
           <a onClick={() => setShowModal(true)}>
             <FlagOutlined /> Moderate
@@ -93,14 +92,13 @@ const DiscussionCard = (props) => {
           text={props.discussion.comments}
           key="list-vertical-message"
         />,
-
         <CheckIfModOrAdmin /> && (
-          <FlagChip
-            flags={`${props.discussion.flags.length}`}
-            commentsFlagged={`${props.discussion.flaggedComments.length}`}
-            onClick={redirect}
-            className="bottom-right"
-          />
+          <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
+            <FlagChip
+              flags={`${props.discussion.flags.length}`}
+              commentsFlagged={`${props.discussion.flaggedComments.length}`}
+            />
+          </Link>
         ),
       ]}
     >
@@ -132,30 +130,14 @@ const DiscussionCard = (props) => {
         }
       />
       {props.discussion.description}
-      {props.discussion.flags && (
-        <Link
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'flex-end',
-          }}
-          to={`${url}/discussion/${props.discussion.id}?view=flagged`}
-        >
-          {/* FLAG CHIP PROPS NEED TOBE PASSED IN AS PROPS */}
-          {/* {<CheckIfModOrAdmin /> && (
-            <FlagChip
-              flags={`${props.discussion.flags.length}`}
-              commentsFlagged={`${props.discussion.flaggedComments.length}`}
-            />
-          )} */}
-        </Link>
-      )}
+
       <FlagManagerModal
         visible={showModal}
         setVisible={setShowModal}
         flagsData={props.discussion.flags ? props.discussion.flags : undefined}
         discussionID={props.discussion.id}
       />
+
       <UserFlaggingModal
         visible={showFlagModal}
         setVisible={setShowFlagModal}

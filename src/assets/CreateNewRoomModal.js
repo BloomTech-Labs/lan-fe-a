@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { toast } from 'react-hot-toast';
 import {
   createRoom,
   fetchRooms,
@@ -25,7 +26,7 @@ const CreateNewRoomButton = (props) => {
         props.fetchRooms();
       })
       .catch(() => {
-        console.log('failed to create room');
+        toast.error('There was a problem creating a new room.');
       });
     props.setNewRoomModalVisibility(false);
   };

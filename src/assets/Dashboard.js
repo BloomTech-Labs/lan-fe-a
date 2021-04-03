@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import { useRouteMatch, Switch, Route } from 'react-router-dom';
+import { useRouteMatch, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   fetchRooms,

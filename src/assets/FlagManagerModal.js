@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, useParams, useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Modal, Layout, Button, Menu, List, Avatar, Popconfirm } from 'antd';
 
 import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -85,6 +85,7 @@ const FlagManagerModal = (props) => {
           <div className="action-buttons">
             <Button
               type="primary"
+              block
               icon={<CheckOutlined />}
               onClick={handleApprove}
             >
