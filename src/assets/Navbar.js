@@ -20,7 +20,7 @@ const Navbar = (props) => {
     >
       <Col span={6} style={{ display: 'flex', justifyContent: 'flex-start' }}>
         <div style={{ width: 150, minWidth: 150 }}>
-          <Link to="/">
+          <Link to="/sample">
             <LambdaLogo
               fillOpacity={0.87}
               fill={'black'}
