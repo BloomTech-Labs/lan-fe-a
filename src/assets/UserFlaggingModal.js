@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { flagPost } from '../store/actions';
 import { Form, Modal, Input, Radio, Alert } from 'antd';
+import { StyledRadioGroup } from '../styles/components/UserFlaggingModalStyles';
 
 //  TEMPORARY
-
+// Replace below reasons with reasons grabbed from global state
 const reasons = [
   'Spam',
   'Bullying or Harassment',
@@ -14,17 +14,6 @@ const reasons = [
   'I just dislike it',
   'Other',
 ];
-
-const StyledRadioGroup = styled(Radio.Group)`
-  width: auto;
-  height: 130px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: start;
-  align-content: space-around;
-  padding-bottom: 30px;
-  gap: 15px;
-`;
 
 const UserFlaggingModal = (props) => {
   const [note, setNote] = useState('');
