@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import {
@@ -15,7 +14,13 @@ import {
   FlagOutlined,
 } from '@ant-design/icons';
 import { List, Space, Divider, Menu, Dropdown } from 'antd';
-import { Switch, useRouteMatch, Link, useParams } from 'react-router-dom';
+import {
+  Switch,
+  useRouteMatch,
+  Link,
+  useParams,
+  useHistory,
+} from 'react-router-dom';
 
 import { PrivateRoute } from '../utils/privateRoute';
 import { FlagChip } from './FlagChip';
@@ -32,13 +37,8 @@ const IconText = ({ icon, text }) => (
   </Space>
 );
 
-const DiscussionHeaderStyles = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const DiscussionCard = (props) => {
+  const history = useHistory();
   const { path, url } = useRouteMatch();
   const { roomID } = useParams();
   const [showModal, setShowModal] = useState(false);
@@ -47,6 +47,10 @@ const DiscussionCard = (props) => {
   useEffect(() => {
     if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
   }, [props.discussion.flags.length]);
+
+  const redirect = () => {
+    history.push(`${url}/discussion/${props.discussion.id}?view=flagged`);
+  };
 
   const dropdownMenu = (
     <Menu>
@@ -89,11 +93,20 @@ const DiscussionCard = (props) => {
           text={props.discussion.comments}
           key="list-vertical-message"
         />,
+
+        <CheckIfModOrAdmin /> && (
+          <FlagChip
+            flags={`${props.discussion.flags.length}`}
+            commentsFlagged={`${props.discussion.flaggedComments.length}`}
+            onClick={redirect}
+            className="bottom-right"
+          />
+        ),
       ]}
     >
       <List.Item.Meta
         title={
-          <DiscussionHeaderStyles>
+          <div className="discussion-header-styles">
             <Link to={`${url}/discussion/${props.discussion.id}?view=popular`}>
               {props.discussion.title}
             </Link>
@@ -105,7 +118,7 @@ const DiscussionCard = (props) => {
                 <EllipsisOutlined />
               </a>
             </Dropdown>
-          </DiscussionHeaderStyles>
+          </div>
         }
         description={
           <Space>
@@ -129,12 +142,12 @@ const DiscussionCard = (props) => {
           to={`${url}/discussion/${props.discussion.id}?view=flagged`}
         >
           {/* FLAG CHIP PROPS NEED TOBE PASSED IN AS PROPS */}
-          {<CheckIfModOrAdmin /> && (
+          {/* {<CheckIfModOrAdmin /> && (
             <FlagChip
               flags={`${props.discussion.flags.length}`}
               commentsFlagged={`${props.discussion.flaggedComments.length}`}
             />
-          )}
+          )} */}
         </Link>
       )}
       <FlagManagerModal

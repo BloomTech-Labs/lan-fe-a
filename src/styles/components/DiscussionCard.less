@@ -8,3 +8,21 @@
 .discussion-card.ant-list-item:hover {
   box-shadow: 0 0 0 2px rgba(64, 92, 238, 0.67);
 }
+
+.discussion-card {
+  .discussion-header-styles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  ul.ant-list-item-action {
+    position: relative;
+  }
+  ul.ant-list-item-action li:nth-child(3) {
+    position: absolute;
+    padding-right: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

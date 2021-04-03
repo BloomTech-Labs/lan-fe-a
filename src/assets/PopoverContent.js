@@ -9,7 +9,7 @@ import FlagManagerModal from './FlagManagerModal';
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
 /* -------------------------------------------------------------------------- */
-/*                 This component can be deleted - deprecated.                */
+/*      This component can be deleted - deprecated and not in use.            */
 /* -------------------------------------------------------------------------- */
 
 const PopoverContent = (props) => {
