@@ -86,6 +86,7 @@ const FlagManagerModal = (props) => {
                 </Menu.Item>
               );
             })}
+            <Menu.Divider />
           </Menu>
           <div className="action-buttons">
             <Button
