@@ -1,17 +1,37 @@
-//Selected Menu Item Styles
+/* ------------------------ Selected Menu Item Styles ----------------------- */
+.ant-menu-item {
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  transition: border-color 0.3s, background 0.3s, border-radius 0.3s, color 0.3s,
+    margin-left 0.3s;
+  padding: 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-property: border-color, background, padding;
+  transition-duration: 0.3s, 0.3s, 0.15s;
+  transition-delay: 0s, 0s, 0s;
+  &:active {
+    color: white;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    a {
+      color: white;
+    }
+  }
+}
 .ant-menu-item.ant-menu-item-selected {
   color: white;
   margin-left: -20px;
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
   border-right: none;
+  transition: border-color 0.3s, background 0.3s, border-radius 0.3s, color 0.3s,
+    margin-left 0.3s;
   a {
     color: white;
     font-weight: 425;
   }
 }
 
-//Flag Chip
+/* -------------------------------- Flag Chip ------------------------------- */
 .flag-chip.ant-btn.ant-btn.ant-btn-background-ghost::after {
   border: none !important;
 }
@@ -31,12 +51,4 @@
   }
 }
 
-//Link
-a {
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    color: darken(@primary, 10%);
-    transform: scale(0.99);
-    text-decoration: underline;
-  }
-}
+/* ---------------------------------- Link ---------------------------------- */

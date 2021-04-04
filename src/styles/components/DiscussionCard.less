@@ -15,6 +15,16 @@
     align-items: center;
   }
 
+  //Link
+  a {
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: darken(@primary, 10%);
+      transform: scale(0.99);
+      text-decoration: underline;
+    }
+  }
+
   // Ellipses
   a.ant-dropdown-link {
     color: rgba(0, 0, 0, 0.65);
