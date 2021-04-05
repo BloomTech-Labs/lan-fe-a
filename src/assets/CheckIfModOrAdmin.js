@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 /* -------------------------------------------------------------------------- */
 
 export const CheckIfModOrAdmin = (user, roomID, permissions) => {
-  // console.log(props);
   // ! CURRENT CHECK:
   // Check if user is an admin
   // if not check if moderator
