@@ -17,6 +17,7 @@ import SiderMenu from './SiderMenu';
 import DashboardContent from './DashboardContent';
 import RoomContent from './RoomContent';
 import { DashboardHeaderStyles } from '../styles/components/DashboardStyles';
+import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
 const Dashboard = (props) => {
   const { path } = useRouteMatch();
@@ -24,12 +25,20 @@ const Dashboard = (props) => {
   const { Content, Sider } = Layout;
   useEffect(() => {
     props.fetchRooms();
-    props.fetchFlagReasons();
     // props.fetchRecent(); // This is throwing an internal server error
     if (Object.keys(props.user).length === 0) {
       props.fetchUser();
     }
+    // Only run this code once redux has populated props.user
+    // conditional logic to run based on props.user.role_id
   }, []);
+
+  useEffect(() => {
+    if (props.user.role_id) {
+      console.log(props.user);
+      CheckIfModOrAdmin(props.user) && props.fetchFlagReasons();
+    }
+  }, [props.user.role_id]);
 
   return (
     <>

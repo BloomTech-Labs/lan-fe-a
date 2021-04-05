@@ -7,8 +7,7 @@ import { connect } from 'react-redux';
 /*                                            - Follow me @MarkZuckerberg     */
 /* -------------------------------------------------------------------------- */
 
-export const CheckIfModOrAdmin = (props) => {
-  const { user, roomID, permissions } = props;
+export const CheckIfModOrAdmin = (user, roomID, permissions) => {
   // console.log(props);
   // ! CURRENT CHECK:
   // Check if user is an admin
@@ -28,9 +27,3 @@ export const CheckIfModOrAdmin = (props) => {
     return false;
   }
 };
-
-const mapStateToProps = (state) => ({
-  user: state.user,
-});
-
-export default connect(mapStateToProps)(CheckIfModOrAdmin);
