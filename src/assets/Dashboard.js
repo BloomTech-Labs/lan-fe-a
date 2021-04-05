@@ -33,7 +33,6 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     if (props.user.role_id) {
-      console.log(props.user);
       CheckIfModOrAdmin(props.user) && props.fetchFlagReasons();
     }
   }, [props.user.role_id]);
