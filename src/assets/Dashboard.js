@@ -29,8 +29,6 @@ const Dashboard = (props) => {
     if (Object.keys(props.user).length === 0) {
       props.fetchUser();
     }
-    // Only run this code once redux has populated props.user
-    // conditional logic to run based on props.user.role_id
   }, []);
 
   useEffect(() => {
