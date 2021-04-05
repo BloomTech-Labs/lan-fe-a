@@ -1,13 +1,43 @@
 //Styles for the discussion card
-.discussion-card {
-  .ant-card-bordered {
-    // outline: 0px solid #f0f0f0;
-    box-shadow: 0 0 0 0px #f0f0f0;
-    border-radius: 2px;
-    transition: box-shadow 0.2s linear;
+.discussion-card.ant-list-item {
+  box-shadow: 0 0 0 0px #f0f0f0;
+  border-radius: 2px;
+  transition: box-shadow 0.2s linear;
+  &:hover {
+    box-shadow: 0 0 0 2px rgba(64, 92, 238, 0.23);
   }
-  .ant-card-bordered:hover {
-    // outline: 2px solid rgba(64, 92, 238, 0.57);
-    box-shadow: 0 0 0 2px rgba(64, 92, 238, 0.67);
+}
+
+.discussion-card {
+  .discussion-header-styles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  //Link
+  a {
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: darken(@primary, 10%);
+      transform: scale(0.99);
+      text-decoration: underline;
+    }
+  }
+
+  // Ellipses
+  a.ant-dropdown-link {
+    color: rgba(0, 0, 0, 0.65);
+    font-size: large;
+  }
+
+  ul.ant-list-item-action {
+    position: relative;
+  }
+  ul.ant-list-item-action li:nth-child(3) {
+    position: absolute;
+    padding-right: 0;
+    right: 0;
+    bottom: 0;
   }
 }

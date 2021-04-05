@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, useParams, useRouteMatch } from 'react-router-dom';
-import {
-  Modal,
-  Layout,
-  Button,
-  Row,
-  Menu,
-  Divider,
-  List,
-  Avatar,
-  Popconfirm,
-  Space,
-} from 'antd';
+import { useParams } from 'react-router-dom';
+import { Modal, Layout, Button, Menu, List, Avatar, Popconfirm } from 'antd';
 
 import { CheckOutlined, RiseOutlined, DeleteOutlined } from '@ant-design/icons';
 import { archivePost, resolvePost } from '../store/actions/index';
+
+/* -------------------------------------------------------------------------- */
+/*          flagList needs an infinite load scroll feature implemented        */
+/*        see "scrolling loaded" at https://ant.design/components/list/       */
+/* -------------------------------------------------------------------------- */
 
 const FlagManagerModal = (props) => {
   const {
@@ -30,7 +24,6 @@ const FlagManagerModal = (props) => {
   const { id } = useParams;
   const { Sider, Content } = Layout;
 
-  const [isLoading, setIsLoading] = useState(false);
   const [flagFilter, setFlagFilter] = useState();
   const [flagList, setFlagList] = useState(flagsData);
 
@@ -93,10 +86,12 @@ const FlagManagerModal = (props) => {
                 </Menu.Item>
               );
             })}
+            <Menu.Divider />
           </Menu>
           <div className="action-buttons">
             <Button
               type="primary"
+              block
               icon={<CheckOutlined />}
               onClick={handleApprove}
             >

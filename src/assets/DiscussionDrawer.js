@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
+import { Switch, useParams, useRouteMatch } from 'react-router-dom';
 import {
   fetchPostByRoom,
   fetchRooms,

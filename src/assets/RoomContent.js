@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import {
   fetchPostByRoom,
   fetchRooms,
@@ -20,7 +21,6 @@ const RoomContent = (props) => {
   const { Header, Content } = Layout;
 
   const handleSubmission = (e) => {
-    console.log('submission');
     props
       .postQuestion({ room_name: title, description: description, roomID })
       .then(() => {
@@ -34,7 +34,7 @@ const RoomContent = (props) => {
         // props.fetchRooms();
       })
       .catch(() => {
-        console.log('failed to create room');
+        toast.error('Failed to create new room.');
       });
   };
 

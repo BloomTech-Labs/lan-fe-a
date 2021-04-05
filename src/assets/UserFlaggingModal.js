@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { setFlaggingModalVisibility, flagPost } from '../store/actions';
+import { flagPost } from '../store/actions';
 import { Form, Modal, Input, Radio, Alert } from 'antd';
+import { StyledRadioGroup } from '../styles/components/UserFlaggingModalStyles';
 
 //  TEMPORARY
-
+// Replace below reasons with reasons grabbed from global state
 const reasons = [
   'Spam',
   'Bullying or Harassment',
@@ -14,17 +14,6 @@ const reasons = [
   'I just dislike it',
   'Other',
 ];
-
-const StyledRadioGroup = styled(Radio.Group)`
-  width: auto;
-  height: 130px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: start;
-  align-content: space-around;
-  padding-bottom: 30px;
-  gap: 15px;
-`;
 
 const UserFlaggingModal = (props) => {
   const [note, setNote] = useState('');
@@ -35,7 +24,7 @@ const UserFlaggingModal = (props) => {
     e.preventDefault();
     if (selection) {
       props.flagPost(props.discussionID, selection, note);
-      props.setFlaggingModalVisibility(false);
+      props.setVisible(false);
       setNote('');
       setRule('');
     } else {
@@ -44,7 +33,7 @@ const UserFlaggingModal = (props) => {
   };
 
   const handleCancellation = () => {
-    props.setFlaggingModalVisibility(false);
+    props.setVisible(false);
     setSelection('');
     setRule('');
   };
@@ -85,12 +74,9 @@ const UserFlaggingModal = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-    visible: state.isFlaggingModalVisible,
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, {
-  setFlaggingModalVisibility,
   flagPost,
 })(UserFlaggingModal);
