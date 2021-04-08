@@ -37,9 +37,13 @@ const DiscussionCard = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [showFlagModal, setShowFlagModal] = useState(false);
 
+  const flagsLength = props.discussion.flags
+    ? props.discussion.flags.length
+    : 0;
+
   useEffect(() => {
     if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
-  }, [props.discussion.flags.length]);
+  }, [flagsLength]);
 
   const dropdownMenu = (
     <Menu>
@@ -55,11 +59,11 @@ const DiscussionCard = (props) => {
         </a>
       </Menu.Item>
 
-      {<CheckIfModOrAdmin /> && props.discussion.flags.length > 0 && (
+      {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
         <Menu.Divider />
       )}
 
-      {<CheckIfModOrAdmin /> && props.discussion.flags.length > 0 && (
+      {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
         <Menu.Item key="3">
           <a onClick={() => setShowModal(true)}>
             <FlagOutlined /> Moderate
@@ -86,7 +90,7 @@ const DiscussionCard = (props) => {
           text={props.discussion.comments}
           key="list-vertical-message"
         />,
-        <CheckIfModOrAdmin /> && (
+        CheckIfModOrAdmin(props.user) && (
           <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
             <FlagChip
               flags={`${props.discussion.flags.length}`}
