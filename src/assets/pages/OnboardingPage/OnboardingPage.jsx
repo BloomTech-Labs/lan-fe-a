@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, setTrack } from '../../store/actions';
-import OnboardingContainer from './styles/onboardingStyle';
+import { Redirect } from 'react-router-dom';
 
-const Onboarding = (props) => {
+import { fetchUser, setTrack } from '../../../store/actions';
+import OnboardingContainer from './OnboardingStyles';
+
+const Onboarding = props => {
+  const { user, history, fetchUser  } = props;
+
   const [tracks, setTracks] = useState([
     { track: 'WEB', value: false },
     { track: 'DS', value: false },
@@ -14,20 +18,18 @@ const Onboarding = (props) => {
   ]);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    props.fetchUser();
-    console.log('PROPS IN ONBOARDING COMPONENT', props);
-  }, []);
+  // this fires after the componenet loads
+  useEffect(() => fetchUser(), []);
 
   useEffect(() => {
     setTracks(
       tracks.map((item) =>
-        item.track === props.user.track
+        item.track === user.track
           ? { ...item, value: true }
           : { ...item, value: false }
       )
     );
-  }, [props.user]);
+  }, [user]);
 
   const onClick = (track) => {
     setTracks(
@@ -45,15 +47,15 @@ const Onboarding = (props) => {
     } else {
       props
         .setTrack(tracks.find((item) => item.value === true).track, null)
-        .then(() => props.history.push('/'))
+        .then(() => history.push('/'))
         .catch((error) => console.log(error));
     }
   };
 
-  return (
+  return user.onboarded ? (<Redirect to="/" />) : (
     <OnboardingContainer tracks={tracks}>
-      {props.user.displayName && (
-        <h1>{props.user.displayName.split(' ')[0]}, what track are you in?</h1>
+      {user.displayName && (
+        <h1>{user.displayName.split(' ')[0]}, what track are you in?</h1>
       )}
       <p className="instructions">
         In the future we plan to make resources relevent to your track more
