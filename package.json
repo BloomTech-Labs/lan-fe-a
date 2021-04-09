@@ -12,7 +12,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
-    "antd": "^4.14.0",
+    "antd": "^4.15.0",
     "axios": "^0.21.1",
     "craco-less": "^1.17.1",
     "moment": "^2.24.0",
