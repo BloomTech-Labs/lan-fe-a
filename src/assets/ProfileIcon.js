@@ -11,6 +11,8 @@ import {
   LogoutOutlined,
 } from '@ant-design/icons';
 
+import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
+
 const ProfileIcon = (props) => {
   const [rotation, setRotation] = useState(0);
   return (
@@ -29,6 +31,16 @@ const ProfileIcon = (props) => {
           <Menu.Item icon={<SettingOutlined />}>
             <Link to="/settings">Settings</Link>
           </Menu.Item>
+          {props.user.role_id === 3 && (
+            <Menu.Item icon={<SettingOutlined />}>
+              <Link to="/admin-settings">Administrator</Link>
+            </Menu.Item>
+          )}
+          {CheckIfModOrAdmin(props.user) && (
+            <Menu.Item icon={<SettingOutlined />}>
+              <Link to="/mod-settings">Moderator</Link>
+            </Menu.Item>
+          )}
           <Menu.Item icon={<LogoutOutlined />}>
             <Link to="/welcome" onClick={() => props.logOut(window.history)}>
               Logout
