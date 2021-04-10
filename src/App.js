@@ -12,7 +12,6 @@ import User from './components/user/UserProfile';
 import Settings from './components/user/UserSettings';
 import AdminSettings from './components/adminMod/AdminSettings';
 import ModSettings from './components/adminMod/ModSettings';
-import FAQ from './components/common/FAQ';
 import PageNotFound from './components/common/PageNotFound';
 import SingleRoomDashboard from './components/room/SingleRoomDashboard';
 import FullSearchResults from './components/search/FullSearchResults';
@@ -38,7 +37,7 @@ const App = () => {
         <PrivateRoute path="/settings" component={Settings} />
         <PrivateRoute path="/admin-settings" component={AdminSettings} />
         <PrivateRoute path="/mod-settings" component={ModSettings} />
-        <PrivateRoute path="/faq" component={FAQ} />
+        {/* <PrivateRoute path="/faq" component={FaqContent} /> */}
         <Route component={PageNotFound} />
       </Switch>
       <Toaster

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { logOut } from '../store/actions/index';
 import { Menu, Avatar, Dropdown, Space } from 'antd';
 import {
@@ -14,6 +14,8 @@ import {
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
 const ProfileIcon = (props) => {
+  const { url } = useRouteMatch();
+
   const [rotation, setRotation] = useState(0);
   return (
     <Dropdown
@@ -23,7 +25,7 @@ const ProfileIcon = (props) => {
       overlay={
         <Menu>
           <Menu.Item icon={<QuestionOutlined />}>
-            <Link to="/faq">FAQ</Link>
+            <Link to={`${url}/faq`}>FAQ</Link>
           </Menu.Item>
           <Menu.Item icon={<UserOutlined />}>
             <Link to={`/user/${props.user.id}`}>My Profile</Link>
