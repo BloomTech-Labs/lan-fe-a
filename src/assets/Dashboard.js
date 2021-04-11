@@ -19,6 +19,7 @@ import RoomContent from './RoomContent';
 import { DashboardHeaderStyles } from '../styles/components/DashboardStyles';
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 import FaqContent from './FaqContent';
+import ProfileContent from './ProfileContent';
 
 const Dashboard = (props) => {
   const { path } = useRouteMatch();
@@ -71,6 +72,11 @@ const Dashboard = (props) => {
                   exact
                   path={`${path}/faq`}
                   component={FaqContent}
+                />
+                <PrivateRoute
+                  exact
+                  path={`${path}/user/:id`}
+                  component={ProfileContent}
                 />
                 <PrivateRoute
                   exact

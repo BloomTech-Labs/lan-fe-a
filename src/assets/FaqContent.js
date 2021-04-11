@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchRecent, fetchPostByRoom, fetchRooms } from '../store/actions';
 import { Layout } from 'antd';
 
 // import Feed from './Feed';
@@ -87,8 +86,4 @@ const mapStateToProps = (state) => {
   return state;
 };
 
-export default connect(mapStateToProps, {
-  fetchRecent,
-  fetchPostByRoom,
-  fetchRooms,
-})(FaqContent);
+export default connect(mapStateToProps, {})(FaqContent);

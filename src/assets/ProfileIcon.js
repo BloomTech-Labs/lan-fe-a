@@ -28,7 +28,7 @@ const ProfileIcon = (props) => {
             <Link to={`${url}/faq`}>FAQ</Link>
           </Menu.Item>
           <Menu.Item icon={<UserOutlined />}>
-            <Link to={`/user/${props.user.id}`}>My Profile</Link>
+            <Link to={`${url}/user/${props.user.id}`}>My Profile</Link>
           </Menu.Item>
           <Menu.Item icon={<SettingOutlined />}>
             <Link to="/settings">Settings</Link>
