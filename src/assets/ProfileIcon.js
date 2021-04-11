@@ -24,15 +24,12 @@ const ProfileIcon = (props) => {
       onVisibleChange={() => setRotation(rotation + 180)}
       overlay={
         <Menu>
-          <Menu.Item icon={<QuestionOutlined />}>
-            <Link to={`${url}/faq`}>FAQ</Link>
-          </Menu.Item>
           <Menu.Item icon={<UserOutlined />}>
             <Link to={`${url}/user/${props.user.id}`}>My Profile</Link>
           </Menu.Item>
-          <Menu.Item icon={<SettingOutlined />}>
+          {/* <Menu.Item icon={<SettingOutlined />}>
             <Link to="/settings">Settings</Link>
-          </Menu.Item>
+          </Menu.Item> */}
           {props.user.role_id === 3 && (
             <Menu.Item icon={<SettingOutlined />}>
               <Link to="/admin-settings">Administrator</Link>
@@ -43,6 +40,9 @@ const ProfileIcon = (props) => {
               <Link to="/mod-settings">Moderator</Link>
             </Menu.Item>
           )}
+          <Menu.Item icon={<QuestionOutlined />}>
+            <Link to={`${url}/faq`}>FAQ</Link>
+          </Menu.Item>
           <Menu.Item icon={<LogoutOutlined />}>
             <Link to="/welcome" onClick={() => props.logOut(window.history)}>
               Logout
