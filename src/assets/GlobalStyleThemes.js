@@ -18,7 +18,6 @@ module.exports = {
   '@border-color-base': '#d9d9d9', // major border color
 
   /* ---------- Base Scaffolding Variables ---------------------- */
-  '@body-background': '@black', //background color for '<body>'
   '@font-family': '"Poppins", sans-serif',
   '@font-size-base': '14px', // major texnpm t font size
 
@@ -158,10 +157,10 @@ module.exports = {
   '@select-selection-item-border-color': '@border-color-split',
   '@select-single-item-height-lg': '40px',
   '@select-multiple-item-height':
-    '@input-height-base - @input-padding-vertical-base * 2; // Normal 24p',
+  '@input-height-base - @input-padding-vertical-base * 2; // Normal 24p',
   '@select-multiple-item-height-lg': '32px',
   '@select-multiple-item-spacing-half':
-    'ceil((@input-padding-vertical-base / 2))',
+  'ceil((@input-padding-vertical-base / 2))',
   '@select-multiple-disabled-background': '@input-disabled-bg',
   '@select-multiple-item-disabled-color': '#bfbfbf',
   '@select-multiple-item-disabled-border-color': '@select-border-color',
