@@ -25,7 +25,7 @@ const ProfileIcon = (props) => {
       overlay={
         <Menu>
           <Menu.Item icon={<UserOutlined />}>
-            <Link to={`${url}/user/${props.user.id}`}>My Profile</Link>
+            <Link to={`/user/${props.user.id}`}>My Profile</Link>
           </Menu.Item>
           {/* <Menu.Item icon={<SettingOutlined />}>
             <Link to="/settings">Settings</Link>
@@ -41,7 +41,7 @@ const ProfileIcon = (props) => {
             </Menu.Item>
           )}
           <Menu.Item icon={<QuestionOutlined />}>
-            <Link to={`${url}/faq`}>FAQ</Link>
+            <Link to={`/faq`}>FAQ</Link>
           </Menu.Item>
           <Menu.Item icon={<LogoutOutlined />}>
             <Link to="/welcome" onClick={() => props.logOut(window.history)}>
