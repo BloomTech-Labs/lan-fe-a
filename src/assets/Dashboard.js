@@ -9,7 +9,7 @@ import {
   setSearch,
   fetchFlagReasons,
 } from '../store/actions';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
 
 import { PrivateRoute } from '../utils/privateRoute';
 import Navbar from './Navbar';
@@ -18,10 +18,12 @@ import DashboardContent from './DashboardContent';
 import RoomContent from './RoomContent';
 import { DashboardHeaderStyles } from '../styles/components/DashboardStyles';
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
+import FaqContent from './FaqContent';
+import ProfileContent from './ProfileContent';
 
 const Dashboard = (props) => {
   const { path } = useRouteMatch();
-
+  console.log({ path });
   const { Content, Sider } = Layout;
   useEffect(() => {
     props.fetchRooms();
@@ -48,11 +50,6 @@ const Dashboard = (props) => {
             <SiderMenu />
           </Sider>
           <Layout style={{ padding: '0 24px 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
             <Content
               className="site-layout-background"
               style={{
@@ -62,15 +59,14 @@ const Dashboard = (props) => {
               }}
             >
               <Switch>
-                <PrivateRoute
-                  path={`${path}/room/:roomID`}
-                  component={RoomContent}
-                />
+                <PrivateRoute path={`/room/:roomID`} component={RoomContent} />
+                <PrivateRoute exact path={`/faq`} component={FaqContent} />
                 <PrivateRoute
                   exact
-                  path={`${path}/`}
-                  component={DashboardContent}
+                  path={`/user/:id`}
+                  component={ProfileContent}
                 />
+                <PrivateRoute exact path={`/`} component={DashboardContent} />
               </Switch>
             </Content>
           </Layout>

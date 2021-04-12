@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 const LandingContainer = styled.div`
-  height: 90vh;
-  width: 90%;
+  height: 100vh;
+  background-color: white;
   margin: 0 auto;
-  border-radius: 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 
   .left-section-container {
+    text-align: center;
+    align-items: center;
     .left-section {
       max-width: 372.6px;
       margin: 0 auto;
@@ -18,6 +19,8 @@ const LandingContainer = styled.div`
       justify-content: center;
 
       .logo-and-name {
+        font-family: serif;
+        align-items:center;
         margin-bottom: 4px;
         display: flex;
         flex-direction: column;
@@ -36,13 +39,19 @@ const LandingContainer = styled.div`
       }
 
       .description {
+        margin: 0 10%;
         font-size: 1.1rem;
+<<<<<<< HEAD
         color: #000;
+=======
+        color: black;
+>>>>>>> 1fd20fc3263469128a8e4dbae27d09f027691deb
       }
     }
   }
 
   .right-section-container {
+    text-align:center;
     .right-section {
       max-width: 372.6px;
       margin: 0 auto;
@@ -54,7 +63,11 @@ const LandingContainer = styled.div`
         margin-bottom: 16px;
         font-size: 1.75rem;
         font-weight: 600;
+<<<<<<< HEAD
         color: #000;
+=======
+        color: black;
+>>>>>>> 1fd20fc3263469128a8e4dbae27d09f027691deb
       }
 
       .social-media-link {
@@ -68,11 +81,17 @@ const LandingContainer = styled.div`
       }
 
       button {
-        width: 100%;
+        margin: 0 auto;
+        box-shadow:inset 0px 1px 0px 0px #ffffff;
+        background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+        background-color:#ededed;
+        border:1px solid #dcdcdc;
+        color:#777777;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #ffffff;
+        width: 275px;
         padding: 10px 0;
         margin-bottom: 12px;
-        background-color: white;
-        border: none;
         border-radius: 3px;
         font-family: 'Nunito', sans-serif;
         font-size: 1rem;
@@ -92,16 +111,26 @@ const LandingContainer = styled.div`
         }
 
         :hover {
-          opacity: 0.5;
+          background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+          background-color:#dfdfdf;
         }
       }
 
       .terms {
+<<<<<<< HEAD
         font-size: 1.1rem;
         color: #000;
 
         a {
           color: #000;
+=======
+        font-size: .7rem;
+        color: black;
+        margin: 0 10%;
+
+        a {
+          color: black;
+>>>>>>> 1fd20fc3263469128a8e4dbae27d09f027691deb
           transition: 0.25s;
 
           :hover {
@@ -112,7 +141,11 @@ const LandingContainer = styled.div`
 
       .instead {
         font-size: 0.875rem;
+<<<<<<< HEAD
         color: #000;
+=======
+        color: black;
+>>>>>>> 1fd20fc3263469128a8e4dbae27d09f027691deb
 
         a {
           color: #000;
@@ -127,14 +160,16 @@ const LandingContainer = styled.div`
   }
 
   @media (min-width: 1024px) {
-    width: 972.8px;
     flex-direction: row;
 
     .left-section-container {
       width: 50%;
+      
 
       .left-section {
         height: 90vh;
+        margin: 0 10% 0 auto;
+        
       }
     }
 
@@ -143,6 +178,8 @@ const LandingContainer = styled.div`
 
       .right-section {
         height: 90vh;
+        margin: 0 10%;
+        
       }
     }
   }
