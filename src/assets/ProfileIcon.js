@@ -15,7 +15,6 @@ import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
 const ProfileIcon = (props) => {
   const { url } = useRouteMatch();
-
   const [rotation, setRotation] = useState(0);
   return (
     <Dropdown
