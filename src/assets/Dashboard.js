@@ -9,7 +9,7 @@ import {
   setSearch,
   fetchFlagReasons,
 } from '../store/actions';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
 
 import { PrivateRoute } from '../utils/privateRoute';
 import Navbar from './Navbar';
@@ -18,6 +18,8 @@ import DashboardContent from './DashboardContent';
 import RoomContent from './RoomContent';
 import { DashboardHeaderStyles } from '../styles/components/DashboardStyles';
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
+import FaqContent from './FaqContent';
+import ProfileContent from './ProfileContent';
 
 const Dashboard = (props) => {
   const { path } = useRouteMatch();
@@ -48,11 +50,6 @@ const Dashboard = (props) => {
             <SiderMenu />
           </Sider>
           <Layout style={{ padding: '0 24px 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
             <Content
               className="site-layout-background"
               style={{
@@ -65,6 +62,16 @@ const Dashboard = (props) => {
                 <PrivateRoute
                   path={`${path}/room/:roomID`}
                   component={RoomContent}
+                />
+                <PrivateRoute
+                  exact
+                  path={`${path}/faq`}
+                  component={FaqContent}
+                />
+                <PrivateRoute
+                  exact
+                  path={`${path}/user/:id`}
+                  component={ProfileContent}
                 />
                 <PrivateRoute
                   exact
