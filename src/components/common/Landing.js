@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Loader from './Loader';
 import LandingContainer from './styles/landingStyle';
 import linkedin from '../../img/linkedin.svg';
-import whitelambda from '../../img/whitelambda.png';
+import redlambda from '../../img/redlambda.png';
 const BACKEND_URL =
   process.env.REACT_APP_DEPLOYED_URL || 'http://localhost:5000';
 
@@ -19,8 +19,8 @@ const Landing = () => {
           <div className="left-section-container">
             <div className="left-section">
               <div className="logo-and-name">
-                <img src={whitelambda} alt="Lambda School logo" />
-                <h1>Lambda Alumni Network</h1>
+                <img src={redlambda} alt="Lambda School logo" />
+                <h1> Alumni Network</h1>
               </div>
               <p className="description">
                 A community platform for Lambda School alumni
@@ -41,7 +41,7 @@ const Landing = () => {
                 </button>
               </a>
               <p className="terms">
-                By continuing, you agree to Lambda Alumni Network&apos;s Terms
+                *By continuing, you agree to Lambda Alumni Network&apos;s Terms
                 and Privacy Policy.
               </p>
             </div>

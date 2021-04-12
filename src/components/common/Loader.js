@@ -6,7 +6,7 @@ const Loader = (props) => {
   return (
     <LoaderContainer message={props.message}>
       <img src={loader} alt="loader" />
-      {props.message && <p>Wakey wakey server!</p>}
+      {props.message && <p>Redirecting to LinkedIn</p>}
     </LoaderContainer>
   );
 };
