@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { logOut } from '../store/actions/index';
 import { Menu, Avatar, Dropdown, Space } from 'antd';
 import {
@@ -14,8 +14,11 @@ import {
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
 const ProfileIcon = (props) => {
-  const { url } = useRouteMatch();
   const [rotation, setRotation] = useState(0);
+
+  const [name, setName] = useState('');
+  useEffect(() => setName(props.user.displayName), [props.user.displayName]);
+
   return (
     <Dropdown
       placement="bottomCenter"
@@ -52,7 +55,7 @@ const ProfileIcon = (props) => {
     >
       <Space size="small" style={{ height: '88%' }}>
         <Avatar src={props.user.profilePicture} size="large" />
-        <p style={{ display: 'inline' }}>{props.user.displayName}</p>
+        <p style={{ display: 'inline' }}>{name}</p>
         <DownOutlined rotate={rotation} />
       </Space>
     </Dropdown>
