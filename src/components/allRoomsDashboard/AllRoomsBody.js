@@ -26,7 +26,6 @@ const RoomsContainer = styled.div`
     button {
       display: flex;
       padding: 15px;
-      background: black;
       border: none;
       background: linear-gradient(to right, #212121, #282828, #424949);
       border: 0.2px solid #424949;

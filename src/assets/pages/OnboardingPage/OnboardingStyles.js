@@ -24,6 +24,11 @@ const OnboardingContainer = styled.div`
   }
 
   .tracks {
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+
     .track {
       margin-right: 8px;
       margin-bottom: 8px;
@@ -126,8 +131,8 @@ const OnboardingContainer = styled.div`
   .continue {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
 
     .error {
       font-size: 0.875rem;
@@ -136,7 +141,6 @@ const OnboardingContainer = styled.div`
     }
 
     button {
-      margin-left: 16px;
       padding: 10px 24px;
       background: linear-gradient(to right, #0084ff, #0099ff);
       border: none;

@@ -36,7 +36,7 @@ const FlagManagerModal = (props) => {
   useEffect(() => {
     if (flagFilter === 'All') {
       setFlagList(flagsData);
-    } else {
+    } else if (flagsData) {
       let result = flagsData.filter((flag) => {
         return flag.reason === flagFilter;
       });
