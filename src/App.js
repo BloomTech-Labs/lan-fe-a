@@ -26,7 +26,7 @@ const App = () => {
   return (
     <>
       <Switch>
-        <PrivateRoute path="/" component={Dashboard} />
+        <PrivateRoute exact path="/" component={Dashboard} />
         <Route path="/welcome" component={Landing} />
         <Route path="/success/:jwt" component={Success} />
         <PrivateRoute path="/onboarding" component={OnboardingPage} />
