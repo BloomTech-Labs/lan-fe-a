@@ -10,7 +10,7 @@ import {
   fetchPostsAndFlagsByRoom,
   postQuestion,
 } from '../store/actions';
-import { Layout, Input, Form, Collapse, Button } from 'antd';
+import { Layout, Input, Form, Collapse, Button, Modal } from 'antd';
 
 import Feed from './Feed';
 
@@ -19,6 +19,30 @@ const RoomContent = (props) => {
   const [description, setDescription] = useState('');
   const { roomID } = useParams();
   const { Header, Content } = Layout;
+
+  // state for modal
+  const [visible, setVisible] = React.useState(false);
+  const [confirmLoading, setConfirmLoading] = React.useState(false);
+  const [modalText, setModalText] = React.useState('Content of the modal');
+
+  // modal funcs
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setModalText('The modal will be closed after two seconds');
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
+  const handleCancel = () => {
+    console.log('Clicked cancel button');
+    setVisible(false);
+  };
 
   const handleSubmission = (e) => {
     props
@@ -56,34 +80,52 @@ const RoomContent = (props) => {
   };
 
   return (
-    <>
-      <Layout style={{ minHeight: '100vh' }}>
-        <Header
+    <Layout style={{ minHeight: '100vh' }}>
+      <Header
+        style={{
+          padding: '0px 0px',
+          background: 'none',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          height: 'auto',
+        }}
+      >
+        <div
           style={{
-            padding: '0px 0px',
-            background: 'none',
             display: 'flex',
-            justifyContent: 'flex-start',
-            height: 'auto',
+            flexFlow: 'column wrap',
+            width: '100%',
           }}
         >
           <div
             style={{
               display: 'flex',
-              flexFlow: 'column wrap',
-              alignSelf: 'flex-start',
+              flexFlow: 'row wrap',
+              justifyContent: 'space-between',
+              alignItems: 'center',
             }}
           >
-            <h2>{findRoom(roomID).room_name}</h2>
-            <p>{findRoom(roomID).description}</p>
-          </div>
-        </Header>
-        <Content>
-          <Collapse defaultActiveKey={['1']} ghost>
-            <Collapse.Panel
-              header={<Button type="primary">New Discussion</Button>}
-              showArrow={false}
+            <h2
+              style={{
+                marginBottom: '0px',
+              }}
             >
+              {findRoom(roomID).room_name}
+            </h2>
+
+            {/* button to open modal */}
+            <Button type="primary" onClick={showModal}>
+              New Discussion
+            </Button>
+
+            <Modal
+              title="Title"
+              visible={visible}
+              onOk={handleOk}
+              confirmLoading={confirmLoading}
+              onCancel={handleCancel}
+            >
+              {/* contents/functionality of old form here */}
               <Form onFinish={handleSubmission}>
                 <Form.Item
                   name="title"
@@ -103,12 +145,21 @@ const RoomContent = (props) => {
                   <Button htmlType="submit">Submit</Button>
                 </Form.Item>
               </Form>
-            </Collapse.Panel>
-          </Collapse>
-          <Feed />
-        </Content>
-      </Layout>
-    </>
+            </Modal>
+          </div>
+          <p
+            style={{
+              marginBottom: '0px',
+            }}
+          >
+            {findRoom(roomID).description}
+          </p>
+        </div>
+      </Header>
+      <Content>
+        <Feed />
+      </Content>
+    </Layout>
   );
 };
 
