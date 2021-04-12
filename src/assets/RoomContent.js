@@ -22,8 +22,8 @@ const RoomContent = (props) => {
   const { Header, Content } = Layout;
 
   // state for modal
-  const [visible, setVisible] = React.useState(false);
-  const [confirmLoading, setConfirmLoading] = React.useState(false);
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
 
   // modal funcs
   const showModal = () => setVisible(true);
@@ -54,7 +54,7 @@ const RoomContent = (props) => {
 
   const handleCancel = () => setVisible(false);
 
-  const inputHandler = (prevValues, curValues) => {
+  const inputHandler = (curValues) => {
     setTitle(curValues.title);
     setDescription(curValues.description);
   };
