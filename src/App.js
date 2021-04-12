@@ -26,7 +26,6 @@ const App = () => {
   return (
     <>
       <Switch>
-        <PrivateRoute exact path="/" component={Dashboard} />
         <Route path="/welcome" component={Landing} />
         <Route path="/success/:jwt" component={Success} />
         <PrivateRoute path="/onboarding" component={OnboardingPage} />
@@ -36,6 +35,7 @@ const App = () => {
         <PrivateRoute path="/settings" component={Settings} />
         <PrivateRoute path="/admin-settings" component={AdminSettings} />
         <PrivateRoute path="/mod-settings" component={ModSettings} />
+        <PrivateRoute path="/" component={Dashboard} />
         {/* <PrivateRoute path="/faq" component={FaqContent} /> */}
         <Route component={PageNotFound} />
       </Switch>
