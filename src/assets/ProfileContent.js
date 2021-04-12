@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { useRouteMatch } from 'react-router-dom';
 import { fetchUserProfile } from '../store/actions';
 import SettingsContent from './SettingsContent';
 import { Layout, Badge, Button, Tabs, Card } from 'antd';
@@ -9,9 +8,7 @@ import { Layout, Badge, Button, Tabs, Card } from 'antd';
 const ProfileContent = (props) => {
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
-  console.log({ props });
   const userID = props.match.params.id;
-  const { url } = useRouteMatch();
 
   const [actKey, setActKey] = useState('Posts');
 
@@ -19,7 +16,6 @@ const ProfileContent = (props) => {
     props.fetchUserProfile(userID);
   }, []);
 
-  // console.log(props.currentUser);
 
   const handleButton = () => {
     setActKey('Settings');

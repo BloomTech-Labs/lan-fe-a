@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useRouteMatch, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   fetchRooms,
@@ -22,9 +22,8 @@ import FaqContent from './FaqContent';
 import ProfileContent from './ProfileContent';
 
 const Dashboard = (props) => {
-  const { path } = useRouteMatch();
-  console.log({ path });
   const { Content, Sider } = Layout;
+
   useEffect(() => {
     props.fetchRooms();
     // props.fetchRecent(); // This is throwing an internal server error
