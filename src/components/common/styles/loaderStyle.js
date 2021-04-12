@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const LoaderContainer = styled.div`
-  height: 90vh;
+  background-color:white;
+  height: 100vh;
   // height: calc(90vh - 72px);
   display: flex;
   flex-direction: column;
@@ -18,7 +19,7 @@ const LoaderContainer = styled.div`
   p {
     font-size: 1rem;
     font-weight: 500;
-    color: #ffffff;
+    color: black;
   }
 
   @keyframes loading-icon-spin {
