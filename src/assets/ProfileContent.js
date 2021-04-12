@@ -9,7 +9,7 @@ import { Layout, Badge, Button, Tabs, Card } from 'antd';
 const ProfileContent = (props) => {
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
-
+  console.log({ props });
   const userID = props.match.params.id;
   const { url } = useRouteMatch();
 
