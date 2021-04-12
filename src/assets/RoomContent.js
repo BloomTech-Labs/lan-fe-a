@@ -10,7 +10,8 @@ import {
   fetchPostsAndFlagsByRoom,
   postQuestion,
 } from '../store/actions';
-import { Layout, Input, Form, Collapse, Button, Modal } from 'antd';
+
+import { Layout, Input, Form, Button, Modal } from 'antd';
 
 import Feed from './Feed';
 
@@ -23,44 +24,35 @@ const RoomContent = (props) => {
   // state for modal
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
-  const [modalText, setModalText] = React.useState('Content of the modal');
 
   // modal funcs
-  const showModal = () => {
-    setVisible(true);
-  };
+  const showModal = () => setVisible(true);
 
+  // TODO: this is not an ideal solution eventually we will need proper error handling
+  // for posting when empty/double posting
   const handleOk = () => {
-    setModalText('The modal will be closed after two seconds');
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    console.log('Clicked cancel button');
+    title &&
+      description &&
+      props
+        .postQuestion(title, description, roomID)
+        .then(() => {
+          setTitle('');
+          setDescription('');
+          if (props.user.role_id < 2) {
+            props.fetchPostByRoom(roomID, 1);
+          } else {
+            props.fetchPostsAndFlagsByRoom(roomID);
+          }
+          // props.fetchRooms();
+        })
+        .catch(() => {
+          toast.error('Failed to create new room.');
+        });
     setVisible(false);
+    setConfirmLoading(false);
   };
 
-  const handleSubmission = (e) => {
-    props
-      .postQuestion({ room_name: title, description: description, roomID })
-      .then(() => {
-        setTitle('');
-        setDescription('');
-        if (props.user.role_id < 2) {
-          props.fetchPostByRoom(roomID, 1);
-        } else {
-          props.fetchPostsAndFlagsByRoom(roomID);
-        }
-        // props.fetchRooms();
-      })
-      .catch(() => {
-        toast.error('Failed to create new room.');
-      });
-  };
+  const handleCancel = () => setVisible(false);
 
   const inputHandler = (prevValues, curValues) => {
     setTitle(curValues.title);
@@ -125,12 +117,13 @@ const RoomContent = (props) => {
               confirmLoading={confirmLoading}
               onCancel={handleCancel}
             >
-              {/* contents/functionality of old form here */}
-              <Form onFinish={handleSubmission}>
+              {/* TODO: after submitting these fields do NOT empty out (along with the state) */}
+              <Form>
                 <Form.Item
                   name="title"
                   rules={[{ required: true, message: 'Title required' }]}
                   shouldUpdate={inputHandler}
+                  value={title}
                 >
                   <Input placeholder="Title" />
                 </Form.Item>
@@ -138,11 +131,9 @@ const RoomContent = (props) => {
                   name="description"
                   rules={[{ required: true, message: 'Description required' }]}
                   shouldUpdate={inputHandler}
+                  value={description}
                 >
                   <Input.TextArea placeholder="What would you like to say?" />
-                </Form.Item>
-                <Form.Item>
-                  <Button htmlType="submit">Submit</Button>
                 </Form.Item>
               </Form>
             </Modal>
