@@ -37,7 +37,7 @@ const LandingContainer = styled.div`
 
       .description {
         font-size: 1.1rem;
-        color: #ffffff;
+        color: #000;
       }
     }
   }
@@ -54,7 +54,7 @@ const LandingContainer = styled.div`
         margin-bottom: 16px;
         font-size: 1.75rem;
         font-weight: 600;
-        color: #ffffff;
+        color: #000;
       }
 
       .social-media-link {
@@ -98,10 +98,10 @@ const LandingContainer = styled.div`
 
       .terms {
         font-size: 1.1rem;
-        color: #ffffff;
+        color: #000;
 
         a {
-          color: #ffffff;
+          color: #000;
           transition: 0.25s;
 
           :hover {
@@ -112,10 +112,10 @@ const LandingContainer = styled.div`
 
       .instead {
         font-size: 0.875rem;
-        color: #ffffff;
+        color: #000;
 
         a {
-          color: #ffffff;
+          color: #000;
           transition: 0.25s;
 
           :hover {

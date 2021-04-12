@@ -18,7 +18,7 @@ module.exports = {
   '@border-color-base': '#d9d9d9', // major border color
 
   /* ---------- Base Scaffolding Variables ---------------------- */
-  '@body-background': '@black', //background color for '<body>'
+  '@body-background': '@white', //background color for '<body>'
   '@font-family': '"Poppins", sans-serif',
   '@font-size-base': '14px', // major texnpm t font size
 
