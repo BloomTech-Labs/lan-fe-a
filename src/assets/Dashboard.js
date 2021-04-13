@@ -20,6 +20,7 @@ import { DashboardHeaderStyles } from '../styles/components/DashboardStyles';
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 import FaqContent from './FaqContent';
 import ProfileContent from './ProfileContent';
+import AdminContent from './AdminContent';
 
 const Dashboard = (props) => {
   const { Content, Sider } = Layout;
@@ -58,6 +59,7 @@ const Dashboard = (props) => {
               }}
             >
               <Switch>
+              <PrivateRoute path="/admin-settings" component={AdminContent} />
                 <PrivateRoute path={`/room/:roomID`} component={RoomContent} />
                 <PrivateRoute exact path={`/faq`} component={FaqContent} />
                 <PrivateRoute
