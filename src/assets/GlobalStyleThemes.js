@@ -164,4 +164,9 @@ module.exports = {
   '@select-multiple-disabled-background': '@input-disabled-bg',
   '@select-multiple-item-disabled-color': '#bfbfbf',
   '@select-multiple-item-disabled-border-color': '@select-border-color',
+
+  /* --------------------------------- Lists --------------------------------- */
+  // TODO: Put all of the in-line styling of Ant Design lists here
+  '@list-item-background': '@white'
+  // '@list-item-hover-border': '@primary-color',
 };
