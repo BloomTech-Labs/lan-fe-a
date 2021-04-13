@@ -6,6 +6,7 @@ import SettingsContent from './SettingsContent';
 import { Layout, Badge, Button, Tabs, Card } from 'antd';
 
 const ProfileContent = (props) => {
+  console.log(props)
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
   const userID = props.match.params.id;
@@ -38,7 +39,7 @@ const ProfileContent = (props) => {
             alignSelf: 'flex-start',
           }}
         >
-          <h2>My Profile</h2>
+          {/* <h2>{props.currentUser.display_name}</h2> */}
         </div>
       </Header>
       <Content>
@@ -55,7 +56,7 @@ const ProfileContent = (props) => {
                   count={props.user.track.toUpperCase()}
                   offset={[25, -10]}
                 >
-                  <h3>{props.user.displayName}</h3>
+                  <h3>{props.currentUser.display_name}</h3>
                 </Badge>
                 <div
                   style={{ display: 'flex', justifyContent: 'space-between' }}
