@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { useRouteMatch } from 'react-router-dom';
 import { fetchUserProfile } from '../store/actions';
 import SettingsContent from './SettingsContent';
 import { Layout, Badge, Button, Tabs, Card } from 'antd';
@@ -9,9 +8,7 @@ import { Layout, Badge, Button, Tabs, Card } from 'antd';
 const ProfileContent = (props) => {
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
-
   const userID = props.match.params.id;
-  const { url } = useRouteMatch();
 
   const [actKey, setActKey] = useState('Posts');
 
@@ -19,9 +16,9 @@ const ProfileContent = (props) => {
     props.fetchUserProfile(userID);
   }, []);
 
-  // console.log(props.currentUser);
+  // console.log(props.user);
 
-  const handleButton = () => {
+  const handleEditProfileButton = () => {
     setActKey('Settings');
   };
 
@@ -57,10 +54,10 @@ const ProfileContent = (props) => {
               />
               <div>
                 <Badge
-                  count={props.currentUser.track.toUpperCase()}
+                  count={props.user.track.toUpperCase()}
                   offset={[25, -10]}
                 >
-                  <h3>{props.currentUser.display_name}</h3>
+                  <h3>{props.user.displayName}</h3>
                 </Badge>
                 <div
                   style={{ display: 'flex', justifyContent: 'space-between' }}
@@ -84,7 +81,7 @@ const ProfileContent = (props) => {
                     </p>
                   )}
                 </div>
-                <Button type="primary" onClick={handleButton}>
+                <Button type="primary" onClick={handleEditProfileButton}>
                   Edit Profile
                 </Button>
               </div>
@@ -136,7 +133,7 @@ const ProfileContent = (props) => {
                 ))}
               </TabPane>
               <TabPane tab="Settings" key="Settings">
-                <SettingsContent user={props.currentUser} />
+                <SettingsContent actKey={actKey} />
               </TabPane>
             </Tabs>
           </>

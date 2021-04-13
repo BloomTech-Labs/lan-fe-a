@@ -75,10 +75,16 @@ export const fetchUserProfile = (userID) => (dispatch) => {
 };
 
 // Updates a user's display name
-export const updateUserDisplayName = (userID, displayName) => (dispatch) => {
+export const updateUserDisplayName = (userDetails, displayName) => (
+  dispatch
+) => {
+  const userID = userDetails.id;
   axiosWithAuth()
     .put(`${BACKEND_URL}/api/user/displayname`, { userID, displayName })
-    .then(() => toast.success('Woo! Display name changed to ' + displayName))
+    .then(() => {
+      toast.success('Woo! Display name changed to ' + displayName);
+      dispatch({ type: 'SET_USER', payload: { ...userDetails, displayName } });
+    })
     .catch(() =>
       toast.error('Oh no! there was a problem updating your display name.')
     );
@@ -105,6 +111,18 @@ export const setTrack = (track, token) => (dispatch) => {
   return axiosWithAuth()
     .put(`${BACKEND_URL}/api/user/track`, { track, token })
     .then(() => toast.success('Woo! Track successfully set to ' + track))
+    .catch(() => toast.error('Uh oh! There was a problem setting your track.'));
+};
+
+// Sets user track in settings
+export const setTrackSettings = (userDetails, track) => (dispatch) => {
+  const token = localStorage.getItem('token');
+  return axiosWithAuth()
+    .put(`${BACKEND_URL}/api/user/track`, { track, token })
+    .then(() => {
+      dispatch({ type: 'SET_USER', payload: { ...userDetails, track } });
+      toast.success('Woo! Track successfully set to ' + track);
+    })
     .catch(() => toast.error('Uh oh! There was a problem setting your track.'));
 };
 

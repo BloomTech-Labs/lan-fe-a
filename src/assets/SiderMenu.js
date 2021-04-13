@@ -36,7 +36,7 @@ const SiderMenu = (props) => {
             <Menu.Item key={idx}>
               <Link
                 key={room.id}
-                to={`${url}/room/${room.id}`}
+                to={`/room/${room.id}`}
                 onClick={() => {
                   if (props.user.role_id < 2) props.fetchPostByRoom(room.id, 1);
                   else props.fetchPostsAndFlagsByRoom(room.id, 1);
