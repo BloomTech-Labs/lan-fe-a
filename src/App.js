@@ -30,10 +30,13 @@ const App = () => {
         <Route path="/success/:jwt" component={Success} />
         <PrivateRoute path="/onboarding" component={OnboardingPage} />
         <PrivateRoute path="/post/:id" component={Post} />
-        <PrivateRoute path="/room/:id/page/:page" component={SingleRoomDashboard}/>
+        <PrivateRoute
+          path="/room/:id/page/:page"
+          component={SingleRoomDashboard}
+        />
         <PrivateRoute path="/full-search" component={FullSearchResults} />
         <PrivateRoute path="/settings" component={Settings} />
-        <PrivateRoute path="/admin-settings" component={AdminSettings} />
+        {/* <PrivateRoute path="/admin-settings" component={AdminSettings} /> */}
         <PrivateRoute path="/mod-settings" component={ModSettings} />
         <PrivateRoute path="/" component={Dashboard} />
         {/* <PrivateRoute path="/faq" component={FaqContent} /> */}
