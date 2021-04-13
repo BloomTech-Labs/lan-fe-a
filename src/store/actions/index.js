@@ -130,7 +130,9 @@ export const setTrackSettings = (userDetails, track) => (dispatch) => {
 export const fetchRooms = () => (dispatch) => {
   return axiosWithAuth()
     .get(`${BACKEND_URL}/api/room`)
-    .then((response) => dispatch({ type: 'SET_ROOMS', payload: response.data }))
+    .then((response) => {
+      dispatch({ type: 'SET_ROOMS', payload: response.data });
+    })
     .catch(() => {
       toast.error('Oh no! There was a problem fetching rooms.');
     });
@@ -148,7 +150,9 @@ export const createRoom = (room) => (dispatch) => {
 export const updateRoom = (id, room) => (dispatch) => {
   return axiosWithAuth()
     .put(`${BACKEND_URL}/api/admin/rooms/${id}`, room)
-    .then(() => toast.success('Room Successfully Updated'))
+    .then(() => {
+      toast.success('Room Successfully Updated');
+    })
     .catch(() => toast.error('There was a problem updating the room.'));
 };
 
