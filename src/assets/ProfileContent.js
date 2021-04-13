@@ -16,8 +16,7 @@ const ProfileContent = (props) => {
     props.fetchUserProfile(userID);
   }, []);
 
-
-  const handleButton = () => {
+  const handleEditProfileButton = () => {
     setActKey('Settings');
   };
 
@@ -53,10 +52,10 @@ const ProfileContent = (props) => {
               />
               <div>
                 <Badge
-                  count={props.currentUser.track.toUpperCase()}
+                  count={props.user.track.toUpperCase()}
                   offset={[25, -10]}
                 >
-                  <h3>{props.currentUser.display_name}</h3>
+                  <h3>{props.user.displayName}</h3>
                 </Badge>
                 <div
                   style={{ display: 'flex', justifyContent: 'space-between' }}
@@ -80,7 +79,7 @@ const ProfileContent = (props) => {
                     </p>
                   )}
                 </div>
-                <Button type="primary" onClick={handleButton}>
+                <Button type="primary" onClick={handleEditProfileButton}>
                   Edit Profile
                 </Button>
               </div>
@@ -132,7 +131,7 @@ const ProfileContent = (props) => {
                 ))}
               </TabPane>
               <TabPane tab="Settings" key="Settings">
-                <SettingsContent user={props.currentUser} />
+                <SettingsContent actKey={actKey} />
               </TabPane>
             </Tabs>
           </>
