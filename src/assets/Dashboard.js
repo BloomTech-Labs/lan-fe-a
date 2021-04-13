@@ -23,6 +23,7 @@ import ProfileContent from './ProfileContent';
 
 const Dashboard = (props) => {
   const { Content, Sider } = Layout;
+
   useEffect(() => {
     props.fetchRooms();
     // props.fetchRecent(); // This is throwing an internal server error

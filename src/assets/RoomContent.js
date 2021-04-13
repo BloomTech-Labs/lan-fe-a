@@ -10,7 +10,8 @@ import {
   fetchPostsAndFlagsByRoom,
   postQuestion,
 } from '../store/actions';
-import { Layout, Input, Form, Collapse, Button } from 'antd';
+
+import { Layout, Input, Form, Button, Modal } from 'antd';
 
 import Feed from './Feed';
 
@@ -20,25 +21,40 @@ const RoomContent = (props) => {
   const { roomID } = useParams();
   const { Header, Content } = Layout;
 
-  const handleSubmission = (e) => {
-    props
-      .postQuestion({ room_name: title, description: description, roomID })
-      .then(() => {
-        setTitle('');
-        setDescription('');
-        if (props.user.role_id < 2) {
-          props.fetchPostByRoom(roomID, 1);
-        } else {
-          props.fetchPostsAndFlagsByRoom(roomID);
-        }
-        // props.fetchRooms();
-      })
-      .catch(() => {
-        toast.error('Failed to create new room.');
-      });
+  // state for modal
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+
+  // modal funcs
+  const showModal = () => setVisible(true);
+
+  // TODO: this is not an ideal solution eventually we will need proper error handling
+  // for posting when empty/double posting
+  const handleOk = () => {
+    title &&
+      description &&
+      props
+        .postQuestion(title, description, roomID)
+        .then(() => {
+          setTitle('');
+          setDescription('');
+          if (props.user.role_id < 2) {
+            props.fetchPostByRoom(roomID, 1);
+          } else {
+            props.fetchPostsAndFlagsByRoom(roomID);
+          }
+          // props.fetchRooms();
+        })
+        .catch(() => {
+          toast.error('Failed to create new room.');
+        });
+    setVisible(false);
+    setConfirmLoading(false);
   };
 
-  const inputHandler = (prevValues, curValues) => {
+  const handleCancel = () => setVisible(false);
+
+  const inputHandler = (curValues) => {
     setTitle(curValues.title);
     setDescription(curValues.description);
   };
@@ -56,39 +72,58 @@ const RoomContent = (props) => {
   };
 
   return (
-    <>
-      <Layout style={{ minHeight: '100vh' }}>
-        <Header
+    <Layout style={{ minHeight: '100vh' }}>
+      <Header
+        style={{
+          padding: '0px 0px',
+          background: 'none',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          height: 'auto',
+        }}
+      >
+        <div
           style={{
-            padding: '0px 0px',
-            background: 'none',
             display: 'flex',
-            justifyContent: 'flex-start',
-            height: 'auto',
+            flexFlow: 'column wrap',
+            width: '100%',
           }}
         >
           <div
             style={{
               display: 'flex',
-              flexFlow: 'column wrap',
-              alignSelf: 'flex-start',
+              flexFlow: 'row wrap',
+              justifyContent: 'space-between',
+              alignItems: 'center',
             }}
           >
-            <h2>{findRoom(roomID).room_name}</h2>
-            <p>{findRoom(roomID).description}</p>
-          </div>
-        </Header>
-        <Content>
-          <Collapse defaultActiveKey={['1']} ghost>
-            <Collapse.Panel
-              header={<Button type="primary">New Discussion</Button>}
-              showArrow={false}
+            <h2
+              style={{
+                marginBottom: '0px',
+              }}
             >
-              <Form onFinish={handleSubmission}>
+              {findRoom(roomID).room_name}
+            </h2>
+
+            {/* button to open modal */}
+            <Button type="primary" onClick={showModal}>
+              New Discussion
+            </Button>
+
+            <Modal
+              title="Title"
+              visible={visible}
+              onOk={handleOk}
+              confirmLoading={confirmLoading}
+              onCancel={handleCancel}
+            >
+              {/* TODO: after submitting these fields do NOT empty out (along with the state) */}
+              <Form>
                 <Form.Item
                   name="title"
                   rules={[{ required: true, message: 'Title required' }]}
                   shouldUpdate={inputHandler}
+                  value={title}
                 >
                   <Input placeholder="Title" />
                 </Form.Item>
@@ -96,19 +131,26 @@ const RoomContent = (props) => {
                   name="description"
                   rules={[{ required: true, message: 'Description required' }]}
                   shouldUpdate={inputHandler}
+                  value={description}
                 >
                   <Input.TextArea placeholder="What would you like to say?" />
                 </Form.Item>
-                <Form.Item>
-                  <Button htmlType="submit">Submit</Button>
-                </Form.Item>
               </Form>
-            </Collapse.Panel>
-          </Collapse>
-          <Feed />
-        </Content>
-      </Layout>
-    </>
+            </Modal>
+          </div>
+          <p
+            style={{
+              marginBottom: '0px',
+            }}
+          >
+            {findRoom(roomID).description}
+          </p>
+        </div>
+      </Header>
+      <Content>
+        <Feed />
+      </Content>
+    </Layout>
   );
 };
 

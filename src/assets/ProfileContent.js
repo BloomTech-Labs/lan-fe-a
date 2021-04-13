@@ -16,8 +16,6 @@ const ProfileContent = (props) => {
     props.fetchUserProfile(userID);
   }, []);
 
-  // console.log(props.user);
-
   const handleEditProfileButton = () => {
     setActKey('Settings');
   };
