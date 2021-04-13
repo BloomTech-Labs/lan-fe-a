@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import {
   fetchRooms,
@@ -8,19 +7,82 @@ import {
   createRoom,
 } from '../store/actions';
 import SingleUserContent from './SingleUserContent';
-import { Layout, Badge, Button, Tabs, Card } from 'antd';
+import SingleRoomCard from './SingleRoomContent';
+import { Layout, Input, Button, Tabs, Modal } from 'antd';
 
 const AdminContent = (props) => {
   const { Header, Content } = Layout;
 
   const { TabPane } = Tabs;
 
+  const { TextArea } = Input;
+
+  const initialRoomValue = {
+    name: '',
+    description: '',
+  };
+
+  const [roomValues, SetRoomValues] = useState(initialRoomValue);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    SetRoomValues(initialRoomValue);
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    props
+      .createRoom({
+        room_name: roomValues.name,
+        description: roomValues.description,
+      })
+      .then(() => {
+        props.fetchRooms();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    SetRoomValues(initialRoomValue);
+    setIsModalVisible(false);
+  };
+
+  const handleUpdateChange = (e) => {
+    SetRoomValues({ ...roomValues, [e.target.name]: e.target.value });
+  };
+
+  const CreateModal = (
+    <Modal
+      title="Create Room"
+      visible={isModalVisible}
+      onOk={handleOk}
+      okText="Create"
+      onCancel={handleCancel}
+    >
+      <h4>Title</h4>
+      <Input
+        name="name"
+        style={{ marginBottom: '15px' }}
+        value={roomValues.name}
+        onChange={handleUpdateChange}
+      />
+      <h4>Description</h4>
+      <TextArea
+        name="description"
+        value={roomValues.description}
+        onChange={handleUpdateChange}
+      />
+    </Modal>
+  );
+
   useEffect(() => {
     props.fetchUsers();
     props.fetchRooms();
   }, []);
-
-  console.log(props.rooms);
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -60,15 +122,23 @@ const AdminContent = (props) => {
             </div>
           </TabPane>
           <TabPane key="Rooms" tab="Rooms">
-            {props.user.role_id === 3 &&
-              props.rooms.map((item) => {
-                return (
-                  <div key={item.id}>
-                    <h4>{item.room_name}</h4>
-                    <p>{item.description}</p>
-                  </div>
-                );
-              })}
+            <Button style={{ marginLeft: '20px' }} onClick={showModal}>
+              Create Room
+            </Button>
+            {CreateModal}
+            <div
+              style={{
+                display: 'flex',
+                flexFlow: 'row wrap',
+                justifyContent: 'flex-start',
+                marginTop: '20px',
+              }}
+            >
+              {props.user.role_id === 3 &&
+                props.rooms.map((item) => {
+                  return <SingleRoomCard key={item.id} room={item} />;
+                })}
+            </div>
           </TabPane>
         </Tabs>
       </Content>
