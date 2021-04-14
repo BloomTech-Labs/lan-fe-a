@@ -72,7 +72,6 @@ const SettingsContent = (props) => {
   };
 
   function handleMenuClick(e) {
-    // message.info('Click on menu item.');
     setSettings({ ...settings, track: e.key });
   }
 

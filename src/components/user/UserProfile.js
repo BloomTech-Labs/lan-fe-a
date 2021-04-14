@@ -9,8 +9,8 @@ import UserContainer from './styles/userStyle';
 const UserProfile = (props) => {
   const userID = props.match.params.id;
   const [tab, setTab] = useState('Posts');
-
   useEffect(() => props.fetchUserProfile(userID), []);
+  console.log(props)
 
   return (
     <>
@@ -19,7 +19,6 @@ const UserProfile = (props) => {
         <UserContainer tab={tab}>
           <div className="user">
             <img src={props.currentUser.profile_picture} alt="profile icon" />
-
             <div className="information">
               <div className="left-section">
                 <div className="display-name-and-track">

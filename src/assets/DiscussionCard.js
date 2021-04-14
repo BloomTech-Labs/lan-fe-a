@@ -77,7 +77,7 @@ const DiscussionCard = (props) => {
     <List.Item
       className="discussion-card"
       key={props.discussion.title}
-      style={{ background: 'white' }}
+      style={{ background: 'white'}}
       grid={{ column: 4 }}
       actions={[
         <IconText
@@ -103,7 +103,7 @@ const DiscussionCard = (props) => {
       <List.Item.Meta
         title={
           <div className="discussion-header-styles">
-            <Link to={`${url}/discussion/${props.discussion.id}?view=popular`}>
+            <Link to={`${url}/discussion/${props.discussion.id}?view=popular`} >
               {props.discussion.title}
             </Link>
             <Dropdown overlay={dropdownMenu} trigger={['click']}>
@@ -119,7 +119,7 @@ const DiscussionCard = (props) => {
         description={
           <Space>
             Posted by
-            <Link to={`/user/${props.discussion.user_id}`}>
+            <Link to={`/user/${props.discussion.user_id}`} >
               {props.discussion.display_name}
             </Link>
             <Divider type="vertical" />
@@ -129,6 +129,7 @@ const DiscussionCard = (props) => {
       />
       {props.discussion.description}
 
+        {/* TODO: Moves these next 2 modals into their own component so that they can be reused in the DiscussionDrawer.js */}
       <FlagManagerModal
         visible={showModal}
         setVisible={setShowModal}

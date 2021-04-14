@@ -100,6 +100,7 @@ const RoomContent = (props) => {
             <h2
               style={{
                 marginBottom: '0px',
+                fontSize: '35px'
               }}
             >
               {findRoom(roomID).room_name}
