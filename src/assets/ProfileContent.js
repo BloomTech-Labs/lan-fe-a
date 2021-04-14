@@ -53,7 +53,7 @@ const ProfileContent = (props) => {
               />
               <div>
                 <Badge
-                  count={props.user.track.toUpperCase()}
+                  count={props.currentUser.track.toUpperCase()}
                   offset={[25, -10]}
                 >
                   <h3>{props.currentUser.display_name}</h3>
