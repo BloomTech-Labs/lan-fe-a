@@ -41,7 +41,11 @@ const LandingContainer = styled.div`
       .description {
         margin: 0 10%;
         font-size: 1.1rem;
+<<<<<<< HEAD
+        color: #000;
+=======
         color: black;
+>>>>>>> 1fd20fc3263469128a8e4dbae27d09f027691deb
       }
     }
   }
@@ -59,7 +63,11 @@ const LandingContainer = styled.div`
         margin-bottom: 16px;
         font-size: 1.75rem;
         font-weight: 600;
+<<<<<<< HEAD
+        color: #000;
+=======
         color: black;
+>>>>>>> 1fd20fc3263469128a8e4dbae27d09f027691deb
       }
 
       .social-media-link {
@@ -109,12 +117,20 @@ const LandingContainer = styled.div`
       }
 
       .terms {
+<<<<<<< HEAD
+        font-size: 1.1rem;
+        color: #000;
+
+        a {
+          color: #000;
+=======
         font-size: .7rem;
         color: black;
         margin: 0 10%;
 
         a {
           color: black;
+>>>>>>> 1fd20fc3263469128a8e4dbae27d09f027691deb
           transition: 0.25s;
 
           :hover {
@@ -125,10 +141,14 @@ const LandingContainer = styled.div`
 
       .instead {
         font-size: 0.875rem;
+<<<<<<< HEAD
+        color: #000;
+=======
         color: black;
+>>>>>>> 1fd20fc3263469128a8e4dbae27d09f027691deb
 
         a {
-          color: #ffffff;
+          color: #000;
           transition: 0.25s;
 
           :hover {
