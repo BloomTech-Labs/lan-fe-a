@@ -6,7 +6,6 @@ import SettingsContent from './SettingsContent';
 import { Layout, Badge, Button, Tabs, Card } from 'antd';
 
 const ProfileContent = (props) => {
-  console.log(props)
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
   const userID = props.match.params.id;
