@@ -2,12 +2,12 @@ module.exports = {
   '@border-radius-base': '4px', // major border radius
   '@white': '#fff', //
   '@box-shadow-base':
-    '0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05)', // major shadow for layers
-
+  '0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05)', // major shadow for layers
+  
   /* -------------------- Colors -------------------------------- */
   '@primary-color': '#405CEE', // primary color for all components
-  '@highlight-color': 'purple',
-  '@link-color': '#1890ff', // link color
+  '@highlight-color': '#405CEE',
+  '@link-color': '#405CEE', // link color
   '@success-color': '#52c41a', // success state color
   '@warning-color': '#faad14', // warning state color
   '@error-color': '#f5222d', // error state color
@@ -15,12 +15,12 @@ module.exports = {
   '@text-color': 'rgba(0, 0, 0, 0.65)', // major text color
   '@text-color-secondary': 'rgba(0, 0, 0, 0.45)', // secondary text color
   '@disabled-color': 'rgba(0, 0, 0, 0.25)', // disable state color
-  '@border-color-base': '#d9d9d9', // major border color
-
+  '@border-color-base': '#405CEE', // major border color
+  
   /* ---------- Base Scaffolding Variables ---------------------- */
   '@font-family': '"Poppins", sans-serif',
   '@font-size-base': '14px', // major texnpm t font size
-
+  
   /* -------------------- Layout ------------------------------- */
   '@layout-body-background': '#f0f2f5',
   '@layout-header-background': '@white',
@@ -35,12 +35,12 @@ module.exports = {
   '@layout-trigger-color': '#fff',
   '@layout-zero-trigger-width': '36px',
   '@layout-zero-trigger-height': '42px',
-
+  
   // Layout light theme
   '@layout-sider-background-light': '#fff',
   '@layout-trigger-background-light': '#fff',
   '@layout-trigger-color-light': '@text-color',
-
+  
   /* --------------------- Buttons -------------------------------- */
   '@btn-font-weight': '400',
   '@btn-border-radius-base': '@border-radius-base',
@@ -50,54 +50,54 @@ module.exports = {
   '@btn-shadow': '0 2px 0 rgba(0, 0, 0, 0.015)',
   '@btn-primary-shadow': '0 2px 0 rgba(0, 0, 0, 0.045)',
   '@btn-text-shadow': '0 -1px 0 rgba(0, 0, 0, 0.12)',
-
+  
   '@btn-primary-color': '#fff',
   '@btn-primary-bg': '@primary-color',
-
+  
   '@btn-default-color': '@text-color',
   '@btn-default-bg': '@component-background',
   '@btn-default-border': '@border-color-base',
-
+  
   '@btn-danger-color': '#fff',
   '@btn-danger-bg': '@error-color',
   '@btn-danger-border': '@error-color',
-
+  
   '@btn-disable-color': '@disabled-color',
   '@btn-disable-bg': '@disabled-bg',
   '@btn-disable-border': '@border-color-base',
-
+  
   '@btn-default-ghost-color': '@component-background',
   '@btn-default-ghost-bg': 'transparent',
   '@btn-default-ghost-border': '@component-background',
-
+  
   '@btn-font-size-lg': '@font-size-lg',
   '@btn-font-size-sm': '@font-size-base',
   '@btn-padding-horizontal-base': '@padding-md - 1px',
   '@btn-padding-horizontal-lg': '@btn-padding-horizontal-base',
   '@btn-padding-horizontal-sm': '@padding-xs - 1px',
-
+  
   '@btn-height-base': '@height-base',
   '@btn-height-lg': '@height-lg',
   '@btn-height-sm': '@height-sm',
-
+  
   '@btn-line-height': '@line-height-base',
-
+  
   '@btn-circle-size': '@btn-height-base',
   '@btn-circle-size-lg': '@btn-height-lg',
   '@btn-circle-size-sm': '@btn-height-sm',
-
+  
   '@btn-square-size': '@btn-height-base',
   '@btn-square-size-lg': '@btn-height-lg',
   '@btn-square-size-sm': '@btn-height-sm',
   '@btn-square-only-icon-size': '@font-size-base + 2px',
   '@btn-square-only-icon-size-sm': '@font-size-base',
   '@btn-square-only-icon-size-lg': '@btn-font-size-lg + 2px',
-
+  
   '@btn-group-border': '@primary-5',
-
+  
   '@btn-link-hover-bg': 'transparent',
   '@btn-text-hover-bg': 'rgba(0, 0, 0, 0.018)',
-
+  
   /* --------------------- Menu ---------------------------------- */
   '@menu-inline-toplevel-item-height': '40px',
   '@menu-item-height': '40px',
@@ -122,7 +122,7 @@ module.exports = {
   '@menu-icon-size': '@menu-item-font-size',
   '@menu-icon-size-lg': '@font-size-lg',
   '@menu-item-group-title-font-size': '@menu-item-font-size',
-
+  
   // dark theme
   '@menu-dark-color': '@text-color-secondary-dark',
   '@menu-dark-danger-color': '@error-color',
@@ -135,11 +135,11 @@ module.exports = {
   '@menu-dark-selected-item-icon-color': '@white',
   '@menu-dark-selected-item-text-color': '@white',
   '@menu-dark-item-hover-bg': 'transparent',
-
+  
   /* -------------------------------- Dropdown -------------------------------- */
   '@dropdown-selected-color': '@primary-color',
   '@dropdown-menu-submenu-disabled-bg': '@component-background',
-
+  
   /* --------------------------------- Select --------------------------------- */
   '@select-border-color': '@border-color-base',
   '@select-item-selected-color': '@text-color',
@@ -164,4 +164,6 @@ module.exports = {
   '@select-multiple-disabled-background': '@input-disabled-bg',
   '@select-multiple-item-disabled-color': '#bfbfbf',
   '@select-multiple-item-disabled-border-color': '@select-border-color',
+  
+
 };

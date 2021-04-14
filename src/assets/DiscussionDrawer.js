@@ -38,7 +38,6 @@ const DiscussionDrawer = (props) => {
         <Header
           style={{
             padding: '0px 0px',
-            background: '#fff',
             display: 'flex',
             justifyContent: 'flex-start',
             height: 'auto',

@@ -38,7 +38,8 @@ const ProfileContent = (props) => {
             alignSelf: 'flex-start',
           }}
         >
-          <h2>My Profile</h2>
+          {/* Leaving this header in case we want to add it back in */}
+          {/* <h2>{props.currentUser.display_name}</h2> */}
         </div>
       </Header>
       <Content>
@@ -52,10 +53,10 @@ const ProfileContent = (props) => {
               />
               <div>
                 <Badge
-                  count={props.user.track.toUpperCase()}
+                  count={props.currentUser.track.toUpperCase()}
                   offset={[25, -10]}
                 >
-                  <h3>{props.user.displayName}</h3>
+                  <h3>{props.currentUser.display_name}</h3>
                 </Badge>
                 <div
                   style={{ display: 'flex', justifyContent: 'space-between' }}
