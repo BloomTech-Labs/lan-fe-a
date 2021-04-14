@@ -38,6 +38,7 @@ const ProfileContent = (props) => {
             alignSelf: 'flex-start',
           }}
         >
+          {/* Leaving this header in case we want to add it back in */}
           {/* <h2>{props.currentUser.display_name}</h2> */}
         </div>
       </Header>
