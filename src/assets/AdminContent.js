@@ -7,7 +7,7 @@ import {
   createRoom,
 } from '../store/actions';
 import SingleUserContent from './SingleUserContent';
-import SingleRoomCard from './SingleRoomContent';
+import SingleRoomContent from './SingleRoomContent';
 import { Layout, Input, Button, Tabs, Modal } from 'antd';
 
 const AdminContent = (props) => {
@@ -136,7 +136,7 @@ const AdminContent = (props) => {
             >
               {props.user.role_id === 3 &&
                 props.rooms.map((item) => {
-                  return <SingleRoomCard key={item.id} room={item} />;
+                  return <SingleRoomContent key={item.id} room={item} />;
                 })}
             </div>
           </TabPane>
