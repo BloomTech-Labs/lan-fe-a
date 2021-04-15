@@ -11,7 +11,6 @@ const Success = (props) => {
   // save token to localStorage
   useEffect(() => {
     localStorage.setItem('token', jwt);
-    console.log(jwt);
     props.fetchUser();
   }, [jwt]);
 
