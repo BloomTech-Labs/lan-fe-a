@@ -11,7 +11,8 @@ const ProfileContent = (props) => {
   const userID = props.match.params.id;
 
   const [actKey, setActKey] = useState('Posts');
-
+  console.log(props.user.id)
+  console.log(props.match.params.id)
   useEffect(() => {
     props.fetchUserProfile(userID);
   }, []);
@@ -40,6 +41,7 @@ const ProfileContent = (props) => {
         >
           {/* Leaving this header in case we want to add it back in */}
           {/* <h2>{props.currentUser.display_name}</h2> */}
+          {props.user.id === props.match.params.id && (<h2>My Profile</h2>)}
         </div>
       </Header>
       <Content>
