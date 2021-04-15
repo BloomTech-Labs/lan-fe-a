@@ -11,8 +11,6 @@ const ProfileContent = (props) => {
   const userID = props.match.params.id;
 
   const [actKey, setActKey] = useState('Posts');
-  console.log(props.user.id)
-  console.log(props.match.params.id)
   useEffect(() => {
     props.fetchUserProfile(userID);
   }, []);
@@ -82,9 +80,9 @@ const ProfileContent = (props) => {
                     </p>
                   )}
                 </div>
-                <Button type="primary" onClick={handleEditProfileButton}>
+                {props.user.id === props.match.params.id &&(<Button type="primary" onClick={handleEditProfileButton}>
                   Edit Profile
-                </Button>
+                </Button>)}
               </div>
             </div>
 
@@ -133,9 +131,9 @@ const ProfileContent = (props) => {
                   </Card>
                 ))}
               </TabPane>
-              <TabPane tab="Settings" key="Settings">
+              {props.user.id === props.match.params.id &&(<TabPane tab="Settings" key="Settings">
                 <SettingsContent actKey={actKey} />
-              </TabPane>
+              </TabPane>)}
             </Tabs>
           </>
         )}

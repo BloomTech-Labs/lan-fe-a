@@ -32,7 +32,8 @@ const ProfileIcon = (props) => {
           {/* <Menu.Item icon={<SettingOutlined />}>
             <Link to="/settings">Settings</Link>
           </Menu.Item> */}
-          {props.user.role_id === 3 && (<Menu.Item icon={<SettingOutlined />}>
+          {props.user.role_id === 3 && (
+            <Menu.Item icon={<SettingOutlined />}>
               <Link to="/admin-settings">Administrator</Link>
             </Menu.Item>
           )}
