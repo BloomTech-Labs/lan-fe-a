@@ -1,11 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import moment from 'moment';
-import {
-  fetchPostsAndFlagsByRoom,
-  fetchPost,
-  setDrawerVisibility,
-} from '../store/actions/index';
+import React from 'react';
 import {
   MessageOutlined,
   ArrowUpOutlined,
@@ -14,67 +7,17 @@ import {
   FlagOutlined,
 } from '@ant-design/icons';
 import { List, Space, Divider, Menu, Dropdown } from 'antd';
-import { Switch, useRouteMatch, Link, useParams } from 'react-router-dom';
 
 import { PrivateRoute } from '../utils/privateRoute';
 import { FlagChip } from './FlagChip';
 import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
 import DiscussionDrawer from './DiscussionDrawer';
-import DCardDropdown from './DCardDropdown';
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
+const CardDropDown = (props) = {
+  return(
 
-const DiscussionCard = (props) => {
-  const { path, url } = useRouteMatch();
-  const { roomID } = useParams();
-  const [showModal, setShowModal] = useState(false);
-  const [showFlagModal, setShowFlagModal] = useState(false);
-
-  const flagsLength = props.discussion.flags
-    ? props.discussion.flags.length
-    : 0;
-
-  useEffect(() => {
-    if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
-  }, [flagsLength]);
-
-  const dropdownMenu = (
-    <Menu>
-      <Menu.Item key="0">
-        <a>
-          <PushpinOutlined /> Pin
-        </a>
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="1">
-        <a onClick={() => setShowFlagModal(true)}>
-          <FlagOutlined /> Flag Discussion
-        </a>
-      </Menu.Item>
-
-      {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
-        <Menu.Divider />
-      )}
-
-      {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
-        <Menu.Item key="3">
-          <a onClick={() => setShowModal(true)}>
-            <FlagOutlined /> Moderate
-          </a>
-        </Menu.Item>
-      )}
-    </Menu>
-  );
-
-  return (
-    // TODO: Move these chips to their own component so that they can be reused in the DiscussionDrawer.js
     <List.Item
       className="discussion-card"
       key={props.discussion.title}
@@ -151,8 +94,8 @@ const DiscussionCard = (props) => {
         />
       </Switch>
     </List.Item>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -164,5 +107,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   fetchPostsAndFlagsByRoom,
   fetchPost,
-  setDrawerVisibility,
-})(DiscussionCard);
+  // setDrawerVisibility,
+})(CardDropDown);
