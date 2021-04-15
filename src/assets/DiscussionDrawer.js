@@ -16,7 +16,7 @@ import {
   PushpinOutlined,
   FlagOutlined,
 } from '@ant-design/icons';
-import { List, Space, Divider, Menu, Dropdown, Drawer } from 'antd';
+import { List, Space, Divider, Menu, Layout, Dropdown, Drawer, Typography } from 'antd';
 import { Link, Switch, useParams, useRouteMatch } from 'react-router-dom';
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
@@ -37,10 +37,12 @@ const IconText = ({ icon, text }) => (
 const DiscussionDrawer = (props) => {
   const { discussionID } = useParams();
   const { path, url } = useRouteMatch();
-  // const { Header, Content } = Layout;
+  const { Header, Content } = Layout;
   const [showModal, setShowModal] = useState(false);
   const [showFlagModal, setShowFlagModal] = useState(false);
 
+  console.log(props.discussion)
+  console.log(props.currentPost)
 
   useEffect(() => {
     if (discussionID) {
@@ -78,7 +80,7 @@ const DiscussionDrawer = (props) => {
   );
 
 
-
+    // This is the old Drawer that was able to display the contents of the card but did not have the controls of the cards in the room
   // return (
   //   <Drawer
   //     visible={props.visible}
@@ -89,31 +91,32 @@ const DiscussionDrawer = (props) => {
   //     }}
   //   >
   //     <Layout>
-  //       <Header
-  //         style={{
-  //           padding: '0px 0px',
-  //           display: 'flex',
-  //           justifyContent: 'flex-start',
-  //           height: 'auto',
-  //         }}
-  //       ></Header>
-  //       <Content style={{ background: '#fff' }}>
-  //         <div
-  //           style={{
-  //             display: 'flex',
-  //             flexFlow: 'column wrap',
-  //             alignSelf: 'flex-start',
-  //           }}
-  //         >
-  //           <Typography.Title level={3}>
-  //             {props.currentPost.title}
-  //           </Typography.Title>
-  //           <Typography.Text>{props.currentPost.description}</Typography.Text>
-  //         </div>
-  //       </Content>
+        // <Header
+        //   style={{
+        //     padding: '0px 0px',
+        //     display: 'flex',
+        //     justifyContent: 'flex-start',
+        //     height: 'auto',
+        //   }}
+        // ></Header>
+        // <Content style={{ background: '#fff' }}>
+        //   <div
+        //     style={{
+        //       display: 'flex',
+        //       flexFlow: 'column wrap',
+        //       alignSelf: 'flex-start',
+        //     }}
+        //   >
+        //     <Typography.Title level={3}>
+        //       {props.currentPost.title}
+        //     </Typography.Title>
+        //     <Typography.Text>{props.currentPost.description}</Typography.Text>
+        //   </div>
+        // </Content>
   //     </Layout>
   //   </Drawer>
   // );
+  
   return (
     <Drawer
       visible={props.visible}
@@ -125,22 +128,22 @@ const DiscussionDrawer = (props) => {
     >
       <List.Item
       className="discussion-card"
-      key={props.discussion.title}
+      key={props.currentPost.title}
       style={{ background: 'white'}}
       grid={{ column: 4 }}
       actions={[
         <IconText
           icon={ArrowUpOutlined}
-          text={props.discussion.likes}
+          text={props.currentPost.likes}
           key="like-or-upvote"
         />,
         <IconText
           icon={MessageOutlined}
-          text={props.discussion.comments}
+          text={props.currentPost.comments}
           key="list-vertical-message"
         />,
         CheckIfModOrAdmin(props.user) && (
-          <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
+          <Link to={`${url}/discussion/${props.currentPost.id}?view=flagged`}>
             <FlagChip
               flags={`${props.discussion.flags.length}`}
               commentsFlagged={`${props.discussion.flaggedComments.length}`}
@@ -153,8 +156,8 @@ const DiscussionDrawer = (props) => {
       <List.Item.Meta
         title={
           <div className="discussion-header-styles">
-            <Link to={`${url}/discussion/${props.discussion.id}?view=popular`} >
-              {props.discussion.title}
+            <Link to={`${url}/discussion/${props.currentPost.id}?view=popular`} >
+              {props.currentPost.title}
             </Link>
             <Dropdown overlay={dropdownMenu} trigger={['click']}>
               <a
@@ -169,27 +172,50 @@ const DiscussionDrawer = (props) => {
         description={
           <Space>
             Posted by
-            <Link to={`/user/${props.discussion.user_id}`} >
-              {props.discussion.display_name}
+            <Link to={`/user/${props.currentPost.user_id}`} >
+              {props.currentPost.display_name}
             </Link>
             <Divider type="vertical" />
-            {moment(props.discussion.created_at).fromNow()}
+            {moment(props.currentPost.created_at).fromNow()}
           </Space>
         }
       />
-      {props.discussion.description}
+      <Layout>
+        <Header
+          style={{
+            padding: '0px 0px',
+            display: 'flex',
+            justifyContent: 'flex-start',
+            height: 'auto',
+          }}
+        ></Header>
+      <Content style={{ background: '#fff' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexFlow: 'column wrap',
+              alignSelf: 'flex-start',
+            }}
+          >
+            <Typography.Title level={3}>
+              {props.currentPost.title}
+            </Typography.Title>
+            <Typography.Text>{props.currentPost.description}</Typography.Text>
+          </div>
+        </Content>
+      </Layout>
 
       <FlagManagerModal
         visible={showModal}
         setVisible={setShowModal}
-        flagsData={props.discussion.flags ? props.discussion.flags : undefined}
-        discussionID={props.discussion.id}
+        flagsData={props.currentPost.flags ? props.currentPost.flags : undefined}
+        discussionID={props.currentPost.id}
       />
 
       <UserFlaggingModal
         visible={showFlagModal}
         setVisible={setShowFlagModal}
-        discussionID={props.discussion.id}
+        discussionID={props.currentPost.id}
       />
 
       <Switch>
@@ -211,6 +237,7 @@ const DiscussionDrawer = (props) => {
 const mapStateToProps = (state) => {
   return {
     discussions: state.posts,
+    user: state.user,
     rooms: state.rooms,
     visible: state.isDrawerVisible,
     currentPost: state.currentPost,
