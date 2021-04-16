@@ -68,7 +68,6 @@ const Feed = (props) => {
               renderItem={user => {
                 return (
                   <>
-                    <p>{user.display_name}</p>
                     <SearchResultCard content={user} cardType="user" />
                     <br />
                   </>
@@ -87,7 +86,6 @@ const Feed = (props) => {
               renderItem={comment => {
                 return (
                   <>
-                    <p>{comment.comment}</p>
                     <SearchResultCard content={comment} cardType="comment" />
                     <br />
                   </>
@@ -106,7 +104,6 @@ const Feed = (props) => {
               renderItem={room => {
                 return (
                   <>
-                    <p>{room.room_name}</p>
                     <SearchResultCard content={room} cardType="room" />
                     <br />
                   </>

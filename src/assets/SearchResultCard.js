@@ -5,7 +5,7 @@ import { useRouteMatch, Link } from 'react-router-dom';
 
 const SearchResultCard = ({ cardType, content }) => {
     const { url } = useRouteMatch();
-    console.log({ content, cardType });
+    (cardType === "post") && console.log({content});
 
     switch (cardType) {
         case "room":
@@ -20,9 +20,7 @@ const SearchResultCard = ({ cardType, content }) => {
                         <List.Item.Meta
                         title={
                             <div className="discussion-header-styles">
-                                <Link to={`${url}/discussion/${''}?view=popular`} >
-                                    {content.room_name}
-                                </Link>
+                                {content.room_name}
                             </div>
                         }
                         />
@@ -42,14 +40,14 @@ const SearchResultCard = ({ cardType, content }) => {
                         <List.Item.Meta
                         title={
                             <div className="discussion-header-styles">
-                                <Link to={`${url}/discussion/${content.id}?view=popular`} >
-                                    {content.title}
-                                </Link>
+                                {content.title}
                             </div>
                         }
                         description={
                             <Space>
-                            {moment(content.created_at).fromNow()}
+                                Posted by {content.display_name}
+                                <Divider type="vertical" />
+                                {moment(content.created_at).fromNow()}
                             </Space>
                         }
                         />
@@ -69,19 +67,14 @@ const SearchResultCard = ({ cardType, content }) => {
                         <List.Item.Meta
                         title={
                             <div className="discussion-header-styles">
-                                <Link to={`${url}/discussion/${''}?view=popular`} >
-                                    {''}
-                                </Link>
+                                {''}
                             </div>
                         }
                         description={
                             <Space>
-                            Posted by
-                            <Link to={`/user/${''}`} >
-                                username_goes_here
-                            </Link>
-                            <Divider type="vertical" />
-                            {moment(content.created_at).fromNow()}
+                                Posted by {content.display_name}
+                                <Divider type="vertical" />
+                                {moment(content.created_at).fromNow()}
                             </Space>
                         }
                         />
@@ -112,7 +105,7 @@ const SearchResultCard = ({ cardType, content }) => {
                 </Link>
             ));
         default:
-            return 'No card type supplied.'    
+            return 'No card type supplied.'; 
     }
 };
 
