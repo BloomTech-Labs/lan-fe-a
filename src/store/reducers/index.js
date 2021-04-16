@@ -25,6 +25,7 @@ const initialState = {
   isDrawerVisible: false,
   isNewRoomModalVisible: false,
   isFlaggingModalVisible: false,
+  isModalVisible: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -141,6 +142,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         isFlaggingModalVisible: action.payload,
+      };
+    case 'SET_SHOW_MODAL':
+      return {
+        ...state,
+        isModalVisible: action.payload,
       };
     case 'FETCH_FLAGREASONS_SUCCESS':
       return {

@@ -74,7 +74,6 @@ const DiscussionCard = (props) => {
   );
 
   return (
-    // TODO: Move these chips to their own component so that they can be reused in the DiscussionDrawer.js
     <List.Item
       className="discussion-card"
       key={props.discussion.title}
@@ -101,7 +100,6 @@ const DiscussionCard = (props) => {
         ),
       ]}
     >
-      {/* TODO: Move this dropdown list to its own component so that it can be reused in the DiscussionDrawer.js */}
       <List.Item.Meta
         title={
           <div className="discussion-header-styles">
