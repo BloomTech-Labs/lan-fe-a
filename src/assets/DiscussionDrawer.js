@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 
 import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
-import DiscussionCardHeader from './components/DiscussionCardHeader';
+import DiscussionCardHeader from './components/DrawerHeader';
 
 
 const DiscussionDrawer = (props) => {

@@ -15,9 +15,10 @@ import {
 } from '@ant-design/icons';
 import { Space, Divider, Menu, Dropdown, Layout, Typography } from 'antd';
 
-import { CheckIfModOrAdmin } from '../CheckIfModOrAdmin';
+import { CheckIfModOrAdmin } from '../../assets/CheckIfModOrAdmin';
 
 import { PrivateRoute } from '../../utils/privateRoute';
+import dropdownMenu from '../../utils/DiscussionDropdown';
 import { FlagChip } from '../FlagChip';
 import UserFlaggingModal from '../UserFlaggingModal';
 import FlagManagerModal from '../FlagManagerModal';
@@ -39,33 +40,33 @@ const DiscussionCardHeader = (props) => {
 
 
 
-  const dropdownMenu = (
-    <Menu>
-      <Menu.Item key="0">
-        <a>
-          <PushpinOutlined /> Pin
-        </a>
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="1">
-        <a onClick={() => setShowFlagModal(true)}>
-          <FlagOutlined /> Flag Discussion
-        </a>
-      </Menu.Item>
+  // const dropdownMenu = (
+  //   <Menu>
+  //     <Menu.Item key="0">
+  //       <a>
+  //         <PushpinOutlined /> Pin
+  //       </a>
+  //     </Menu.Item>
+  //     <Menu.Divider />
+  //     <Menu.Item key="1">
+  //       <a onClick={() => setShowFlagModal(true)}>
+  //         <FlagOutlined /> Flag Discussion
+  //       </a>
+  //     </Menu.Item>
 
-      {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
-        <Menu.Divider />
-      )}
+  //     {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
+  //       <Menu.Divider />
+  //     )}
 
-      {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
-        <Menu.Item key="3">
-          <a onClick={() => setShowModal(true)}>
-            <FlagOutlined /> Moderate
-          </a>
-        </Menu.Item>
-      )}
-    </Menu>
-  );
+  //     {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
+  //       <Menu.Item key="3">
+  //         <a onClick={() => setShowModal(true)}>
+  //           <FlagOutlined /> Moderate
+  //         </a>
+  //       </Menu.Item>
+  //     )}
+  //   </Menu>
+  // );
 
 
 
