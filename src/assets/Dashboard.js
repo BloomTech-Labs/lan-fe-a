@@ -22,6 +22,7 @@ import FaqContent from './FaqContent';
 import ModContent from './ModContent';
 import ProfileContent from './ProfileContent';
 import AdminContent from './AdminContent';
+import SearchResultsContent from './SearchResultsContent';
 
 const Dashboard = (props) => {
   const { Content, Sider } = Layout;
@@ -69,6 +70,7 @@ const Dashboard = (props) => {
                   path={`/user/:id`}
                   component={ProfileContent}
                 />
+                <PrivateRoute path="/search" component={SearchResultsContent} />
                 <PrivateRoute exact path={`/`} component={DashboardContent} />
               </Switch>
             </Content>

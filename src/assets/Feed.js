@@ -8,9 +8,11 @@ import {
 import { List, Divider, Select } from 'antd';
 
 import DiscussionCard from './DiscussionCard';
+import SearchResultCard from './SearchResultCard';
 
 const Feed = (props) => {
   const { roomID } = useParams();
+  const { searchResultsFeed, mainSearchResults } = props;
 
   useEffect(() => {
     if (roomID) {
@@ -35,19 +37,100 @@ const Feed = (props) => {
           <Select.Option value="Popular">Flagged</Select.Option>
         </Select>
       </Divider>
-      <List
-        itemLayout="vertical"
-        size="large"
-        dataSource={props.discussion}
-        renderItem={(item) => {
-          return (
-            <>
-              <DiscussionCard discussion={item} />
-              <br />
-            </>
-          );
-        }}
-      />
+      {searchResultsFeed ? (
+        <>
+          {/* POSTS */}
+          {mainSearchResults.posts.length ? (
+            <List
+              itemLayout="vertical"
+              size="large"
+              header={<h3>Posts</h3>}
+              dataSource={mainSearchResults.posts}
+              renderItem={post => {
+                return (
+                  <>
+                    {/* model after DiscussionCard component */}
+                    <SearchResultCard content={post} cardType="post" />
+                    <br />
+                  </>
+                );
+              }}
+            />
+          ) : ''}
+
+          {/* USERS */}
+          {mainSearchResults.users.length ? (
+            <List
+              itemLayout="vertical"
+              size="large"
+              header={<h3>Users</h3>}
+              dataSource={mainSearchResults.users}
+              renderItem={user => {
+                return (
+                  <>
+                    <p>{user.display_name}</p>
+                    <SearchResultCard content={user} cardType="user" />
+                    <br />
+                  </>
+                );
+              }}
+            />
+          ) : ''}
+
+          {/* COMMENTS */}
+          {mainSearchResults.comments.length ? (
+            <List
+              itemLayout="vertical"
+              size="large"
+              header={<h3>Comments</h3>}
+              dataSource={mainSearchResults.comments}
+              renderItem={comment => {
+                return (
+                  <>
+                    <p>{comment.comment}</p>
+                    <SearchResultCard content={comment} cardType="comment" />
+                    <br />
+                  </>
+                );
+              }}
+            />
+          ) : ''}
+
+          {/* ROOMS */}
+          {mainSearchResults.rooms.length ? (
+              <List
+              itemLayout="vertical"
+              size="large"
+              header={<h3>Rooms</h3>}
+              dataSource={mainSearchResults.rooms}
+              renderItem={room => {
+                return (
+                  <>
+                    <p>{room.room_name}</p>
+                    <SearchResultCard content={room} cardType="room" />
+                    <br />
+                  </>
+                );
+              }}
+            />
+          ) : ''}
+        </>
+      ) : 
+        <List
+          itemLayout="vertical"
+          size="large"
+          dataSource={props.discussion}
+          renderItem={(item) => {
+            return (
+              <>
+                <DiscussionCard discussion={item} />
+                <br />
+              </>
+            );
+          }}
+        />
+      }
+
     </>
   );
 };
@@ -56,6 +139,7 @@ const mapStateToProps = (state) => {
   return {
     discussion: state.posts,
     user: state.user,
+    mainSearchResults: state.mainSearchResults
   };
 };
 
