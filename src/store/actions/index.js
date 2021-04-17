@@ -468,13 +468,13 @@ export const setNewRoomModalVisibility = (bool) => (dispatch) => {
   dispatch({ type: 'SET_NEW_ROOM_MODAL_VISIBILITY', payload: bool });
 };
 
-//This is the PopoverContent.js (can be depreciated?)
+//This is the PopoverContent.js (can be deleted?)
 // export const setFlaggingModalVisibility = (bool) => (dispatch) => {
 //   dispatch({ type: 'SET_FLAGGING_MODAL', payload: bool });
 // };
 
 export const setShowFlagModal = (bool) => (dispatch) => {
-  dispatch({ type: 'SET_FLAGGING_MODAL', payload: bool });
+  dispatch({ type: 'SET_SHOW_FLAGGING_MODAL', payload: bool });
 };
 
 export const setShowModal = (bool) => (dispatch) => {
