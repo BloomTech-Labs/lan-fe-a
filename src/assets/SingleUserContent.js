@@ -47,6 +47,12 @@ const SingleUserContent = (props) => {
       });
   };
 
+  useEffect(() => {
+    if (props.activeTab !== 'Users') {
+      setRole(props.user.role_id);
+    }
+  }, [props.activeTab]);
+
   return (
     <Card
       title={
@@ -61,7 +67,7 @@ const SingleUserContent = (props) => {
       }
       bordered={false}
       style={{ width: 300, marginBottom: '20px', marginLeft: '20px' }}
-      headStyle={{ backgroundColor: '#405CEE', color: '#fff' }}
+      headStyle={{ backgroundColor: '#dee2e6', color: '#000' }}
     >
       <Card title="Email" type="inner">
         {props.user.email}

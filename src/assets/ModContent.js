@@ -9,8 +9,6 @@ const ModContent = (props) => {
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
 
-  const [tabs, setTabs] = useState('Posts');
-
   useEffect(() => {
     props.fetchFlaggedPosts();
   }, []);
@@ -18,10 +16,8 @@ const ModContent = (props) => {
   const handleModTabs = (key) => {
     if (key === 'Posts') {
       props.fetchFlaggedPosts();
-      setTabs('Posts');
     } else {
       props.fetchFlaggedComments();
-      setTabs('Comments');
     }
   };
 
@@ -57,7 +53,6 @@ const ModContent = (props) => {
               }}
             >
               {props.user.role_id > 1 &&
-                tabs === 'Posts' &&
                 props.posts.map((item) => {
                   return <FlaggedPostContent key={item.post_id} post={item} />;
                 })}
@@ -73,8 +68,7 @@ const ModContent = (props) => {
               }}
             >
               {props.user.role_id > 1 &&
-                tabs === 'Comments' &&
-                props.posts.map((item) => {
+                props.comments.map((item) => {
                   return (
                     <FlaggedCommentContent
                       key={item.comment_id}
@@ -93,7 +87,8 @@ const ModContent = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    posts: state.posts,
+    posts: state.flaggedPosts,
+    comments: state.flaggedComments,
   };
 };
 

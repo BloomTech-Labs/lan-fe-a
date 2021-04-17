@@ -393,7 +393,7 @@ export const fetchFlaggedComments = () => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/mod/comments/flagged`)
     .then((res) => {
-      dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
+      dispatch({ type: 'SET_FLAGGED_COMMENTS', payload: res.data });
     })
     .catch(() => toast.error('There was a problem fetching flagged comments.'));
 };
@@ -428,7 +428,9 @@ export const archiveComment = (commentID) => (dispatch) => {
 export const resolvePost = (postID) => (dispatch) => {
   return axiosWithAuth()
     .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
-    .then(() => toast.success('The discussion post was approved!'))
+    .then(() => {
+      toast.success('The discussion post was approved!')
+  })
     .catch(() => toast.error('Error Resolving Post'));
 };
 
