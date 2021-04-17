@@ -332,6 +332,7 @@ export const retrieveFullSearchResults = (search) => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/search/full/${search}`)
     .then((res) => {
+      console.log(res);
       dispatch({ type: 'SET_FULL_SEARCH', payload: res.data });
     })
     .catch(() => toast.error('Oh no! Could not retrieve search results.'));

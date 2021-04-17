@@ -20,7 +20,7 @@ import FullSearchResults from './components/search/FullSearchResults';
 
 // new UI - pages and components
 import Dashboard from './assets/Dashboard';
-import OnboardingPage from './assets/pages/OnboardingPage/OnboardingPage';
+import OnboardingPage from './assets/OnboardingPage';
 
 const App = () => {
   return (
