@@ -19,7 +19,7 @@ const Feed = (props) => {
       if (props.user.role_id < 2) props.fetchPostByRoom(roomID, 1);
       else props.fetchPostsAndFlagsByRoom(roomID, 1);
     }
-  }, []);
+  }, [props.discussion]);
 
   // useEffect(() => {
   //   if (roomID) {
@@ -46,7 +46,7 @@ const Feed = (props) => {
               size="large"
               header={<h3>Posts</h3>}
               dataSource={mainSearchResults.posts}
-              renderItem={post => {
+              renderItem={(post) => {
                 return (
                   <>
                     {/* model after DiscussionCard component */}
@@ -56,7 +56,9 @@ const Feed = (props) => {
                 );
               }}
             />
-          ) : ''}
+          ) : (
+            ''
+          )}
 
           {/* USERS */}
           {mainSearchResults.users.length ? (
@@ -65,7 +67,7 @@ const Feed = (props) => {
               size="large"
               header={<h3>Users</h3>}
               dataSource={mainSearchResults.users}
-              renderItem={user => {
+              renderItem={(user) => {
                 return (
                   <>
                     <SearchResultCard content={user} cardType="user" />
@@ -74,7 +76,9 @@ const Feed = (props) => {
                 );
               }}
             />
-          ) : ''}
+          ) : (
+            ''
+          )}
 
           {/* COMMENTS */}
           {mainSearchResults.comments.length ? (
@@ -83,7 +87,7 @@ const Feed = (props) => {
               size="large"
               header={<h3>Comments</h3>}
               dataSource={mainSearchResults.comments}
-              renderItem={comment => {
+              renderItem={(comment) => {
                 return (
                   <>
                     <SearchResultCard content={comment} cardType="comment" />
@@ -92,16 +96,18 @@ const Feed = (props) => {
                 );
               }}
             />
-          ) : ''}
+          ) : (
+            ''
+          )}
 
           {/* ROOMS */}
           {mainSearchResults.rooms.length ? (
-              <List
+            <List
               itemLayout="vertical"
               size="large"
               header={<h3>Rooms</h3>}
               dataSource={mainSearchResults.rooms}
-              renderItem={room => {
+              renderItem={(room) => {
                 return (
                   <>
                     <SearchResultCard content={room} cardType="room" />
@@ -110,9 +116,11 @@ const Feed = (props) => {
                 );
               }}
             />
-          ) : ''}
+          ) : (
+            ''
+          )}
         </>
-      ) : 
+      ) : (
         <List
           itemLayout="vertical"
           size="large"
@@ -126,8 +134,7 @@ const Feed = (props) => {
             );
           }}
         />
-      }
-
+      )}
     </>
   );
 };
@@ -136,7 +143,7 @@ const mapStateToProps = (state) => {
   return {
     discussion: state.posts,
     user: state.user,
-    mainSearchResults: state.mainSearchResults
+    mainSearchResults: state.mainSearchResults,
   };
 };
 

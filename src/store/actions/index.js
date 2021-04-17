@@ -286,9 +286,9 @@ export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
   return axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/recent/${postID}`)
-    .then((response) =>
-      dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data })
-    )
+    .then((response) => {
+      dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data });
+    })
     .catch(() => toast.error('Looks like there was trouble loading comments.'));
 };
 
@@ -430,8 +430,8 @@ export const resolvePost = (postID) => (dispatch) => {
   return axiosWithAuth()
     .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
     .then(() => {
-      toast.success('The discussion post was approved!')
-  })
+      toast.success('The discussion post was approved!');
+    })
     .catch(() => toast.error('Error Resolving Post'));
 };
 
