@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { fetchUser, setTrack } from '../../../store/actions';
+import { fetchUser, setTrack } from '../store/actions/index';
 import OnboardingContainer from './OnboardingStyles';
 
 const Onboarding = props => {
-  const { user, history, fetchUser  } = props;
+  const { user, history, fetchUser } = props;
 
   const [tracks, setTracks] = useState([
     { track: 'WEB', value: false },
