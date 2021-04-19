@@ -22,6 +22,7 @@ const DiscussionDrawer = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [showFlagModal, setShowFlagModal] = useState(false);
 
+  console.log({props})
 
   useEffect(() => {
     if (discussionID) {

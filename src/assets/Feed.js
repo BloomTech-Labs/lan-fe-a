@@ -11,7 +11,7 @@ import DiscussionCard from './DiscussionCard';
 
 const Feed = (props) => {
   const { roomID } = useParams();
-
+  
   useEffect(() => {
     if (roomID) {
       if (props.user.role_id < 2) props.fetchPostByRoom(roomID, 1);

@@ -29,12 +29,14 @@ const IconText = ({ icon, text }) => (
   </Space>
 );
 
-const DiscussionCardHeader = (props) => {
+const DrawerHeader = (props) => {
   const { path, url } = useRouteMatch();
   const { Header, Content } = Layout;
   // const [showModal, setShowModal] = useState(false);
   // const [showFlagModal, setShowFlagModal] = useState(false);
   
+  console.log({props})
+
   //! A false state is indeed coming in from the redux store
   // console.log(props.showModal, props.showFlagModal)
 
@@ -149,7 +151,7 @@ const DiscussionCardHeader = (props) => {
 
       <FlagManagerModal
         visible={props.showModal}
-        setVisible={setShowModal}
+        setVisible={props.setShowModal}
         flagsData={
           props.currentPost.flags ? props.currentPost.flags : undefined
         }
@@ -158,7 +160,7 @@ const DiscussionCardHeader = (props) => {
 
       <UserFlaggingModal
         visible={props.showFlagModal}
-        setVisible={setShowFlagModal}
+        setVisible={props.setShowFlagModal}
         discussionID={props.currentPost.id}
       />
 
@@ -176,6 +178,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     currentPost: state.currentPost,
+    discussion: state.posts,
     showModal: state.showModal,
     showFlagModal: state.showFlagModal
   };
@@ -185,4 +188,4 @@ export default connect(mapStateToProps, {
   fetchPost,
   setShowModal,
   setShowFlagModal,
-})(DiscussionCardHeader);
+})(DrawerHeader);

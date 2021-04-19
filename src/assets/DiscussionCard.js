@@ -5,6 +5,8 @@ import {
   fetchPostsAndFlagsByRoom,
   fetchPost,
   setDrawerVisibility,
+  setShowFlagModal, 
+  setShowModal
 } from '../store/actions/index';
 import {
   MessageOutlined,
@@ -21,7 +23,6 @@ import { FlagChip } from './FlagChip';
 import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
 import DiscussionDrawer from './DiscussionDrawer';
-import DCardDropdown from './DCardDropdown';
 import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 
 const IconText = ({ icon, text }) => (
@@ -34,8 +35,9 @@ const IconText = ({ icon, text }) => (
 const DiscussionCard = (props) => {
   const { path, url } = useRouteMatch();
   const { roomID } = useParams();
-  const [showModal, setShowModal] = useState(false);
-  const [showFlagModal, setShowFlagModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  // const [showFlagModal, setShowFlagModal] = useState(false);
+
 
   const flagsLength = props.discussion.flags
     ? props.discussion.flags.length
@@ -54,7 +56,7 @@ const DiscussionCard = (props) => {
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="1">
-        <a onClick={() => setShowFlagModal(true)}>
+        <a onClick={() => props.setShowFlagModal(!props.showFlagModal)}>
           <FlagOutlined /> Flag Discussion
         </a>
       </Menu.Item>
@@ -65,7 +67,7 @@ const DiscussionCard = (props) => {
 
       {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
         <Menu.Item key="3">
-          <a onClick={() => setShowModal(true)}>
+          <a onClick={() => props.setShowModal(true)}>
             <FlagOutlined /> Moderate
           </a>
         </Menu.Item>
@@ -130,15 +132,15 @@ const DiscussionCard = (props) => {
       {props.discussion.description}
 
       <FlagManagerModal
-        visible={showModal}
-        setVisible={setShowModal}
+        visible={props.showModal}
+        setVisible={props.setShowModal}
         flagsData={props.discussion.flags ? props.discussion.flags : undefined}
         discussionID={props.discussion.id}
       />
 
       <UserFlaggingModal
-        visible={showFlagModal}
-        setVisible={setShowFlagModal}
+        visible={props.showFlagModal}
+        setVisible={props.setShowFlagModal}
         discussionID={props.discussion.id}
       />
 
@@ -156,6 +158,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     rooms: state.rooms,
+    showModal: state.showModal,
+    showFlagModal: state.showFlagModal
   };
 };
 
@@ -163,4 +167,6 @@ export default connect(mapStateToProps, {
   fetchPostsAndFlagsByRoom,
   fetchPost,
   setDrawerVisibility,
+  setShowModal,
+  setShowFlagModal,
 })(DiscussionCard);

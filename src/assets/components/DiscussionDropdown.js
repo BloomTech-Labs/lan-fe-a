@@ -1,10 +1,12 @@
 // This is an attempt to move redundant code out of DrawerHeader and DiscussionCard by making the dropdown pin/flag menu into it's own component
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   setShowModal,
-  setShowFlagModal
+  setShowFlagModal,
+  fetchPostsAndFlagsByRoom
 } from '../../store/actions';
 
 import { Menu } from 'antd';
@@ -18,9 +20,18 @@ import { CheckIfModOrAdmin } from '../CheckIfModOrAdmin'
 const dropdownMenu = (props) => {
   // const [showFlagModal, setShowFlagModal] = useState(false);
   // const [showModal, setShowModal] = useState(false);
+  const { roomID } = useParams();
 
-  console.log(props.showModal)
-  console.log(props.showFlagModal)
+  console.log({props})
+
+  const flagsLength = props.discussion.flags
+    ? props.discussion.flags.length
+    : 0;
+
+  useEffect(() => {
+    if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
+  }, [flagsLength]);
+
   return(
     <Menu>
       <Menu.Item key="0">
@@ -31,19 +42,19 @@ const dropdownMenu = (props) => {
       <Menu.Divider />
       <Menu.Item key="1">
         <a onClick={() => 
-          setShowFlagModal(true)}>
+          props.setShowFlagModal(true)}>
           <FlagOutlined /> Flag Discussion
         </a>
       </Menu.Item>
       
-      {/* TODO: test if I don't need 2 lines of CheckIfModOrAdmin and see if I can get away with just one */}
+      {/* TODO: test if we don't need 2 lines of CheckIfModOrAdmin and see if I can get away with just one */}
       {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
         <Menu.Divider />
       )}
   
       {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
         <Menu.Item key="3">
-          <a onClick={() => setShowModal(true)}>
+          <a onClick={() => props.setShowModal(true)}>
             <FlagOutlined /> Moderate
           </a>
         </Menu.Item>
@@ -64,5 +75,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   setShowModal,
   setShowFlagModal,
+  fetchPostsAndFlagsByRoom
   
 })(dropdownMenu);
