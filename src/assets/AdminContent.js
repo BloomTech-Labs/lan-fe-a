@@ -26,6 +26,8 @@ const AdminContent = (props) => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const [activeTab, setActiveTab] = useState('Users');
+
   const showModal = () => {
     SetRoomValues(initialRoomValue);
     setIsModalVisible(true);
@@ -106,7 +108,7 @@ const AdminContent = (props) => {
         </div>
       </Header>
       <Content>
-        <Tabs>
+        <Tabs onChange={(key) => setActiveTab(key)}>
           <TabPane key="Users" tab="Users">
             <div
               style={{
@@ -117,7 +119,13 @@ const AdminContent = (props) => {
             >
               {props.user.role_id === 3 &&
                 props.users.map((item) => {
-                  return <SingleUserContent key={item.id} user={item} />;
+                  return (
+                    <SingleUserContent
+                      key={item.id}
+                      user={item}
+                      activeTab={activeTab}
+                    />
+                  );
                 })}
             </div>
           </TabPane>

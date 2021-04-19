@@ -4,6 +4,8 @@ const initialState = {
   rooms: [],
   users: [],
   posts: [],
+  flaggedPosts: [],
+  flaggedComments: [],
   totalPages: 1,
   mainSearchResults: {
     users: [],
@@ -33,7 +35,7 @@ export const reducer = (state = initialState, action) => {
     case 'SET_USER':
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
       };
 
     case 'SET_ROOMS':
@@ -58,7 +60,13 @@ export const reducer = (state = initialState, action) => {
     case 'SET_FLAGGED_POSTS':
       return {
         ...state,
-        posts: action.payload,
+        flaggedPosts: action.payload,
+      };
+
+    case 'SET_FLAGGED_COMMENTS':
+      return {
+        ...state,
+        flaggedComments: action.payload,
       };
 
     case 'START_FETCHING_CURRENT_POST':
