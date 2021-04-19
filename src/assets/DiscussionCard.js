@@ -49,15 +49,14 @@ const DiscussionCard = (props) => {
 
   const handleLikePost = () => {
     props.discussion.liked
-      ? props.unlike(props.discussion.id).then(()=>{
-        props.setUpdateLike(!props.updatelike)
-      })
-      : props.like(props.discussion.id).then(()=>{
-        props.setUpdateLike(!props.updatelike)
-      });
+      ? props.unlike(props.discussion.id).then(() => {
+          props.setUpdateLike(!props.updatelike);
+        })
+      : props.like(props.discussion.id).then(() => {
+          props.setUpdateLike(!props.updatelike);
+        });
   };
 
- 
   const dropdownMenu = (
     <Menu>
       <Menu.Item key="0">
@@ -104,9 +103,12 @@ const DiscussionCard = (props) => {
             <IconText icon={ArrowUpOutlined} text={props.discussion.likes} />
           </div>,
           <Link
-            to={`${url}/discussion/${props.discussion.id}?view=popular`}
+            to={`${url}/discussion/${props.discussion.id}?view=recent`}
             key="list-vertical-message"
-            style={{ textDecoration: 'none' }}
+            style={{
+              textDecoration: 'none',
+              color: props.discussion.comments ? '#405cee' : 'rgba(0,0,0,.45)',
+            }}
           >
             <IconText icon={MessageOutlined} text={props.discussion.comments} />
           </Link>,
@@ -123,9 +125,7 @@ const DiscussionCard = (props) => {
         <List.Item.Meta
           title={
             <div className="discussion-header-styles">
-              <Link
-                to={`${url}/discussion/${props.discussion.id}?view=popular`}
-              >
+              <Link to={`${url}/discussion/${props.discussion.id}?view=recent`}>
                 {props.discussion.title}
               </Link>
               <Dropdown overlay={dropdownMenu} trigger={['click']}>

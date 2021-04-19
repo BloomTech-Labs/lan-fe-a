@@ -10,6 +10,8 @@ import {
   fetchPostCommentsByRecent,
   fetchPostCommentsByPopular,
   postComment,
+  likeComment,
+  unlikeComment,
 } from '../store/actions';
 import {
   Layout,
@@ -43,7 +45,7 @@ const DiscussionDrawer = (props) => {
     if (discussionID) {
       props.setDrawerVisibility(true);
       props.fetchPost(discussionID);
-      props.fetchPostCommentsByPopular(discussionID);
+      props.fetchPostCommentsByRecent(discussionID);
     }
   }, []);
 
@@ -61,7 +63,7 @@ const DiscussionDrawer = (props) => {
       .postComment(props.user, discussionID, comment)
       .then(() => {
         props.fetchPost(discussionID);
-        props.fetchPostCommentsByPopular(discussionID);
+        props.fetchPostCommentsByRecent(discussionID);
       })
       .catch((err) => {
         console.log(err.message);
@@ -76,6 +78,16 @@ const DiscussionDrawer = (props) => {
 
   const handleUpdateChange = (e) => {
     setComment(e.target.value);
+  };
+
+  const handleLikeComment = (liked, commentID) => {
+    liked
+      ? props.unlikeComment(commentID).then(() => {
+          props.fetchPostCommentsByRecent(discussionID);
+        })
+      : props.likeComment(commentID).then(() => {
+          props.fetchPostCommentsByRecent(discussionID);
+        });
   };
 
   const AddModal = (
@@ -152,11 +164,15 @@ const DiscussionDrawer = (props) => {
                   <List.Item
                     key={item.id}
                     actions={[
-                      <IconText
-                        icon={ArrowUpOutlined}
-                        text={item.likes}
+                      <div
                         key="list-vertical-like-o"
-                      />,
+                        onClick={() => handleLikeComment(item.liked, item.id)}
+                        style={{
+                          color: item.liked ? '#405cee' : 'rgba(0,0,0,.45)',
+                        }}
+                      >
+                        <IconText icon={ArrowUpOutlined} text={item.likes} />
+                      </div>,
                     ]}
                     extra=""
                   >
@@ -207,4 +223,6 @@ export default connect(mapStateToProps, {
   fetchPostCommentsByRecent,
   fetchPostCommentsByPopular,
   postComment,
+  likeComment,
+  unlikeComment,
 })(DiscussionDrawer);

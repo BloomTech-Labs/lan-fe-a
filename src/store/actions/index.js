@@ -243,7 +243,6 @@ export const like = (postID) => (dispatch) => {
     .catch(() => toast.error('Oh no! There was a problem liking this post.'));
 };
 
-
 // Removes like from a post
 export const unlike = (postID) => (dispatch) => {
   return axiosWithAuth()
@@ -264,9 +263,10 @@ export const postComment = (user, postID, comment) => (dispatch) => {
 
 // Likes a comment
 export const likeComment = (commentID) => (dispatch) => {
-  axiosWithAuth()
+  return axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/like/${commentID}`)
-    .then(() => {})
+    .then(() => {
+    })
     .catch(() =>
       toast.error('Oh no! There was a problem liking this comment.')
     );
@@ -274,9 +274,10 @@ export const likeComment = (commentID) => (dispatch) => {
 
 // Removes like from a comment
 export const unlikeComment = (commentID) => (dispatch) => {
-  axiosWithAuth()
+  return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
-    .then(() => {})
+    .then(() => {
+    })
     .catch(() =>
       toast.error('Uh oh! There was a problem unliking this comment.')
     );
@@ -288,7 +289,10 @@ export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
   return axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/recent/${postID}`)
     .then((response) => {
-      dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data });
+      dispatch({
+        type: 'SET_CURRENT_POST_COMMENTS',
+        payload: response.data.comments,
+      });
     })
     .catch(() => toast.error('Looks like there was trouble loading comments.'));
 };
@@ -298,9 +302,9 @@ export const fetchPostCommentsByPopular = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/popular/${postID}`)
-    .then((response) =>
-      dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data })
-    )
+    .then((response) => {
+      dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data });
+    })
     .catch(() => toast.error('Looks like there was trouble loading comments.'));
 };
 
