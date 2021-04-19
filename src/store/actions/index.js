@@ -243,6 +243,7 @@ export const like = (postID) => (dispatch) => {
     .catch(() => toast.error('Oh no! There was a problem liking this post.'));
 };
 
+
 // Removes like from a post
 export const unlike = (postID) => (dispatch) => {
   return axiosWithAuth()

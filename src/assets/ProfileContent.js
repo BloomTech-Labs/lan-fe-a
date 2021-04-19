@@ -13,7 +13,7 @@ const ProfileContent = (props) => {
   const [actKey, setActKey] = useState('Posts');
   useEffect(() => {
     props.fetchUserProfile(userID);
-  }, [props]);
+  }, [userID]);
 
   const handleEditProfileButton = () => {
     setActKey('Settings');

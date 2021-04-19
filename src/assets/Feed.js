@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   fetchPostByRoom,
@@ -8,24 +8,22 @@ import {
 import { List, Divider, Select } from 'antd';
 
 import DiscussionCard from './DiscussionCard';
+import DiscussionDrawer from './DiscussionDrawer';
 import SearchResultCard from './SearchResultCard';
+import { PrivateRoute } from '../utils/privateRoute';
 
 const Feed = (props) => {
   const { roomID } = useParams();
+  const { path, url } = useRouteMatch();
   const { searchResultsFeed, mainSearchResults } = props;
+  const [like, setLike] = useState(false);
 
   useEffect(() => {
     if (roomID) {
       if (props.user.role_id < 2) props.fetchPostByRoom(roomID, 1);
       else props.fetchPostsAndFlagsByRoom(roomID, 1);
     }
-  }, [props.discussion]);
-
-  // useEffect(() => {
-  //   if (roomID) {
-  //     if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
-  //   }
-  // }, [props.discussion.flags]);
+  }, [props.currentPost.comments, like, props.currentPost.likes]);
 
   return (
     <>
@@ -121,19 +119,29 @@ const Feed = (props) => {
           )}
         </>
       ) : (
-        <List
-          itemLayout="vertical"
-          size="large"
-          dataSource={props.discussion}
-          renderItem={(item) => {
-            return (
-              <>
-                <DiscussionCard discussion={item} />
-                <br />
-              </>
-            );
-          }}
-        />
+        <>
+          <List
+            itemLayout="vertical"
+            size="large"
+            dataSource={props.discussion}
+            renderItem={(item) => {
+              return (
+                <>
+                  <DiscussionCard
+                    discussion={item}
+                    updatelike={like}
+                    setUpdateLike={setLike}
+                  />
+                  <br />
+                </>
+              );
+            }}
+          />
+          <PrivateRoute
+            path={`${path}/discussion/:discussionID`}
+            component={DiscussionDrawer}
+          />
+        </>
       )}
     </>
   );
@@ -141,6 +149,7 @@ const Feed = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    currentPost: state.currentPost,
     discussion: state.posts,
     user: state.user,
     mainSearchResults: state.mainSearchResults,

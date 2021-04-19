@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Link, useParams, useRouteMatch } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
   fetchPostByRoom,
   fetchRooms,
@@ -29,7 +29,6 @@ import { ArrowUpOutlined } from '@ant-design/icons';
 
 const DiscussionDrawer = (props) => {
   const { discussionID } = useParams();
-  const { path, url } = useRouteMatch();
   const { Header, Content } = Layout;
   const { TextArea } = Input;
 
@@ -61,6 +60,7 @@ const DiscussionDrawer = (props) => {
     props
       .postComment(props.user, discussionID, comment)
       .then(() => {
+        props.fetchPost(discussionID);
         props.fetchPostCommentsByPopular(discussionID);
       })
       .catch((err) => {
