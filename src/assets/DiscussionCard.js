@@ -67,7 +67,7 @@ const DiscussionCard = (props) => {
 
       {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
         <Menu.Item key="3">
-          <a onClick={() => props.setShowModal(true)}>
+          <a onClick={() => props.setShowModal(!props.showModal)}>
             <FlagOutlined /> Moderate
           </a>
         </Menu.Item>

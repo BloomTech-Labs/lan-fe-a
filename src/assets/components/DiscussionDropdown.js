@@ -1,6 +1,6 @@
 // This is an attempt to move redundant code out of DrawerHeader and DiscussionCard by making the dropdown pin/flag menu into it's own component
 
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
@@ -17,20 +17,9 @@ import {
 
 import { CheckIfModOrAdmin } from '../CheckIfModOrAdmin'
 
-const dropdownMenu = (props) => {
-  // const [showFlagModal, setShowFlagModal] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
-  const { roomID } = useParams();
+const DropdownMenu = (props) => {
 
   console.log({props})
-
-  const flagsLength = props.discussion.flags
-    ? props.discussion.flags.length
-    : 0;
-
-  useEffect(() => {
-    if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
-  }, [flagsLength]);
 
   return(
     <Menu>
@@ -42,19 +31,19 @@ const dropdownMenu = (props) => {
       <Menu.Divider />
       <Menu.Item key="1">
         <a onClick={() => 
-          props.setShowFlagModal(true)}>
+          props.setShowFlagModal(!props.showFlagModal)}>
           <FlagOutlined /> Flag Discussion
         </a>
       </Menu.Item>
       
-      {/* TODO: test if we don't need 2 lines of CheckIfModOrAdmin and see if I can get away with just one */}
+      {/* TODO: Combine these 2 lines of CheckIfModOrAdmin into just one */}
       {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
         <Menu.Divider />
       )}
   
       {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
         <Menu.Item key="3">
-          <a onClick={() => props.setShowModal(true)}>
+          <a onClick={() => props.setShowModal(!props.showModal)}>
             <FlagOutlined /> Moderate
           </a>
         </Menu.Item>
@@ -77,4 +66,4 @@ export default connect(mapStateToProps, {
   setShowFlagModal,
   fetchPostsAndFlagsByRoom
   
-})(dropdownMenu);
+})(DropdownMenu);

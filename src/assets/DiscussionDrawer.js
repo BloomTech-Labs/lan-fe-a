@@ -7,6 +7,8 @@ import {
   fetchPost,
   fetchPostCommentsByRecent,
   fetchPostCommentsByPopular,
+  setShowModal,
+  setShowFlagModal
 } from '../store/actions';
 
 import { Drawer } from 'antd';
@@ -19,8 +21,8 @@ import DiscussionCardHeader from './components/DrawerHeader';
 
 const DiscussionDrawer = (props) => {
   const { discussionID } = useParams();
-  const [showModal, setShowModal] = useState(false);
-  const [showFlagModal, setShowFlagModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  // const [showFlagModal, setShowFlagModal] = useState(false);
 
   console.log({props})
 
@@ -43,15 +45,15 @@ const DiscussionDrawer = (props) => {
       <DiscussionCardHeader/>
 
       <FlagManagerModal
-        visible={showModal}
-        setVisible={setShowModal}
+        visible={props.showModal}
+        setVisible={props.setShowModal}
         flagsData={props.currentPost.flags ? props.currentPost.flags : undefined}
         discussionID={props.currentPost.id}
         />
 
       <UserFlaggingModal
-        visible={showFlagModal}
-        setVisible={setShowFlagModal}
+        visible={props.showFlagModal}
+        setVisible={props.setShowFlagModal}
         discussionID={props.currentPost.id}
         />
     </Drawer>
@@ -65,6 +67,8 @@ const mapStateToProps = (state) => {
     rooms: state.rooms,
     visible: state.isDrawerVisible,
     currentPost: state.currentPost,
+    showModal: state.showModal,
+    showFlagModal: state.showFlagModal
   };
 };
 
@@ -75,4 +79,6 @@ export default connect(mapStateToProps, {
   fetchPost,
   fetchPostCommentsByRecent,
   fetchPostCommentsByPopular,
+  setShowModal,
+  setShowFlagModal
 })(DiscussionDrawer);

@@ -16,7 +16,7 @@ import { Space, Divider, Menu, Dropdown, Layout, Typography } from 'antd';
 import { CheckIfModOrAdmin } from '../../assets/CheckIfModOrAdmin';
 
 import { PrivateRoute } from '../../utils/privateRoute';
-import dropdownMenu from './DiscussionDropdown';
+import DropdownMenu from './DiscussionDropdown';
 import { FlagChip } from '../FlagChip';
 import UserFlaggingModal from '../UserFlaggingModal';
 import FlagManagerModal from '../FlagManagerModal';
@@ -35,7 +35,7 @@ const DrawerHeader = (props) => {
   // const [showModal, setShowModal] = useState(false);
   // const [showFlagModal, setShowFlagModal] = useState(false);
   
-  console.log({props})
+  // console.log({props})
 
   //! A false state is indeed coming in from the redux store
   // console.log(props.showModal, props.showFlagModal)
@@ -114,7 +114,7 @@ const DrawerHeader = (props) => {
         </span>
         <span>
           <Divider type="vertical" />
-          <Dropdown overlay={dropdownMenu} trigger={['click']}>
+          <Dropdown overlay={<DropdownMenu/>} trigger={['click']}>
             <a
               className="ant-dropdown-link"
               onClick={(e) => e.preventDefault()}
