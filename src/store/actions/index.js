@@ -263,9 +263,10 @@ export const postComment = (user, postID, comment) => (dispatch) => {
 
 // Likes a comment
 export const likeComment = (commentID) => (dispatch) => {
-  axiosWithAuth()
+  return axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/like/${commentID}`)
-    .then(() => {})
+    .then(() => {
+    })
     .catch(() =>
       toast.error('Oh no! There was a problem liking this comment.')
     );
@@ -273,9 +274,10 @@ export const likeComment = (commentID) => (dispatch) => {
 
 // Removes like from a comment
 export const unlikeComment = (commentID) => (dispatch) => {
-  axiosWithAuth()
+  return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
-    .then(() => {})
+    .then(() => {
+    })
     .catch(() =>
       toast.error('Uh oh! There was a problem unliking this comment.')
     );
@@ -286,9 +288,12 @@ export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
   return axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/recent/${postID}`)
-    .then((response) =>
-      dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data })
-    )
+    .then((response) => {
+      dispatch({
+        type: 'SET_CURRENT_POST_COMMENTS',
+        payload: response.data.comments,
+      });
+    })
     .catch(() => toast.error('Looks like there was trouble loading comments.'));
 };
 
@@ -297,9 +302,9 @@ export const fetchPostCommentsByPopular = (postID) => (dispatch) => {
   dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/popular/${postID}`)
-    .then((response) =>
-      dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data })
-    )
+    .then((response) => {
+      dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data });
+    })
     .catch(() => toast.error('Looks like there was trouble loading comments.'));
 };
 
@@ -394,7 +399,7 @@ export const fetchFlaggedComments = () => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/mod/comments/flagged`)
     .then((res) => {
-      dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
+      dispatch({ type: 'SET_FLAGGED_COMMENTS', payload: res.data });
     })
     .catch(() => toast.error('There was a problem fetching flagged comments.'));
 };
@@ -429,7 +434,9 @@ export const archiveComment = (commentID) => (dispatch) => {
 export const resolvePost = (postID) => (dispatch) => {
   return axiosWithAuth()
     .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
-    .then(() => toast.success('The discussion post was approved!'))
+    .then(() => {
+      toast.success('The discussion post was approved!');
+    })
     .catch(() => toast.error('Error Resolving Post'));
 };
 

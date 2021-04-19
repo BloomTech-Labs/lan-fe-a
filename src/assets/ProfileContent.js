@@ -13,7 +13,12 @@ const ProfileContent = (props) => {
   const [actKey, setActKey] = useState('Posts');
   useEffect(() => {
     props.fetchUserProfile(userID);
-  }, []);
+  }, [
+    userID,
+    props.user.displayName,
+    props.user.profilePicture,
+    props.user.track,
+  ]);
 
   const handleEditProfileButton = () => {
     setActKey('Settings');
@@ -39,7 +44,7 @@ const ProfileContent = (props) => {
         >
           {/* Leaving this header in case we want to add it back in */}
           {/* <h2>{props.currentUser.display_name}</h2> */}
-          {props.user.id === props.match.params.id && (<h2>My Profile</h2>)}
+          {props.user.id === props.match.params.id && <h2>My Profile</h2>}
         </div>
       </Header>
       <Content>
@@ -49,6 +54,7 @@ const ProfileContent = (props) => {
               <img
                 src={props.currentUser.profile_picture}
                 width="100px"
+                height="100px"
                 style={{ borderRadius: '50%', marginRight: '15px' }}
               />
               <div>
@@ -80,9 +86,11 @@ const ProfileContent = (props) => {
                     </p>
                   )}
                 </div>
-                {props.user.id === props.match.params.id &&(<Button type="primary" onClick={handleEditProfileButton}>
-                  Edit Profile
-                </Button>)}
+                {props.user.id === props.match.params.id && (
+                  <Button type="primary" onClick={handleEditProfileButton}>
+                    Edit Profile
+                  </Button>
+                )}
               </div>
             </div>
 
@@ -131,9 +139,11 @@ const ProfileContent = (props) => {
                   </Card>
                 ))}
               </TabPane>
-              {props.user.id === props.match.params.id &&(<TabPane tab="Settings" key="Settings">
-                <SettingsContent actKey={actKey} />
-              </TabPane>)}
+              {props.user.id === props.match.params.id && (
+                <TabPane tab="Settings" key="Settings">
+                  <SettingsContent actKey={actKey} />
+                </TabPane>
+              )}
             </Tabs>
           </>
         )}
