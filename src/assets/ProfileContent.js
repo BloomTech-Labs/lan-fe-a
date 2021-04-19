@@ -13,7 +13,12 @@ const ProfileContent = (props) => {
   const [actKey, setActKey] = useState('Posts');
   useEffect(() => {
     props.fetchUserProfile(userID);
-  }, [userID]);
+  }, [
+    userID,
+    props.user.displayName,
+    props.user.profilePicture,
+    props.user.track,
+  ]);
 
   const handleEditProfileButton = () => {
     setActKey('Settings');
