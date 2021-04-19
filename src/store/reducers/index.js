@@ -24,7 +24,6 @@ const initialState = {
   individualPostCommentsAreFetching: false,
   isDrawerVisible: false,
   isNewRoomModalVisible: false,
-  // isFlaggingModalVisible: false,
   showFlagModal: false,
   showModal: false,
 };
@@ -138,22 +137,19 @@ export const reducer = (state = initialState, action) => {
         ...state,
         isNewRoomModalVisible: action.payload,
       };
-    // I believe this is deprecated and can be deleted
-    // case 'SET_FLAGGING_MODAL':
-    //   return {
-    //     ...state,
-    //     isFlaggingModalVisible: action.payload,
-    //   };
+
     case 'SET_SHOW_FLAGGING_MODAL':
       return {
         ...state,
         showFlagModal: action.payload,
       };
+
     case 'SET_SHOW_MODAL':
       return {
         ...state,
         showModal: action.payload,
       };
+      
     case 'FETCH_FLAGREASONS_SUCCESS':
       return {
         ...state,
