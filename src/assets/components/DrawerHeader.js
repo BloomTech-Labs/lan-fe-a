@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Switch, useRouteMatch } from 'react-router-dom';
 import moment from 'moment';
@@ -8,15 +8,13 @@ import {
   MessageOutlined,
   ArrowUpOutlined,
   EllipsisOutlined,
-  PushpinOutlined,
-  FlagOutlined,
 } from '@ant-design/icons';
-import { Space, Divider, Menu, Dropdown, Layout, Typography } from 'antd';
+import { Space, Divider, Dropdown, Layout, Typography } from 'antd';
 
 import { CheckIfModOrAdmin } from '../../assets/CheckIfModOrAdmin';
 
 import { PrivateRoute } from '../../utils/privateRoute';
-import DropdownMenu from './DiscussionDropdown';
+import DropdownMenu from './DropdownMenu';
 import { FlagChip } from '../FlagChip';
 import UserFlaggingModal from '../UserFlaggingModal';
 import FlagManagerModal from '../FlagManagerModal';
@@ -32,44 +30,10 @@ const IconText = ({ icon, text }) => (
 const DrawerHeader = (props) => {
   const { path, url } = useRouteMatch();
   const { Header, Content } = Layout;
-  // const [showModal, setShowModal] = useState(false);
-  // const [showFlagModal, setShowFlagModal] = useState(false);
-  
-  // console.log({props})
 
-  //! A false state is indeed coming in from the redux store
-  // console.log(props.showModal, props.showFlagModal)
-
-  // const dropdownMenu = (
-    //   <Menu>
-    //     <Menu.Item key="0">
-    //       <a>
-    //         <PushpinOutlined /> Pin
-    //       </a>
-    //     </Menu.Item>
-    //     <Menu.Divider />
-    //     <Menu.Item key="1">
-    //       <a onClick={() => setShowFlagModal(true)}>
-    //         <FlagOutlined /> Flag Discussion
-    //       </a>
-    //     </Menu.Item>
-    
-    //     {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
-      //       <Menu.Divider />
-      //     )}
-      
-      //     {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
-        //       <Menu.Item key="3">
-        //         <a onClick={() => setShowModal(true)}>
-        //           <FlagOutlined /> Moderate
-        //         </a>
-        //       </Menu.Item>
-        //     )}
-        //   </Menu>
-        // );
         
-        return (
-          <>
+  return (
+    <>
       <div>
         <span>
           <Space>

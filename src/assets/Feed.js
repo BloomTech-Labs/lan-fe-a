@@ -19,12 +19,6 @@ const Feed = (props) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (roomID) {
-  //     if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
-  //   }
-  // }, [props.discussion.flags]);
-
   return (
     <>
       <Divider orientation="right">

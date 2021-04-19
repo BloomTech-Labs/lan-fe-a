@@ -1,7 +1,6 @@
 // This is an attempt to move redundant code out of DrawerHeader and DiscussionCard by making the dropdown pin/flag menu into it's own component
 
-import React, {useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
 import {
   setShowModal,
@@ -18,8 +17,6 @@ import {
 import { CheckIfModOrAdmin } from '../CheckIfModOrAdmin'
 
 const DropdownMenu = (props) => {
-
-  console.log({props})
 
   return(
     <Menu>

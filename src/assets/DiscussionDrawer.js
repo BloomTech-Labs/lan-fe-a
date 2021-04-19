@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
   fetchPostByRoom,
@@ -21,10 +21,6 @@ import DiscussionCardHeader from './components/DrawerHeader';
 
 const DiscussionDrawer = (props) => {
   const { discussionID } = useParams();
-  // const [showModal, setShowModal] = useState(false);
-  // const [showFlagModal, setShowFlagModal] = useState(false);
-
-  console.log({props})
 
   useEffect(() => {
     if (discussionID) {
