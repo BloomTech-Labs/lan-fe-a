@@ -35,11 +35,14 @@ const IconText = ({ icon, text }) => (
 
 const DiscussionCard = (props) => {
   const { path, url } = useRouteMatch();
-  const { roomID } = useParams();
 
-  const flagsLength = props.discussion.flags
-    ? props.discussion.flags.length
-    : 0;
+
+  // I believe these lines of code can be deleted if there is code elsewhere handling the discussion flags
+  // const { roomID } = useParams();
+
+  // const flagsLength = props.discussion.flags
+  //   ? props.discussion.flags.length
+  //   : 0;
 
   // useEffect(() => {
   //   if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);

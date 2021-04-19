@@ -9,7 +9,7 @@ import {
   ArrowUpOutlined,
   EllipsisOutlined,
 } from '@ant-design/icons';
-import { Space, Divider, Dropdown, Layout, Typography } from 'antd';
+import { Space, Divider, Dropdown } from 'antd';
 
 import { CheckIfModOrAdmin } from '../../assets/CheckIfModOrAdmin';
 
@@ -29,8 +29,6 @@ const IconText = ({ icon, text }) => (
 
 const DrawerHeader = (props) => {
   const { path, url } = useRouteMatch();
-  const { Header, Content } = Layout;
-
         
   return (
     <>
@@ -88,30 +86,6 @@ const DrawerHeader = (props) => {
           </Dropdown>
         </span>
       </div>
-      <Layout>
-        <Header
-          style={{
-            padding: '0px 0px',
-            display: 'flex',
-            justifyContent: 'flex-start',
-            height: 'auto',
-          }}
-        ></Header>
-        <Content style={{ background: '#fff' }}>
-          <div
-            style={{
-              display: 'flex',
-              flexFlow: 'column wrap',
-              alignSelf: 'flex-start',
-            }}
-          >
-            <Typography.Title level={3}>
-              {props.currentPost.title}
-            </Typography.Title>
-            <Typography.Text>{props.currentPost.description}</Typography.Text>
-          </div>
-        </Content>
-      </Layout>
 
       <FlagManagerModal
         visible={props.showModModal}
