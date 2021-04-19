@@ -144,6 +144,48 @@ const ProfileContent = (props) => {
                   <SettingsContent actKey={actKey} />
                 </TabPane>
               )}
+               <TabPane tab="Following" key="Following">
+                {props.currentUser.comments.map((item, index) => (
+                  <Card
+                    size="small"
+                    key={index}
+                    title={
+                      <p> Following Cards Coming Soon
+                      </p>
+                    }
+                    style={{ width: 500 }}
+                  >
+                  </Card>
+                ))}
+              </TabPane>
+              <TabPane tab="Rooms" key="Rooms">
+                {props.currentUser.comments.map((item, index) => (
+                  <Card
+                    size="small"
+                    key={index}
+                    title={
+                      <p> Room Cards Coming Soon
+                      </p>
+                    }
+                    style={{ width: 500 }}
+                  >
+                  </Card>
+                ))}
+              </TabPane>
+              <TabPane tab="Github" key="Github">
+                {props.currentUser.comments.map((item, index) => (
+                  <Card
+                    size="small"
+                    key={index}
+                    title={
+                      <p> Github Coming Soon
+                      </p>
+                    }
+                    style={{ width: 500 }}
+                  >
+                  </Card>
+                ))}
+              </TabPane>
             </Tabs>
           </>
         )}
