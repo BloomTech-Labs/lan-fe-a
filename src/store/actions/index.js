@@ -74,6 +74,31 @@ export const fetchUserProfile = (userID) => (dispatch) => {
     .catch(() => toast.error('Hmmm, there was a problem fetching the user.'));
 };
 
+// fetch the current users liked rooms
+export const fetchCurrentUsersLikedRooms = userID => {
+  axiosWithAuth()
+    .get(`${BACKEND_URL}/api/myroom/${userID}`)
+    .then((response) =>
+      dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: response.data })
+    )
+    .catch(() => toast.error('Hmmm, there was a problem fetching the users liked rooms.'));
+}
+// adds rooms to liked rooms
+export const addToCurrentUsersLikedRooms = (userID, roomID) => {
+  axiosWithAuth()
+    .post(`${BACKEND_URL}/api/myroom/${userID}/${roomID}`)
+    .then((response) =>{
+      let roomIds = []
+      response.data.rooms.forEach(element => {
+        if (!roomIds.includes(element.room_id))
+          roomIds.push(element.room_id)
+      });
+      console.log(roomIds)
+      dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: roomIds })
+    })
+    .catch(() => toast.error('Hello world.'));
+}
+
 // Updates a user's display name
 export const updateUserDisplayName = (userDetails, displayName) => (
   dispatch

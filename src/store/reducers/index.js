@@ -1,6 +1,7 @@
 const initialState = {
   user: {},
   currentUser: {},
+  currentUsersLikedRooms: [],
   rooms: [],
   users: [],
   posts: [],
@@ -110,6 +111,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
+      };
+
+    case 'SET_CURRENT_USERS_LIKED_ROOMS': 
+      return {
+        ...state,
+        currentUsersLikedRooms: action.payload
       };
 
     case 'START_FETCHING_CURRENT_POST_COMMENTS':
