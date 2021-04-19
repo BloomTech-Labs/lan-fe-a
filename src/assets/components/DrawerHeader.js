@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Switch, useRouteMatch } from 'react-router-dom';
 import moment from 'moment';
-import { fetchPost, setShowFlagModal, setShowModal } from '../../store/actions';
+import { fetchPost, setShowFlagModal, setShowModModal } from '../../store/actions';
 
 import {
   MessageOutlined,
@@ -114,8 +114,8 @@ const DrawerHeader = (props) => {
       </Layout>
 
       <FlagManagerModal
-        visible={props.showModal}
-        setVisible={props.setShowModal}
+        visible={props.showModModal}
+        setVisible={props.setShowModModal}
         flagsData={
           props.currentPost.flags ? props.currentPost.flags : undefined
         }
@@ -143,13 +143,13 @@ const mapStateToProps = (state) => {
     user: state.user,
     currentPost: state.currentPost,
     discussion: state.posts,
-    showModal: state.showModal,
+    showModModal: state.showModModal,
     showFlagModal: state.showFlagModal
   };
 };
 
 export default connect(mapStateToProps, {
   fetchPost,
-  setShowModal,
+  setShowModModal,
   setShowFlagModal,
 })(DrawerHeader);

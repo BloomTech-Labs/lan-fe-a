@@ -473,6 +473,6 @@ export const setShowFlagModal = (bool) => (dispatch) => {
   dispatch({ type: 'SET_SHOW_FLAGGING_MODAL', payload: bool });
 };
 
-export const setShowModal = (bool) => (dispatch) => {
-  dispatch({ type: 'SET_SHOW_MODAL', payload: bool });
+export const setShowModModal = (bool) => (dispatch) => {
+  dispatch({ type: 'SET_SHOW_MOD_MODAL', payload: bool });
 };

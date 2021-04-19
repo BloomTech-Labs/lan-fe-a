@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  setShowModal,
+  setShowModModal,
   setShowFlagModal,
   fetchPostsAndFlagsByRoom
 } from '../../store/actions';
@@ -36,7 +36,7 @@ const DropdownMenu = (props) => {
         <>
           <Menu.Divider />
           <Menu.Item key="3">
-            <a onClick={() => props.setShowModal(!props.showModal)}>
+            <a onClick={() => props.setShowModModal(!props.showModModal)}>
               <FlagOutlined /> Moderate
             </a>
           </Menu.Item>
@@ -50,13 +50,13 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     currentPost: state.currentPost,
-    showModal: state.showModal,
+    showModModal: state.showModModal,
     showFlagModal: state.showFlagModal
   };
 };
 
 export default connect(mapStateToProps, {
-  setShowModal,
+  setShowModModal,
   setShowFlagModal,
   fetchPostsAndFlagsByRoom
   

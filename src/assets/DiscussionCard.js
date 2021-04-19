@@ -6,7 +6,7 @@ import {
   fetchPost,
   setDrawerVisibility,
   setShowFlagModal, 
-  setShowModal
+  setShowModModal
 } from '../store/actions/index';
 import {
   MessageOutlined,
@@ -101,8 +101,8 @@ const DiscussionCard = (props) => {
       {props.discussion.description}
 
       <FlagManagerModal
-        visible={props.showModal}
-        setVisible={props.setShowModal}
+        visible={props.showModModal}
+        setVisible={props.setShowModModal}
         flagsData={props.discussion.flags ? props.discussion.flags : undefined}
         discussionID={props.discussion.id}
       />
@@ -127,7 +127,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     rooms: state.rooms,
-    showModal: state.showModal,
+    showModModal: state.showModModal,
     showFlagModal: state.showFlagModal
   };
 };
@@ -136,6 +136,6 @@ export default connect(mapStateToProps, {
   fetchPostsAndFlagsByRoom,
   fetchPost,
   setDrawerVisibility,
-  setShowModal,
+  setShowModModal,
   setShowFlagModal,
 })(DiscussionCard);
