@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { Button, Card, Input, Dropdown, Menu } from 'antd';
+import { Button, Card, Input, Dropdown, Menu, Checkbox } from 'antd';
 import { CloseCircleOutlined, DownOutlined } from '@ant-design/icons';
 import {
   updateUserDisplayName,
@@ -76,6 +76,10 @@ const SettingsContent = (props) => {
 
   function handleMenuClick(e) {
     setSettings({ ...settings, track: e.key });
+  }
+
+  function onCheck(e) {
+    console.log(`checked = ${e.target.checked}`);
   }
 
   const menu = (
@@ -197,6 +201,10 @@ const SettingsContent = (props) => {
           </form>
         )}
       </Card>
+      <Checkbox 
+        style={{ marginTop: '5px' }}
+        onCheck={onCheck}>Check here if you are interested in becoming a mentor.
+      </Checkbox>
       <Button
         type="primary"
         icon={<CloseCircleOutlined />}
