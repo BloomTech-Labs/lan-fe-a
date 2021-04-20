@@ -88,17 +88,15 @@ const ProfileContent = (props) => {
                     </p>
                   )}
                 </div>
-                <p>Profile Coming Soon</p>
+                <p>Bio Coming Soon</p>
                 {props.user.id === props.match.params.id && (
                   <Button type="primary" onClick={handleEditProfileButton}>
                     Edit Profile
                   </Button>
                 )}
-                </div>
-                </div>
                 <div>
                 {props.user.id != props.match.params.id && (
-                  <div  style={{display: 'flex', marginLeft: '18%'}}>
+                  <div  style={{display: 'flex'}}>
                   <div style={{marginRight: '7%'}}>
                     <Button type="primary" style={{width: '125px'}}>
                       Follow
@@ -111,6 +109,8 @@ const ProfileContent = (props) => {
                   </div>
                   </div>
                 )}
+                </div>
+                </div>
                 </div>
             <Tabs
               defaultActiveKey="Posts"
