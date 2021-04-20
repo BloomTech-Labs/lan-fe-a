@@ -36,18 +36,6 @@ const IconText = ({ icon, text }) => (
 const DiscussionCard = (props) => {
   const { path, url } = useRouteMatch();
 
-
-  // I believe these lines of code can be deleted if there is code elsewhere handling the discussion flags
-  // const { roomID } = useParams();
-
-  // const flagsLength = props.discussion.flags
-  //   ? props.discussion.flags.length
-  //   : 0;
-
-  // useEffect(() => {
-  //   if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
-  // }, [flagsLength]);
-
   const handleLikePost = () => {
     props.discussion.liked
       ? props.unlike(props.discussion.id).then(() => {
