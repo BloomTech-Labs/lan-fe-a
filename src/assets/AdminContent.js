@@ -7,7 +7,7 @@ import {
   createRoom,
 } from '../store/actions';
 import SingleUserContent from './SingleUserContent';
-import SingleRoomCard from './SingleRoomContent';
+import SingleRoomContent from './SingleRoomContent';
 import { Layout, Input, Button, Tabs, Modal } from 'antd';
 
 const AdminContent = (props) => {
@@ -25,6 +25,8 @@ const AdminContent = (props) => {
   const [roomValues, SetRoomValues] = useState(initialRoomValue);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const [activeTab, setActiveTab] = useState('Users');
 
   const showModal = () => {
     SetRoomValues(initialRoomValue);
@@ -106,7 +108,7 @@ const AdminContent = (props) => {
         </div>
       </Header>
       <Content>
-        <Tabs>
+        <Tabs onChange={(key) => setActiveTab(key)}>
           <TabPane key="Users" tab="Users">
             <div
               style={{
@@ -117,7 +119,13 @@ const AdminContent = (props) => {
             >
               {props.user.role_id === 3 &&
                 props.users.map((item) => {
-                  return <SingleUserContent key={item.id} user={item} />;
+                  return (
+                    <SingleUserContent
+                      key={item.id}
+                      user={item}
+                      activeTab={activeTab}
+                    />
+                  );
                 })}
             </div>
           </TabPane>
@@ -136,7 +144,7 @@ const AdminContent = (props) => {
             >
               {props.user.role_id === 3 &&
                 props.rooms.map((item) => {
-                  return <SingleRoomCard key={item.id} room={item} />;
+                  return <SingleRoomContent key={item.id} room={item} />;
                 })}
             </div>
           </TabPane>

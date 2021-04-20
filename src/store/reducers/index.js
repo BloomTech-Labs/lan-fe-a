@@ -5,12 +5,14 @@ const initialState = {
     rooms: [],
     users: [],
     posts: [],
+    flaggedPosts: [],
+    flaggedComments: [],
     totalPages: 1,
     mainSearchResults: {
         users: [],
         rooms: [],
         posts: [],
-        comments: [],
+        totalPages: 1,
     },
     currentPost: {},
     currentPostComments: [],
@@ -33,7 +35,7 @@ export const reducer = (state = initialState, action) => {
         case 'SET_USER':
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
             };
 
         case 'SET_ROOMS':
@@ -58,7 +60,13 @@ export const reducer = (state = initialState, action) => {
         case 'SET_FLAGGED_POSTS':
             return {
                 ...state,
-                posts: action.payload,
+                flaggedPosts: action.payload,
+            };
+
+        case 'SET_FLAGGED_COMMENTS':
+            return {
+                ...state,
+                flaggedComments: action.payload,
             };
 
         case 'START_FETCHING_CURRENT_POST':
@@ -113,12 +121,6 @@ export const reducer = (state = initialState, action) => {
                 currentUser: action.payload,
             };
 
-        case 'SET_CURRENT_USERS_LIKED_ROOMS':
-            return {
-                ...state,
-                currentUsersLikedRooms: action.payload
-            };
-
         case 'START_FETCHING_CURRENT_POST_COMMENTS':
             return {
                 ...state,
@@ -154,6 +156,12 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 flagReasons: action.payload,
             };
+
+        case 'SET_CURRENT_USERS_LIKED_ROOMS':
+            return {
+                ...state,
+                currentUsersLikedRooms: action.payload
+            }
 
         default:
             return state;

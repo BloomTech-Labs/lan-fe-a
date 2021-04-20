@@ -97,7 +97,6 @@ export const addToCurrentUsersLikedRooms = (userID, roomID) => (dispatch) => {
                 response.data.rooms.forEach(element => {
                     if (!roomIds.includes(element.room_id))
                         roomIds.push(element.room_id);
-                    //console.log('this is roomsIds in the then', roomIds)
                 });
                 dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: roomIds });
             })

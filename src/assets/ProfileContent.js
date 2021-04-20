@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchUserProfile } from '../store/actions';
 import SettingsContent from './SettingsContent';
 import { Layout, Badge, Button, Tabs, Card } from 'antd';
+import Column from 'antd/lib/table/Column';
 
 const ProfileContent = (props) => {
   const { Header, Content } = Layout;
@@ -11,10 +12,14 @@ const ProfileContent = (props) => {
   const userID = props.match.params.id;
 
   const [actKey, setActKey] = useState('Posts');
-
   useEffect(() => {
     props.fetchUserProfile(userID);
-  }, []);
+  }, [
+    userID,
+    props.user.displayName,
+    props.user.profilePicture,
+    props.user.track,
+  ]);
 
   const handleEditProfileButton = () => {
     setActKey('Settings');
@@ -40,6 +45,7 @@ const ProfileContent = (props) => {
         >
           {/* Leaving this header in case we want to add it back in */}
           {/* <h2>{props.currentUser.display_name}</h2> */}
+          {props.user.id === props.match.params.id && <h2>My Profile</h2>}
         </div>
       </Header>
       <Content>
@@ -49,12 +55,14 @@ const ProfileContent = (props) => {
               <img
                 src={props.currentUser.profile_picture}
                 width="100px"
+                height="100px"
                 style={{ borderRadius: '50%', marginRight: '15px' }}
               />
               <div>
                 <Badge
                   count={props.currentUser.track.toUpperCase()}
                   offset={[25, -10]}
+                  style={{backgroundColor: 'grey'}}
                 >
                   <h3>{props.currentUser.display_name}</h3>
                 </Badge>
@@ -80,12 +88,30 @@ const ProfileContent = (props) => {
                     </p>
                   )}
                 </div>
-                <Button type="primary" onClick={handleEditProfileButton}>
-                  Edit Profile
-                </Button>
-              </div>
-            </div>
-
+                <p>Bio Coming Soon</p>
+                {props.user.id === props.match.params.id && (
+                  <Button type="primary" onClick={handleEditProfileButton}>
+                    Edit Profile
+                  </Button>
+                )}
+                <div>
+                {props.user.id != props.match.params.id && (
+                  <div  style={{display: 'flex'}}>
+                  <div style={{marginRight: '7%'}}>
+                    <Button type="primary" style={{width: '125px'}}>
+                      Follow
+                    </Button>
+                  </div>
+                  <div>
+                   <Button type="primary" style={{width: '125px'}}>
+                     Message
+                    </Button>
+                  </div>
+                  </div>
+                )}
+                </div>
+                </div>
+                </div>
             <Tabs
               defaultActiveKey="Posts"
               activeKey={actKey}
@@ -131,9 +157,45 @@ const ProfileContent = (props) => {
                   </Card>
                 ))}
               </TabPane>
-              <TabPane tab="Settings" key="Settings">
-                <SettingsContent actKey={actKey} />
+              
+               <TabPane tab="Following" key="Following">
+                  <Card
+                    size="small"
+                    title={
+                      <p> Following Cards Coming Soon
+                      </p>
+                    }
+                    style={{ width: 500 }}
+                  >
+                  </Card>
               </TabPane>
+              <TabPane tab="Rooms" key="Rooms">
+                  <Card
+                    size="small"
+                    title={
+                      <p> Room Cards Coming Soon
+                      </p>
+                    }
+                    style={{ width: 500 }}
+                  >
+                  </Card>
+              </TabPane>
+              <TabPane tab="Github" key="Github">
+                  <Card
+                    size="small"
+                    title={
+                      <p> Github Coming Soon
+                      </p>
+                    }
+                    style={{ width: 500 }}
+                  >
+                  </Card>
+              </TabPane>
+              {props.user.id === props.match.params.id && (
+                <TabPane tab="Settings" key="Settings">
+                  <SettingsContent actKey={actKey} />
+                </TabPane>
+              )}
             </Tabs>
           </>
         )}
