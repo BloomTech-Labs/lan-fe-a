@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchUserProfile } from '../store/actions';
 import SettingsContent from './SettingsContent';
 import { Layout, Badge, Button, Tabs, Card } from 'antd';
+import Column from 'antd/lib/table/Column';
 
 const ProfileContent = (props) => {
   const { Header, Content } = Layout;
@@ -61,6 +62,7 @@ const ProfileContent = (props) => {
                 <Badge
                   count={props.currentUser.track.toUpperCase()}
                   offset={[25, -10]}
+                  style={{backgroundColor: 'grey'}}
                 >
                   <h3>{props.currentUser.display_name}</h3>
                 </Badge>
@@ -91,8 +93,27 @@ const ProfileContent = (props) => {
                     Edit Profile
                   </Button>
                 )}
-              </div>
-            </div>
+                </div>
+                </div>
+                <div>
+                {props.user.id != props.match.params.id && (
+                  <div  style={{display: 'flex', marginLeft: '18%'}}>
+                  <div style={{marginRight: '7%'}}>
+                    <Button type="primary" style={{width: '125px'}}>
+                      Follow
+                    </Button>
+                  </div>
+                  <div>
+                   <Button type="primary" style={{width: '125px'}}>
+                     Message
+                    </Button>
+                  </div>
+                  </div>
+                )}
+                </div>
+              
+              
+            
 
             <Tabs
               defaultActiveKey="Posts"
