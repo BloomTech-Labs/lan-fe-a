@@ -88,6 +88,7 @@ const ProfileContent = (props) => {
                     </p>
                   )}
                 </div>
+                <p>Profile Coming Soon</p>
                 {props.user.id === props.match.params.id && (
                   <Button type="primary" onClick={handleEditProfileButton}>
                     Edit Profile
@@ -111,10 +112,6 @@ const ProfileContent = (props) => {
                   </div>
                 )}
                 </div>
-              
-              
-            
-
             <Tabs
               defaultActiveKey="Posts"
               activeKey={actKey}
