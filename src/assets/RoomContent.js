@@ -8,14 +8,15 @@ import {
   setDrawerVisibility,
   fetchPost,
   fetchPostsAndFlagsByRoom,
-  postQuestion,
+  postQuestion, 
+  addToCurrentUsersLikedRooms,
+  deleteCurrentRoomFromLikedRooms
 } from '../store/actions';
 
 import { Layout, Input, Form, Button, Modal } from 'antd';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 
 import Feed from './Feed';
-import { addToCurrentUsersLikedRooms,deleteCurrentRoomFromLikedRooms } from '../store/actions';
 
 const RoomContent = (props) => {
   const [title, setTitle] = useState('');
@@ -54,9 +55,9 @@ const RoomContent = (props) => {
     setConfirmLoading(false);
   };
 
-  const handleLikeRoomButtonClicked = () => addToCurrentUsersLikedRooms(props.user.id, roomID);
+  const handleLikeRoomButtonClicked = () => props.addToCurrentUsersLikedRooms(props.user.id, roomID);
 
-  const handleUnlikeRoomButtonClicked = () => deleteCurrentRoomFromLikedRooms(props.user.id, roomID);
+  const handleUnlikeRoomButtonClicked = () => props.deleteCurrentRoomFromLikedRooms(props.user.id, roomID);
 
 
 
@@ -116,9 +117,11 @@ const RoomContent = (props) => {
                 alignItems: 'center'
               }}>
                 {findRoom(roomID).room_name}
-                {props.currentUsersLikedRooms.includes(roomID) ? 
-                  (<HeartFilled onClick={handleUnlikeRoomButtonClicked} style={{marginLeft: '1rem', fontSize: '24px', color: '#405cee'}}/>) : 
-                  (<HeartOutlined onClick={handleLikeRoomButtonClicked} style={{marginLeft: '1rem', fontSize: '24px', color: '#405cee'}}/>)}
+
+
+                {props.currentUsersLikedRooms.includes(Number(roomID)) ? 
+                  <HeartFilled onClick={handleUnlikeRoomButtonClicked} style={{marginLeft: '1rem', fontSize: '24px', color: '#405cee'}}/> :
+                  <HeartOutlined onClick={handleLikeRoomButtonClicked} style={{marginLeft: '1rem', fontSize: '24px', color: '#405cee'}}/>}
               </div>
               
             </h2>
@@ -189,4 +192,7 @@ export default connect(mapStateToProps, {
   fetchPost,
   fetchPostsAndFlagsByRoom,
   postQuestion,
+  addToCurrentUsersLikedRooms,
+  deleteCurrentRoomFromLikedRooms
+
 })(RoomContent);
