@@ -265,8 +265,7 @@ export const postComment = (user, postID, comment) => (dispatch) => {
 export const likeComment = (commentID) => (dispatch) => {
   return axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/like/${commentID}`)
-    .then(() => {
-    })
+    .then(() => {})
     .catch(() =>
       toast.error('Oh no! There was a problem liking this comment.')
     );
@@ -276,8 +275,7 @@ export const likeComment = (commentID) => (dispatch) => {
 export const unlikeComment = (commentID) => (dispatch) => {
   return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
-    .then(() => {
-    })
+    .then(() => {})
     .catch(() =>
       toast.error('Uh oh! There was a problem unliking this comment.')
     );
@@ -291,7 +289,7 @@ export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: 'SET_CURRENT_POST_COMMENTS',
-        payload: response.data.comments,
+        payload: response.data,
       });
     })
     .catch(() => toast.error('Looks like there was trouble loading comments.'));
@@ -475,7 +473,6 @@ export const setDrawerVisibility = (bool) => (dispatch) => {
 export const setNewRoomModalVisibility = (bool) => (dispatch) => {
   dispatch({ type: 'SET_NEW_ROOM_MODAL_VISIBILITY', payload: bool });
 };
-
 
 export const setShowFlagModal = (bool) => (dispatch) => {
   dispatch({ type: 'SET_SHOW_FLAGGING_MODAL', payload: bool });
