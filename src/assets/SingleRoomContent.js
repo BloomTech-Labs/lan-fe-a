@@ -92,10 +92,10 @@ const SingleRoomContent = (props) => {
           flexFlow: 'column wrap',
           justifyContent: 'space-between',
         }}
-        headStyle={{ backgroundColor: '#405CEE', color: '#fff' }}
+        headStyle={{backgroundColor: '#dee2e6', color: '#000' }}
         extra={
-          <Button onClick={showModal}>
-            <b>Edit</b>
+          <Button type="primary" onClick={showModal}>
+            Edit
           </Button>
         }
       >

@@ -8,13 +8,16 @@
     ]
   },
   "dependencies": {
+    "@babel/core": "^7.13.15",
     "@craco/craco": "^6.1.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.15.0",
     "axios": "^0.21.1",
+    "babel-eslint": "^10.1.0",
     "craco-less": "^1.17.1",
+    "insert-css": "^2.0.0",
     "moment": "^2.24.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -54,6 +57,7 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.22.0"
+    "eslint-plugin-react": "^7.22.0",
+    "redux-logger": "^3.0.6"
   }
 }

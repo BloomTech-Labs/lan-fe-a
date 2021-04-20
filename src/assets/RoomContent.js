@@ -109,7 +109,7 @@ const RoomContent = (props) => {
             <h2
               style={{
                 marginBottom: '0px',
-                fontSize: '35px'
+                fontSize: '35px',
               }}
             >
               <div style={{

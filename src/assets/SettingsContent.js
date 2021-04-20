@@ -4,7 +4,10 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Button, Card, Input, Dropdown, Menu } from 'antd';
 import { CloseCircleOutlined, DownOutlined } from '@ant-design/icons';
-import { updateUserDisplayName, setTrackSettings } from '../store/actions';
+import {
+  updateUserDisplayName,
+  setTrackSettings,
+} from '../store/actions';
 
 /* eslint-disable no-undef */
 const BACKEND_URL =

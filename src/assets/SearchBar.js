@@ -5,16 +5,23 @@ import {
   fetchPostByRoom,
   setDrawerVisibility,
 } from '../store/actions';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, withRouter } from 'react-router-dom';
 import { Menu, Dropdown, Input } from 'antd';
 import { UserOutlined, ShopOutlined, FileOutlined } from '@ant-design/icons';
 
-const SearchBar = (props) => {
+const SearchBar = ({ history, searchResults, fetchPostByRoom, setDrawerVisibility, retrieveFullSearchResults }) => {
   const { url } = useRouteMatch();
 
+  const handleSearch = query => {
+    if (query) {
+      retrieveFullSearchResults(query);
+      history.push(`/search/${query}`);
+    }
+  }
+ 
   const handleSearchChange = (e) => {
     if (e.target.value !== '') {
-      props.retrieveFullSearchResults(e.target.value);
+      retrieveFullSearchResults(e.target.value);
     }
   };
 
@@ -24,12 +31,12 @@ const SearchBar = (props) => {
       trigger={['click']}
       overlay={
         <Menu>
-          {props.searchResults.posts.map((p) => (
+          {searchResults.posts.map((p) => (
             <Menu.Item icon={<FileOutlined />} key={`${p.title}-${p.id}`}>
               <Link to={`post/${p.id}`}>{p.title}</Link>
             </Menu.Item>
           ))}
-          {props.searchResults.users.map((u) => (
+          {searchResults.users.map((u) => (
             <Menu.Item
               icon={<UserOutlined />}
               key={`${u.display_name}-${u.id}`}
@@ -37,7 +44,7 @@ const SearchBar = (props) => {
               <Link to={`user/${u.id}`}>{u.display_name}</Link>
             </Menu.Item>
           ))}
-          {props.searchResults.rooms.map((r) => (
+          {searchResults.rooms.map((r) => (
             <Menu.Item
               icon={<ShopOutlined />}
               key={`${r.display_name}-${r.id}`}
@@ -45,8 +52,8 @@ const SearchBar = (props) => {
               <Link
                 to={`${url}/room/${r.id}`}
                 onClick={() => {
-                  props.fetchPostByRoom(r.id, 1);
-                  props.setDrawerVisibility(true);
+                  fetchPostByRoom(r.id, 1);
+                  setDrawerVisibility(true);
                 }}
               >
                 {r.room_name}
@@ -59,7 +66,7 @@ const SearchBar = (props) => {
       <Input.Search
         placeholder="input search text"
         onChange={handleSearchChange}
-        onSearch={(e) => console.log(e)}
+        onSearch={query => handleSearch(query)}
         enterButton
       />
     </Dropdown>
@@ -77,4 +84,4 @@ export default connect(mapStateToProps, {
   retrieveFullSearchResults,
   fetchPostByRoom,
   setDrawerVisibility,
-})(SearchBar);
+})(withRouter(SearchBar));
