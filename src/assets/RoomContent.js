@@ -15,7 +15,7 @@ import { Layout, Input, Form, Button, Modal } from 'antd';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 
 import Feed from './Feed';
-import { addToCurrentUsersLikedRooms } from '../store/actions';
+import { addToCurrentUsersLikedRooms,deleteCurrentRoomFromLikedRooms } from '../store/actions';
 
 const RoomContent = (props) => {
   const [title, setTitle] = useState('');
@@ -56,9 +56,9 @@ const RoomContent = (props) => {
 
   const handleLikeRoomButtonClicked = () => addToCurrentUsersLikedRooms(props.user.id, roomID);
 
-  const handleUnlikeRoomButtonClicked = () => {
-    console.log('user wants to unlike this room')
-  } 
+  const handleUnlikeRoomButtonClicked = () => deleteCurrentRoomFromLikedRooms(props.user.id, roomID);
+
+
 
   const handleCancel = () => setVisible(false);
 

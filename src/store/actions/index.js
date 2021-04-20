@@ -68,9 +68,9 @@ export const fetchUsersLikedComments = () => (dispatch) => {
 export const fetchUserProfile = (userID) => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/user/${userID}`)
-    .then((response) =>
+    .then((response) =>{
       dispatch({ type: 'SET_CURRENT_USER', payload: response.data })
-    )
+    })
     .catch(() => toast.error('Hmmm, there was a problem fetching the user.'));
 };
 
@@ -78,25 +78,39 @@ export const fetchUserProfile = (userID) => (dispatch) => {
 export const fetchCurrentUsersLikedRooms = userID => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/myroom/${userID}`)
-    .then((response) =>
+    .then((response) =>{
+   
       dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: response.data })
-    )
+    })
     .catch(() => toast.error('Hmmm, there was a problem fetching the users liked rooms.'));
 }
 // adds rooms to liked rooms
-export const addToCurrentUsersLikedRooms = (userID, roomID) => {
+export const addToCurrentUsersLikedRooms = (userID, roomID) =>(dispatch)=> {
   axiosWithAuth()
     .post(`${BACKEND_URL}/api/myroom/${userID}/${roomID}`)
     .then((response) =>{
-      let roomIds = []
+      let roomIds = [];
       response.data.rooms.forEach(element => {
         if (!roomIds.includes(element.room_id))
-          roomIds.push(element.room_id)
+          roomIds.push(element.room_id);
       });
-      console.log(roomIds)
-      dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: roomIds })
+      dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: roomIds });
     })
-    .catch(() => toast.error('Hello world.'));
+    .catch((e) => toast.error(`${e}`));
+}
+// deletes rooms to liked rooms
+export const deleteCurrentRoomFromLikedRooms = (userID, roomID) =>(dispatch)=> {
+  axiosWithAuth()
+    .delete(`${BACKEND_URL}/api/myroom/${userID}/${roomID}`)
+    .then((response) =>{
+      let roomIds = [];
+      response.data.rooms.forEach(element => {
+        if (!roomIds.includes(element.room_id))
+          roomIds.push(element.room_id);
+      });
+      dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: roomIds });
+    })
+    .catch((e) => toast.error(`${e}`));
 }
 
 // Updates a user's display name
