@@ -36,13 +36,10 @@ const SettingsContent = (props) => {
   const [github, setGithub] = useState('')
 
   useEffect(() => {
-    setSettings({ ...settings, displayName: props.user.displayName });
+    setSettings({ ...settings, displayName: props.user.displayName, githubUserName: props.user.github_username });
   }, [props.user]);
 
-  useEffect(() => {
-    setSettings({ ...settings, githubUserName: props.user.github_username});
-  }, [props.user]);
-
+  
   useEffect(() => {
     if (props.actKey == 'Settings') {
       setEditSettings(initialEditSettings);
