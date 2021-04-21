@@ -1,4 +1,5 @@
 const initialState = {
+  currentUsersLikedRooms: [],
   user: {},
   currentUser: {},
   rooms: [],
@@ -8,10 +9,12 @@ const initialState = {
   flaggedComments: [],
   totalPages: 1,
   mainSearchResults: {
-    users: [],
     rooms: [],
+    users: [],
     posts: [],
-    comments: [],
+    flaggedPosts: [],
+    flaggedComments: [],
+    totalPages: 1,
   },
   currentPost: {},
   currentPostComments: [],

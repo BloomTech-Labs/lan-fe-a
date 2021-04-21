@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { Link, useParams } from 'react-router-dom';
 import {
-fetchPostByRoom,
-fetchRooms,
-setDrawerVisibility,
-fetchPost,
-fetchPostCommentsByRecent,
-fetchPostCommentsByPopular,
-setShowModModal,
-setShowFlagModal,
-postComment,
-likeComment,
-unlikeComment,
+  fetchPostByRoom,
+  fetchRooms,
+  setDrawerVisibility,
+  fetchPost,
+  fetchPostCommentsByRecent,
+  fetchPostCommentsByPopular,
+  setShowModModal,
+  setShowFlagModal,
+  postComment,
+  likeComment,
+  unlikeComment,
 } from '../store/actions';
 
 import UserFlaggingModal from './UserFlaggingModal';
@@ -120,20 +120,22 @@ const DiscussionDrawer = (props) => {
         props.setDrawerVisibility(false);
       }}
     >
-      <DiscussionCardHeader/>
+      <DiscussionCardHeader />
 
       <FlagManagerModal
         visible={props.showModModal}
         setVisible={props.setShowModModal}
-        flagsData={props.currentPost.flags ? props.currentPost.flags : undefined}
+        flagsData={
+          props.currentPost.flags ? props.currentPost.flags : undefined
+        }
         discussionID={props.currentPost.id}
-        />
+      />
 
       <UserFlaggingModal
         visible={props.showFlagModal}
         setVisible={props.setShowFlagModal}
         discussionID={props.currentPost.id}
-        />
+      />
       <Layout>
         <Header
           style={{
@@ -194,7 +196,7 @@ const DiscussionDrawer = (props) => {
                         }}
                       >
                         <IconText icon={ArrowUpOutlined} text={item.likes} />
-                      </div>,
+                      </div>
                     ]}
                     extra=""
                   >
