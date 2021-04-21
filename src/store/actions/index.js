@@ -336,7 +336,7 @@ export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: 'SET_CURRENT_POST_COMMENTS',
-        payload: response.data,
+        payload: response.data.comments,
       });
     })
     .catch(() => toast.error('Looks like there was trouble loading comments.'));
