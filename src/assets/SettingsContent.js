@@ -7,6 +7,7 @@ import { CloseCircleOutlined, DownOutlined } from '@ant-design/icons';
 import {
   updateUserDisplayName,
   setTrackSettings,
+  updateGitHubUsername,
 } from '../store/actions';
 
 /* eslint-disable no-undef */
@@ -20,7 +21,7 @@ const SettingsContent = (props) => {
   const initialSettings = {
     displayName: props.user.displayName,
     track: props.user.track,
-    githubUserName: '',
+    githubUserName: props.user.gitHubUsername,
   };
   const [settings, setSettings] = useState(initialSettings);
 
@@ -36,6 +37,10 @@ const SettingsContent = (props) => {
 
   useEffect(() => {
     setSettings({ ...settings, displayName: props.user.displayName });
+  }, [props.user]);
+
+  useEffect(() => {
+    setSettings({ ...settings, githubUserName: props.user.github_username});
   }, [props.user]);
 
   useEffect(() => {
@@ -79,6 +84,7 @@ const SettingsContent = (props) => {
       props.setTrackSettings(props.user, settings.track);
       setEditSettings({ ...editSettings, track: false });
     }if (editSettings.githubUserName) {
+      props.updateGitHubUsername(props.user, github)
       setSettings({ ...settings, githubUserName: github });
       setInput('');
       setEditSettings({ ...editSettings, githubUserName: false });
@@ -299,4 +305,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   updateUserDisplayName,
   setTrackSettings,
+  updateGitHubUsername,
 })(SettingsContent);

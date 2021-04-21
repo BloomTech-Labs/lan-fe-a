@@ -526,6 +526,24 @@ export const fetchComments = (commentId) => (dispatch) => {
         );
 };
 
+// update GitHub username
+
+export const updateGitHubUsername = (userDetails, gitHubUsername) => (
+  dispatch
+) => {
+    console.log(userDetails, gitHubUsername);
+  const userID = userDetails.id;
+  axiosWithAuth()
+    .put(`${BACKEND_URL}/api/user/githubusername`, { userID, gitHubUsername })
+    .then(() => {
+      toast.success('Woo! Username changed to ' + gitHubUsername);
+      dispatch({ type: 'SET_USER', payload: { ...userDetails, gitHubUsername } });
+    })
+    .catch(() =>
+      toast.error('Oh no! there was a problem updating your username.')
+    );
+};
+
 export const setDrawerVisibility = (bool) => (dispatch) => {
     dispatch({ type: 'SET_DRAWER_VISIBILITY', payload: bool });
 };
