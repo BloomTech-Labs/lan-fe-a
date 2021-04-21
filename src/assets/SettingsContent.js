@@ -233,7 +233,7 @@ const SettingsContent = (props) => {
           </Button>
         }
       >
-        {settings.githubUserName}
+        {props.user.gitHubUsername}
         {editSettings.githubUserName && (
           <form
             style={{ marginTop: '10px' }}
