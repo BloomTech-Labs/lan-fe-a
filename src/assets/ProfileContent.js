@@ -180,7 +180,7 @@ const ProfileContent = (props) => {
                   </Card>
               </TabPane>
               <TabPane tab="Github" key="Github">
-              {props.user.github_username == null ? 
+              {props.currentUser.github_username == null ? 
               (<p>No Github info</p>) 
               :(<GitHubCalendar username={props.currentUser.github_username}/>)}
               </TabPane>
