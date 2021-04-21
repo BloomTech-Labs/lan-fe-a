@@ -7,6 +7,7 @@ import { CloseCircleOutlined, DownOutlined } from '@ant-design/icons';
 import {
   updateUserDisplayName,
   setTrackSettings,
+  updateGitHubUsername,
 } from '../store/actions';
 
 /* eslint-disable no-undef */
@@ -20,21 +21,25 @@ const SettingsContent = (props) => {
   const initialSettings = {
     displayName: props.user.displayName,
     track: props.user.track,
+    githubUserName: props.user.gitHubUsername,
   };
   const [settings, setSettings] = useState(initialSettings);
 
   const initialEditSettings = {
     displayName: false,
     track: false,
+    githubUserName: false,
   };
   const [editSettings, setEditSettings] = useState(initialEditSettings);
 
   const [input, setInput] = useState('');
+  const [github, setGithub] = useState('')
 
   useEffect(() => {
-    setSettings({ ...settings, displayName: props.user.displayName });
+    setSettings({ ...settings, displayName: props.user.displayName, githubUserName: props.user.github_username });
   }, [props.user]);
 
+  
   useEffect(() => {
     if (props.actKey == 'Settings') {
       setEditSettings(initialEditSettings);
@@ -61,6 +66,10 @@ const SettingsContent = (props) => {
     setInput(event.target.value);
   };
 
+  const onChangeGitHub = (event) => {
+    setGithub(event.target.value)
+  }
+
   const onSubmit = (event) => {
     event.preventDefault();
     if (editSettings.displayName) {
@@ -71,8 +80,14 @@ const SettingsContent = (props) => {
     } else if (editSettings.track) {
       props.setTrackSettings(props.user, settings.track);
       setEditSettings({ ...editSettings, track: false });
+    }if (editSettings.githubUserName) {
+      props.updateGitHubUsername(props.user, github)
+      setSettings({ ...settings, gitHubUsername: github });
+      setInput('');
+      setEditSettings({ ...editSettings, githubUserName: false });
     }
   };
+  
 
   function handleMenuClick(e) {
     setSettings({ ...settings, track: e.key });
@@ -201,6 +216,59 @@ const SettingsContent = (props) => {
           </form>
         )}
       </Card>
+      <Card
+        type="inner"
+        title="GitHub Username"
+        extra={
+          <Button
+            type="link"
+            onClick={() =>
+              setEditSettings({ ...editSettings, githubUserName: true })
+            }
+          >
+            Change
+          </Button>
+        }
+      >
+        {props.user.gitHubUsername}
+        {editSettings.githubUserName && (
+          <form
+            style={{ marginTop: '10px' }}
+            autoComplete="off"
+            spellCheck="false"
+            onSubmit={onSubmit}
+          >
+            <label htmlFor="github-user-name">
+              Provide your github username to display your contribution calendar
+            </label>
+            <Input
+              name="github-user-name"
+              type="text"
+              placeholder="Enter GitHub username"
+              value={github}
+              style={{ marginTop: '10px' }}
+              onChange={onChangeGitHub}
+            />
+            <Button
+              style={{ marginTop: '10px' }}
+              type="primary"
+              htmlType="submit"
+            >
+              Submit
+            </Button>
+            <Button
+              type="danger"
+              style={{ marginLeft: '10px' }}
+              onClick={() => {
+                setInput('');
+                setEditSettings({ ...editSettings, githubUserName: false});
+              }}
+            >
+              Cancel
+            </Button>
+          </form>
+        )}
+      </Card>
       <Checkbox 
         style={{ marginTop: '5px' }}
         onCheck={onCheck}>Check here if you are interested in becoming a mentor.
@@ -234,4 +302,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   updateUserDisplayName,
   setTrackSettings,
+  updateGitHubUsername,
 })(SettingsContent);
