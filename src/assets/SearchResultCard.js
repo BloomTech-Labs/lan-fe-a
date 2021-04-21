@@ -5,24 +5,23 @@ import { useRouteMatch, Link } from 'react-router-dom';
 
 const SearchResultCard = ({ cardType, content }) => {
     const { url } = useRouteMatch();
-    (cardType === "post") && console.log({content});
 
     switch (cardType) {
         case "room":
             return ((
-                <Link to="room-link">
+                <Link to={`/room/${content.id}`}>
                     <List.Item
                         className="discussion-card"
-                        key={''}
+                        key={content.id}
                         style={{ background: 'white'}}
                         grid={{ column: 4 }}
                     >
                         <List.Item.Meta
-                        title={
-                            <div className="discussion-header-styles">
-                                {content.room_name}
-                            </div>
-                        }
+                            title={
+                                <div className="discussion-header-styles">
+                                    {content.room_name}
+                                </div>
+                            }
                         />
                         {content.description}
                     </List.Item>
@@ -30,10 +29,10 @@ const SearchResultCard = ({ cardType, content }) => {
             ));
         case "post":
             return ((
-                <Link to="post-link">
+                <Link to={`${url}/discussion/${content.id}?view=popular`} >
                     <List.Item
                         className="discussion-card"
-                        key={''}
+                        key={content.id}
                         style={{ background: 'white'}}
                         grid={{ column: 4 }}
                     >
@@ -57,10 +56,10 @@ const SearchResultCard = ({ cardType, content }) => {
             ));
         case "comment":
             return ((
-                <Link to="parent-post-link">
+                <Link to={`${url}/discussion/${content.post_id}?view=popular`} >
                     <List.Item
                         className="discussion-card"
-                        key={''}
+                        key={content.id}
                         style={{ background: 'white'}}
                         grid={{ column: 4 }}
                     >
@@ -85,7 +84,7 @@ const SearchResultCard = ({ cardType, content }) => {
             ));
         case "user":
             return ((
-                <Link to="user-profile-link">
+                <Link to={`/user/${content.id}`} >
                     <List.Item
                         className="discussion-card"
                         key={''}

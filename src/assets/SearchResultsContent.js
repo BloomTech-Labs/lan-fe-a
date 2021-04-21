@@ -8,13 +8,16 @@ import {
   fetchPostsAndFlagsByRoom,
   postQuestion,
 } from '../store/actions';
-
 import { Layout } from 'antd';
+import { Switch, useRouteMatch } from 'react-router-dom';
 
 import Feed from './Feed';
+import { PrivateRoute } from '../utils/privateRoute';
+import DiscussionDrawer from './DiscussionDrawer';
 
 const SearchResultsContent = () => {
     const { Header, Content } = Layout;
+    const { path } = useRouteMatch();
 
     return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -56,6 +59,12 @@ const SearchResultsContent = () => {
         <Content>
             <Feed searchResultsFeed/>
         </Content>
+        <Switch>
+            <PrivateRoute
+            path={`${path}/discussion/:discussionID`}
+            component={DiscussionDrawer}
+            />
+        </Switch>
     </Layout>
   );
 };
