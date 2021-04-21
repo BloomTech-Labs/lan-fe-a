@@ -85,7 +85,7 @@ const SettingsContent = (props) => {
       setEditSettings({ ...editSettings, track: false });
     }if (editSettings.githubUserName) {
       props.updateGitHubUsername(props.user, github)
-      setSettings({ ...settings, githubUserName: github });
+      setSettings({ ...settings, gitHubUsername: github });
       setInput('');
       setEditSettings({ ...editSettings, githubUserName: false });
     }
