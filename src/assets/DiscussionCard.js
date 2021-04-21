@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import {
@@ -6,6 +6,8 @@ import {
   fetchPost,
   fetchPostByRoom,
   setDrawerVisibility,
+  setShowFlagModal, 
+  setShowModModal,
   like,
   unlike,
 } from '../store/actions/index';
@@ -13,12 +15,11 @@ import {
   MessageOutlined,
   ArrowUpOutlined,
   EllipsisOutlined,
-  PushpinOutlined,
-  FlagOutlined,
 } from '@ant-design/icons';
-import { List, Space, Divider, Menu, Dropdown } from 'antd';
+import { List, Space, Divider, Dropdown } from 'antd';
 import { useRouteMatch, Link, useParams } from 'react-router-dom';
 
+import DropdownMenu from './components/DropdownMenu';
 import { FlagChip } from './FlagChip';
 import UserFlaggingModal from './UserFlaggingModal';
 import FlagManagerModal from './FlagManagerModal';
@@ -34,18 +35,6 @@ const IconText = ({ icon, text }) => (
 
 const DiscussionCard = (props) => {
   const { path, url } = useRouteMatch();
-  const { roomID } = useParams();
-  const [showModal, setShowModal] = useState(false);
-
-  const [showFlagModal, setShowFlagModal] = useState(false);
-
-  const flagsLength = props.discussion.flags
-    ? props.discussion.flags.length
-    : 0;
-
-  // useEffect(() => {
-  //   if (props.user.role_id > 2) props.fetchPostsAndFlagsByRoom(roomID, 1);
-  // }, [flagsLength]);
 
   const handleLikePost = () => {
     props.discussion.liked
@@ -56,34 +45,6 @@ const DiscussionCard = (props) => {
           props.setUpdateLike(!props.updatelike);
         });
   };
-
-  const dropdownMenu = (
-    <Menu>
-      <Menu.Item key="0">
-        <a>
-          <PushpinOutlined /> Pin
-        </a>
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="1">
-        <a onClick={() => setShowFlagModal(true)}>
-          <FlagOutlined /> Flag Discussion
-        </a>
-      </Menu.Item>
-
-      {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
-        <Menu.Divider />
-      )}
-
-      {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
-        <Menu.Item key="3">
-          <a onClick={() => setShowModal(true)}>
-            <FlagOutlined /> Moderate
-          </a>
-        </Menu.Item>
-      )}
-    </Menu>
-  );
 
   return (
     <>
@@ -112,58 +73,55 @@ const DiscussionCard = (props) => {
           >
             <IconText icon={MessageOutlined} text={props.discussion.comments} />
           </Link>,
-          CheckIfModOrAdmin(props.user) && (
+          CheckIfModOrAdmin(props.user) && (  
             <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
               <FlagChip
                 flags={`${props.discussion.flags.length}`}
                 commentsFlagged={`${props.discussion.flaggedComments.length}`}
               />
             </Link>
-          ),
+          )
         ]}
       >
         <List.Item.Meta
-          title={
-            <div className="discussion-header-styles">
-              <Link to={`${url}/discussion/${props.discussion.id}?view=recent`}>
-                {props.discussion.title}
-              </Link>
-              <Dropdown overlay={dropdownMenu} trigger={['click']}>
-                <a
-                  className="ant-dropdown-link"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <EllipsisOutlined />
-                </a>
-              </Dropdown>
-            </div>
-          }
-          description={
-            <Space>
-              Posted by
-              <Link to={`/user/${props.discussion.user_id}`}>
-                {props.discussion.display_name}
-              </Link>
-              <Divider type="vertical" />
-              {moment(props.discussion.created_at).fromNow()}
-            </Space>
-          }
-        />
+            title={
+              <div className="discussion-header-styles">
+                <Link to={`${url}/discussion/${props.discussion.id}?view=recent`}>
+                  {props.discussion.title}
+                </Link>
+                <Dropdown overlay={<DropdownMenu/>} trigger={['click']}>
+                  <a
+                    className="ant-dropdown-link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <EllipsisOutlined />
+                  </a>
+                </Dropdown>
+              </div>
+            }
+            description={
+              <Space>
+                Posted by
+                <Link to={`/user/${props.discussion.user_id}`}>
+                  {props.discussion.display_name}
+                </Link>
+                <Divider type="vertical" />
+                {moment(props.discussion.created_at).fromNow()}
+              </Space>
+            }
+          />
         {props.discussion.description}
 
-        {/* TODO: Moves these next 2 modals into their own component so that they can be reused in the DiscussionDrawer.js */}
         <FlagManagerModal
-          visible={showModal}
-          setVisible={setShowModal}
-          flagsData={
-            props.discussion.flags ? props.discussion.flags : undefined
-          }
+          visible={props.showModModal}
+          setVisible={props.setShowModModal}
+          flagsData={props.discussion.flags ? props.discussion.flags : undefined}
           discussionID={props.discussion.id}
         />
 
         <UserFlaggingModal
-          visible={showFlagModal}
-          setVisible={setShowFlagModal}
+          visible={props.showFlagModal}
+          setVisible={props.setShowFlagModal}
           discussionID={props.discussion.id}
         />
       </List.Item>
@@ -175,6 +133,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     rooms: state.rooms,
+    showModModal: state.showModModal,
+    showFlagModal: state.showFlagModal,
     currentPost: state.currentPost,
   };
 };
@@ -184,6 +144,8 @@ export default connect(mapStateToProps, {
   fetchPost,
   fetchPostByRoom,
   setDrawerVisibility,
+  setShowModModal,
+  setShowFlagModal,
   like,
   unlike,
 })(DiscussionCard);

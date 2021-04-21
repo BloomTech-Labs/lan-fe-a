@@ -308,22 +308,22 @@ export const postComment = (user, postID, comment) => (dispatch) => {
 
 // Likes a comment
 export const likeComment = (commentID) => (dispatch) => {
-    return axiosWithAuth()
-        .get(`${BACKEND_URL}/api/comment/like/${commentID}`)
-        .then(() => {})
-        .catch(() =>
-            toast.error('Oh no! There was a problem liking this comment.')
-        );
+  return axiosWithAuth()
+    .get(`${BACKEND_URL}/api/comment/like/${commentID}`)
+    .then(() => {})
+    .catch(() =>
+      toast.error('Oh no! There was a problem liking this comment.')
+    );
 };
 
 // Removes like from a comment
 export const unlikeComment = (commentID) => (dispatch) => {
-    return axiosWithAuth()
-        .delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
-        .then(() => {})
-        .catch(() =>
-            toast.error('Uh oh! There was a problem unliking this comment.')
-        );
+  return axiosWithAuth()
+    .delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
+    .then(() => {})
+    .catch(() =>
+      toast.error('Uh oh! There was a problem unliking this comment.')
+    );
 };
 
 // Fetches a post's comments, ordered by recent
@@ -511,6 +511,23 @@ export const fetchComments = (commentId) => (dispatch) => {
         );
 };
 
+// update GitHub username
+
+export const updateGitHubUsername = (userDetails, gitHubUsername) => (
+  dispatch
+) => {
+  const userID = userDetails.id;
+  axiosWithAuth()
+    .put(`${BACKEND_URL}/api/user/githubusername`, { userID, gitHubUsername })
+    .then(() => {
+      toast.success('Woo! GitHub username changed to ' + gitHubUsername);
+      dispatch({ type: 'SET_USER', payload: { ...userDetails, gitHubUsername } });
+    })
+    .catch(() =>
+      toast.error('Oh no! there was a problem updating your GitHub username.')
+    );
+};
+
 export const setDrawerVisibility = (bool) => (dispatch) => {
     dispatch({ type: 'SET_DRAWER_VISIBILITY', payload: bool });
 };
@@ -519,9 +536,6 @@ export const setNewRoomModalVisibility = (bool) => (dispatch) => {
     dispatch({ type: 'SET_NEW_ROOM_MODAL_VISIBILITY', payload: bool });
 };
 
-export const setFlaggingModalVisibility = (bool) => (dispatch) => {
-    dispatch({ type: 'SET_FLAGGING_MODAL', payload: bool });
-};
 
 export const fetchMessages = (user_send_id, user_receive_id) => (dispatch) => {
     const queue = [];
@@ -577,3 +591,12 @@ export const sendMessage = (user_send_id, user_receive_id, message) => (
 
 
 };
+
+export const setShowFlagModal = (bool) => (dispatch) => {
+  dispatch({ type: 'SET_SHOW_FLAGGING_MODAL', payload: bool });
+};
+
+export const setShowModModal = (bool) => (dispatch) => {
+  dispatch({ type: 'SET_SHOW_MOD_MODAL', payload: bool });
+};
+

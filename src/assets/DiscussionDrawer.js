@@ -9,10 +9,17 @@ import {
   fetchPost,
   fetchPostCommentsByRecent,
   fetchPostCommentsByPopular,
+  setShowModModal,
+  setShowFlagModal,
   postComment,
   likeComment,
   unlikeComment,
 } from '../store/actions';
+
+import UserFlaggingModal from './UserFlaggingModal';
+import FlagManagerModal from './FlagManagerModal';
+import DiscussionCardHeader from './components/DrawerHeader';
+
 import {
   Layout,
   Drawer,
@@ -66,6 +73,7 @@ const DiscussionDrawer = (props) => {
         props.fetchPostCommentsByRecent(discussionID);
       })
       .catch((err) => {
+        //TODO make a proper error message
         console.log(err.message);
       });
     setIsModalVisible(false);
@@ -112,6 +120,22 @@ const DiscussionDrawer = (props) => {
         props.setDrawerVisibility(false);
       }}
     >
+      <DiscussionCardHeader />
+
+      <FlagManagerModal
+        visible={props.showModModal}
+        setVisible={props.setShowModModal}
+        flagsData={
+          props.currentPost.flags ? props.currentPost.flags : undefined
+        }
+        discussionID={props.currentPost.id}
+      />
+
+      <UserFlaggingModal
+        visible={props.showFlagModal}
+        setVisible={props.setShowFlagModal}
+        discussionID={props.currentPost.id}
+      />
       <Layout>
         <Header
           style={{
@@ -172,7 +196,7 @@ const DiscussionDrawer = (props) => {
                         }}
                       >
                         <IconText icon={ArrowUpOutlined} text={item.likes} />
-                      </div>,
+                      </div>
                     ]}
                     extra=""
                   >
@@ -211,6 +235,8 @@ const mapStateToProps = (state) => {
     rooms: state.rooms,
     visible: state.isDrawerVisible,
     currentPost: state.currentPost,
+    showModModal: state.showModModal,
+    showFlagModal: state.showFlagModal,
     currentComments: state.currentPostComments,
   };
 };
@@ -222,6 +248,8 @@ export default connect(mapStateToProps, {
   fetchPost,
   fetchPostCommentsByRecent,
   fetchPostCommentsByPopular,
+  setShowModModal,
+  setShowFlagModal,
   postComment,
   likeComment,
   unlikeComment,

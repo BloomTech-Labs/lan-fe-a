@@ -1,36 +1,38 @@
 const initialState = {
-    currentUsersLikedRooms: [],
-    user: {},
-    currentUser: {},
-    messages: [],
+
+  messages: [],
+  currentUsersLikedRooms: [],
+  user: {},
+  currentUser: {},
+  rooms: [],
+  users: [],
+  posts: [],
+  flaggedPosts: [],
+  flaggedComments: [],
+  totalPages: 1,
+  mainSearchResults: {
     users: [],
     posts: [],
     rooms: [],
     flaggedPosts: [],
     flaggedComments: [],
     totalPages: 1,
-    mainSearchResults: {
-        rooms: [],
-        users: [],
-        posts: [],
-        flaggedPosts: [],
-        flaggedComments: [],
-        totalPages: 1,
-    },
-    currentPost: {},
-    currentPostComments: [],
-    search: '',
-    sort: '',
-    filter: '',
-    flagReasons: [],
-    usersLikedPosts: [],
-    usersLikedComments: [],
-    isLoading: false,
-    individualPostIsFetching: false,
-    individualPostCommentsAreFetching: false,
-    isDrawerVisible: false,
-    isNewRoomModalVisible: false,
-    isFlaggingModalVisible: false,
+  },
+  currentPost: {},
+  currentPostComments: [],
+  search: '',
+  sort: '',
+  filter: '',
+  flagReasons: [],
+  usersLikedPosts: [],
+  usersLikedComments: [],
+  isLoading: false,
+  individualPostIsFetching: false,
+  individualPostCommentsAreFetching: false,
+  isDrawerVisible: false,
+  isNewRoomModalVisible: false,
+  showFlagModal: false,
+  showModModal: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -180,6 +182,18 @@ export const reducer = (state = initialState, action) => {
                 ]
 
             };
+        
+       case 'SET_SHOW_FLAGGING_MODAL':
+      return {
+        ...state,
+        showFlagModal: action.payload,
+      };
+
+    case 'SET_SHOW_MOD_MODAL':
+      return {
+        ...state,
+        showModModal: action.payload,
+      };
 
         default:
             return state;
