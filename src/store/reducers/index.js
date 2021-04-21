@@ -1,12 +1,11 @@
 const initialState = {
-
     currentUsersLikedRooms: [],
-
     user: {},
     currentUser: {},
-    rooms: [],
+    messages: [],
     users: [],
     posts: [],
+    rooms: [],
     flaggedPosts: [],
     flaggedComments: [],
     totalPages: 1,
@@ -164,7 +163,22 @@ export const reducer = (state = initialState, action) => {
         case 'SET_CURRENT_USERS_LIKED_ROOMS':
             return {
                 ...state,
-                currentUsersLikedRooms: action.payload
+                currentUsersLikedRooms: action.payload,
+            };
+
+        case 'SET_MESSAGES':
+            return {
+                ...state,
+                messages: action.payload,
+            };
+
+        case 'ADD_MESSAGE':
+            return {
+                ...state,
+                messages: [...state.messages,
+                    action.payload
+                ]
+
             };
 
         default:
