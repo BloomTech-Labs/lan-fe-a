@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { fetchUserProfile } from '../store/actions';
 import SettingsContent from './SettingsContent';
 import { Layout, Badge, Button, Tabs, Card } from 'antd';
-import Column from 'antd/lib/table/Column';
+import GitHubCalendar from 'react-github-calendar'
 
 
 
 
 const ProfileContent = (props) => {
+  console.log(props)
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
   const userID = props.match.params.id;
@@ -22,6 +23,7 @@ const ProfileContent = (props) => {
     props.user.displayName,
     props.user.profilePicture,
     props.user.track,
+    props.user.gitHubUsername,
   ]);
 
   const handleEditProfileButton = () => {
@@ -178,15 +180,9 @@ const ProfileContent = (props) => {
                   </Card>
               </TabPane>
               <TabPane tab="Github" key="Github">
-                  <Card
-                    size="small"
-                    title={
-                      <p> Github Coming Soon
-                      </p>
-                    }
-                    style={{ width: 500 }}
-                  >
-                  </Card>
+              {props.currentUser.github_username == null ? 
+              (<p>No Github info</p>) 
+              :(<GitHubCalendar username={props.currentUser.github_username}/>)}
               </TabPane>
               {props.user.id === props.match.params.id && (
                 <TabPane tab="Settings" key="Settings">
