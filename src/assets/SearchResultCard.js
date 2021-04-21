@@ -1,13 +1,10 @@
 import React from 'react';
 import moment from 'moment';
 import { List, Space, Divider, Avatar } from 'antd';
-import { Switch, useRouteMatch, Link } from 'react-router-dom';
-
-import { PrivateRoute } from '../utils/privateRoute';
-import DiscussionDrawer from './DiscussionDrawer';
+import { useRouteMatch, Link } from 'react-router-dom';
 
 const SearchResultCard = ({ cardType, content }) => {
-    const { path, url } = useRouteMatch();
+    const { url } = useRouteMatch();
 
     switch (cardType) {
         case "room":
@@ -55,7 +52,6 @@ const SearchResultCard = ({ cardType, content }) => {
                         />
                         {content.description}
                     </List.Item>
-
                 </Link>
             ));
         case "comment":
@@ -82,12 +78,6 @@ const SearchResultCard = ({ cardType, content }) => {
                         }
                         />
                         {content.comment}
-                        <Switch>
-                            <PrivateRoute
-                            path={`${path}/discussion/:discussionID`}
-                            component={DiscussionDrawer}
-                            />
-                        </Switch>
                     </List.Item>
                 </Link>
 
