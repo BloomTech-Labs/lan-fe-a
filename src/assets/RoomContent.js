@@ -29,7 +29,7 @@ const RoomContent = (props) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
 
   // modal funcs
-  const showModal = () => setVisible(true);
+  const showNewCardModal = () => setVisible(true);
 
   // TODO: this is not an ideal solution eventually we will need proper error handling
   // for posting when empty/double posting
@@ -127,7 +127,7 @@ const RoomContent = (props) => {
             </h2>
                 
             {/* button to open modal */}
-            <Button type="primary" onClick={showModal}>
+            <Button type="primary" onClick={showNewCardModal}>
               New Discussion
             </Button>
 
