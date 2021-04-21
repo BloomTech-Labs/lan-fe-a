@@ -8,6 +8,7 @@ import Column from 'antd/lib/table/Column';
 
 
 
+
 const ProfileContent = (props) => {
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
