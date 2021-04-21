@@ -23,7 +23,7 @@ import ModContent from './ModContent';
 import ProfileContent from './ProfileContent';
 import AdminContent from './AdminContent';
 import SearchResultsContent from './SearchResultsContent';
-
+import Message from './Message';
 
 const Dashboard = (props) => {
   const { Content, Sider } = Layout;
@@ -72,6 +72,11 @@ const Dashboard = (props) => {
                   component={ProfileContent}
                 />
                 <PrivateRoute path="/search" component={SearchResultsContent} />
+                <PrivateRoute
+                  exact
+                  path={`/message/send/:user_send_id/receive/:user_receive_id`}
+                  component={Message}
+                />
                 <PrivateRoute exact path={`/`} component={DashboardContent} />
               </Switch>
             </Content>

@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import toast, { dispatch } from 'react-hot-toast';
+import moment from 'moment';
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 axios.defaults.withCredentials = true;
@@ -69,53 +70,54 @@ export const fetchUserProfile = (userID) => (dispatch) => {
     axiosWithAuth()
         .get(`${BACKEND_URL}/api/user/${userID}`)
         .then((response) => {
-            dispatch({ type: 'SET_CURRENT_USER', payload: response.data })
+            dispatch({ type: 'SET_CURRENT_USER', payload: response.data });
         })
         .catch(() => toast.error('Hmmm, there was a problem fetching the user.'));
 };
 
 // fetch the current users liked rooms
-export const fetchCurrentUsersLikedRooms = userID => (dispatch) => {
-        axiosWithAuth()
-            .get(`${BACKEND_URL}/api/myroom/${userID}`)
-            .then((response) => {
-                let roomIds = [];
-                response.data.rooms.forEach(element => {
-                    if (!roomIds.includes(element.room_id))
-                        roomIds.push(element.room_id);
-                })
-                dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: roomIds });
-            })
-            .catch(() => toast.error('Hmmm, there was a problem fetching the users liked rooms.'));
-    }
-    // adds rooms to liked rooms
-export const addToCurrentUsersLikedRooms = (userID, roomID) => (dispatch) => {
-        axiosWithAuth()
-            .post(`${BACKEND_URL}/api/myroom/${userID}/${roomID}`)
-            .then((response) => {
-                let roomIds = [];
-                response.data.rooms.forEach(element => {
-                    if (!roomIds.includes(element.room_id))
-                        roomIds.push(element.room_id);
-                });
-                dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: roomIds });
-            })
-            .catch((e) => toast.error(`${e}`));
-    }
-    // deletes rooms to liked rooms
-export const deleteCurrentRoomFromLikedRooms = (userID, roomID) => (dispatch) => {
+export const fetchCurrentUsersLikedRooms = (userID) => (dispatch) => {
     axiosWithAuth()
-        .delete(`${BACKEND_URL}/api/myroom/${userID}/${roomID}`)
+        .get(`${BACKEND_URL}/api/myroom/${userID}`)
         .then((response) => {
             let roomIds = [];
-            response.data.rooms.forEach(element => {
-                if (!roomIds.includes(element.room_id))
-                    roomIds.push(element.room_id);
+            response.data.rooms.forEach((element) => {
+                if (!roomIds.includes(element.room_id)) roomIds.push(element.room_id);
+            });
+            dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: roomIds });
+        })
+        .catch(() =>
+            toast.error('Hmmm, there was a problem fetching the users liked rooms.')
+        );
+};
+// adds rooms to liked rooms
+export const addToCurrentUsersLikedRooms = (userID, roomID) => (dispatch) => {
+    axiosWithAuth()
+        .post(`${BACKEND_URL}/api/myroom/${userID}/${roomID}`)
+        .then((response) => {
+            let roomIds = [];
+            response.data.rooms.forEach((element) => {
+                if (!roomIds.includes(element.room_id)) roomIds.push(element.room_id);
             });
             dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: roomIds });
         })
         .catch((e) => toast.error(`${e}`));
-}
+};
+// deletes rooms to liked rooms
+export const deleteCurrentRoomFromLikedRooms = (userID, roomID) => (
+    dispatch
+) => {
+    axiosWithAuth()
+        .delete(`${BACKEND_URL}/api/myroom/${userID}/${roomID}`)
+        .then((response) => {
+            let roomIds = [];
+            response.data.rooms.forEach((element) => {
+                if (!roomIds.includes(element.room_id)) roomIds.push(element.room_id);
+            });
+            dispatch({ type: 'SET_CURRENT_USERS_LIKED_ROOMS', payload: roomIds });
+        })
+        .catch((e) => toast.error(`${e}`));
+};
 
 // Updates a user's display name
 export const updateUserDisplayName = (userDetails, displayName) => (
@@ -306,7 +308,6 @@ export const postComment = (user, postID, comment) => (dispatch) => {
 
 // Likes a comment
 export const likeComment = (commentID) => (dispatch) => {
-
   return axiosWithAuth()
     .get(`${BACKEND_URL}/api/comment/like/${commentID}`)
     .then(() => {})
@@ -317,43 +318,37 @@ export const likeComment = (commentID) => (dispatch) => {
 
 // Removes like from a comment
 export const unlikeComment = (commentID) => (dispatch) => {
-
   return axiosWithAuth()
     .delete(`${BACKEND_URL}/api/comment/like/${commentID}`)
     .then(() => {})
     .catch(() =>
       toast.error('Uh oh! There was a problem unliking this comment.')
     );
-
 };
 
 // Fetches a post's comments, ordered by recent
 export const fetchPostCommentsByRecent = (postID) => (dispatch) => {
-
-  dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
-  return axiosWithAuth()
-    .get(`${BACKEND_URL}/api/comment/recent/${postID}`)
-    .then((response) => {
-      dispatch({
-        type: 'SET_CURRENT_POST_COMMENTS',
-        payload: response.data.comments,
-      });
-    })
-    .catch(() => toast.error('Looks like there was trouble loading comments.'));
-
+    dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
+    return axiosWithAuth()
+        .get(`${BACKEND_URL}/api/comment/recent/${postID}`)
+        .then((response) => {
+            dispatch({
+                type: 'SET_CURRENT_POST_COMMENTS',
+                payload: response.data.comments,
+            });
+        })
+        .catch(() => toast.error('Looks like there was trouble loading comments.'));
 };
 
 // Fetches a post's comments, ordered by number of likes
 export const fetchPostCommentsByPopular = (postID) => (dispatch) => {
-
-  dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
-  axiosWithAuth()
-    .get(`${BACKEND_URL}/api/comment/popular/${postID}`)
-    .then((response) => {
-      dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data });
-    })
-    .catch(() => toast.error('Looks like there was trouble loading comments.'));
-
+    dispatch({ type: 'START_FETCHING_CURRENT_POST_COMMENTS' });
+    axiosWithAuth()
+        .get(`${BACKEND_URL}/api/comment/popular/${postID}`)
+        .then((response) => {
+            dispatch({ type: 'SET_CURRENT_POST_COMMENTS', payload: response.data });
+        })
+        .catch(() => toast.error('Looks like there was trouble loading comments.'));
 };
 
 // Fetches all posts in a specific room
@@ -382,15 +377,13 @@ export const setSearch = (search) => (dispatch) => {
 };
 
 export const retrieveFullSearchResults = (search) => (dispatch) => {
-
-  axiosWithAuth()
-    .get(`${BACKEND_URL}/api/search/full/${search}`)
-    .then((res) => {
-      console.log(res);
-      dispatch({ type: 'SET_FULL_SEARCH', payload: res.data });
-    })
-    .catch(() => toast.error('Oh no! Could not retrieve search results.'));
-
+    axiosWithAuth()
+        .get(`${BACKEND_URL}/api/search/full/${search}`)
+        .then((res) => {
+            console.log(res);
+            dispatch({ type: 'SET_FULL_SEARCH', payload: res.data });
+        })
+        .catch(() => toast.error('Oh no! Could not retrieve search results.'));
 };
 
 export const flagPost = (id, reason, note) => (dispatch) => {
@@ -424,14 +417,12 @@ export const flagComment = (id, reason, note) => (dispatch) => {
 
 // Fetches flagged posts
 export const fetchFlaggedPosts = () => (dispatch) => {
-
-  axiosWithAuth()
-    .get(`${BACKEND_URL}/api/mod/posts/flagged`)
-    .then((res) => {
-      dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
-    })
-    .catch(() => toast.error('There was a problem fetching flagged posts.'));
-
+    axiosWithAuth()
+        .get(`${BACKEND_URL}/api/mod/posts/flagged`)
+        .then((res) => {
+            dispatch({ type: 'SET_FLAGGED_POSTS', payload: res.data });
+        })
+        .catch(() => toast.error('There was a problem fetching flagged posts.'));
 };
 
 // Fetch all posts in a room, flag data included
@@ -448,14 +439,12 @@ export const fetchPostsAndFlagsByRoom = (roomID, pageNumber) => (dispatch) => {
 
 // Fetches flagged comments
 export const fetchFlaggedComments = () => (dispatch) => {
-
-  axiosWithAuth()
-    .get(`${BACKEND_URL}/api/mod/comments/flagged`)
-    .then((res) => {
-      dispatch({ type: 'SET_FLAGGED_COMMENTS', payload: res.data });
-    })
-    .catch(() => toast.error('There was a problem fetching flagged comments.'));
-
+    axiosWithAuth()
+        .get(`${BACKEND_URL}/api/mod/comments/flagged`)
+        .then((res) => {
+            dispatch({ type: 'SET_FLAGGED_COMMENTS', payload: res.data });
+        })
+        .catch(() => toast.error('There was a problem fetching flagged comments.'));
 };
 
 //Fetches list of flag reasons (moderator)
@@ -486,14 +475,12 @@ export const archiveComment = (commentID) => (dispatch) => {
 
 // Resolves post (moderator) - keeps post visible
 export const resolvePost = (postID) => (dispatch) => {
-
-  return axiosWithAuth()
-    .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
-    .then(() => {
-      toast.success('The discussion post was approved!');
-    })
-    .catch(() => toast.error('Error Resolving Post'));
-
+    return axiosWithAuth()
+        .put(`${BACKEND_URL}/api/mod/posts/${postID}`)
+        .then(() => {
+            toast.success('The discussion post was approved!');
+        })
+        .catch(() => toast.error('Error Resolving Post'));
 };
 
 // Resolves comment (moderator) - keeps comment visible
@@ -549,6 +536,62 @@ export const setNewRoomModalVisibility = (bool) => (dispatch) => {
     dispatch({ type: 'SET_NEW_ROOM_MODAL_VISIBILITY', payload: bool });
 };
 
+
+export const fetchMessages = (user_send_id, user_receive_id) => (dispatch) => {
+    const queue = [];
+
+    const q1 = axiosWithAuth()
+        .get(
+            `${BACKEND_URL}/api/message/send/${user_send_id}/receive/${user_receive_id}`
+        )
+        .then((response) => {
+            queue.push(response.data.messages);
+        })
+        .catch(() => toast.error('There was a problem fetching messages.'));
+
+    const q2 = axiosWithAuth()
+        .get(
+            `${BACKEND_URL}/api/message/send/${user_receive_id}/receive/${user_send_id}`
+        )
+        .then((response) => {
+            queue.push(response.data.messages);
+        })
+        .catch(() => toast.error('There was a problem fetching messages.'));
+
+    Promise.all([q1, q2]).then(() => {
+        const que1 = [...queue[0], ...queue[1]];
+
+        que1.sort(function(a, b) {
+            return moment(b.created_at) - moment(a.created_at);
+        });
+
+        dispatch({
+            type: 'SET_MESSAGES',
+            payload: que1,
+        });
+    });
+};
+
+export const sendMessage = (user_send_id, user_receive_id, message) => (
+    dispatch
+) => {
+    return axiosWithAuth()
+        .post(
+            `${BACKEND_URL}/api/message/send/${user_send_id}/receive/${user_receive_id}`, {
+                message
+            }
+        )
+        .then((response) => {
+            // dispatch({
+            //     type: 'ADD_MESSAGE',
+            //     payload: response.data.msg,
+            // });
+        })
+        .catch(() => toast.error('There was a problem fetching messages.'));
+
+
+};
+
 export const setShowFlagModal = (bool) => (dispatch) => {
   dispatch({ type: 'SET_SHOW_FLAGGING_MODAL', payload: bool });
 };
@@ -556,3 +599,4 @@ export const setShowFlagModal = (bool) => (dispatch) => {
 export const setShowModModal = (bool) => (dispatch) => {
   dispatch({ type: 'SET_SHOW_MOD_MODAL', payload: bool });
 };
+

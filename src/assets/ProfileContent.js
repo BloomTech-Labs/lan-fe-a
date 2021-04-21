@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { fetchUserProfile } from '../store/actions';
 import SettingsContent from './SettingsContent';
 import { Layout, Badge, Button, Tabs, Card } from 'antd';
 import GitHubCalendar from 'react-github-calendar'
-
-
 
 
 const ProfileContent = (props) => {
@@ -67,7 +66,7 @@ const ProfileContent = (props) => {
                 <Badge
                   count={props.currentUser.track.toUpperCase()}
                   offset={[25, -10]}
-                  style={{backgroundColor: 'grey'}}
+                  style={{ backgroundColor: 'grey' }}
                 >
                   <h3>{props.currentUser.display_name}</h3>
                 </Badge>
@@ -100,23 +99,25 @@ const ProfileContent = (props) => {
                   </Button>
                 )}
                 <div>
-                {props.user.id != props.match.params.id && (
-                  <div  style={{display: 'flex'}}>
-                  <div style={{marginRight: '7%'}}>
-                    <Button type="primary" style={{width: '125px'}}>
-                      Follow
-                    </Button>
-                  </div>
-                  <div>
-                   <Button type="primary" style={{width: '125px'}}>
-                     Message
-                    </Button>
-                  </div>
-                  </div>
-                )}
+                  {props.user.id != props.match.params.id && (
+                    <div style={{ display: 'flex' }}>
+                      <div style={{ marginRight: '7%' }}>
+                        <Button type="primary" style={{ width: '125px' }}>
+                          Follow
+                        </Button>
+                      </div>
+                      <div>
+                        <Link to={`/message/send/${props.user.id}/receive/${props.currentUser.id}`}>
+                          <Button type="primary" style={{ width: '125px' }}>
+                            Message
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
                 </div>
-                </div>
-                </div>
+              </div>
+            </div>
             <Tabs
               defaultActiveKey="Posts"
               activeKey={actKey}
@@ -162,17 +163,13 @@ const ProfileContent = (props) => {
                   </Card>
                 ))}
               </TabPane>
-              
-               <TabPane tab="Following" key="Following">
-                  <Card
-                    size="small"
-                    title={
-                      <p> Following Cards Coming Soon
-                      </p>
-                    }
-                    style={{ width: 500 }}
-                  >
-                  </Card>
+
+              <TabPane tab="Following" key="Following">
+                <Card
+                  size="small"
+                  title={<p> Following Cards Coming Soon</p>}
+                  style={{ width: 500 }}
+                ></Card>
               </TabPane>
               <TabPane tab="Rooms" key="Rooms">
                   <Card>
