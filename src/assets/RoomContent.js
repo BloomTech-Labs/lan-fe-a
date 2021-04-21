@@ -8,10 +8,13 @@ import {
   setDrawerVisibility,
   fetchPost,
   fetchPostsAndFlagsByRoom,
-  postQuestion,
+  postQuestion, 
+  addToCurrentUsersLikedRooms,
+  deleteCurrentRoomFromLikedRooms
 } from '../store/actions';
 
 import { Layout, Input, Form, Button, Modal } from 'antd';
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 
 import Feed from './Feed';
 
@@ -51,6 +54,12 @@ const RoomContent = (props) => {
     setVisible(false);
     setConfirmLoading(false);
   };
+
+  const handleLikeRoomButtonClicked = () => props.addToCurrentUsersLikedRooms(props.user.id, roomID);
+
+  const handleUnlikeRoomButtonClicked = () => props.deleteCurrentRoomFromLikedRooms(props.user.id, roomID);
+
+
 
   const handleCancel = () => setVisible(false);
 
@@ -103,9 +112,20 @@ const RoomContent = (props) => {
                 fontSize: '35px',
               }}
             >
-              {findRoom(roomID).room_name}
-            </h2>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center'
+              }}>
+                {findRoom(roomID).room_name}
 
+
+                {props.currentUsersLikedRooms.includes(Number(roomID)) ? 
+                  <HeartFilled onClick={handleUnlikeRoomButtonClicked} style={{marginLeft: '1rem', fontSize: '24px', color: '#405cee'}}/> :
+                  <HeartOutlined onClick={handleLikeRoomButtonClicked} style={{marginLeft: '1rem', fontSize: '24px', color: '#405cee'}}/>}
+              </div>
+              
+            </h2>
+                
             {/* button to open modal */}
             <Button type="primary" onClick={showNewCardModal}>
               New Discussion
@@ -161,6 +181,7 @@ const mapStateToProps = (state) => {
     rooms: state.rooms,
     discussion: state.posts,
     user: state.user,
+    currentUsersLikedRooms: state.currentUsersLikedRooms
   };
 };
 
@@ -171,4 +192,7 @@ export default connect(mapStateToProps, {
   fetchPost,
   fetchPostsAndFlagsByRoom,
   postQuestion,
+  addToCurrentUsersLikedRooms,
+  deleteCurrentRoomFromLikedRooms
+
 })(RoomContent);

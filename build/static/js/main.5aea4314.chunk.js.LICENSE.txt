@@ -1,1 +1,0 @@
-//! Currently, flags.length stays the same after a post approval. Needs logic to ensure flags are removed from the given discussion post and/or marked as 'checked' so they no longer appear in the given cards' flag chip.
