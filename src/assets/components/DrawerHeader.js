@@ -86,22 +86,6 @@ const DrawerHeader = (props) => {
           </Dropdown>
         </span>
       </div>
-
-      <FlagManagerModal
-        visible={props.showModModal}
-        setVisible={props.setShowModModal}
-        flagsData={
-          props.currentPost.flags ? props.currentPost.flags : undefined
-        }
-        discussionID={props.currentPost.id}
-      />
-
-      <UserFlaggingModal
-        visible={props.showFlagModal}
-        setVisible={props.setShowFlagModal}
-        discussionID={props.currentPost.id}
-      />
-
       <Switch>
         <PrivateRoute
           path={`${path}/discussion/:discussionID`}
