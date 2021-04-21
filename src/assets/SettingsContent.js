@@ -20,16 +20,19 @@ const SettingsContent = (props) => {
   const initialSettings = {
     displayName: props.user.displayName,
     track: props.user.track,
+    githubUserName: '',
   };
   const [settings, setSettings] = useState(initialSettings);
 
   const initialEditSettings = {
     displayName: false,
     track: false,
+    githubUserName: false,
   };
   const [editSettings, setEditSettings] = useState(initialEditSettings);
 
   const [input, setInput] = useState('');
+  const [github, setGithub] = useState('')
 
   useEffect(() => {
     setSettings({ ...settings, displayName: props.user.displayName });
@@ -61,6 +64,10 @@ const SettingsContent = (props) => {
     setInput(event.target.value);
   };
 
+  const onChangeGitHub = (event) => {
+    setGithub(event.target.value)
+  }
+
   const onSubmit = (event) => {
     event.preventDefault();
     if (editSettings.displayName) {
@@ -71,8 +78,13 @@ const SettingsContent = (props) => {
     } else if (editSettings.track) {
       props.setTrackSettings(props.user, settings.track);
       setEditSettings({ ...editSettings, track: false });
+    }if (editSettings.githubUserName) {
+      setSettings({ ...settings, githubUserName: github });
+      setInput('');
+      setEditSettings({ ...editSettings, githubUserName: false });
     }
   };
+  
 
   function handleMenuClick(e) {
     setSettings({ ...settings, track: e.key });
@@ -198,6 +210,59 @@ const SettingsContent = (props) => {
                 Cancel
               </Button>
             </div>
+          </form>
+        )}
+      </Card>
+      <Card
+        type="inner"
+        title="GitHub Username"
+        extra={
+          <Button
+            type="link"
+            onClick={() =>
+              setEditSettings({ ...editSettings, githubUserName: true })
+            }
+          >
+            Change
+          </Button>
+        }
+      >
+        {settings.githubUserName}
+        {editSettings.githubUserName && (
+          <form
+            style={{ marginTop: '10px' }}
+            autoComplete="off"
+            spellCheck="false"
+            onSubmit={onSubmit}
+          >
+            <label htmlFor="github-user-name">
+              Provide your github username to display your contribution calendar
+            </label>
+            <Input
+              name="github-user-name"
+              type="text"
+              placeholder="Enter GitHub username"
+              value={github}
+              style={{ marginTop: '10px' }}
+              onChange={onChangeGitHub}
+            />
+            <Button
+              style={{ marginTop: '10px' }}
+              type="primary"
+              htmlType="submit"
+            >
+              Submit
+            </Button>
+            <Button
+              type="danger"
+              style={{ marginLeft: '10px' }}
+              onClick={() => {
+                setInput('');
+                setEditSettings({ ...editSettings, githubUserName: false});
+              }}
+            >
+              Cancel
+            </Button>
           </form>
         )}
       </Card>

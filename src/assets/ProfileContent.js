@@ -6,6 +6,8 @@ import SettingsContent from './SettingsContent';
 import { Layout, Badge, Button, Tabs, Card } from 'antd';
 import Column from 'antd/lib/table/Column';
 
+
+
 const ProfileContent = (props) => {
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
@@ -170,14 +172,8 @@ const ProfileContent = (props) => {
                   </Card>
               </TabPane>
               <TabPane tab="Rooms" key="Rooms">
-                  <Card
-                    size="small"
-                    title={
-                      <p> Room Cards Coming Soon
-                      </p>
-                    }
-                    style={{ width: 500 }}
-                  >
+                  <Card>
+                    <p>Rooms coming soon</p>
                   </Card>
               </TabPane>
               <TabPane tab="Github" key="Github">

@@ -1,4 +1,4 @@
-## Lambda Alumni Network (LAN)
+`## Lambda Alumni Network (LAN)
 
 An app that allows Lambda School alums to connect and grow in their profession by providing career advice, job opportunities, and much more!
 
