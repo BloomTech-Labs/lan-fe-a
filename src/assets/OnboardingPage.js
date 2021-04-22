@@ -6,7 +6,6 @@ import { fetchUser, setTrack, updateGitHubUsername } from '../store/actions/inde
 import OnboardingContainer from './OnboardingStyles';
 
 const Onboarding = props => {
-  console.log(props)
   const { user, history, fetchUser } = props;
 
   const [tracks, setTracks] = useState([
@@ -18,9 +17,6 @@ const Onboarding = props => {
     { track: 'None', value: false },
   ]);
   const [error, setError] = useState('');
-
-
-  
   const [username, setUserName] = useState('')
   // this fires after the componenet loads
   useEffect(() => fetchUser(), []);
