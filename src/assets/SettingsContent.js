@@ -70,6 +70,10 @@ const SettingsContent = (props) => {
     setGithub(event.target.value)
   }
 
+  const onCheckMentor = (event) => {
+    console.log(`checked = ${event.target.checked}`);
+  }
+
   const onSubmit = (event) => {
     event.preventDefault();
     if (editSettings.displayName) {
@@ -88,14 +92,11 @@ const SettingsContent = (props) => {
     }
   };
   
-
   function handleMenuClick(e) {
     setSettings({ ...settings, track: e.key });
   }
 
-  function onCheck(e) {
-    console.log(`checked = ${e.target.checked}`);
-  }
+
 
   const menu = (
     <Menu onClick={handleMenuClick}>
@@ -271,7 +272,12 @@ const SettingsContent = (props) => {
       </Card>
       <Checkbox 
         style={{ marginTop: '5px' }}
-        onCheck={onCheck}>Check here if you are interested in becoming a mentor.
+        onCheck={onCheckMentor}>Check here if you are interested in becoming a mentor.
+      </Checkbox>
+      <br />
+      <Checkbox 
+        style={{ marginTop: '5px' }}
+        onCheck={onCheckMentor}>Check here if you are seeking mentorship.
       </Checkbox>
       <Button
         type="primary"
