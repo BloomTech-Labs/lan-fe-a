@@ -163,6 +163,11 @@ const OnboardingContainer = styled.div`
     }
   }
 
+  .gitHubUserName{
+    border-radius: 3px;
+    border-color: #0099ff;
+  }
+
   @media (min-width: 375px) {
     height: 90vh;
   }

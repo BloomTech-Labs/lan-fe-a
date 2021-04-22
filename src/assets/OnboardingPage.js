@@ -95,6 +95,7 @@ const Onboarding = props => {
        <p>**You can update or add this later in your profile settings</p>
       </p>
       <input
+        className="gitHubUserName"
         name="github-user-name-entry"
         type="text"
         placeholder="GitHub username"
