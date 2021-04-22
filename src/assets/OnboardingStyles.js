@@ -13,14 +13,14 @@ const OnboardingContainer = styled.div`
     margin-bottom: 4px;
     font-size: 2rem;
     font-weight: 700;
-    color: #ffffff;
+    color: #0099ff;
   }
 
   .instructions {
     margin-bottom: 16px;
     font-size: 1rem;
     font-weight: 500;
-    color: #ffffff;
+    color: #0099ff;
   }
 
   .tracks {
@@ -161,6 +161,11 @@ const OnboardingContainer = styled.div`
         opacity: 0.5;
       }
     }
+  }
+
+  .gitHubUserName{
+    border-radius: 3px;
+    border-color: #0099ff;
   }
 
   @media (min-width: 375px) {
