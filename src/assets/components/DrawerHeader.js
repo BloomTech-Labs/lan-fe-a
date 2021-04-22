@@ -2,7 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Switch, useRouteMatch } from 'react-router-dom';
 import moment from 'moment';
+
 import { fetchPost, setShowFlagModal, setShowModModal } from '../../store/actions';
+import { CheckIfModOrAdmin } from '../../assets/CheckIfModOrAdmin';
+import { PrivateRoute } from '../../utils/privateRoute';
+import DropdownMenu from './DropdownMenu';
+import { FlagChip } from '../FlagChip';
+import DiscussionDrawer from '../DiscussionDrawer';
 
 import {
   MessageOutlined,
@@ -11,14 +17,6 @@ import {
 } from '@ant-design/icons';
 import { Space, Divider, Dropdown } from 'antd';
 
-import { CheckIfModOrAdmin } from '../../assets/CheckIfModOrAdmin';
-
-import { PrivateRoute } from '../../utils/privateRoute';
-import DropdownMenu from './DropdownMenu';
-import { FlagChip } from '../FlagChip';
-import UserFlaggingModal from '../UserFlaggingModal';
-import FlagManagerModal from '../FlagManagerModal';
-import DiscussionDrawer from '../DiscussionDrawer';
 
 const IconText = ({ icon, text }) => (
   <Space>
