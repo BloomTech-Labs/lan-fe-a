@@ -1,38 +1,46 @@
 import styled from 'styled-components';
 
 const OnboardingContainer = styled.div`
-  height: 100vh;
-  width: 90%;
+  padding: 10%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
 
-  h1 {
+.title{
+  text-align: center;
+  margin-top: 15%;
+}
+  h1{
     margin-bottom: 4px;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 700;
-    color: #0099ff;
+    color: #0e1111;
   }
 
   .instructions {
     margin-bottom: 16px;
     font-size: 1rem;
     font-weight: 500;
-    color: #0099ff;
+    color: 	#0e1111;
+    text-align: center;
   }
 
   .tracks {
     display: flex;
-    align-content: flex-start;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 5%;
+  }
 
     .track {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-right: 8px;
       margin-bottom: 8px;
       padding: 10px 24px;
+      width: 100px;
       border: solid 1px #0099ff;
       border-radius: 3px;
       font-family: 'Nunito', sans-serif;
@@ -126,7 +134,7 @@ const OnboardingContainer = styled.div`
         opacity: 0.5;
       }
     }
-  }
+  
 
   .continue {
     width: 100%;
@@ -141,7 +149,8 @@ const OnboardingContainer = styled.div`
     }
 
     button {
-      padding: 10px 24px;
+      padding: 15px 30px;
+      width: 50%;
       background: linear-gradient(to right, #0084ff, #0099ff);
       border: none;
       border-radius: 3px;
@@ -162,10 +171,19 @@ const OnboardingContainer = styled.div`
       }
     }
   }
-
+  
   .gitHubUserName{
     border-radius: 3px;
     border-color: #0099ff;
+    width: 100%;
+  }
+  
+
+  .github{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    margin-bottom: 10%;
   }
 
   @media (min-width: 375px) {
