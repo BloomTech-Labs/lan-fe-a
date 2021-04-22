@@ -116,4 +116,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUser, setTrack, updateGitHubUsername })(Onboarding);
+export default connect(mapStateToProps, { fetchUser, setTrack, updateGitHubUsername})(Onboarding);
