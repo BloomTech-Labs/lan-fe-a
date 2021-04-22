@@ -600,3 +600,38 @@ export const setShowModModal = (bool) => (dispatch) => {
   dispatch({ type: 'SET_SHOW_MOD_MODAL', payload: bool });
 };
 
+// set willing to mentor
+
+export const setWillingToMentor = (userDetails, mentor) => (
+    dispatch
+) => {
+    const userID = userDetails.id;
+    axiosWithAuth()
+        .put(`${BACKEND_URL}/api/user/mentor`, { userID, mentor })
+        .then(() => {
+            toast.success('Horray! Mentor selected! ' + mentor);
+            dispatch({ type: 'SET_USER', payload: {...userDetails, mentor } });
+        })
+        .catch(() =>
+            toast.error('Oh no! there was a problem adding your selection.')
+        );
+};
+
+// set seeking mentorship
+
+export const setSeekingMentor = (userDetails, mentee) => (
+    dispatch
+) => {
+    const userID = userDetails.id;
+    axiosWithAuth()
+        .put(`${BACKEND_URL}/api/user/mentor`, { userID, mentee })
+        .then(() => {
+            toast.success('Horray! Mentee selected! ' + mentee);
+            dispatch({ type: 'SET_USER', payload: {...userDetails, mentee } });
+        })
+        .catch(() =>
+            toast.error('Oh no! there was a problem adding your selection.')
+        );
+};
+
+

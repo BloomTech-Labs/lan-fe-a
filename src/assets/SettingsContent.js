@@ -8,6 +8,8 @@ import {
   updateUserDisplayName,
   setTrackSettings,
   updateGitHubUsername,
+  setWillingToMentor,
+  setSeekingMentor,
 } from '../store/actions';
 
 /* eslint-disable no-undef */
