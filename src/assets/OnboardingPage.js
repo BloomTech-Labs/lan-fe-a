@@ -90,7 +90,7 @@ const Onboarding = props => {
       </div>
       <div>
       <p className="instructions">
-        You contribution to online projects on GitHub help you to stand out to possible employers. If you would like to display your GitHub info please provide your GitHub username below. 
+        You contribution to projects on GitHub help you to stand out to possible employers as well as tell your peers what you have been up to with coding. If you would like to display your GitHub info on your LAN profile please provide your GitHub username below. 
 
        <p>**You can update or add this later in your profile settings</p>
       </p>
