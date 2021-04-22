@@ -9,7 +9,6 @@ import GitHubCalendar from 'react-github-calendar'
 
 
 const ProfileContent = (props) => {
-  console.log(props)
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
   const userID = props.match.params.id;
