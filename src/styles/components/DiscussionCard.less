@@ -1,15 +1,18 @@
 //Styles for the discussion card
 .discussion-card.ant-list-item {
+  background: #fff;
   box-shadow: 0 0 0 0px #f0f0f0;
   border-radius: 2px;
   transition: box-shadow 0.2s linear;
   &:hover {
-    box-shadow: 0 0 0 2px rgba(64, 92, 238, 0.23);
+    box-shadow: 0 0 0 2px rgba(64, 92, 238, 1);
   }
 }
 
 .discussion-card {
   .discussion-header-styles {
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.65);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,23 +20,28 @@
 
   //Link
   a {
+    color: rgba(0, 0, 0, 0.65);
     transition: all 0.3s ease-in-out;
     &:hover {
-      color: darken(@primary, 10%);
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.65);
       transform: scale(0.99);
-      text-decoration: underline;
     }
   }
 
   // Ellipses
+  .ant-dropdown-link-div {
+    padding: 2px 8px;
+  }
   a.ant-dropdown-link {
-    color: rgba(0, 0, 0, 0.65);
-    font-size: large;
+    color: rgba(37, 9, 9, 0.65);
+    font-size: 2rem;
   }
 
   ul.ant-list-item-action {
     position: relative;
   }
+
   ul.ant-list-item-action li:nth-child(3) {
     position: absolute;
     padding-right: 0;

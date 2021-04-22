@@ -30,9 +30,12 @@ const DropdownMenu = (props) => {
           <FlagOutlined /> Flag Discussion
         </a>
       </Menu.Item>
-            
-  
-      {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
+
+      {/* {CheckIfModOrAdmin(props.user) && props.discussion.flags.length > 0 && (
+        <Menu.Divider />
+        ) */}
+        
+      {CheckIfModOrAdmin(props.user) && props.discussion.flags?.length > 0 && (
         <>
           <Menu.Divider />
           <Menu.Item key="3">

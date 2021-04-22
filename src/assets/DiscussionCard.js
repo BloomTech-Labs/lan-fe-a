@@ -6,7 +6,7 @@ import {
   fetchPost,
   fetchPostByRoom,
   setDrawerVisibility,
-  setShowFlagModal, 
+  setShowFlagModal,
   setShowModModal,
   like,
   unlike,
@@ -17,7 +17,7 @@ import {
   EllipsisOutlined,
 } from '@ant-design/icons';
 import { List, Space, Divider, Dropdown } from 'antd';
-import { useRouteMatch, Link, useParams } from 'react-router-dom';
+import { useRouteMatch, Link } from 'react-router-dom';
 
 import DropdownMenu from './components/DropdownMenu';
 import { FlagChip } from './FlagChip';
@@ -51,7 +51,6 @@ const DiscussionCard = (props) => {
       <List.Item
         className="discussion-card"
         key={props.discussion.title}
-        style={{ background: 'white' }}
         grid={{ column: 4 }}
         actions={[
           <div
@@ -73,52 +72,59 @@ const DiscussionCard = (props) => {
           >
             <IconText icon={MessageOutlined} text={props.discussion.comments} />
           </Link>,
-          CheckIfModOrAdmin(props.user) && (  
+          CheckIfModOrAdmin(props.user) && (
             <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
               <FlagChip
                 flags={`${props.discussion.flags.length}`}
                 commentsFlagged={`${props.discussion.flaggedComments.length}`}
               />
             </Link>
-          )
+          ),
         ]}
       >
-        <List.Item.Meta
-            title={
-              <div className="discussion-header-styles">
-                <Link to={`${url}/discussion/${props.discussion.id}?view=recent`}>
+        <Link to={`${url}/discussion/${props.discussion.id}?view=recent`}>
+          <div>
+            <List.Item.Meta
+              title={
+                <div className="discussion-header-styles">
                   {props.discussion.title}
-                </Link>
-                <Dropdown overlay={<DropdownMenu/>} trigger={['click']}>
-                  <a
-                    className="ant-dropdown-link"
-                    onClick={(e) => e.preventDefault()}
+                  <Dropdown overlay={<DropdownMenu />} trigger={['click']}>
+                    <div className="ant-dropdown-link-div">
+                      <a
+                        className="ant-dropdown-link"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        <EllipsisOutlined />
+                      </a>
+                    </div>
+                  </Dropdown>
+                </div>
+              }
+              description={
+                <Space>
+                  Posted by
+                  <Link
+                    to={`/user/${props.discussion.user_id}`}
+                    style={{ color: '#405CEE' }}
                   >
-                    <EllipsisOutlined />
-                  </a>
-                </Dropdown>
-              </div>
-            }
-            description={
-              <Space>
-                Posted by
-                <Link to={`/user/${props.discussion.user_id}`}>
-                  {props.discussion.display_name}
-                </Link>
-                <Divider type="vertical" />
-                {moment(props.discussion.created_at).fromNow()}
-              </Space>
-            }
-          />
-        {props.discussion.description}
-
+                    {props.discussion.display_name}
+                  </Link>
+                  <Divider type="vertical" />
+                  {moment(props.discussion.created_at).fromNow()}
+                </Space>
+              }
+            />
+            {props.discussion.description}
+          </div>
+        </Link>
         <FlagManagerModal
           visible={props.showModModal}
           setVisible={props.setShowModModal}
-          flagsData={props.discussion.flags ? props.discussion.flags : undefined}
+          flagsData={
+            props.discussion.flags ? props.discussion.flags : undefined
+          }
           discussionID={props.discussion.id}
         />
-
         <UserFlaggingModal
           visible={props.showFlagModal}
           setVisible={props.setShowFlagModal}
