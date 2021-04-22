@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { fetchUser, setTrack } from '../store/actions/index';
+import { fetchUser, setTrack, updateGitHubUsername } from '../store/actions/index';
 import OnboardingContainer from './OnboardingStyles';
 
 const Onboarding = props => {
+  console.log(props)
   const { user, history, fetchUser } = props;
 
   const [tracks, setTracks] = useState([
@@ -18,6 +19,9 @@ const Onboarding = props => {
   ]);
   const [error, setError] = useState('');
 
+
+  
+  const [username, setUserName] = useState('')
   // this fires after the componenet loads
   useEffect(() => fetchUser(), []);
 
@@ -29,7 +33,11 @@ const Onboarding = props => {
           : { ...item, value: false }
       )
     );
-  }, [user]);
+    }, [user]);
+
+  const onChangeUserName = (event) => {
+    setUserName(event.target.value)
+  }
 
   const onClick = (track) => {
     setTracks(
@@ -45,10 +53,9 @@ const Onboarding = props => {
     if (!tracks.find((item) => item.value === true)) {
       setError('No track chosen');
     } else {
-      props
-        .setTrack(tracks.find((item) => item.value === true).track, null)
-        .then(() => history.push('/'))
-        .catch((error) => console.log(error));
+       (props.setTrack(tracks.find((item) => item.value === true).track, null)),
+       (props.updateGitHubUsername(props.user, username))
+       history.push('/')
     }
   };
 
@@ -81,6 +88,21 @@ const Onboarding = props => {
           None
         </button>
       </div>
+      <div>
+      <p className="instructions">
+        You contribution to online projects on GitHub help you to stand out to possible employers. If you would like to display your GitHub info please provide your GitHub username below. 
+
+       <p>**You can update or add this later in your profile settings</p>
+      </p>
+      <input
+        name="github-user-name-entry"
+        type="text"
+        placeholder="GitHub username"
+        value={username}
+        onChange={onChangeUserName}
+      >
+      </input>
+      </div>
       <div className="continue">
         <p className="error">{error}</p>
         <button onClick={onSubmit}>
@@ -97,4 +119,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUser, setTrack })(Onboarding);
+export default connect(mapStateToProps, { fetchUser, setTrack, updateGitHubUsername })(Onboarding);
