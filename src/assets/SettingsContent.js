@@ -24,21 +24,36 @@ const SettingsContent = (props) => {
     displayName: props.user.displayName,
     track: props.user.track,
     githubUserName: props.user.gitHubUsername,
+    mentor: props.user.mentor,
+    mentee: props.user.mentee,
   };
+
   const [settings, setSettings] = useState(initialSettings);
 
   const initialEditSettings = {
     displayName: false,
     track: false,
     githubUserName: false,
+    mentor: false,
+    mentee: false,
   };
+
   const [editSettings, setEditSettings] = useState(initialEditSettings);
 
   const [input, setInput] = useState('');
-  const [github, setGithub] = useState('')
+  const [github, setGithub] = useState('');
+  const [mentor, setMentor] = useState('');
+  const [mentee, setMentee] = useState('');
+  
 
   useEffect(() => {
-    setSettings({ ...settings, displayName: props.user.displayName, githubUserName: props.user.github_username });
+    setSettings({ 
+      ...settings, 
+      displayName: props.user.displayName, 
+      githubUserName: props.user.github_username,
+      mentor: props.user.mentor,
+      mentee: props.user.mentee
+    });
   }, [props.user]);
 
   
@@ -74,6 +89,12 @@ const SettingsContent = (props) => {
 
   const onCheckMentor = (event) => {
     console.log(`checked = ${event.target.checked}`);
+    setMentor(event.target.checked);
+  }
+
+  const onCheckMentee = (event) => {
+    console.log(`checked = ${event.target.checked}`);
+    setMentee(event.target.checked);
   }
 
   const onSubmit = (event) => {
@@ -91,6 +112,14 @@ const SettingsContent = (props) => {
       setSettings({ ...settings, gitHubUsername: github });
       setInput('');
       setEditSettings({ ...editSettings, githubUserName: false });
+    } if (editSettings.mentor) {
+      props.setWillingToMentor(props.user, mentor)
+      setSettings({...settings, mentor: mentor });
+      setEditSettings({...editSettings, mentor: false });
+    } if (editSettings.mentee) {
+      props.setSeekingMentor(props.user, mentee)
+      setSettings({...settings, mentee: mentee });
+      setEditSettings({...editSettings, mentee: false });
     }
   };
   
@@ -279,7 +308,7 @@ const SettingsContent = (props) => {
       <br />
       <Checkbox 
         style={{ marginTop: '5px' }}
-        onCheck={onCheckMentor}>Check here if you are seeking mentorship.
+        onCheck={onCheckMentee}>Check here if you are seeking mentorship.
       </Checkbox>
       <Button
         type="primary"
