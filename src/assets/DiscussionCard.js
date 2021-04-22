@@ -51,7 +51,6 @@ const DiscussionCard = (props) => {
       <List.Item
         className="discussion-card"
         key={props.discussion.title}
-        style={{ background: 'white' }}
         grid={{ column: 4 }}
         actions={[
           <div
@@ -83,22 +82,22 @@ const DiscussionCard = (props) => {
           ),
         ]}
       >
-        <Link
-          to={`${url}/discussion/${props.discussion.id}?view=recent`}
-          style={{ textDecoration: 'none', color: 'black' }}
-        >
+        <Link to={`${url}/discussion/${props.discussion.id}?view=recent`}>
           <List.Item.Meta
             title={
               <div className="discussion-header-styles">
                 {props.discussion.title}
 
                 <Dropdown overlay={<DropdownMenu />} trigger={['click']}>
-                  <a
-                    className="ant-dropdown-link"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <EllipsisOutlined />
-                  </a>
+                  <div className="ant-dropdown-link-div">
+
+                    <a
+                      className="ant-dropdown-link"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <EllipsisOutlined />
+                    </a>
+                  </div>
                 </Dropdown>
               </div>
             }
@@ -112,23 +111,24 @@ const DiscussionCard = (props) => {
                 {moment(props.discussion.created_at).fromNow()}
               </Space>
             }
-            // actions={<Link to={`${url}/discussion/${props.discussion.id}?view=recent`}></Link>}
           />
           {props.discussion.description}
         </Link>
-      </List.Item>
-      <FlagManagerModal
-        visible={props.showModModal}
-        setVisible={props.setShowModModal}
-        flagsData={props.discussion.flags ? props.discussion.flags : undefined}
-        discussionID={props.discussion.id}
-      />
+        <FlagManagerModal
+          visible={props.showModModal}
+          setVisible={props.setShowModModal}
+          flagsData={
+            props.discussion.flags ? props.discussion.flags : undefined
+          }
+          discussionID={props.discussion.id}
+        />
 
-      <UserFlaggingModal
-        visible={props.showFlagModal}
-        setVisible={props.setShowFlagModal}
-        discussionID={props.discussion.id}
-      />
+        <UserFlaggingModal
+          visible={props.showFlagModal}
+          setVisible={props.setShowFlagModal}
+          discussionID={props.discussion.id}
+        />
+      </List.Item>
     </>
   );
 };
