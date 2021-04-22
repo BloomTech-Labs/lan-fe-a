@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Link, useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import {
   fetchPostByRoom,
   fetchRooms,
@@ -72,9 +73,8 @@ const DiscussionDrawer = (props) => {
         props.fetchPost(discussionID);
         props.fetchPostCommentsByRecent(discussionID);
       })
-      .catch((err) => {
-        //TODO make a proper error message
-        console.log(err.message);
+      .catch(() => {
+        toast.error('Failed to create a comment on this post.');
       });
     setIsModalVisible(false);
   };
@@ -196,7 +196,7 @@ const DiscussionDrawer = (props) => {
                         }}
                       >
                         <IconText icon={ArrowUpOutlined} text={item.likes} />
-                      </div>
+                      </div>,
                     ]}
                     extra=""
                   >

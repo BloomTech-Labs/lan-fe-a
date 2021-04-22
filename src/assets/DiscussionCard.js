@@ -87,10 +87,8 @@ const DiscussionCard = (props) => {
             title={
               <div className="discussion-header-styles">
                 {props.discussion.title}
-
                 <Dropdown overlay={<DropdownMenu />} trigger={['click']}>
                   <div className="ant-dropdown-link-div">
-
                     <a
                       className="ant-dropdown-link"
                       onClick={(e) => e.preventDefault()}
@@ -122,7 +120,6 @@ const DiscussionCard = (props) => {
           }
           discussionID={props.discussion.id}
         />
-
         <UserFlaggingModal
           visible={props.showFlagModal}
           setVisible={props.setShowFlagModal}
