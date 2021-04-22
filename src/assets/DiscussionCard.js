@@ -6,7 +6,7 @@ import {
   fetchPost,
   fetchPostByRoom,
   setDrawerVisibility,
-  setShowFlagModal, 
+  setShowFlagModal,
   setShowModModal,
   like,
   unlike,
@@ -48,87 +48,87 @@ const DiscussionCard = (props) => {
 
   return (
     <>
-      <Link to={`${url}/discussion/${props.discussion.id}?view=recent`}>
-        <List.Item
-          className="discussion-card"
-          key={props.discussion.title}
-          style={{ background: 'white' }}
-          grid={{ column: 4 }}
-          actions={[
-            <div
-              key="like-or-upvote"
-              onClick={handleLikePost}
-              style={{
-                color: props.discussion.liked ? '#405cee' : 'rgba(0,0,0,.45)',
-              }}
-            >
-              <IconText icon={ArrowUpOutlined} text={props.discussion.likes} />
-            </div>,
-            <Link
-              to={`${url}/discussion/${props.discussion.id}?view=recent`}
-              key="list-vertical-message"
-              style={{
-                textDecoration: 'none',
-                color: props.discussion.comments ? '#405cee' : 'rgba(0,0,0,.45)',
-              }}
-            >
-              <IconText icon={MessageOutlined} text={props.discussion.comments} />
-            </Link>,
-            CheckIfModOrAdmin(props.user) && (  
-              <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
-                <FlagChip
-                  flags={`${props.discussion.flags.length}`}
-                  commentsFlagged={`${props.discussion.flaggedComments.length}`}
-                />
-              </Link>
-            )
-          ]}
-        >
-
-            <List.Item.Meta
-                title={
-                  <div className="discussion-header-styles">
-                    
-                      {props.discussion.title}
-                    
-                    <Dropdown overlay={<DropdownMenu/>} trigger={['click']}>
-                      <a
-                        className="ant-dropdown-link"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <EllipsisOutlined />
-                      </a>
-                    </Dropdown>
-                  </div>
-                }
-                description={
-                  <Space>
-                    Posted by
-                    <Link to={`/user/${props.discussion.user_id}`}>
-                      {props.discussion.display_name}
-                    </Link>
-                    <Divider type="vertical" />
-                    {moment(props.discussion.created_at).fromNow()}
-                  </Space>
-                }
-                // actions={<Link to={`${url}/discussion/${props.discussion.id}?view=recent`}></Link>}
+      <List.Item
+        className="discussion-card"
+        key={props.discussion.title}
+        style={{ background: 'white' }}
+        grid={{ column: 4 }}
+        actions={[
+          <div
+            key="like-or-upvote"
+            onClick={handleLikePost}
+            style={{
+              color: props.discussion.liked ? '#405cee' : 'rgba(0,0,0,.45)',
+            }}
+          >
+            <IconText icon={ArrowUpOutlined} text={props.discussion.likes} />
+          </div>,
+          <Link
+            to={`${url}/discussion/${props.discussion.id}?view=recent`}
+            key="list-vertical-message"
+            style={{
+              textDecoration: 'none',
+              color: props.discussion.comments ? '#405cee' : 'rgba(0,0,0,.45)',
+            }}
+          >
+            <IconText icon={MessageOutlined} text={props.discussion.comments} />
+          </Link>,
+          CheckIfModOrAdmin(props.user) && (
+            <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
+              <FlagChip
+                flags={`${props.discussion.flags.length}`}
+                commentsFlagged={`${props.discussion.flaggedComments.length}`}
               />
-            {props.discussion.description}
+            </Link>
+          ),
+        ]}
+      >
+        <Link
+          to={`${url}/discussion/${props.discussion.id}?view=recent`}
+          style={{ textDecoration: 'none', color: 'black' }}
+        >
+          <List.Item.Meta
+            title={
+              <div className="discussion-header-styles">
+                {props.discussion.title}
 
-        </List.Item>
-      </Link>
+                <Dropdown overlay={<DropdownMenu />} trigger={['click']}>
+                  <a
+                    className="ant-dropdown-link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <EllipsisOutlined />
+                  </a>
+                </Dropdown>
+              </div>
+            }
+            description={
+              <Space>
+                Posted by
+                <Link to={`/user/${props.discussion.user_id}`}>
+                  {props.discussion.display_name}
+                </Link>
+                <Divider type="vertical" />
+                {moment(props.discussion.created_at).fromNow()}
+              </Space>
+            }
+            // actions={<Link to={`${url}/discussion/${props.discussion.id}?view=recent`}></Link>}
+          />
+          {props.discussion.description}
+        </Link>
+      </List.Item>
       <FlagManagerModal
         visible={props.showModModal}
         setVisible={props.setShowModModal}
         flagsData={props.discussion.flags ? props.discussion.flags : undefined}
         discussionID={props.discussion.id}
-        />
+      />
 
       <UserFlaggingModal
         visible={props.showFlagModal}
         setVisible={props.setShowFlagModal}
         discussionID={props.discussion.id}
-        />
+      />
     </>
   );
 };
