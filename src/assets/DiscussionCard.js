@@ -83,34 +83,39 @@ const DiscussionCard = (props) => {
         ]}
       >
         <Link to={`${url}/discussion/${props.discussion.id}?view=recent`}>
-          <List.Item.Meta
-            title={
-              <div className="discussion-header-styles">
-                {props.discussion.title}
-                <Dropdown overlay={<DropdownMenu />} trigger={['click']}>
-                  <div className="ant-dropdown-link-div">
-                    <a
-                      className="ant-dropdown-link"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <EllipsisOutlined />
-                    </a>
-                  </div>
-                </Dropdown>
-              </div>
-            }
-            description={
-              <Space>
-                Posted by
-                <Link to={`/user/${props.discussion.user_id}`}>
-                  {props.discussion.display_name}
-                </Link>
-                <Divider type="vertical" />
-                {moment(props.discussion.created_at).fromNow()}
-              </Space>
-            }
-          />
-          {props.discussion.description}
+          <div>
+            <List.Item.Meta
+              title={
+                <div className="discussion-header-styles">
+                  {props.discussion.title}
+                  <Dropdown overlay={<DropdownMenu />} trigger={['click']}>
+                    <div className="ant-dropdown-link-div">
+                      <a
+                        className="ant-dropdown-link"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        <EllipsisOutlined />
+                      </a>
+                    </div>
+                  </Dropdown>
+                </div>
+              }
+              description={
+                <Space>
+                  Posted by
+                  <Link
+                    to={`/user/${props.discussion.user_id}`}
+                    style={{ color: '#405CEE' }}
+                  >
+                    {props.discussion.display_name}
+                  </Link>
+                  <Divider type="vertical" />
+                  {moment(props.discussion.created_at).fromNow()}
+                </Space>
+              }
+            />
+            {props.discussion.description}
+          </div>
         </Link>
         <FlagManagerModal
           visible={props.showModModal}
