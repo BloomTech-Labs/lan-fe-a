@@ -73,7 +73,6 @@ export const fetchUserProfile = (userID) => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/user/${userID}`)
     .then((response) => {
-      console.log(response);
       dispatch({ type: 'SET_CURRENT_USER', payload: response.data });
     })
     .catch(() => toast.error('Hmmm, there was a problem fetching the user.'));
@@ -384,7 +383,6 @@ export const retrieveFullSearchResults = (search) => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/search/full/${search}`)
     .then((res) => {
-      console.log(res);
       dispatch({ type: 'SET_FULL_SEARCH', payload: res.data });
     })
     .catch(() => toast.error('Oh no! Could not retrieve search results.'));
