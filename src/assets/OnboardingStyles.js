@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const OnboardingContainer = styled.div`
-  width: 70%;
+  width: 60%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -12,20 +12,20 @@ const OnboardingContainer = styled.div`
     font-size: 2rem;
     font-weight: 700;
     color: rgba(0,0,0,0.85);
+    text-align: center;
   }
   .instructions {
     margin-bottom: 16px;
     font-size: 1rem;
     font-weight: 500;
     color:rgba(0,0,0,0.65);
+    text-align: center;
   }
   .tracks {
     display: flex;
     align-content: flex-start;
     justify-content: center;
     flex-wrap: wrap;
-    width: 150px;
-    height:70px;
     .track {
       margin-right: 8px;
       margin-bottom: 8px;
@@ -38,6 +38,8 @@ const OnboardingContainer = styled.div`
       cursor: pointer;
       transition: 0.25s;
       outline: none;
+      width: 170px;
+      height:70px;
     }
     .track:nth-child(1) {
       background: ${(props) => (props.tracks[0].value ? '#0099ff' : 'none')};
