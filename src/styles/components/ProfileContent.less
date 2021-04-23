@@ -1,0 +1,65 @@
+//Profile Content Styles
+
+.profile-container {
+  min-height: 100vh;
+
+  .profile-content {
+    margin: 2rem;
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      // border: 1px solid;
+
+      .user-info-and-buttons {
+        border: 1px solid;
+        // width: 35%;
+        // padding: 1rem;
+
+        .user-name-and-badge {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border: 1px solid;
+
+          Badge {
+            background-color: grey;
+            offset: 25, 0;
+          }
+
+          #user-name {
+            font-size: 1.2rem;
+            padding-right: 1rem;
+            // display: flex;
+            // align-items: center;
+          }
+        }
+
+        .posts-and-comments {
+          display: flex;
+          justify-content: space-between;
+
+          .posts-and-comments-font {
+            margin-right: 15px;
+          }
+        }
+
+        #bio-font {
+          // font-size: 22rem;
+        }
+
+        .button-container {
+          display: flex;
+
+          #follow-button {
+            margin-right: 7%;
+          }
+
+          Button {
+            width: 125px;
+          }
+        }
+      }
+    }
+  }
+}
