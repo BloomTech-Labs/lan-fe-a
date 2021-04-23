@@ -55,8 +55,7 @@ const Onboarding = props => {
     }
   };
 
-  // return user.onboarded ? (<Redirect to="/" />) : (
-    return(
+  return user.onboarded ? (<Redirect to="/" />) : (
     <OnboardingContainer tracks={tracks}>
       {user.displayName && (
         <h1 className="title">What track are you in?</h1>
