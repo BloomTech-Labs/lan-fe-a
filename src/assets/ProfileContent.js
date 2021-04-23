@@ -2,11 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { fetchUserProfile } from '../store/actions';
+import {
+  fetchUser,
+  fetchUserProfile,
+  follow,
+  unfollow,
+} from '../store/actions';
 import SettingsContent from './SettingsContent';
-import { Layout, Badge, Button, Tabs, Card } from 'antd';
-import GitHubCalendar from 'react-github-calendar'
-
+import {
+  Layout,
+  Badge,
+  Button,
+  Tabs,
+  Card,
+  List,
+  Avatar,
+  Space,
+  Divider,
+} from 'antd';
+import GitHubCalendar from 'react-github-calendar';
 
 const ProfileContent = (props) => {
   const { Header, Content } = Layout;
@@ -14,6 +28,13 @@ const ProfileContent = (props) => {
   const userID = props.match.params.id;
 
   const [actKey, setActKey] = useState('Posts');
+
+  const isFollowing = (user_id) => {
+    return props.user.following_list.find(
+      (item) => item.following_id === user_id
+    );
+  };
+
   useEffect(() => {
     props.fetchUserProfile(userID);
   }, [
@@ -22,11 +43,14 @@ const ProfileContent = (props) => {
     props.user.profilePicture,
     props.user.track,
     props.user.gitHubUsername,
+    props.user.following,
   ]);
 
   const handleEditProfileButton = () => {
     setActKey('Settings');
   };
+
+  const handleFollowing = () => {};
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -54,7 +78,7 @@ const ProfileContent = (props) => {
       <Content>
         {Object.keys(props.currentUser).length > 0 && (
           <>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <img
                 src={props.currentUser.profile_picture}
                 width="100px"
@@ -69,9 +93,7 @@ const ProfileContent = (props) => {
                 >
                   <h3>{props.currentUser.display_name}</h3>
                 </Badge>
-                <div
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
-                >
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                   {props.currentUser.posts.length !== 1 ? (
                     <p style={{ marginRight: '15px' }}>
                       <b>{props.currentUser.posts.length}</b> posts
@@ -91,6 +113,17 @@ const ProfileContent = (props) => {
                     </p>
                   )}
                 </div>
+                <div>
+                  {props.currentUser.following !== 1 ? (
+                    <p style={{ marginRight: '15px' }}>
+                      <b>{props.currentUser.following}</b> following
+                    </p>
+                  ) : (
+                    <p style={{ marginRight: '15px' }}>
+                      <b>1</b> following
+                    </p>
+                  )}
+                </div>
                 <p>Bio Coming Soon</p>
                 {props.user.id === props.match.params.id && (
                   <Button type="primary" onClick={handleEditProfileButton}>
@@ -101,12 +134,36 @@ const ProfileContent = (props) => {
                   {props.user.id != props.match.params.id && (
                     <div style={{ display: 'flex' }}>
                       <div style={{ marginRight: '7%' }}>
-                        <Button type="primary" style={{ width: '125px' }}>
-                          Follow
-                        </Button>
+                        {isFollowing(props.currentUser.id) ? (
+                          <Button
+                            type="primary"
+                            style={{ width: '125px' }}
+                            onClick={() => {
+                              props
+                                .unfollow(props.user.id, props.currentUser.id)
+                                .then(() => props.fetchUser());
+                            }}
+                          >
+                            Unfollow
+                          </Button>
+                        ) : (
+                          <Button
+                            type="primary"
+                            style={{ width: '125px' }}
+                            onClick={() => {
+                              props
+                                .follow(props.user.id, props.currentUser.id)
+                                .then(() => props.fetchUser());
+                            }}
+                          >
+                            Follow
+                          </Button>
+                        )}
                       </div>
                       <div>
-                        <Link to={`/message/send/${props.user.id}/receive/${props.currentUser.id}`}>
+                        <Link
+                          to={`/message/send/${props.user.id}/receive/${props.currentUser.id}`}
+                        >
                           <Button type="primary" style={{ width: '125px' }}>
                             Message
                           </Button>
@@ -164,21 +221,78 @@ const ProfileContent = (props) => {
               </TabPane>
 
               <TabPane tab="Following" key="Following">
-                <Card
-                  size="small"
-                  title={<p> Following Cards Coming Soon</p>}
-                  style={{ width: 500 }}
-                ></Card>
+                <List
+                  style={{ width: '500px' }}
+                  itemLayout="vertical"
+                  size="large"
+                  pagination={{
+                    onChange: (page) => {},
+                    pageSize: 5,
+                  }}
+                  dataSource={props.currentUser.following_list}
+                  renderItem={(item) => (
+                    <List.Item
+                      key={item.id}
+                      actions=""
+                      extra={
+                        isFollowing(item.following_id) ? (
+                          <Button
+                            type="primary"
+                            style={{ width: '125px' }}
+                            onClick={() => {
+                              props
+                                .unfollow(props.user.id, item.following_id)
+                                .then(() => props.fetchUser());
+                            }}
+                          >
+                            Unfollow
+                          </Button>
+                        ) : (
+                          <Button
+                            type="primary"
+                            style={{ width: '125px' }}
+                            onClick={() => {
+                              props
+                                .follow(props.user.id, item.following_id)
+                                .then(() => props.fetchUser());
+                            }}
+                          >
+                            Follow
+                          </Button>
+                        )
+                      }
+                      style={{ backgroundColor: 'white' }}
+                    >
+                      <List.Item.Meta
+                        avatar={
+                          <Avatar src={item.profile_picture} size="large" />
+                        }
+                        title={
+                          <Space>
+                            <Link to={`/user/${item.following_id}`}>
+                              {item.display_name}
+                            </Link>
+                          </Space>
+                        }
+                        description={`following: ${item.following}`}
+                      />
+                    </List.Item>
+                  )}
+                />
               </TabPane>
               <TabPane tab="Rooms" key="Rooms">
-                  <Card>
-                    <p>Rooms coming soon</p>
-                  </Card>
+                <Card>
+                  <p>Rooms coming soon</p>
+                </Card>
               </TabPane>
               <TabPane tab="Github" key="Github">
-              {props.currentUser.github_username == null ? 
-              (<p>No Github info</p>) 
-              :(<GitHubCalendar username={props.currentUser.github_username}/>)}
+                {props.currentUser.github_username == null ? (
+                  <p>No Github info</p>
+                ) : (
+                  <GitHubCalendar
+                    username={props.currentUser.github_username}
+                  />
+                )}
               </TabPane>
               {props.user.id === props.match.params.id && (
                 <TabPane tab="Settings" key="Settings">
@@ -197,9 +311,13 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     currentUser: state.currentUser,
+    following: state.following,
   };
 };
 
 export default connect(mapStateToProps, {
   fetchUserProfile,
+  fetchUser,
+  follow,
+  unfollow,
 })(ProfileContent);
