@@ -235,7 +235,8 @@ const ProfileContent = (props) => {
                       key={item.id}
                       actions=""
                       extra={
-                        isFollowing(item.following_id) ? (
+                        props.user.id !== item.following_id &&
+                        (isFollowing(item.following_id) ? (
                           <Button
                             type="primary"
                             style={{ width: '125px' }}
@@ -259,7 +260,7 @@ const ProfileContent = (props) => {
                           >
                             Follow
                           </Button>
-                        )
+                        ))
                       }
                       style={{ backgroundColor: 'white' }}
                     >
