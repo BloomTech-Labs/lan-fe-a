@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 const OnboardingContainer = styled.div`
-  width: 60%;
   margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 4%;
   h1 {
     margin-bottom: 4px;
     font-size: 2rem;
@@ -143,6 +143,10 @@ const OnboardingContainer = styled.div`
     border-radius: 3px;
     border-color: #0099ff;
     width: 100%;
+    margin-bottom: 5%;
+  }
+  .github{
+      margin-top: 5%;
   }
   @media (min-width: 375px) {
     height: 90vh;
