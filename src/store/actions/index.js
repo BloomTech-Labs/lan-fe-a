@@ -22,11 +22,20 @@ export const fetchUser = () => (dispatch) => {
     .catch(() => toast.error('There was a problem fetching user.'));
 };
 
-// Fetches all users
+export const getDirectory = () => (dispatch) => {
+  axiosWithAuth()
+    .get(`${BACKEND_URL}/api/user/all`)
+    .then((response) =>
+      dispatch({ type: 'SET_USERS', payload: response.data.users })
+    )
+    .catch(() => toast.error('There was a problem fetching users.'));
+};
+
+// Fetches all users [Admin purposes]
 export const fetchUsers = () => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/admin/users/`)
-    .then((response) => dispatch({ type: 'SET_USERS', payload: response.data }))
+    .then((response) => dispatch({ type: 'SET_USERS_ADMIN', payload: response.data }))
     .catch(() => toast.error('There was a problem fetching users.'));
 };
 

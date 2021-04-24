@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Switch, useRouteMatch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   fetchRooms,
@@ -24,6 +24,7 @@ import ProfileContent from './ProfileContent';
 import AdminContent from './AdminContent';
 import SearchResultsContent from './SearchResultsContent';
 import Message from './Message';
+import Directory from './Directory';
 
 const Dashboard = (props) => {
   const { Content, Sider } = Layout;
@@ -62,6 +63,7 @@ const Dashboard = (props) => {
               }}
             >
               <Switch>
+                <PrivateRoute path="/directory" component={Directory} />
                 <PrivateRoute path="/admin-settings" component={AdminContent} />
                 <PrivateRoute path="/mod-settings" component={ModContent} />
                 <PrivateRoute path={`/room/:roomID`} component={RoomContent} />

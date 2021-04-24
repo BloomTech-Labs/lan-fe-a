@@ -10,6 +10,7 @@ const Success = (props) => {
 
   // save token to localStorage
   useEffect(() => {
+    console.log('REACHED');
     localStorage.setItem('token', jwt);
     props.fetchUser();
   }, [jwt]);

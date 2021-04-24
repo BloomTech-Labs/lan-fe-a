@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
@@ -6,10 +6,11 @@ import {
   fetchRooms,
   setNewRoomModalVisibility,
   fetchPostsAndFlagsByRoom,
-  fetchCurrentUsersLikedRooms
+  fetchCurrentUsersLikedRooms,
 } from '../store/actions';
 import { Menu } from 'antd';
 import {
+  UserOutlined,
   HeartOutlined,
   ShopOutlined,
   PlusSquareOutlined,
@@ -20,9 +21,9 @@ import CreateNewRoomModal from './CreateNewRoomModal';
 const SiderMenu = (props) => {
   const { url } = useRouteMatch();
 
-  useEffect(()=>{
-   props.fetchCurrentUsersLikedRooms(props.user.id)
-  },[])
+  useEffect(() => {
+    props.fetchCurrentUsersLikedRooms(props.user.id);
+  }, []);
 
   return (
     <Menu
@@ -32,43 +33,51 @@ const SiderMenu = (props) => {
       defaultOpenKeys={['sub2']}
       style={{ height: '100%', borderRight: 0 }}
     >
+      <Menu.Item key="sub0" icon={<UserOutlined />} title="Directory">
+        <Link to={`/directory`} onClick={() => {}}>
+          {'Directory'}
+        </Link>
+      </Menu.Item>
       <Menu.SubMenu key="sub1" icon={<HeartOutlined />} title="My Rooms">
-      {props.rooms.map((room, idx) => {
-        if (props.currentUsersLikedRooms.includes(Number(room.id))){
-          return (
-            <Menu.Item key={idx}>
-              <Link
-                key={room.id}
-                to={`/room/${room.id}`}
-                onClick={() => {
-                  if (props.user.role_id < 2) props.fetchPostByRoom(room.id, 1);
-                  else props.fetchPostsAndFlagsByRoom(room.id, 1);
-                }}
-              >
-                {room.room_name}
-              </Link>
-            </Menu.Item>
-          )}
+        {props.rooms.map((room, idx) => {
+          if (props.currentUsersLikedRooms.includes(Number(room.id))) {
+            return (
+              <Menu.Item key={idx}>
+                <Link
+                  key={room.id}
+                  to={`/room/${room.id}`}
+                  onClick={() => {
+                    if (props.user.role_id < 2)
+                      props.fetchPostByRoom(room.id, 1);
+                    else props.fetchPostsAndFlagsByRoom(room.id, 1);
+                  }}
+                >
+                  {room.room_name}
+                </Link>
+              </Menu.Item>
+            );
+          }
         })}
       </Menu.SubMenu>
       <Menu.SubMenu key="sub2" icon={<ShopOutlined />} title="Rooms">
-        
         {props.rooms.map((room, idx) => {
-          if (!props.currentUsersLikedRooms.includes(Number(room.id))){
-          return (
-            <Menu.Item key={idx}>
-              <Link
-                key={room.id}
-                to={`/room/${room.id}`}
-                onClick={() => {
-                  if (props.user.role_id < 2) props.fetchPostByRoom(room.id, 1);
-                  else props.fetchPostsAndFlagsByRoom(room.id, 1);
-                }}
-              >
-                {room.room_name}
-              </Link>
-            </Menu.Item>
-          )}
+          if (!props.currentUsersLikedRooms.includes(Number(room.id))) {
+            return (
+              <Menu.Item key={idx}>
+                <Link
+                  key={room.id}
+                  to={`/room/${room.id}`}
+                  onClick={() => {
+                    if (props.user.role_id < 2)
+                      props.fetchPostByRoom(room.id, 1);
+                    else props.fetchPostsAndFlagsByRoom(room.id, 1);
+                  }}
+                >
+                  {room.room_name}
+                </Link>
+              </Menu.Item>
+            );
+          }
         })}
         <Menu.Item
           onClick={() => props.setNewRoomModalVisibility(true)}
@@ -86,7 +95,7 @@ const mapStateToProps = (state) => {
   return {
     rooms: state.rooms,
     user: state.user,
-    currentUsersLikedRooms: state.currentUsersLikedRooms
+    currentUsersLikedRooms: state.currentUsersLikedRooms,
   };
 };
 
@@ -95,5 +104,5 @@ export default connect(mapStateToProps, {
   fetchRooms,
   setNewRoomModalVisibility,
   fetchPostsAndFlagsByRoom,
-  fetchCurrentUsersLikedRooms
+  fetchCurrentUsersLikedRooms,
 })(SiderMenu);

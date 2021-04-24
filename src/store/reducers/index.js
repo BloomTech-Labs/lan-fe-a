@@ -5,6 +5,7 @@ const initialState = {
   currentUser: {},
   rooms: [],
   users: [],
+  usersAdmin: [],
   posts: [],
   flaggedPosts: [],
   flaggedComments: [],
@@ -53,6 +54,12 @@ export const reducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
+
+      case 'SET_USERS_ADMIN':
+        return {
+          ...state,
+          usersAdmin: action.payload,
+        };
 
     case 'SET_POSTS':
       return {
