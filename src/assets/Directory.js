@@ -41,7 +41,6 @@ const Directory = (props) => {
               pageSize: 6,
             }}
             renderItem={(user) => (
-              //   props.user.id !== user.id && (
               <List.Item>
                 <Card
                   title={
