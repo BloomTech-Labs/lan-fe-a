@@ -5,6 +5,7 @@ import {
   fetchPostByRoom,
   fetchRooms,
   setNewRoomModalVisibility,
+  setReportBugModalVisibility,
   fetchPostsAndFlagsByRoom,
   fetchCurrentUsersLikedRooms,
 } from '../store/actions';
@@ -14,9 +15,11 @@ import {
   HeartOutlined,
   ShopOutlined,
   PlusSquareOutlined,
+  BugOutlined,
 } from '@ant-design/icons';
 
 import CreateNewRoomModal from './CreateNewRoomModal';
+import CreateNewBugModal from './CreateNewBugModal';
 
 const SiderMenu = (props) => {
   const { url } = useRouteMatch();
@@ -79,14 +82,23 @@ const SiderMenu = (props) => {
             );
           }
         })}
-        <Menu.Item
-          onClick={() => props.setNewRoomModalVisibility(true)}
-          icon={<PlusSquareOutlined />}
-        >
-          Create Room
-        </Menu.Item>
+        {props.user.role_id === 3 && (
+          <Menu.Item
+            onClick={() => props.setNewRoomModalVisibility(true)}
+            icon={<PlusSquareOutlined />}
+          >
+            Create Room
+          </Menu.Item>
+        )}
       </Menu.SubMenu>
       <CreateNewRoomModal />
+      <Menu.Item
+        onClick={() => props.setReportBugModalVisibility(true)}
+        icon={<BugOutlined />}
+      >
+        Report a Bug
+      </Menu.Item>
+      <CreateNewBugModal/>
     </Menu>
   );
 };
@@ -103,6 +115,7 @@ export default connect(mapStateToProps, {
   fetchPostByRoom,
   fetchRooms,
   setNewRoomModalVisibility,
+  setReportBugModalVisibility,
   fetchPostsAndFlagsByRoom,
   fetchCurrentUsersLikedRooms,
 })(SiderMenu);
