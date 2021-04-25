@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { logOut } from '../store/actions/index';
 import { Menu, Avatar, Dropdown, Space } from 'antd';
 import {
+  BugOutlined,
   UserOutlined,
   QuestionOutlined,
   SettingOutlined,
@@ -29,9 +30,6 @@ const ProfileIcon = (props) => {
           <Menu.Item icon={<UserOutlined />}>
             <Link to={`/user/${props.user.id}`}>My Profile</Link>
           </Menu.Item>
-          {/* <Menu.Item icon={<SettingOutlined />}>
-            <Link to="/settings">Settings</Link>
-          </Menu.Item> */}
           {props.user.role_id === 3 && (
             <Menu.Item icon={<SettingOutlined />}>
               <Link to="/admin-settings">Administrator</Link>
@@ -40,6 +38,11 @@ const ProfileIcon = (props) => {
           {CheckIfModOrAdmin(props.user) && (
             <Menu.Item icon={<SettingOutlined />}>
               <Link to="/mod-settings">Moderator</Link>
+            </Menu.Item>
+          )}
+          {props.user.role_id === 3 && (
+            <Menu.Item icon={<BugOutlined />}>
+              <Link to="/bug-tracker">Bug Tracker</Link>
             </Menu.Item>
           )}
           <Menu.Item icon={<QuestionOutlined />}>

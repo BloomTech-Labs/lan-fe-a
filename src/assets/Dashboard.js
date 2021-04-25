@@ -25,6 +25,7 @@ import AdminContent from './AdminContent';
 import SearchResultsContent from './SearchResultsContent';
 import Message from './Message';
 import Directory from './Directory';
+import BugTracker from './BugTracker';
 
 const Dashboard = (props) => {
   const { Content, Sider } = Layout;
@@ -66,6 +67,7 @@ const Dashboard = (props) => {
                 <PrivateRoute path="/directory" component={Directory} />
                 <PrivateRoute path="/admin-settings" component={AdminContent} />
                 <PrivateRoute path="/mod-settings" component={ModContent} />
+                <PrivateRoute path="/bug-tracker" component={BugTracker} />
                 <PrivateRoute path={`/room/:roomID`} component={RoomContent} />
                 <PrivateRoute exact path={`/faq`} component={FaqContent} />
                 <PrivateRoute

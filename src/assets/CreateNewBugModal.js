@@ -1,9 +1,7 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
-import 'dotenv';
 import { connect } from 'react-redux';
-import { toast } from 'react-hot-toast';
 import {
+  getBugs,
   reportBug,
   setReportBugModalVisibility,
   getBugImageURL,
@@ -57,6 +55,7 @@ const CreateNewBugModal = (props) => {
           setDescription('');
           setFileList([]);
           formRef.current.resetFields();
+          props.getBugs();
         });
     }
 
@@ -84,7 +83,10 @@ const CreateNewBugModal = (props) => {
       }
       centered
       visible={props.visible}
-      okButtonProps={{ htmlType: 'submit' }}
+      okButtonProps={{
+        htmlType: 'submit',
+        disabled: false,
+      }}
       okText="Report"
       onOk={handleSubmission}
       onCancel={handleCancel}
@@ -134,6 +136,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  getBugs,
   reportBug,
   getBugImageURL,
   setReportBugModalVisibility,
