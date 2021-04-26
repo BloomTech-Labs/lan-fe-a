@@ -8,6 +8,8 @@ import {
   updateUserDisplayName,
   setTrackSettings,
   updateGitHubUsername,
+  updateMenteeToTrue,
+  updateMentorToTrue
 } from '../store/actions';
 
 /* eslint-disable no-undef */
@@ -22,7 +24,10 @@ const SettingsContent = (props) => {
     displayName: props.user.displayName,
     track: props.user.track,
     githubUserName: props.user.gitHubUsername,
+    mentor: props.user.mentor,
+    mentee: props.user.mentee
   };
+
   const [settings, setSettings] = useState(initialSettings);
 
   const initialEditSettings = {
@@ -33,12 +38,11 @@ const SettingsContent = (props) => {
   const [editSettings, setEditSettings] = useState(initialEditSettings);
   const [input, setInput] = useState('');
   const [github, setGithub] = useState('')
-  const [mentor, setMentor] = useState(false)
-  const [mentee, setMentee] = useState(false)
-
- 
+  const [mentor, setMentor] = useState(initialSettings.mentor)
+  const [mentee, setMentee] = useState(initialSettings.mentee)
+  
   useEffect(() => {
-    setSettings({ ...settings, displayName: props.user.displayName, githubUserName: props.user.github_username });
+    setSettings({ ...settings, displayName: props.user.displayName, githubUserName: props.user.github_username, mentor: props.user.mentor, mentee: props.user.mentee });
   }, [props.user]);
 
   
@@ -71,6 +75,18 @@ const SettingsContent = (props) => {
   const onChangeGitHub = (event) => {
     setGithub(event.target.value)
   }
+
+  const onCheckMentee = () => {
+      setMentee(!mentee)
+      props.updateMenteeToTrue(props.user, mentee);
+      setSettings({...settings, mentee: mentee})
+  }
+  const onCheckMentor = () => {
+    setMentor(!mentor)
+    props.updateMentorToTrue(props.user, mentor);
+    setSettings({...settings, mentor: mentor})
+}
+
 
 
   
@@ -272,15 +288,15 @@ const SettingsContent = (props) => {
       </Card>
       <Checkbox 
         style={{ marginTop: '5px' }}
-        onClick={() => setMentor(!mentor)}
         value={mentor}
+        onClick={onCheckMentor}
         >Check here if you are interested in becoming a mentor.
       </Checkbox>
       <br />
       <Checkbox 
         style={{ marginTop: '5px' }}
         value={mentee}
-        onClick={() => setMentee(!mentee)}>Check here if you are seeking mentorship.
+        onClick={onCheckMentee}>Check here if you are seeking mentorship.
       </Checkbox>
       <Button
         type="primary"
@@ -312,4 +328,6 @@ export default connect(mapStateToProps, {
   updateUserDisplayName,
   setTrackSettings,
   updateGitHubUsername,
+  updateMentorToTrue,
+  updateMenteeToTrue
 })(SettingsContent);
