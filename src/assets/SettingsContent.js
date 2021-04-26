@@ -27,8 +27,6 @@ const SettingsContent = (props) => {
     mentor: props.user.mentor,
     mentee: props.user.mentee
   };
-  console.log(props.user.mentor)
-  console.log(props.user.mentee)
 
   const [settings, setSettings] = useState(initialSettings);
 
