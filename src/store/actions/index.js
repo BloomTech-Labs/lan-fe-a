@@ -91,7 +91,7 @@ export const fetchUserProfile = (userID) => (dispatch) => {
 
 // fetch the current users liked rooms
 export const fetchCurrentUsersLikedRooms = (userID) => (dispatch) => {
-  axiosWithAuth()
+  return axiosWithAuth()
     .get(`${BACKEND_URL}/api/myroom/${userID}`)
     .then((response) => {
       let roomIds = [];
@@ -716,4 +716,69 @@ export const getBugImageURL = (base64EncodedImage) => (dispatch) => {
       return response.data.url;
     })
     .catch(() => toast.error('There was a problem uploading the image.'));
+};
+
+//get Private Rooms
+export const fetchPrivateRooms = () => (dispatch) => {
+  return axiosWithAuth()
+    .get(`${BACKEND_URL}/api/room/private/`)
+    .then((response) => {
+      dispatch({ type: 'SET_PRIVATE_ROOMS', payload: response.data });
+    })
+    .catch(() => toast.error('There was a problem fetching private rooms.'));
+};
+
+//get Private Rooms
+export const fetchPrivateRoom = (roomId) => (dispatch) => {
+  return axiosWithAuth()
+    .get(`${BACKEND_URL}/api/room/private/${roomId}`)
+    .then((response) => {
+      dispatch({ type: 'SET_CURRENT_PRIVATE_ROOM', payload: response.data });
+    })
+    .catch(() => toast.error('There was a problem fetching the private room.'));
+};
+
+//create Private Room
+export const createPrivateRoom = (room, users) => (dispatch) => {
+  return axiosWithAuth()
+    .post(`${BACKEND_URL}/api/room/private/`, room)
+    .then((response) => {
+      const [privateRoom] = response.data;
+      return privateRoom;
+    })
+    .then(async (privateRoom) => {
+      const data = await addUsersPrivateRoom(privateRoom.id, users);
+      dispatch({ type: 'SET_CURRENT_PRIVATE_ROOM', payload: data });
+    })
+    .catch(() => toast.error('There was a problem creating the private room.'));
+};
+
+//add users to a Private Room
+export const addUsersPrivateRoom = (roomId, users) => {
+  return axiosWithAuth()
+    .post(`${BACKEND_URL}/api/room/private/${roomId}/users`, { users })
+    .then((response) => {
+      return response.data;
+    })
+    .catch(() => toast.error('There was a problem fetching private rooms.'));
+};
+
+//remove users from Private Room
+export const removeUsersPrivateRoom = (roomId, users) => (dispatch) => {
+  return axiosWithAuth()
+    .delete(`${BACKEND_URL}/api/room/private/${roomId}/users`, { users })
+    .then((response) => {
+      dispatch({ type: 'SET_CURRENT_PRIVATE_ROOM', payload: response.data });
+    })
+    .catch(() => toast.error('There was a problem fetching private rooms.'));
+};
+
+//delete Private Room
+export const deletePrivateRoom = (roomId) => (dispatch) => {
+  return axiosWithAuth()
+    .delete(`${BACKEND_URL}/api/room/private/${roomId}`)
+    .then((response) => {
+      toast.success('Private room successfully deleted.');
+    })
+    .catch(() => toast.error('There was a problem creating the private room.'));
 };

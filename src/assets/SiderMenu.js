@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {
   fetchPostByRoom,
   fetchRooms,
+  fetchPrivateRooms,
   setNewRoomModalVisibility,
   setReportBugModalVisibility,
   fetchPostsAndFlagsByRoom,
@@ -11,6 +12,7 @@ import {
 } from '../store/actions';
 import { Menu } from 'antd';
 import {
+  LockOutlined,
   UserOutlined,
   HeartOutlined,
   ShopOutlined,
@@ -25,15 +27,15 @@ const SiderMenu = (props) => {
   const { url } = useRouteMatch();
 
   useEffect(() => {
+    props.fetchPrivateRooms();
     props.fetchCurrentUsersLikedRooms(props.user.id);
   }, []);
 
   return (
     <Menu
-      mode={localStorage.getItem('menuMode') || 'inline'}
-      theme={localStorage.getItem('menuTheme') || 'light'}
+      mode="inline"
       defaultSelectedKeys={['0']}
-      defaultOpenKeys={['sub2']}
+      defaultOpenKeys={['sub1']}
       style={{ height: '100%', borderRight: 0 }}
     >
       <Menu.Item key="sub0" icon={<UserOutlined />} title="Directory">
@@ -45,7 +47,7 @@ const SiderMenu = (props) => {
         {props.rooms.map((room, idx) => {
           if (props.currentUsersLikedRooms.includes(Number(room.id))) {
             return (
-              <Menu.Item key={idx}>
+              <Menu.Item key={room.id}>
                 <Link
                   key={room.id}
                   to={`/room/${room.id}`}
@@ -66,7 +68,7 @@ const SiderMenu = (props) => {
         {props.rooms.map((room, idx) => {
           if (!props.currentUsersLikedRooms.includes(Number(room.id))) {
             return (
-              <Menu.Item key={idx}>
+              <Menu.Item key={room.id}>
                 <Link
                   key={room.id}
                   to={`/room/${room.id}`}
@@ -91,14 +93,37 @@ const SiderMenu = (props) => {
           </Menu.Item>
         )}
       </Menu.SubMenu>
-      <CreateNewRoomModal />
+      <Menu.SubMenu key="sub3" icon={<LockOutlined />} title="Private Rooms">
+        {props.privateRooms.map((room, idx) => {
+          return (
+            (props.user.role_id === 3 ||
+              room.users.find((el) => el.id === props.user.id)) && (
+              <Menu.Item key={room.id}>
+                <Link
+                  key={room.id}
+                  to={`/private-room/${room.id}`}
+                  onClick={() => {
+                    if (props.user.role_id < 2)
+                      props.fetchPostByRoom(room.id, 1);
+                    else props.fetchPostsAndFlagsByRoom(room.id, 1);
+                  }}
+                >
+                  {room.room_name}
+                </Link>
+              </Menu.Item>
+            )
+          );
+        })}
+      </Menu.SubMenu>
       <Menu.Item
+        key="sub4"
         onClick={() => props.setReportBugModalVisibility(true)}
         icon={<BugOutlined />}
       >
         Report a Bug
       </Menu.Item>
-      <CreateNewBugModal/>
+      <CreateNewRoomModal />
+      <CreateNewBugModal />
     </Menu>
   );
 };
@@ -106,6 +131,7 @@ const SiderMenu = (props) => {
 const mapStateToProps = (state) => {
   return {
     rooms: state.rooms,
+    privateRooms: state.privateRooms,
     user: state.user,
     currentUsersLikedRooms: state.currentUsersLikedRooms,
   };
@@ -114,6 +140,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   fetchPostByRoom,
   fetchRooms,
+  fetchPrivateRooms,
   setNewRoomModalVisibility,
   setReportBugModalVisibility,
   fetchPostsAndFlagsByRoom,
