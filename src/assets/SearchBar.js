@@ -31,7 +31,7 @@ const SearchBar = ({ history, searchResults, fetchPostByRoom, setDrawerVisibilit
         <Menu>
           {searchResults.posts.map((p) => (
             <Menu.Item icon={<FileOutlined />} key={`${p.title}-${p.id}`}>
-              <Link to={`post/${p.id}`}>{p.title}</Link>
+              <Link to={`/post/${p.id}`}>{p.title}</Link>
             </Menu.Item>
           ))}
           {searchResults.users.map((u) => (
@@ -39,7 +39,7 @@ const SearchBar = ({ history, searchResults, fetchPostByRoom, setDrawerVisibilit
               icon={<UserOutlined />}
               key={`${u.display_name}-${u.id}`}
             >
-              <Link to={`user/${u.id}`}>{u.display_name}</Link>
+              <Link to={`/user/${u.id}`}>{u.display_name}</Link>
             </Menu.Item>
           ))}
           {searchResults.rooms.map((r) => {
