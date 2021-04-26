@@ -207,6 +207,7 @@ const SettingsContent = (props) => {
         )}
       </Card>
       <Card
+        style={{ marginTop: 16 }}
         type="inner"
         title="Bio"
         extra={
@@ -313,6 +314,7 @@ const SettingsContent = (props) => {
         )}
       </Card>
       <Card
+      style={{ marginTop: 16 }}
         type="inner"
         title="GitHub Username"
         extra={
