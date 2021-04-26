@@ -8,7 +8,6 @@ import { Layout, Badge, Button, Tabs, Card } from 'antd';
 import GitHubCalendar from 'react-github-calendar';
 
 const ProfileContent = (props) => {
-  console.log(props);
   const { Header, Content } = Layout;
   const { TabPane } = Tabs;
   const userID = props.match.params.id;
@@ -29,30 +28,22 @@ const ProfileContent = (props) => {
   };
 
   return (
-    <Layout
-      // style={{ minHeight: '100vh' }}
-      className="profile-container"
-    >
+    <Layout className="profile-container">
       {/* <Header>
       </Header> */}
       <Content>
         {Object.keys(props.currentUser).length > 0 && (
           <div className="profile-content">
             <div className="profile-header">
-              <img
-                src={props.currentUser.profile_picture}
-                width="100px"
-                height="100px"
-                style={{ borderRadius: '50%', marginRight: '15px' }}
-              />
+              <img src={props.currentUser.profile_picture} />
               <div className="user-info-and-buttons">
                 <div className="user-name-and-badge">
                   <h3 id="user-name">{props.currentUser.display_name}</h3>
                   <Badge
                     count={props.currentUser.track.toUpperCase()}
-                    //TODO get this working with the less file
+                    //TODO get this working with the ProfileContent.less file
                     // offset={[25, -10]}
-                    // style={{ backgroundColor: 'grey' }}
+                    style={{ backgroundColor: 'grey' }}
                   ></Badge>
                 </div>
                 <div className="posts-and-comments">
