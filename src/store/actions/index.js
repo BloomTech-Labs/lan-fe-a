@@ -185,6 +185,20 @@ export const setTrackSettings = (userDetails, track) => (dispatch) => {
     .catch(() => toast.error('Uh oh! There was a problem setting your track.'));
 };
 
+export const updateMentorToTrue = () => (dispatch) => {
+  return axiosWithAuth()
+    .put(`${BACKEND_URL}/api/user/mentor`)
+    .then(() => toast.success('Updated mentor status to "looking for mentees"'))
+    .catch(() => toast.error('Oh no! there was a problem updating your mentor status'));
+};
+
+export const updateMenteeToTrue = () => (dispatch) => {
+  return axiosWithAuth()
+    .put(`${BACKEND_URL}/api/user/mentee`)
+    .then(() => toast.success('Updated mentee status to "looking for mentor"'))
+    .catch(() => toast.error('Oh no! there was a problem updating your mentee status'));
+};
+
 // Fetches all rooms
 export const fetchRooms = () => (dispatch) => {
   return axiosWithAuth()

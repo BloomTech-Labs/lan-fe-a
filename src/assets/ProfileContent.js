@@ -36,6 +36,8 @@ const ProfileContent = (props) => {
   };
 
   useEffect(() => {
+
+    console.log(props)
     props.fetchUserProfile(userID);
   }, [
     userID,
@@ -44,6 +46,8 @@ const ProfileContent = (props) => {
     props.user.track,
     props.user.gitHubUsername,
     props.user.following,
+    props.user.mentor,
+    props.user.mentee
   ]);
 
   const handleEditProfileButton = () => {

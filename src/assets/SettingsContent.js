@@ -31,10 +31,12 @@ const SettingsContent = (props) => {
     githubUserName: false,
   };
   const [editSettings, setEditSettings] = useState(initialEditSettings);
-
   const [input, setInput] = useState('');
   const [github, setGithub] = useState('')
+  const [mentor, setMentor] = useState(false)
+  const [mentee, setMentee] = useState(false)
 
+ 
   useEffect(() => {
     setSettings({ ...settings, displayName: props.user.displayName, githubUserName: props.user.github_username });
   }, [props.user]);
@@ -70,10 +72,8 @@ const SettingsContent = (props) => {
     setGithub(event.target.value)
   }
 
-  const onCheckMentor = (event) => {
-    console.log(`checked = ${event.target.checked}`);
-  }
 
+  
   const onSubmit = (event) => {
     event.preventDefault();
     if (editSettings.displayName) {
@@ -272,12 +272,15 @@ const SettingsContent = (props) => {
       </Card>
       <Checkbox 
         style={{ marginTop: '5px' }}
-        onCheck={onCheckMentor}>Check here if you are interested in becoming a mentor.
+        onClick={() => setMentor(!mentor)}
+        value={mentor}
+        >Check here if you are interested in becoming a mentor.
       </Checkbox>
       <br />
       <Checkbox 
         style={{ marginTop: '5px' }}
-        onCheck={onCheckMentor}>Check here if you are seeking mentorship.
+        value={mentee}
+        onClick={() => setMentee(!mentee)}>Check here if you are seeking mentorship.
       </Checkbox>
       <Button
         type="primary"
