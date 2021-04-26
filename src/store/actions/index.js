@@ -759,7 +759,7 @@ export const updateUserBio = (userDetails, userBio) => (
   ) => {
     const userID = userDetails.id;
     axiosWithAuth()
-      .put(`${BACKEND_URL}/api/user/userBio`, { userID, userBio })
+      .put(`${BACKEND_URL}/api/user/userbio`, { userID, userBio })
       .then(() => {
         toast.success('Woo! Bio info changed to ' + userBio);
         dispatch({ type: 'SET_USER', payload: { ...userDetails, userBio } });

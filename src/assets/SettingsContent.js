@@ -229,7 +229,7 @@ const SettingsContent = (props) => {
             onSubmit={onSubmit}
           >
             <label htmlFor="display-name">
-              Update User Bio
+              Update User Bio (max 150 characters)
             </label>
             <Input
               name="user-bio"
@@ -238,7 +238,7 @@ const SettingsContent = (props) => {
               value={input}
               style={{ marginTop: '10px' }}
               onChange={onChange}
-              maxLength="15"
+              maxLength="150"
               required
             />
             <Button
