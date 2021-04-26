@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  fetchPostByRoom,
-  fetchRooms,
-  setDrawerVisibility,
-  fetchPost,
-  fetchPostsAndFlagsByRoom,
-  postQuestion,
-} from '../store/actions';
 import { Layout } from 'antd';
 import { Switch, useRouteMatch } from 'react-router-dom';
 
 import Feed from './Feed';
 import { PrivateRoute } from '../utils/privateRoute';
 import DiscussionDrawer from './DiscussionDrawer';
+import {
+    fetchPostByRoom,
+    fetchRooms,
+    setDrawerVisibility,
+    fetchPost,
+    fetchPostsAndFlagsByRoom,
+    postQuestion,
+  } from '../store/actions';
 
 const SearchResultsContent = () => {
     const { Header, Content } = Layout;

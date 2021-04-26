@@ -1,16 +1,16 @@
 import React from 'react';
+import { Link, useRouteMatch, withRouter } from 'react-router-dom';
+import { Menu, Dropdown, Input } from 'antd';
+import { UserOutlined, ShopOutlined, FileOutlined } from '@ant-design/icons';
+
 import { connect } from 'react-redux';
 import {
   retrieveFullSearchResults,
   fetchPostByRoom,
   setDrawerVisibility,
 } from '../store/actions';
-import { Link, useRouteMatch, withRouter } from 'react-router-dom';
-import { Menu, Dropdown, Input } from 'antd';
-import { UserOutlined, ShopOutlined, FileOutlined } from '@ant-design/icons';
 
 const SearchBar = ({ history, searchResults, fetchPostByRoom, setDrawerVisibility, retrieveFullSearchResults }) => {
-  const { url } = useRouteMatch();
 
   const handleSearch = query => {
     if (query) {
@@ -20,9 +20,7 @@ const SearchBar = ({ history, searchResults, fetchPostByRoom, setDrawerVisibilit
   }
  
   const handleSearchChange = (e) => {
-    if (e.target.value !== '') {
-      retrieveFullSearchResults(e.target.value);
-    }
+    if (e.target.value !== '') retrieveFullSearchResults(e.target.value);
   };
 
   return (
@@ -44,22 +42,20 @@ const SearchBar = ({ history, searchResults, fetchPostByRoom, setDrawerVisibilit
               <Link to={`user/${u.id}`}>{u.display_name}</Link>
             </Menu.Item>
           ))}
-          {searchResults.rooms.map((r) => (
+          {searchResults.rooms.map((r) => {
+            console.log({r: r.id});
+            return (
             <Menu.Item
               icon={<ShopOutlined />}
-              key={`${r.display_name}-${r.id}`}
+              key={`${r.room_name}-${r.id}`}
             >
               <Link
-                to={`${url}/room/${r.id}`}
-                onClick={() => {
-                  fetchPostByRoom(r.id, 1);
-                  setDrawerVisibility(true);
-                }}
+                to={`/room/${r.id}`}
               >
                 {r.room_name}
               </Link>
             </Menu.Item>
-          ))}
+          )})}
         </Menu>
       }
     >
