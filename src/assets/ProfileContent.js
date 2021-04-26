@@ -33,38 +33,12 @@ const ProfileContent = (props) => {
       // style={{ minHeight: '100vh' }}
       className="profile-container"
     >
-      {/* <Header
-        style={{
-          padding: '0px 0px',
-          background: '#f0f2f5',
-          display: 'flex',
-          justifyContent: 'flex-start',
-          height: 'auto',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flexFlow: 'column wrap',
-            alignSelf: 'flex-start',
-          }}
-        >
-          {/* Leaving this header in case we want to add it back in */}
-      {/* <h2>{props.currentUser.display_name}</h2> */}
-      {/* {props.user.id === props.match.params.id && <h2>My Profile</h2>}
-        </div>
+      {/* <Header>
       </Header> */}
       <Content>
         {Object.keys(props.currentUser).length > 0 && (
           <div className="profile-content">
-            <div
-              className="profile-header"
-              // style={{
-              //   display: 'flex',
-              //   alignItems: 'center',
-              //   border: '1px solid',
-              // }}
-            >
+            <div className="profile-header">
               <img
                 src={props.currentUser.profile_picture}
                 width="100px"
@@ -76,14 +50,12 @@ const ProfileContent = (props) => {
                   <h3 id="user-name">{props.currentUser.display_name}</h3>
                   <Badge
                     count={props.currentUser.track.toUpperCase()}
+                    //TODO get this working with the less file
                     // offset={[25, -10]}
                     // style={{ backgroundColor: 'grey' }}
                   ></Badge>
                 </div>
-                <div
-                  className="posts-and-comments"
-                  // style={{ display: 'flex', justifyContent: 'space-between' }}
-                >
+                <div className="posts-and-comments">
                   {props.currentUser.posts.length !== 1 ? (
                     <p className="posts-and-comments-font">
                       <b>{props.currentUser.posts.length}</b> posts
@@ -112,9 +84,8 @@ const ProfileContent = (props) => {
                   )}
 
                   {props.user.id != props.match.params.id && (
-                    // <div style={{ display: 'flex' }}>
                     <>
-                      <div id='follow-button'>
+                      <div id="follow-button">
                         <Button type="primary">Follow</Button>
                       </div>
                       <div>
@@ -125,7 +96,6 @@ const ProfileContent = (props) => {
                         </Link>
                       </div>
                     </>
-                    // </div>
                   )}
                 </div>
               </div>
