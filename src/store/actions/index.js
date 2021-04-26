@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import toast, { dispatch } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import moment from 'moment';
 import axios from 'axios';
-import axiosWithAuth from '../../utils/axiosWithAuth';
+import axiosWithAuth, { axiosWithAuthForm } from '../../utils/axiosWithAuth';
 axios.defaults.withCredentials = true;
 
 const BACKEND_URL =
@@ -22,11 +22,22 @@ export const fetchUser = () => (dispatch) => {
     .catch(() => toast.error('There was a problem fetching user.'));
 };
 
-// Fetches all users
+export const getDirectory = () => (dispatch) => {
+  axiosWithAuth()
+    .get(`${BACKEND_URL}/api/user/all`)
+    .then((response) =>
+      dispatch({ type: 'SET_USERS', payload: response.data.users })
+    )
+    .catch(() => toast.error('There was a problem fetching users.'));
+};
+
+// Fetches all users [Admin purposes]
 export const fetchUsers = () => (dispatch) => {
   axiosWithAuth()
     .get(`${BACKEND_URL}/api/admin/users/`)
-    .then((response) => dispatch({ type: 'SET_USERS', payload: response.data }))
+    .then((response) =>
+      dispatch({ type: 'SET_USERS_ADMIN', payload: response.data })
+    )
     .catch(() => toast.error('There was a problem fetching users.'));
 };
 
@@ -541,6 +552,10 @@ export const setNewRoomModalVisibility = (bool) => (dispatch) => {
   dispatch({ type: 'SET_NEW_ROOM_MODAL_VISIBILITY', payload: bool });
 };
 
+export const setReportBugModalVisibility = (bool) => (dispatch) => {
+  dispatch({ type: 'SET_REPORT_BUG_MODAL_VISIBILITY', payload: bool });
+};
+
 //Get all messages between two users
 export const fetchMessages = (user_send_id, user_receive_id) => (dispatch) => {
   const queue = [];
@@ -600,19 +615,6 @@ export const setShowModModal = (bool) => (dispatch) => {
   dispatch({ type: 'SET_SHOW_MOD_MODAL', payload: bool });
 };
 
-//get who a user is following
-// export const getFollowing = (user_id) => (dispatch) => {
-//   return axiosWithAuth()
-//     .get(`${BACKEND_URL}/api/following/${user_id}`)
-//     .then((response) => {
-//       //   dispatch({
-//       //     type: 'GET_USER_FOLLOWERS',
-//       //     payload: response.data.following,
-//       //   });
-//     })
-//     .catch(() => toast.error('There was a problem fetching messages.'));
-// };
-
 //follow a user
 export const follow = (user_id, following_id) => (dispatch) => {
   return axiosWithAuth()
@@ -631,4 +633,87 @@ export const unfollow = (user_id, following_id) => (dispatch) => {
       toast.success('Sorry to see you go!');
     })
     .catch(() => toast.error('There was a problem unfollowing user.'));
+};
+
+//get all bugs
+export const getBugs = () => (dispatch) => {
+  return axiosWithAuth()
+    .get(`${BACKEND_URL}/api/bug`)
+    .then((response) => {
+      dispatch({ type: 'SET_BUGS', payload: response.data });
+    })
+    .catch(() => toast.error('There was a problem getting the bugs.'));
+};
+
+//get a specific bug
+export const getBug = (bug_id) => (dispatch) => {
+  return axiosWithAuth()
+    .get(`${BACKEND_URL}/api/bug/${bug_id}`)
+    .then((response) => {
+      dispatch({ type: 'SET_CURRENT_BUG', payload: response.data });
+    })
+    .catch(() => toast.error('There was a problem getting the bug.'));
+};
+
+//report a bug
+export const reportBug = (newBug) => (dispatch) => {
+  return axiosWithAuth()
+    .post(`${BACKEND_URL}/api/bug`, newBug)
+    .then((response) => {
+      toast.success(
+        'Hey! thanks for reporting, we are working diligently to resolve it'
+      );
+    })
+    .catch(() => toast.error('There was a problem reporting the bug.'));
+};
+
+//edit a bug
+export const editBug = (bug_id, BugToEdit) => (dispatch) => {
+  return axiosWithAuth()
+    .put(`${BACKEND_URL}/api/bug/${bug_id}`, BugToEdit)
+    .then((response) => {
+      toast.success('Bug edited successfully.');
+    })
+    .catch(() => toast.error('There was a problem editing the bug.'));
+};
+
+//resolve a bug
+export const resolveBug = (bug_id) => (dispatch) => {
+  return axiosWithAuth()
+    .get(`${BACKEND_URL}/api/bug/resolve/${bug_id}`)
+    .then((response) => {
+      toast.success('Bug resolved successfully.');
+    })
+    .catch(() => toast.error('There was a problem resolving the bug.'));
+};
+
+//open a bug
+export const openBug = (bug_id) => (dispatch) => {
+  return axiosWithAuth()
+    .get(`${BACKEND_URL}/api/bug/open/${bug_id}`)
+    .then((response) => {
+      toast.success('Bug reopened successfully.');
+    })
+    .catch(() => toast.error('There was a problem reopened the bug.'));
+};
+
+//delete a bug
+export const deleteBug = (bug_id) => (dispatch) => {
+  return axiosWithAuth()
+    .delete(`${BACKEND_URL}/api/bug/${bug_id}`)
+    .then((response) => {
+      toast.success('Bug deleted successfully.');
+    })
+    .catch(() => toast.error('There was a problem deleting the bug.'));
+};
+
+//get image URL for the bug
+export const getBugImageURL = (base64EncodedImage) => (dispatch) => {
+  return axiosWithAuth()
+    .post(`${BACKEND_URL}/api/bug/image`, { data: base64EncodedImage })
+    .then((response) => {
+      //toast.success('Image uploaded successfully.');
+      return response.data.url;
+    })
+    .catch(() => toast.error('There was a problem uploading the image.'));
 };
