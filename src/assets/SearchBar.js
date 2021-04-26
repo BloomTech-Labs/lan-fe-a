@@ -42,9 +42,7 @@ const SearchBar = ({ history, searchResults, fetchPostByRoom, setDrawerVisibilit
               <Link to={`/user/${u.id}`}>{u.display_name}</Link>
             </Menu.Item>
           ))}
-          {searchResults.rooms.map((r) => {
-            console.log({r: r.id});
-            return (
+          {searchResults.rooms.map((r) => (
             <Menu.Item
               icon={<ShopOutlined />}
               key={`${r.room_name}-${r.id}`}
@@ -55,7 +53,7 @@ const SearchBar = ({ history, searchResults, fetchPostByRoom, setDrawerVisibilit
                 {r.room_name}
               </Link>
             </Menu.Item>
-          )})}
+          ))}
         </Menu>
       }
     >
