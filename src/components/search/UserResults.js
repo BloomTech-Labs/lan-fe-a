@@ -8,7 +8,6 @@ const UserResults = (props) => {
         props.users.map((user) => {
           return (
             <div key={user.id}>
-              {console.log(user.display_name)}
               <p>{user.email}</p>
               <p>{user.display_name}</p>
             </div>

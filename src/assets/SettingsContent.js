@@ -10,6 +10,7 @@ import {
   updateGitHubUsername,
   setWillingToMentor,
   setSeekingMentor,
+  updateUserBio,
 } from '../store/actions';
 
 /* eslint-disable no-undef */
@@ -26,6 +27,7 @@ const SettingsContent = (props) => {
     githubUserName: props.user.gitHubUsername,
     mentor: props.user.mentor,
     mentee: props.user.mentee,
+    userBio: props.user.userBio,
   };
 
   const [settings, setSettings] = useState(initialSettings);
@@ -36,6 +38,7 @@ const SettingsContent = (props) => {
     githubUserName: false,
     mentor: false,
     mentee: false,
+    userBio: false,
   };
 
   const [editSettings, setEditSettings] = useState(initialEditSettings);
@@ -52,7 +55,8 @@ const SettingsContent = (props) => {
       displayName: props.user.displayName, 
       githubUserName: props.user.github_username,
       mentor: props.user.mentor,
-      mentee: props.user.mentee
+      mentee: props.user.mentee,
+      userBio: props.user.userBio,
     });
   }, [props.user]);
 
@@ -120,6 +124,11 @@ const SettingsContent = (props) => {
       props.setSeekingMentor(props.user, mentee)
       setSettings({...settings, mentee: mentee });
       setEditSettings({...editSettings, mentee: false });
+    } if (editSettings.userBio) {
+      props.updateUserBio(props.user, input);
+      setSettings({ ...settings, userBio: input });
+      setInput('');
+      setEditSettings({ ...editSettings, userBio: false });
     }
   };
   
@@ -190,6 +199,61 @@ const SettingsContent = (props) => {
               onClick={() => {
                 setInput('');
                 setEditSettings({ ...editSettings, displayName: false });
+              }}
+            >
+              Cancel
+            </Button>
+          </form>
+        )}
+      </Card>
+      <Card
+        type="inner"
+        title="Bio"
+        extra={
+          <Button
+            type="link"
+            onClick={() =>
+              setEditSettings({ ...editSettings, userBio: true })
+            }
+          >
+            Change
+          </Button>
+        }
+      >
+        {settings.userBio}
+        {editSettings.userBio && (
+          <form
+            style={{ marginTop: '10px' }}
+            autoComplete="off"
+            spellCheck="false"
+            onSubmit={onSubmit}
+          >
+            <label htmlFor="display-name">
+              Update User Bio
+            </label>
+            <Input
+              name="user-bio"
+              type="text"
+              placeholder="Enter Bio Information"
+              value={input}
+              style={{ marginTop: '10px' }}
+              onChange={onChange}
+              maxLength="15"
+              required
+            />
+            <Button
+              style={{ marginTop: '10px' }}
+              type="primary"
+              htmlType="submit"
+            >
+              Submit
+            </Button>
+            <Button
+              type="danger"
+              style={{ marginLeft: '10px' }}
+              onClick={() => {
+                setInput('');
+                setEditSettings({ ...editSettings, userBio: false });
               }}
             >
               Cancel
@@ -340,4 +404,7 @@ export default connect(mapStateToProps, {
   updateUserDisplayName,
   setTrackSettings,
   updateGitHubUsername,
+  setWillingToMentor,
+  setSeekingMentor,
+  updateUserBio,
 })(SettingsContent);

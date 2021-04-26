@@ -158,7 +158,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     rooms: state.rooms,
-    users: state.users,
+    users: state.usersAdmin,
   };
 };
 

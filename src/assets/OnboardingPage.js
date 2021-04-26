@@ -58,7 +58,7 @@ const Onboarding = props => {
   return user.onboarded ? (<Redirect to="/" />) : (
     <OnboardingContainer tracks={tracks}>
       {user.displayName && (
-        <h1>{user.displayName.split(' ')[0]}, what track are you in?</h1>
+        <h1 className="title">What track are you in?</h1>
       )}
       <p className="instructions">
         In the future we plan to make resources relevent to your track more
@@ -84,7 +84,8 @@ const Onboarding = props => {
           None
         </button>
       </div>
-      <div>
+      <div className="github">
+        <h1>GitHub Username</h1>
       <p className="instructions">
         You contribution to projects on GitHub help you to stand out to possible employers as well as tell your peers what you have been up to with coding. If you would like to display your GitHub info on your LAN profile please provide your GitHub username below. 
 
@@ -94,7 +95,7 @@ const Onboarding = props => {
         className="gitHubUserName"
         name="github-user-name-entry"
         type="text"
-        placeholder="GitHub username"
+        placeholder="Enter your GitHub username"
         value={username}
         onChange={onChangeUserName}
       >
@@ -107,8 +108,8 @@ const Onboarding = props => {
         </button>
       </div>
     </OnboardingContainer>
-  );
-};
+  // );
+    )};
 
 const mapStateToProps = (state) => {
   return {
@@ -116,4 +117,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUser, setTrack, updateGitHubUsername })(Onboarding);
+export default connect(mapStateToProps, { fetchUser, setTrack, updateGitHubUsername})(Onboarding);
