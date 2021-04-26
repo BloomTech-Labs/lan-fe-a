@@ -1,10 +1,13 @@
 const initialState = {
+  bugs: [],
+  currentBug: {},
   messages: [],
   currentUsersLikedRooms: [],
   user: {},
   currentUser: {},
   rooms: [],
   users: [],
+  usersAdmin: [],
   posts: [],
   flaggedPosts: [],
   flaggedComments: [],
@@ -30,6 +33,7 @@ const initialState = {
   individualPostCommentsAreFetching: false,
   isDrawerVisible: false,
   isNewRoomModalVisible: false,
+  isReportBugModalVisible: false,
   showFlagModal: false,
   showModModal: false,
 };
@@ -52,6 +56,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload,
+      };
+
+    case 'SET_USERS_ADMIN':
+      return {
+        ...state,
+        usersAdmin: action.payload,
       };
 
     case 'SET_POSTS':
@@ -150,6 +160,12 @@ export const reducer = (state = initialState, action) => {
         isNewRoomModalVisible: action.payload,
       };
 
+    case 'SET_REPORT_BUG_MODAL_VISIBILITY':
+      return {
+        ...state,
+        isReportBugModalVisible: action.payload,
+      };
+
     case 'SET_FLAGGING_MODAL':
       return {
         ...state,
@@ -189,6 +205,18 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         showModModal: action.payload,
+      };
+
+    case 'SET_BUGS':
+      return {
+        ...state,
+        bugs: action.payload,
+      };
+
+    case 'SET_CURRENT_BUG':
+      return {
+        ...state,
+        currentBug: action.payload,
       };
 
     default:

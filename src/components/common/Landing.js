@@ -9,7 +9,6 @@ const BACKEND_URL =
 
 const Landing = () => {
   const [fetching, setFetching] = useState(false);
-  console.log(BACKEND_URL);
   return (
     <>
       {fetching ? (
