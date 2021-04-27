@@ -29,7 +29,7 @@ const SiderMenu = (props) => {
   useEffect(() => {
     props.fetchPrivateRooms();
     props.fetchCurrentUsersLikedRooms(props.user.id);
-  }, []);
+  }, [props.currentUsersLikedRooms.length]);
 
   return (
     <Menu

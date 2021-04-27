@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchRecent, fetchPostByRoom, fetchRooms } from '../store/actions';
-import { Layout } from 'antd';
+import { fetchRecent, fetchPostByRoom, fetchRooms, fetchPostForFeed } from '../store/actions';
+import { Layout, List,} from 'antd';
+import DiscussionCard from './DiscussionCard';
+import DiscussionDrawer from './DiscussionDrawer';
+import {PrivateRoute} from '../utils/privateRoute';
+import { useRouteMatch } from 'react-router';
+
 
 // import Feed from './Feed';
 
-const DashboardContent = () => {
+const DashboardContent = (props) => {
+  const {path} = useRouteMatch();
   const { Header, Content } = Layout;
-
+  console.log('this is props.feedpost',props.feedpost)
+  useEffect(() => {
+      props.fetchPostForFeed(); 
+  }
+  ,[]);
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Header
@@ -30,18 +40,42 @@ const DashboardContent = () => {
         </div>
       </Header>
       <Content>
-        <p>(Dynamic Newsfeed Here)</p>
+      <>
+          <List
+            itemLayout="vertical"
+            size="large"
+            dataSource={props.feedpost}
+            renderItem={(item) => {
+              return (
+                <>
+                  <DiscussionCard
+                    discussion={item}
+                  />
+                  <br />
+                </>
+              );
+            }}
+          />
+          <PrivateRoute
+            path={`${path}/discussion/:discussionID`}
+            component={DiscussionDrawer}
+          />
+        </>
       </Content>
     </Layout>
   );
 };
 
 const mapStateToProps = (state) => {
-  return state;
+  
+  return {
+    feedpost: state.feedpost
+  };
 };
 
 export default connect(mapStateToProps, {
   fetchRecent,
   fetchPostByRoom,
   fetchRooms,
+  fetchPostForFeed,
 })(DashboardContent);
