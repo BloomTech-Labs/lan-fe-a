@@ -3,7 +3,7 @@
 import toast from 'react-hot-toast';
 import moment from 'moment';
 import axios from 'axios';
-import axiosWithAuth, { axiosWithAuthForm } from '../../utils/axiosWithAuth';
+import axiosWithAuth from '../../utils/axiosWithAuth';
 axios.defaults.withCredentials = true;
 
 const BACKEND_URL =
@@ -764,6 +764,16 @@ export const getBugImageURL = (base64EncodedImage) => (dispatch) => {
     .catch(() => toast.error('There was a problem uploading the image.'));
 };
 
+//Fetches most recent and liked post for the feed
+export const fetchPostForFeed = () => (dispatch) =>{
+  axiosWithAuth()
+      .get(`${BACKEND_URL}/api/post/recentliked`)
+      .then((res)=>{
+          console.log(res)
+          dispatch({type:'SET_FEED_POST', payload: res.data})
+      })
+      .catch(() => toast.error('There was a problem fetching posts for the feed.'));
+}
 //get Private Rooms
 export const fetchPrivateRooms = () => (dispatch) => {
   return axiosWithAuth()

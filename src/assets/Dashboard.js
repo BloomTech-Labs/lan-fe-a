@@ -9,6 +9,8 @@ import {
   retrieveFullSearchResults,
   setSearch,
   fetchFlagReasons,
+  fetchPostForFeed,
+  fetchCurrentUsersLikedRooms
 } from '../store/actions';
 import { Layout } from 'antd';
 
@@ -35,17 +37,19 @@ const Dashboard = (props) => {
   useEffect(() => {
     props.fetchRooms();
     props.fetchPrivateRooms();
+    props.fetchCurrentUsersLikedRooms(props.user.id);
     // props.fetchRecent(); // This is throwing an internal server error
     if (Object.keys(props.user).length === 0) {
       props.fetchUser();
     }
-  }, []);
+  }, [props.currentUsersLikedRooms.length]);
 
   useEffect(() => {
     if (props.user.role_id) {
       CheckIfModOrAdmin(props.user) && props.fetchFlagReasons();
     }
   }, [props.user.role_id]);
+
 
   return (
     <>
@@ -100,6 +104,8 @@ const Dashboard = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    currentUsersLikedRooms: state.currentUsersLikedRooms,
+    feedpost: state.feedpost,
     user: state.user,
     rooms: state.rooms,
     privateRooms: state.privateRooms,
@@ -116,4 +122,6 @@ export default connect(mapStateToProps, {
   retrieveFullSearchResults,
   setSearch,
   fetchFlagReasons,
+  fetchPostForFeed,
+  fetchCurrentUsersLikedRooms
 })(Dashboard);
