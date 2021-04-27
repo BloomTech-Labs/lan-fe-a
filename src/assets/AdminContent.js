@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
+  createPrivateRoom,
+  addUsersPrivateRoom,
   fetchRooms,
+  fetchPrivateRooms,
   fetchUsers,
   deleteRoom,
   createRoom,
 } from '../store/actions';
 import SingleUserContent from './SingleUserContent';
 import SingleRoomContent from './SingleRoomContent';
-import { Layout, Input, Button, Tabs, Modal } from 'antd';
+import SinglePrivateRoomContent from './SinglePrivateRoomContent';
+import { Layout, Input, Button, Tabs, Modal, Select } from 'antd';
 
 const AdminContent = (props) => {
   const { Header, Content } = Layout;
 
   const { TabPane } = Tabs;
-
   const { TextArea } = Input;
+  const { Option } = Select;
 
   const initialRoomValue = {
     name: '',
     description: '',
   };
-
   const [roomValues, SetRoomValues] = useState(initialRoomValue);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isPrivateModalVisible, setIsPrivateModalVisible] = useState(false);
+
+  const [members, setMembers] = useState([]);
 
   const [activeTab, setActiveTab] = useState('Users');
 
@@ -81,9 +87,83 @@ const AdminContent = (props) => {
     </Modal>
   );
 
+  const showPrivateModal = () => {
+    SetRoomValues(initialRoomValue);
+    setMembers([]);
+    setIsPrivateModalVisible(true);
+  };
+
+  const handlePrivateOk = () => {
+    props
+      .createPrivateRoom(
+        {
+          room_name: roomValues.name,
+          description: roomValues.description,
+        },
+        members
+      )
+      .then(() => {
+        props.fetchPrivateRooms();
+      });
+
+    setIsPrivateModalVisible(false);
+  };
+
+  const handlePrivateCancel = () => {
+    SetRoomValues(initialRoomValue);
+    setMembers([]);
+    setIsPrivateModalVisible(false);
+  };
+
+  const handleMembersUpdate = (membersList) => {
+    setMembers(membersList);
+  };
+
+  const CreatePrivateModal = (
+    <Modal
+      title="Create Private Room"
+      visible={isPrivateModalVisible}
+      onOk={handlePrivateOk}
+      okText="Create"
+      onCancel={handlePrivateCancel}
+    >
+      <h4>Title</h4>
+      <Input
+        name="name"
+        style={{ marginBottom: '15px' }}
+        value={roomValues.name}
+        onChange={handleUpdateChange}
+      />
+      <h4>Members</h4>
+      <Select
+        mode="multiple"
+        value={members}
+        style={{ width: '100%', marginBottom: '15px' }}
+        placeholder="select a member"
+        onChange={handleMembersUpdate}
+        optionLabelProp="label"
+      >
+        {props.users.map((user) => {
+          return (
+            <Option key={user.id} value={user.id} label={user.display_name}>
+              <div>{user.display_name}</div>
+            </Option>
+          );
+        })}
+      </Select>
+      <h4>Description</h4>
+      <TextArea
+        name="description"
+        value={roomValues.description}
+        onChange={handleUpdateChange}
+      />
+    </Modal>
+  );
+
   useEffect(() => {
     props.fetchUsers();
     props.fetchRooms();
+    props.fetchPrivateRooms();
   }, []);
 
   return (
@@ -148,6 +228,26 @@ const AdminContent = (props) => {
                 })}
             </div>
           </TabPane>
+          <TabPane key="privateRooms" tab="Private Rooms">
+            <Button style={{ marginLeft: '20px' }} onClick={showPrivateModal}>
+              Create Private Room
+            </Button>
+            {CreateModal}
+            {CreatePrivateModal}
+            <div
+              style={{
+                display: 'flex',
+                flexFlow: 'row wrap',
+                justifyContent: 'flex-start',
+                marginTop: '20px',
+              }}
+            >
+              {props.user.role_id === 3 &&
+                props.privateRooms.map((item) => {
+                  return <SinglePrivateRoomContent key={item.id} room={item} />;
+                })}
+            </div>
+          </TabPane>
         </Tabs>
       </Content>
     </Layout>
@@ -158,12 +258,17 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     rooms: state.rooms,
+    currentPrivateRoom: state.currentPrivateRoom,
+    privateRooms: state.privateRooms,
     users: state.usersAdmin,
   };
 };
 
 export default connect(mapStateToProps, {
+  createPrivateRoom,
   fetchRooms,
+  fetchPrivateRooms,
+  addUsersPrivateRoom,
   fetchUsers,
   deleteRoom,
   createRoom,

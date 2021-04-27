@@ -198,7 +198,6 @@ const Post = (props) => {
                     <button>Update Post</button>
                   </form>
                 )}
-                {console.log('post:', props.currentPost, 'user:', props.user)}
               </div>
               {props.currentPost.user_id === props.user.id ? (
                 <div>
