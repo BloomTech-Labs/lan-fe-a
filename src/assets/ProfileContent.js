@@ -7,11 +7,11 @@ import SettingsContent from './SettingsContent';
 import { Layout, Badge, Button, Tabs, Card, Menu } from 'antd';
 import GitHubCalendar from 'react-github-calendar';
 import DiscussionDrawer from './DiscussionDrawer';
-// import PrivateRoute from '../utils/privateRoute';
+import {PrivateRoute} from '../utils/privateRoute';
 
 const ProfileContent = (props) => {
   const { Header, Content } = Layout;
-  const { url } = useRouteMatch();
+  const { path, url } = useRouteMatch();
   const { TabPane } = Tabs;
   const userID = props.match.params.id;
 
@@ -131,10 +131,10 @@ const ProfileContent = (props) => {
                         {moment(item.created_at).fromNow()}
                       </p>
                     </Card>
-                    {/* <PrivateRoute
+                    <PrivateRoute
                       path={`${path}/discussion/:discussionID`}
                       component={DiscussionDrawer}
-                    /> */}
+                    />
                   </Link>
                 ))}
               </TabPane>
