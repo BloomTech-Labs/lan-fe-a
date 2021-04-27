@@ -764,6 +764,24 @@ export const getBugImageURL = (base64EncodedImage) => (dispatch) => {
     .catch(() => toast.error('There was a problem uploading the image.'));
 };
 
+
+
+// updates a users bio
+export const updateUserBio = (userDetails, userBio) => (
+    dispatch
+  ) => {
+    const userID = userDetails.id;
+    axiosWithAuth()
+      .put(`${BACKEND_URL}/api/user/userbio`, { userID, userBio })
+      .then(() => {
+        toast.success('Woo! Bio info changed to ' + userBio);
+        dispatch({ type: 'SET_USER', payload: { ...userDetails, userBio } });
+      })
+      .catch(() =>
+        toast.error('Oh no! there was a problem updating your info.')
+      );
+  };
+
 //Fetches most recent and liked post for the feed
 export const fetchPostForFeed = () => (dispatch) =>{
   axiosWithAuth()
@@ -774,6 +792,7 @@ export const fetchPostForFeed = () => (dispatch) =>{
       })
       .catch(() => toast.error('There was a problem fetching posts for the feed.'));
 }
+
 //get Private Rooms
 export const fetchPrivateRooms = () => (dispatch) => {
   return axiosWithAuth()
@@ -838,3 +857,4 @@ export const deletePrivateRoom = (roomId) => (dispatch) => {
     })
     .catch(() => toast.error('There was a problem creating the private room.'));
 };
+

@@ -36,8 +36,6 @@ const ProfileContent = (props) => {
   };
 
   useEffect(() => {
-
-    console.log(props)
     props.fetchUserProfile(userID);
   }, [
     userID,
@@ -46,6 +44,7 @@ const ProfileContent = (props) => {
     props.user.track,
     props.user.gitHubUsername,
     props.user.following,
+    props.user.userBio,
     props.user.mentor,
     props.user.mentee
   ]);
@@ -76,7 +75,7 @@ const ProfileContent = (props) => {
         >
           {/* Leaving this header in case we want to add it back in */}
           {/* <h2>{props.currentUser.display_name}</h2> */}
-          {props.user.id === props.match.params.id && <h2>My Profile</h2>}
+          {/* {props.user.id === props.match.params.id && <h2>My Profile</h2>} */}
         </div>
       </Header>
       <Content>
@@ -128,7 +127,9 @@ const ProfileContent = (props) => {
                     </p>
                   )}
                 </div>
-                <p>Bio Coming Soon</p>
+                <div>
+                  <p>{props.currentUser.user_bio}</p>
+                </div>
                 {props.user.id === props.match.params.id && (
                   <Button type="primary" onClick={handleEditProfileButton}>
                     Edit Profile
