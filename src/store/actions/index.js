@@ -717,3 +717,14 @@ export const getBugImageURL = (base64EncodedImage) => (dispatch) => {
     })
     .catch(() => toast.error('There was a problem uploading the image.'));
 };
+
+//Fetches most recent and liked post for the feed
+export const fetchPostForFeed = () => (dispatch) =>{
+  axiosWithAuth()
+      .get(`${BACKEND_URL}/api/post/recentliked`)
+      .then((res)=>{
+          console.log(res)
+          dispatch({type:'SET_FEED_POST', payload: res.data})
+      })
+      .catch(() => toast.error('There was a problem fetching posts for the feed.'));
+}

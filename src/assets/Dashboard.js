@@ -8,6 +8,7 @@ import {
   retrieveFullSearchResults,
   setSearch,
   fetchFlagReasons,
+  fetchPostForFeed
 } from '../store/actions';
 import { Layout } from 'antd';
 
@@ -43,6 +44,7 @@ const Dashboard = (props) => {
       CheckIfModOrAdmin(props.user) && props.fetchFlagReasons();
     }
   }, [props.user.role_id]);
+
 
   return (
     <>
@@ -93,6 +95,7 @@ const Dashboard = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    feedpost: state.feedpost,
     user: state.user,
     rooms: state.rooms,
     posts: state.posts,
@@ -107,4 +110,5 @@ export default connect(mapStateToProps, {
   retrieveFullSearchResults,
   setSearch,
   fetchFlagReasons,
+  fetchPostForFeed
 })(Dashboard);
