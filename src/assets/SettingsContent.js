@@ -24,8 +24,7 @@ const SettingsContent = (props) => {
     displayName: props.user.displayName,
     track: props.user.track,
     githubUserName: props.user.gitHubUsername,
-    mentor: props.user.mentor,
-    mentee: props.user.mentee
+    
   };
 
   const [settings, setSettings] = useState(initialSettings);
@@ -42,7 +41,7 @@ const SettingsContent = (props) => {
   const [mentee, setMentee] = useState(props.user.mentee)
   
   useEffect(() => {
-    setSettings({ ...settings, displayName: props.user.displayName, githubUserName: props.user.github_username, mentor: props.user.mentor, mentee: props.user.mentee });
+    setSettings({ ...settings, displayName: props.user.displayName, githubUserName: props.user.github_username});
   }, [props.user]);
 
   
@@ -79,14 +78,14 @@ const SettingsContent = (props) => {
   const onCheckMentee = () => {
       setMentee(!mentee)
       props.updateMenteeToTrue(props.user, mentee);
-      setSettings({...settings, mentee: mentee})
+      
   }
 
   
   const onCheckMentor = () => {
     setMentor(!mentor)
     props.updateMentorToTrue(props.user, mentor);
-    setSettings({...settings, mentor: mentor})
+    
 }
 
 
@@ -290,7 +289,7 @@ const SettingsContent = (props) => {
       </Card>
       <Checkbox 
         style={{ marginTop: '5px' }}
-        checked={props.user.mentor}
+        checked={(mentor == false ? true : false)}
         value={mentor}
         onClick={onCheckMentor}
         >Check here if you are interested in becoming a mentor.
@@ -298,7 +297,7 @@ const SettingsContent = (props) => {
       <br />
       <Checkbox 
         style={{ marginTop: '5px' }}
-        checked = {props.user.mentee}
+        checked={(mentee == false ? true : false)}
         value={mentee}
         onClick={onCheckMentee}>Check here if you are seeking mentorship.
       </Checkbox>
