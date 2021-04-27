@@ -74,10 +74,10 @@ const DiscussionCard = (props) => {
           </Link>,
           CheckIfModOrAdmin(props.user) && (
             <Link to={`${url}/discussion/${props.discussion.id}?view=flagged`}>
-              <FlagChip
+              {/* <FlagChip
                 flags={`${props.discussion.flags.length}`}
                 commentsFlagged={`${props.discussion.flaggedComments.length}`}
-              />
+              /> */}
             </Link>
           ),
         ]}

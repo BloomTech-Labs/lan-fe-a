@@ -8,13 +8,9 @@ import {
   updateUserDisplayName,
   setTrackSettings,
   updateGitHubUsername,
-<<<<<<< HEAD:src/assets/SettingsContent.js
+  updateMentorToTrue,
   updateMenteeToTrue,
-  updateMentorToTrue
-} from '../store/actions';
-=======
 } from '../../store/actions';
->>>>>>> feature/code-organization/ismail:src/components/profile/SettingsContent.js
 
 /* eslint-disable no-undef */
 const BACKEND_URL =
@@ -28,7 +24,6 @@ const SettingsContent = (props) => {
     displayName: props.user.displayName,
     track: props.user.track,
     githubUserName: props.user.gitHubUsername,
-    
   };
 
   const [settings, setSettings] = useState(initialSettings);
@@ -40,15 +35,18 @@ const SettingsContent = (props) => {
   };
   const [editSettings, setEditSettings] = useState(initialEditSettings);
   const [input, setInput] = useState('');
-  const [github, setGithub] = useState('')
-  const [mentor, setMentor] = useState(props.user.mentor)
-  const [mentee, setMentee] = useState(props.user.mentee)
-  
+  const [github, setGithub] = useState('');
+  const [mentor, setMentor] = useState(props.user.mentor);
+  const [mentee, setMentee] = useState(props.user.mentee);
+
   useEffect(() => {
-    setSettings({ ...settings, displayName: props.user.displayName, githubUserName: props.user.github_username});
+    setSettings({
+      ...settings,
+      displayName: props.user.displayName,
+      githubUserName: props.user.github_username,
+    });
   }, [props.user]);
 
-  
   useEffect(() => {
     if (props.actKey == 'Settings') {
       setEditSettings(initialEditSettings);
@@ -76,25 +74,19 @@ const SettingsContent = (props) => {
   };
 
   const onChangeGitHub = (event) => {
-    setGithub(event.target.value)
-  }
+    setGithub(event.target.value);
+  };
 
   const onCheckMentee = () => {
-      setMentee(!mentee)
-      props.updateMenteeToTrue(props.user, mentee);
-      
-  }
+    setMentee(!mentee);
+    props.updateMenteeToTrue(props.user, mentee);
+  };
 
-  
   const onCheckMentor = () => {
-    setMentor(!mentor)
+    setMentor(!mentor);
     props.updateMentorToTrue(props.user, mentor);
-    
-}
+  };
 
-
-
-  
   const onSubmit = (event) => {
     event.preventDefault();
     if (editSettings.displayName) {
@@ -105,19 +97,18 @@ const SettingsContent = (props) => {
     } else if (editSettings.track) {
       props.setTrackSettings(props.user, settings.track);
       setEditSettings({ ...editSettings, track: false });
-    }if (editSettings.githubUserName) {
-      props.updateGitHubUsername(props.user, github)
+    }
+    if (editSettings.githubUserName) {
+      props.updateGitHubUsername(props.user, github);
       setSettings({ ...settings, gitHubUsername: github });
       setInput('');
       setEditSettings({ ...editSettings, githubUserName: false });
     }
   };
-  
+
   function handleMenuClick(e) {
     setSettings({ ...settings, track: e.key });
   }
-
-
 
   const menu = (
     <Menu onClick={handleMenuClick}>
@@ -283,7 +274,7 @@ const SettingsContent = (props) => {
               style={{ marginLeft: '10px' }}
               onClick={() => {
                 setInput('');
-                setEditSettings({ ...editSettings, githubUserName: false});
+                setEditSettings({ ...editSettings, githubUserName: false });
               }}
             >
               Cancel
@@ -291,19 +282,22 @@ const SettingsContent = (props) => {
           </form>
         )}
       </Card>
-      <Checkbox 
+      <Checkbox
         style={{ marginTop: '5px' }}
         checked={props.user.mentor}
         value={mentor}
         onClick={onCheckMentor}
-        >Check here if you are interested in becoming a mentor.
+      >
+        Check here if you are interested in becoming a mentor.
       </Checkbox>
       <br />
-      <Checkbox 
+      <Checkbox
         style={{ marginTop: '5px' }}
-        checked = {props.user.mentee}
+        checked={props.user.mentee}
         value={mentee}
-        onClick={onCheckMentee}>Check here if you are seeking mentorship.
+        onClick={onCheckMentee}
+      >
+        Check here if you are seeking mentorship.
       </Checkbox>
       <Button
         type="primary"
@@ -336,5 +330,5 @@ export default connect(mapStateToProps, {
   setTrackSettings,
   updateGitHubUsername,
   updateMentorToTrue,
-  updateMenteeToTrue
+  updateMenteeToTrue,
 })(SettingsContent);

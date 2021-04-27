@@ -1,24 +1,27 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Layout, List,} from 'antd';
-import DiscussionCard from './DiscussionCard';
-import DiscussionDrawer from './DiscussionDrawer';
-import {PrivateRoute} from '../utils/privateRoute';
+import { Layout, List } from 'antd';
+import DiscussionCard from '../posts/DiscussionCard';
+import DiscussionDrawer from '../posts/DiscussionDrawer';
+import { PrivateRoute } from '../../utils/privateRoute';
 import { useRouteMatch } from 'react-router';
 
-import { fetchRecent, fetchPostByRoom, fetchRooms, fetchPostForFeed } from '../../store/actions';
-
+import {
+  fetchRecent,
+  fetchPostByRoom,
+  fetchRooms,
+  fetchPostForFeed,
+} from '../../store/actions';
 
 // import Feed from './Feed';
 
 const DashboardContent = (props) => {
-  const {path} = useRouteMatch();
+  const { path } = useRouteMatch();
   const { Header, Content } = Layout;
 
   useEffect(() => {
-      props.fetchPostForFeed(); 
-  }
-  ,[]);
+    props.fetchPostForFeed();
+  }, []);
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Header
@@ -41,7 +44,7 @@ const DashboardContent = (props) => {
         </div>
       </Header>
       <Content>
-      <>
+        <>
           <List
             itemLayout="vertical"
             size="large"
@@ -49,9 +52,7 @@ const DashboardContent = (props) => {
             renderItem={(item) => {
               return (
                 <>
-                  <DiscussionCard
-                    discussion={item}
-                  />
+                  <DiscussionCard discussion={item} />
                   <br />
                 </>
               );
@@ -68,9 +69,8 @@ const DashboardContent = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  
   return {
-    feedpost: state.feedpost
+    feedpost: state.feedpost,
   };
 };
 
