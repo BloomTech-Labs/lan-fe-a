@@ -124,19 +124,12 @@ const ProfileContent = (props) => {
                   <Card
                     size="small"
                     key={index}
-                    title={
-                      <p style={{ fontSize: '12px', marginBottom: '0' }}>
-                        {moment(item.created_at).fromNow()}
-                      </p>
-                    }
-                    style={{ width: 500 }}
+                    onClick={() => props.history.push(`/discussion/${item.id}`)}
+                    style={{ width: 500, cursor: 'pointer' }}
                   >
-                    <p
-                      onClick={() =>
-                        props.history.push(`/post/${item.post_id}`)
-                      }
-                    >
-                      {item.comment}
+                    <p>{item.comment}</p>
+                    <p style={{ fontSize: '12px', marginBottom: '0' }}>
+                      {moment(item.created_at).fromNow()}
                     </p>
                   </Card>
                 ))}
