@@ -9,17 +9,7 @@ import {
   unfollow,
 } from '../../store/actions';
 import SettingsContent from './SettingsContent';
-import {
-  Layout,
-  Badge,
-  Button,
-  Tabs,
-  Card,
-  List,
-  Avatar,
-  Space,
-  Divider,
-} from 'antd';
+import { Layout, Badge, Button, Tabs, Card, List, Avatar, Space } from 'antd';
 import GitHubCalendar from 'react-github-calendar';
 
 const ProfileContent = (props) => {
@@ -36,8 +26,6 @@ const ProfileContent = (props) => {
   };
 
   useEffect(() => {
-
-    console.log(props)
     props.fetchUserProfile(userID);
   }, [
     userID,
@@ -47,7 +35,7 @@ const ProfileContent = (props) => {
     props.user.gitHubUsername,
     props.user.following,
     props.user.mentor,
-    props.user.mentee
+    props.user.mentee,
   ]);
 
   const handleEditProfileButton = () => {
