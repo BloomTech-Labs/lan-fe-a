@@ -1,4 +1,5 @@
 const initialState = {
+  feedpost:[],
   bugs: [],
   currentBug: {},
   messages: [],
@@ -218,6 +219,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         currentBug: action.payload,
       };
+    case 'SET_FEED_POST':
+      return{
+        ...state,
+        feedpost: action.payload,
+      }
 
     default:
       return state;
