@@ -289,7 +289,7 @@ const SettingsContent = (props) => {
       </Card>
       <Checkbox 
         style={{ marginTop: '5px' }}
-        checked={(mentor == false ? true : false)}
+        checked={props.user.mentor}
         value={mentor}
         onClick={onCheckMentor}
         >Check here if you are interested in becoming a mentor.
@@ -297,7 +297,7 @@ const SettingsContent = (props) => {
       <br />
       <Checkbox 
         style={{ marginTop: '5px' }}
-        checked={(mentee == false ? true : false)}
+        checked = {props.user.mentee}
         value={mentee}
         onClick={onCheckMentee}>Check here if you are seeking mentorship.
       </Checkbox>
