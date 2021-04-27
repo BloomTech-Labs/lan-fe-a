@@ -3,11 +3,14 @@ import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   fetchRooms,
+  fetchPrivateRooms,
   fetchRecent,
   fetchUser,
   retrieveFullSearchResults,
   setSearch,
   fetchFlagReasons,
+  fetchPostForFeed,
+  fetchCurrentUsersLikedRooms
 } from '../store/actions';
 import { Layout } from 'antd';
 
@@ -26,23 +29,27 @@ import SearchResultsContent from './SearchResultsContent';
 import Message from './Message';
 import Directory from './Directory';
 import BugTracker from './BugTracker';
+import PrivateRoomContent from './PrivateRoomContent';
 
 const Dashboard = (props) => {
   const { Content, Sider } = Layout;
 
   useEffect(() => {
     props.fetchRooms();
+    props.fetchPrivateRooms();
+    props.fetchCurrentUsersLikedRooms(props.user.id);
     // props.fetchRecent(); // This is throwing an internal server error
     if (Object.keys(props.user).length === 0) {
       props.fetchUser();
     }
-  }, []);
+  }, [props.currentUsersLikedRooms.length]);
 
   useEffect(() => {
     if (props.user.role_id) {
       CheckIfModOrAdmin(props.user) && props.fetchFlagReasons();
     }
   }, [props.user.role_id]);
+
 
   return (
     <>
@@ -69,6 +76,10 @@ const Dashboard = (props) => {
                 <PrivateRoute path="/mod-settings" component={ModContent} />
                 <PrivateRoute path="/bug-tracker" component={BugTracker} />
                 <PrivateRoute path={`/room/:roomID`} component={RoomContent} />
+                <PrivateRoute
+                  path={`/private-room/:roomID`}
+                  component={PrivateRoomContent}
+                />
                 <PrivateRoute exact path={`/faq`} component={FaqContent} />
                 <PrivateRoute
                   exact
@@ -93,8 +104,11 @@ const Dashboard = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    currentUsersLikedRooms: state.currentUsersLikedRooms,
+    feedpost: state.feedpost,
     user: state.user,
     rooms: state.rooms,
+    privateRooms: state.privateRooms,
     posts: state.posts,
     searchResults: state.mainSearchResults,
   };
@@ -102,9 +116,12 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   fetchRooms,
+  fetchPrivateRooms,
   fetchRecent,
   fetchUser,
   retrieveFullSearchResults,
   setSearch,
   fetchFlagReasons,
+  fetchPostForFeed,
+  fetchCurrentUsersLikedRooms
 })(Dashboard);
