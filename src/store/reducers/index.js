@@ -7,6 +7,8 @@ const initialState = {
   user: {},
   currentUser: {},
   rooms: [],
+  privateRooms: [],
+  currentPrivateRoom: {},
   users: [],
   usersAdmin: [],
   posts: [],
@@ -224,6 +226,18 @@ export const reducer = (state = initialState, action) => {
         ...state,
         feedpost: action.payload,
       }
+
+    case 'SET_PRIVATE_ROOMS':
+      return {
+        ...state,
+        privateRooms: action.payload,
+      };
+
+    case 'SET_CURRENT_PRIVATE_ROOM':
+      return {
+        ...state,
+        currentPrivateRoom: action.payload,
+      };
 
     default:
       return state;
