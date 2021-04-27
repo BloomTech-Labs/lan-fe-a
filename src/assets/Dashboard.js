@@ -21,6 +21,7 @@ import { CheckIfModOrAdmin } from './CheckIfModOrAdmin';
 import FaqContent from './FaqContent';
 import ModContent from './ModContent';
 import ProfileContent from './ProfileContent';
+import DiscussionDrawer from './DiscussionDrawer';
 import AdminContent from './AdminContent';
 import SearchResultsContent from './SearchResultsContent';
 import Message from './Message';
@@ -71,6 +72,10 @@ const Dashboard = (props) => {
                   path={`/user/:id`}
                   component={ProfileContent}
                 />
+                <PrivateRoute
+                      path={`/discussion/:discussionID`}
+                      component={DiscussionDrawer}
+                    />
                 <PrivateRoute path="/search" component={SearchResultsContent} />
                 <PrivateRoute
                   exact

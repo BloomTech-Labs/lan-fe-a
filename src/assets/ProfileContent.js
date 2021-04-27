@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { fetchUserProfile } from '../store/actions';
 import SettingsContent from './SettingsContent';
-import { Layout, Badge, Button, Tabs, Card, Menu } from 'antd';
+import { Layout, Badge, Button, Tabs, Card } from 'antd';
 import GitHubCalendar from 'react-github-calendar';
-import DiscussionDrawer from './DiscussionDrawer';
-import {PrivateRoute} from '../utils/privateRoute';
 
 const ProfileContent = (props) => {
   const { Header, Content } = Layout;
-  const { path, url } = useRouteMatch();
   const { TabPane } = Tabs;
   const userID = props.match.params.id;
 
@@ -99,43 +96,27 @@ const ProfileContent = (props) => {
               activeKey={actKey}
               onChange={(key) => setActKey(key)}
             >
-              <TabPane tab="Posts" key="Posts" style={{ border: '1px solid' }}>
+              <TabPane tab="Posts" key="Posts">
                 {props.currentUser.posts.map((item, index) => (
-                  <Link
-                    to={`${url}/discussion/${item.id}`}
-                    key={index}
-                  >
+                  <>
                     <Card
                       size="small"
                       key={index}
-                      // title={
-                      //   <p style={{ fontSize: '12px', marginBottom: '0' }}>
-                      //     {moment(item.created_at).fromNow()}
-                      //   </p>
-                      // }
-                      // onClick={<DiscussionDrawer/>} doesn't work, url isn't right for it
-                      // onClick={props.history.push(`/discussion/${item.id}`)} this breaks the profile page
+                      onClick={() =>
+                        props.history.push(`/discussion/${item.id}`)
+                      }
                       style={{
                         width: 500,
                         cursor: 'pointer',
                         margin: '1%',
-                        border: '1px solid',
                       }}
                     >
-                      {/* Old way of linking to post */}
-                      {/* <p onClick={() => props.history.push(`/post/${item.id}`)}>
-                          {item.title}
-                        </p> */}
                       <p>{item.title}</p>
                       <p style={{ fontSize: '12px', marginBottom: '0' }}>
                         {moment(item.created_at).fromNow()}
                       </p>
                     </Card>
-                    <PrivateRoute
-                      path={`${path}/discussion/:discussionID`}
-                      component={DiscussionDrawer}
-                    />
-                  </Link>
+                  </>
                 ))}
               </TabPane>
               <TabPane tab="Comments" key="Comments">
