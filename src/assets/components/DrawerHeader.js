@@ -66,10 +66,10 @@ const DrawerHeader = (props) => {
               <Link
                 to={`${url}/discussion/${props.currentPost.id}?view=flagged`}
                 >
-                <FlagChip
+                {/* <FlagChip
                   flags={`${props.discussion.flags.length}`}
                   commentsFlagged={`${props.discussion.flaggedComments.length}`}
-                  />
+                  /> */}
               </Link>
             </>
           )}

@@ -45,6 +45,8 @@ const ProfileContent = (props) => {
     props.user.gitHubUsername,
     props.user.following,
     props.user.userBio,
+    props.user.mentor,
+    props.user.mentee
   ]);
 
   const handleEditProfileButton = () => {

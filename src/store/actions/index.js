@@ -91,7 +91,7 @@ export const fetchUserProfile = (userID) => (dispatch) => {
 
 // fetch the current users liked rooms
 export const fetchCurrentUsersLikedRooms = (userID) => (dispatch) => {
-  axiosWithAuth()
+  return axiosWithAuth()
     .get(`${BACKEND_URL}/api/myroom/${userID}`)
     .then((response) => {
       let roomIds = [];
@@ -183,6 +183,52 @@ export const setTrackSettings = (userDetails, track) => (dispatch) => {
       toast.success('Woo! Track successfully set to ' + track);
     })
     .catch(() => toast.error('Uh oh! There was a problem setting your track.'));
+};
+
+//Sets looking for a mentee to true
+export const updateMentorToTrue = (userDetails, mentor) => (
+    dispatch
+  ) => {
+    const userID = userDetails.id;
+    axiosWithAuth()
+      .put(`${BACKEND_URL}/api/user/mentor`, { userID, mentor })
+      .then(() => {
+        if (mentor == true){
+        toast.success('Updated mentor status to "looking for mentees"')
+        }else{
+          toast.success('Updated mentor status to "not looking for mentees"')
+        }
+        dispatch({
+          type: 'SET_USER',
+          payload: { ...userDetails, mentor },
+        });
+      })
+      .catch(() =>
+        toast.error('Oh no! there was a problem updating your mentor status.')
+      );
+  };
+
+//Sets looking for a Mentee to true
+export const updateMenteeToTrue= (userDetails, mentee) => (
+  dispatch
+) => {
+  const userID = userDetails.id;
+  axiosWithAuth()
+    .put(`${BACKEND_URL}/api/user/mentee`, { userID, mentee })
+    .then(() => {
+      if (mentee == true){
+      toast.success('Updated mentee status to "looking for mentor"')
+      }else{
+        toast.success('Updated mentee status to "not looking for mentor"')
+      }
+      dispatch({
+        type: 'SET_USER',
+        payload: { ...userDetails, mentee },
+      });
+    })
+    .catch(() =>
+      toast.error('Oh no! there was a problem updating your mentee status.')
+    );
 };
 
 // Fetches all rooms
@@ -615,41 +661,6 @@ export const setShowModModal = (bool) => (dispatch) => {
   dispatch({ type: 'SET_SHOW_MOD_MODAL', payload: bool });
 };
 
-// set willing to mentor
-
-export const setWillingToMentor = (userDetails, mentor) => (
-    dispatch
-) => {
-    const userID = userDetails.id;
-    axiosWithAuth()
-        .put(`${BACKEND_URL}/api/user/mentor`, { userID, mentor })
-        .then(() => {
-            toast.success('Horray! Mentor selected! ' + mentor);
-            dispatch({ type: 'SET_USER', payload: {...userDetails, mentor } });
-        })
-        .catch(() =>
-            toast.error('Oh no! there was a problem adding your selection.')
-        );
-};
-
-// set seeking mentorship
-
-export const setSeekingMentor = (userDetails, mentee) => (
-    dispatch
-) => {
-    const userID = userDetails.id;
-    axiosWithAuth()
-        .put(`${BACKEND_URL}/api/user/mentor`, { userID, mentee })
-        .then(() => {
-            toast.success('Horray! Mentee selected! ' + mentee);
-            dispatch({ type: 'SET_USER', payload: {...userDetails, mentee } });
-        })
-        .catch(() =>
-            toast.error('Oh no! there was a problem adding your selection.')
-        );
-};
-
-
 //follow a user
 export const follow = (user_id, following_id) => (dispatch) => {
   return axiosWithAuth()
@@ -753,6 +764,7 @@ export const getBugImageURL = (base64EncodedImage) => (dispatch) => {
     .catch(() => toast.error('There was a problem uploading the image.'));
 };
 
+
 // updates a users bio
 export const updateUserBio = (userDetails, userBio) => (
     dispatch
@@ -768,3 +780,69 @@ export const updateUserBio = (userDetails, userBio) => (
         toast.error('Oh no! there was a problem updating your info.')
       );
   };
+
+//get Private Rooms
+export const fetchPrivateRooms = () => (dispatch) => {
+  return axiosWithAuth()
+    .get(`${BACKEND_URL}/api/room/private/`)
+    .then((response) => {
+      dispatch({ type: 'SET_PRIVATE_ROOMS', payload: response.data });
+    })
+    .catch(() => toast.error('There was a problem fetching private rooms.'));
+};
+
+//get Private Rooms
+export const fetchPrivateRoom = (roomId) => (dispatch) => {
+  return axiosWithAuth()
+    .get(`${BACKEND_URL}/api/room/private/${roomId}`)
+    .then((response) => {
+      dispatch({ type: 'SET_CURRENT_PRIVATE_ROOM', payload: response.data });
+    })
+    .catch(() => toast.error('There was a problem fetching the private room.'));
+};
+
+//create Private Room
+export const createPrivateRoom = (room, users) => (dispatch) => {
+  return axiosWithAuth()
+    .post(`${BACKEND_URL}/api/room/private/`, room)
+    .then((response) => {
+      const [privateRoom] = response.data;
+      return privateRoom;
+    })
+    .then(async (privateRoom) => {
+      const data = await addUsersPrivateRoom(privateRoom.id, users);
+      dispatch({ type: 'SET_CURRENT_PRIVATE_ROOM', payload: data });
+    })
+    .catch(() => toast.error('There was a problem creating the private room.'));
+};
+
+//add users to a Private Room
+export const addUsersPrivateRoom = (roomId, users) => {
+  return axiosWithAuth()
+    .post(`${BACKEND_URL}/api/room/private/${roomId}/users`, { users })
+    .then((response) => {
+      return response.data;
+    })
+    .catch(() => toast.error('There was a problem fetching private rooms.'));
+};
+
+//remove users from Private Room
+export const removeUsersPrivateRoom = (roomId, users) => (dispatch) => {
+  return axiosWithAuth()
+    .delete(`${BACKEND_URL}/api/room/private/${roomId}/users`, { users })
+    .then((response) => {
+      dispatch({ type: 'SET_CURRENT_PRIVATE_ROOM', payload: response.data });
+    })
+    .catch(() => toast.error('There was a problem fetching private rooms.'));
+};
+
+//delete Private Room
+export const deletePrivateRoom = (roomId) => (dispatch) => {
+  return axiosWithAuth()
+    .delete(`${BACKEND_URL}/api/room/private/${roomId}`)
+    .then((response) => {
+      toast.success('Private room successfully deleted.');
+    })
+    .catch(() => toast.error('There was a problem creating the private room.'));
+};
+
