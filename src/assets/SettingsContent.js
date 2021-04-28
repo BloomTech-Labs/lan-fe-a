@@ -8,10 +8,9 @@ import {
   updateUserDisplayName,
   setTrackSettings,
   updateGitHubUsername,
-  updateMentorToTrue,
-  updateUserBio,
   updateMenteeToTrue,
-} from '../../store/actions';
+  updateMentorToTrue
+} from '../store/actions';
 
 /* eslint-disable no-undef */
 const BACKEND_URL =
@@ -25,9 +24,7 @@ const SettingsContent = (props) => {
     displayName: props.user.displayName,
     track: props.user.track,
     githubUserName: props.user.gitHubUsername,
-    mentor: props.user.mentor,
-    mentee: props.user.mentee,
-    userBio: props.user.userBio,
+    
   };
 
   const [settings, setSettings] = useState(initialSettings);
@@ -36,25 +33,18 @@ const SettingsContent = (props) => {
     displayName: false,
     track: false,
     githubUserName: false,
-    mentor: false,
-    mentee: false,
-    userBio: false,
   };
-
   const [editSettings, setEditSettings] = useState(initialEditSettings);
   const [input, setInput] = useState('');
-  const [github, setGithub] = useState('');
-  const [mentor, setMentor] = useState(props.user.mentor);
-  const [mentee, setMentee] = useState(props.user.mentee);
-
+  const [github, setGithub] = useState('')
+  const [mentor, setMentor] = useState(props.user.mentor)
+  const [mentee, setMentee] = useState(props.user.mentee)
+  
   useEffect(() => {
-    setSettings({
-      ...settings,
-      displayName: props.user.displayName,
-      githubUserName: props.user.github_username,
-    });
+    setSettings({ ...settings, displayName: props.user.displayName, githubUserName: props.user.github_username});
   }, [props.user]);
 
+  
   useEffect(() => {
     if (props.actKey == 'Settings') {
       setEditSettings(initialEditSettings);
@@ -82,20 +72,22 @@ const SettingsContent = (props) => {
   };
 
   const onChangeGitHub = (event) => {
-    setGithub(event.target.value);
-  };
+    setGithub(event.target.value)
+  }
+
+//   const onCheckMentee = () => {
+//       setMentee(!mentee);
+//   }
+
+  
+//   const onCheckMentor = () => {
+//     setMentor(!mentor)
+    
+// }
 
 
-  const onCheckMentee = () => {
-    setMentee(!mentee);
-    props.updateMenteeToTrue(props.user, mentee);
-  };
 
-  const onCheckMentor = () => {
-    setMentor(!mentor);
-    props.updateMentorToTrue(props.user, mentor);
-  };
-
+  
   const onSubmit = (event) => {
     event.preventDefault();
     if (editSettings.displayName) {
@@ -106,23 +98,19 @@ const SettingsContent = (props) => {
     } else if (editSettings.track) {
       props.setTrackSettings(props.user, settings.track);
       setEditSettings({ ...editSettings, track: false });
-    }
-    if (editSettings.githubUserName) {
-      props.updateGitHubUsername(props.user, github);
+    }if (editSettings.githubUserName) {
+      props.updateGitHubUsername(props.user, github)
       setSettings({ ...settings, gitHubUsername: github });
       setInput('');
       setEditSettings({ ...editSettings, githubUserName: false });
-    } if (editSettings.userBio) {
-      props.updateUserBio(props.user, input);
-      setSettings({ ...settings, userBio: input });
-      setInput('');
-      setEditSettings({ ...editSettings, userBio: false });
     }
   };
-
+  
   function handleMenuClick(e) {
     setSettings({ ...settings, track: e.key });
   }
+
+
 
   const menu = (
     <Menu onClick={handleMenuClick}>
@@ -195,62 +183,6 @@ const SettingsContent = (props) => {
       <Card
         style={{ marginTop: 16 }}
         type="inner"
-        title="Bio"
-        extra={
-          <Button
-            type="link"
-            onClick={() =>
-              setEditSettings({ ...editSettings, userBio: true })
-            }
-          >
-            Change
-          </Button>
-        }
-      >
-        {settings.userBio}
-        {editSettings.userBio && (
-          <form
-            style={{ marginTop: '10px' }}
-            autoComplete="off"
-            spellCheck="false"
-            onSubmit={onSubmit}
-          >
-            <label htmlFor="display-name">
-              Update User Bio (max 150 characters)
-            </label>
-            <Input
-              name="user-bio"
-              type="text"
-              placeholder="Enter Bio Information"
-              value={input}
-              style={{ marginTop: '10px' }}
-              onChange={onChange}
-              maxLength="150"
-              required
-            />
-            <Button
-              style={{ marginTop: '10px' }}
-              type="primary"
-              htmlType="submit"
-            >
-              Submit
-            </Button>
-            <Button
-              type="danger"
-              style={{ marginLeft: '10px' }}
-              onClick={() => {
-                setInput('');
-                setEditSettings({ ...editSettings, userBio: false });
-              }}
-            >
-              Cancel
-            </Button>
-          </form>
-        )}
-      </Card>
-      <Card
-        style={{ marginTop: 16 }}
-        type="inner"
         title="Lambda School Track"
         extra={
           <Button
@@ -300,7 +232,6 @@ const SettingsContent = (props) => {
         )}
       </Card>
       <Card
-      style={{ marginTop: 16 }}
         type="inner"
         title="GitHub Username"
         extra={
@@ -345,7 +276,7 @@ const SettingsContent = (props) => {
               style={{ marginLeft: '10px' }}
               onClick={() => {
                 setInput('');
-                setEditSettings({ ...editSettings, githubUserName: false });
+                setEditSettings({ ...editSettings, githubUserName: false});
               }}
             >
               Cancel
@@ -353,22 +284,19 @@ const SettingsContent = (props) => {
           </form>
         )}
       </Card>
-      <Checkbox
+      <Checkbox 
         style={{ marginTop: '5px' }}
         checked={props.user.mentor}
-        value={mentor}
-        onClick={onCheckMentor}
-      >
-        Check here if you are interested in becoming a mentor.
+        // value={mentor}
+        // onChange={onCheckMentor}
+        >Check here if you are interested in becoming a mentor.
       </Checkbox>
       <br />
-      <Checkbox
+      <Checkbox 
         style={{ marginTop: '5px' }}
-        checked={props.user.mentee}
-        value={mentee}
-        onClick={onCheckMentee}
-      >
-        Check here if you are seeking mentorship.
+        checked = {props.user.mentee}
+        // value={mentee}
+        >Check here if you are seeking mentorship.
       </Checkbox>
       <Button
         type="primary"
@@ -400,7 +328,6 @@ export default connect(mapStateToProps, {
   updateUserDisplayName,
   setTrackSettings,
   updateGitHubUsername,
-  updateUserBio,
   updateMentorToTrue,
-  updateMenteeToTrue,
+  updateMenteeToTrue
 })(SettingsContent);
