@@ -86,11 +86,11 @@ const ProfileContent = (props) => {
                 </div>
                 <div>
                   {props.currentUser.following !== 1 ? (
-                    <p style={{ marginRight: '15px' }}>
+                    <p className="posts-and-comments-font">
                       <b>{props.currentUser.following}</b> following
                     </p>
                   ) : (
-                    <p style={{ marginRight: '15px' }}>
+                    <p className="posts-and-comments-font">
                       <b>1</b> following
                     </p>
                   )}
@@ -98,54 +98,53 @@ const ProfileContent = (props) => {
                 <div>
                   <p id="bio-font">{props.currentUser.user_bio}</p>
                 </div>
-              <div className="button-container">
-                {props.user.id === props.match.params.id && (
-                  <Button type="primary" onClick={handleEditProfileButton}>
-                    Edit Profile
-                  </Button>
-                )}
-                <div>
-                  {props.user.id != props.match.params.id && (
-                    <div style={{ display: 'flex' }}>
-                      <div id="follow-button" style={{ marginRight: '7%' }}>
-                        {isFollowing(props.currentUser.id) ? (
-                          <Button
-                            type="primary"
-                            style={{ width: '125px' }}
-                            onClick={() => {
-                              props
-                                .unfollow(props.user.id, props.currentUser.id)
-                                .then(() => props.fetchUser());
-                            }}
-                          >
-                            Unfollow
-                          </Button>
-                        ) : (
-                          <Button
-                            type="primary"
-                            style={{ width: '125px' }}
-                            onClick={() => {
-                              props
-                                .follow(props.user.id, props.currentUser.id)
-                                .then(() => props.fetchUser());
-                            }}
-                          >
-                            Follow
-                          </Button>
-                        )}
-                      </div>
-                      <div>
-                        <Link
-                          to={`/message/send/${props.user.id}/receive/${props.currentUser.id}`}
-                        >
-                          <Button type="primary">Message</Button>
-                        </Link>
-                      </div>
-                    </div>
+                <div className="button-container">
+                  {props.user.id === props.match.params.id && (
+                    <Button type="primary" onClick={handleEditProfileButton}>
+                      Edit Profile
+                    </Button>
                   )}
+                  <div>
+                    {props.user.id != props.match.params.id && (
+                      <div className="button-container">
+                        <div id="follow-button">
+                          {isFollowing(props.currentUser.id) ? (
+                            <Button
+                              type="primary"
+                              onClick={() => {
+                                props
+                                  .unfollow(props.user.id, props.currentUser.id)
+                                  .then(() => props.fetchUser());
+                              }}
+                            >
+                              Unfollow
+                            </Button>
+                          ) : (
+                            <Button
+                              type="primary"
+                              onClick={() => {
+                                props
+                                  .follow(props.user.id, props.currentUser.id)
+                                  .then(() => props.fetchUser());
+                              }}
+                            >
+                              Follow
+                            </Button>
+                          )}
+                        </div>
+                        <div>
+                          <Link
+                            to={`/message/send/${props.user.id}/receive/${props.currentUser.id}`}
+                          >
+                            <Button type="primary">Message</Button>
+                          </Link>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-              </div>
+            </div>
             <Tabs
               defaultActiveKey="Posts"
               activeKey={actKey}
@@ -153,25 +152,21 @@ const ProfileContent = (props) => {
             >
               <TabPane tab="Posts" key="Posts">
                 {props.currentUser.posts.map((item, index) => (
-                  <>
-                    <Card
-                      size="small"
-                      key={index}
-                      onClick={() =>
-                        props.history.push(`/discussion/${item.id}`)
-                      }
-                      style={{
-                        width: 500,
-                        cursor: 'pointer',
-                        margin: '1%',
-                      }}
-                    >
-                      <p>{item.title}</p>
-                      <p style={{ fontSize: '12px', marginBottom: '0' }}>
-                        {moment(item.created_at).fromNow()}
-                      </p>
-                    </Card>
-                  </>
+                  <Card
+                    size="small"
+                    key={index}
+                    onClick={() => props.history.push(`/discussion/${item.id}`)}
+                    style={{
+                      width: 500,
+                      cursor: 'pointer',
+                      margin: '1%',
+                    }}
+                  >
+                    <p>{item.title}</p>
+                    <p style={{ fontSize: '12px', marginBottom: '0' }}>
+                      {moment(item.created_at).fromNow()}
+                    </p>
+                  </Card>
                 ))}
               </TabPane>
               <TabPane tab="Comments" key="Comments">
@@ -270,7 +265,6 @@ const ProfileContent = (props) => {
                 </TabPane>
               )}
             </Tabs>
-            </div>
           </div>
         )}
       </Content>
