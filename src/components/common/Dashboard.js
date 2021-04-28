@@ -85,10 +85,6 @@ const Dashboard = (props) => {
                   path={`/user/:id`}
                   component={ProfileContent}
                 />
-                <PrivateRoute
-                      path={`/discussion/:discussionID`}
-                      component={DiscussionDrawer}
-                    />
                 <PrivateRoute path="/search" component={SearchResultsContent} />
                 <PrivateRoute
                   exact

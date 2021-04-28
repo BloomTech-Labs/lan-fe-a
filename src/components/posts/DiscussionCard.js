@@ -90,12 +90,12 @@ const DiscussionCard = (props) => {
                   {props.discussion.title}
                   <Dropdown overlay={<DropdownMenu />} trigger={['click']}>
                     <div className="ant-dropdown-link-div">
-                      <Link
+                      <a
                         className="ant-dropdown-link"
                         onClick={(e) => e.preventDefault()}
                       >
                         <EllipsisOutlined />
-                      </Link>
+                      </a>
                     </div>
                   </Dropdown>
                 </div>

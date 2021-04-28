@@ -8,7 +8,7 @@ import {
   setDrawerVisibility,
   fetchPost,
   fetchPostsAndFlagsByRoom,
-  postQuestion,
+  postQuestion, 
   addToCurrentUsersLikedRooms,
   deleteCurrentRoomFromLikedRooms
 } from '../../store/actions';
@@ -55,11 +55,11 @@ const RoomContent = (props) => {
     setConfirmLoading(false);
   };
 
-  const handleLikeRoomButtonClicked = () =>
-    props.addToCurrentUsersLikedRooms(props.user.id, roomID);
+  const handleLikeRoomButtonClicked = () => props.addToCurrentUsersLikedRooms(props.user.id, roomID);
 
-  const handleUnlikeRoomButtonClicked = () =>
-    props.deleteCurrentRoomFromLikedRooms(props.user.id, roomID);
+  const handleUnlikeRoomButtonClicked = () => props.deleteCurrentRoomFromLikedRooms(props.user.id, roomID);
+
+
 
   const handleCancel = () => setVisible(false);
 
@@ -81,26 +81,51 @@ const RoomContent = (props) => {
   };
 
   return (
-    <Layout className="room-content">
-      <Header>
-        <div className="room-header">
-          <div className="room-context-and-form">
-            <div className="room-name-and-heart">
-              <h2>{findRoom(roomID).room_name}</h2>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Header
+        style={{
+          padding: '0px 0px',
+          background: 'none',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          height: 'auto',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexFlow: 'column wrap',
+            width: '100%',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexFlow: 'row wrap',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <h2
+              style={{
+                marginBottom: '0px',
+                fontSize: '35px',
+              }}
+            >
+              <div style={{
+                display: 'flex',
+                alignItems: 'center'
+              }}>
+                {findRoom(roomID).room_name}
 
-              {props.currentUsersLikedRooms.includes(Number(roomID)) ? (
-                <HeartFilled
-                  className="heart-icon"
-                  onClick={handleUnlikeRoomButtonClicked}
-                />
-              ) : (
-                <HeartOutlined
-                  className="heart-icon"
-                  onClick={handleLikeRoomButtonClicked}
-                />
-              )}
-            </div>
 
+                {props.currentUsersLikedRooms.includes(Number(roomID)) ? 
+                  <HeartFilled onClick={handleUnlikeRoomButtonClicked} style={{marginLeft: '1rem', fontSize: '24px', color: '#405cee'}}/> :
+                  <HeartOutlined onClick={handleLikeRoomButtonClicked} style={{marginLeft: '1rem', fontSize: '24px', color: '#405cee'}}/>}
+              </div>
+              
+            </h2>
+                
             {/* button to open modal */}
             <Button type="primary" onClick={showNewCardModal}>
               New Discussion
@@ -134,7 +159,13 @@ const RoomContent = (props) => {
               </Form>
             </Modal>
           </div>
-          <p id="room-description">{findRoom(roomID).description}</p>
+          <p
+            style={{
+              marginBottom: '0px',
+            }}
+          >
+            {findRoom(roomID).description}
+          </p>
         </div>
       </Header>
       <Content>
@@ -150,7 +181,7 @@ const mapStateToProps = (state) => {
     rooms: state.rooms,
     discussion: state.posts,
     user: state.user,
-    currentUsersLikedRooms: state.currentUsersLikedRooms,
+    currentUsersLikedRooms: state.currentUsersLikedRooms
   };
 };
 
@@ -162,5 +193,6 @@ export default connect(mapStateToProps, {
   fetchPostsAndFlagsByRoom,
   postQuestion,
   addToCurrentUsersLikedRooms,
-  deleteCurrentRoomFromLikedRooms,
+  deleteCurrentRoomFromLikedRooms
+
 })(RoomContent);

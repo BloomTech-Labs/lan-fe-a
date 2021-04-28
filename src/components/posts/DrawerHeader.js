@@ -20,6 +20,8 @@ import { CheckIfModOrAdmin } from '../../utils/CheckIfModOrAdmin';
 import { PrivateRoute } from '../../utils/privateRoute';
 import DropdownMenu from './DropdownMenu';
 // import { FlagChip } from '../FlagChip';
+// import UserFlaggingModal from '../UserFlaggingModal';
+// import FlagManagerModal from '../FlagManagerModal';
 import DiscussionDrawer from './DiscussionDrawer';
 
 const IconText = ({ icon, text }) => (

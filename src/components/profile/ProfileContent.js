@@ -46,40 +46,62 @@ const ProfileContent = (props) => {
   const handleFollowing = () => {};
 
   return (
-    <Layout className="profile-container">
-      {/* <Header>
-      </Header> */}
+    <Layout style={{ minHeight: '100vh' }}>
+      <Header
+        style={{
+          padding: '0px 0px',
+          background: '#f0f2f5',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          height: 'auto',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexFlow: 'column wrap',
+            alignSelf: 'flex-start',
+          }}
+        >
+          {/* Leaving this header in case we want to add it back in */}
+          {/* <h2>{props.currentUser.display_name}</h2> */}
+          {/* {props.user.id === props.match.params.id && <h2>My Profile</h2>} */}
+        </div>
+      </Header>
       <Content>
         {Object.keys(props.currentUser).length > 0 && (
-          <div className="profile-content">
-            <div className="profile-header">
-              <img src={props.currentUser.profile_picture} />
-              <div className="user-info-and-buttons">
-                <div className="user-name-and-badge">
-                  <h3 id="user-name">{props.currentUser.display_name}</h3>
-                  <Badge
-                    count={props.currentUser.track.toUpperCase()}
-                    //TODO get this working with the ProfileContent.less file
-                    // offset={[25, -10]}
-                    style={{ backgroundColor: 'grey' }}
-                  ></Badge>
-                </div>
-                <div className="posts-and-comments">
+          <>
+            <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+              <img
+                src={props.currentUser.profile_picture}
+                width="100px"
+                height="100px"
+                style={{ borderRadius: '50%', marginRight: '15px' }}
+              />
+              <div>
+                <Badge
+                  count={props.currentUser.track.toUpperCase()}
+                  offset={[25, -10]}
+                  style={{ backgroundColor: 'grey' }}
+                >
+                  <h3>{props.currentUser.display_name}</h3>
+                </Badge>
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                   {props.currentUser.posts.length !== 1 ? (
-                    <p className="posts-and-comments-font">
+                    <p style={{ marginRight: '15px' }}>
                       <b>{props.currentUser.posts.length}</b> posts
                     </p>
                   ) : (
-                    <p className="posts-and-comments-font">
+                    <p style={{ marginRight: '15px' }}>
                       <b>1</b> post
                     </p>
                   )}
                   {props.currentUser.comments.length !== 1 ? (
-                    <p className="posts-and-comments-font">
+                    <p>
                       <b>{props.currentUser.comments.length}</b> comments
                     </p>
                   ) : (
-                    <p className="posts-and-comments-font">
+                    <p>
                       <b>1</b> comment
                     </p>
                   )}
@@ -96,9 +118,8 @@ const ProfileContent = (props) => {
                   )}
                 </div>
                 <div>
-                  <p id="bio-font">{props.currentUser.user_bio}</p>
+                  <p>{props.currentUser.user_bio}</p>
                 </div>
-              <div className="button-container">
                 {props.user.id === props.match.params.id && (
                   <Button type="primary" onClick={handleEditProfileButton}>
                     Edit Profile
@@ -107,7 +128,7 @@ const ProfileContent = (props) => {
                 <div>
                   {props.user.id != props.match.params.id && (
                     <div style={{ display: 'flex' }}>
-                      <div id="follow-button" style={{ marginRight: '7%' }}>
+                      <div style={{ marginRight: '7%' }}>
                         {isFollowing(props.currentUser.id) ? (
                           <Button
                             type="primary"
@@ -138,14 +159,16 @@ const ProfileContent = (props) => {
                         <Link
                           to={`/message/send/${props.user.id}/receive/${props.currentUser.id}`}
                         >
-                          <Button type="primary">Message</Button>
+                          <Button type="primary" style={{ width: '125px' }}>
+                            Message
+                          </Button>
                         </Link>
                       </div>
                     </div>
                   )}
                 </div>
               </div>
-              </div>
+            </div>
             <Tabs
               defaultActiveKey="Posts"
               activeKey={actKey}
@@ -153,25 +176,20 @@ const ProfileContent = (props) => {
             >
               <TabPane tab="Posts" key="Posts">
                 {props.currentUser.posts.map((item, index) => (
-                  <>
-                    <Card
-                      size="small"
-                      key={index}
-                      onClick={() =>
-                        props.history.push(`/discussion/${item.id}`)
-                      }
-                      style={{
-                        width: 500,
-                        cursor: 'pointer',
-                        margin: '1%',
-                      }}
-                    >
-                      <p>{item.title}</p>
+                  <Card
+                    size="small"
+                    key={index}
+                    title={
                       <p style={{ fontSize: '12px', marginBottom: '0' }}>
                         {moment(item.created_at).fromNow()}
                       </p>
-                    </Card>
-                  </>
+                    }
+                    style={{ width: 500 }}
+                  >
+                    <p onClick={() => props.history.push(`/post/${item.id}`)}>
+                      {item.title}
+                    </p>
+                  </Card>
                 ))}
               </TabPane>
               <TabPane tab="Comments" key="Comments">
@@ -179,16 +197,24 @@ const ProfileContent = (props) => {
                   <Card
                     size="small"
                     key={index}
-                    onClick={() => props.history.push(`/discussion/${item.id}`)}
-                    style={{ width: 500, cursor: 'pointer' }}
+                    title={
+                      <p style={{ fontSize: '12px', marginBottom: '0' }}>
+                        {moment(item.created_at).fromNow()}
+                      </p>
+                    }
+                    style={{ width: 500 }}
                   >
-                    <p>{item.comment}</p>
-                    <p style={{ fontSize: '12px', marginBottom: '0' }}>
-                      {moment(item.created_at).fromNow()}
+                    <p
+                      onClick={() =>
+                        props.history.push(`/post/${item.post_id}`)
+                      }
+                    >
+                      {item.comment}
                     </p>
                   </Card>
                 ))}
               </TabPane>
+
               <TabPane tab="Following" key="Following">
                 <List
                   style={{ width: '500px' }}
@@ -270,8 +296,7 @@ const ProfileContent = (props) => {
                 </TabPane>
               )}
             </Tabs>
-            </div>
-          </div>
+          </>
         )}
       </Content>
     </Layout>
