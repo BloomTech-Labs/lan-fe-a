@@ -1,0 +1,81 @@
+//Profile Content Styles
+
+.profile-container {
+  min-height: 100vh;
+
+  .profile-content {
+    margin: 2rem;
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      // border: 1px solid;
+
+      //Profile Image
+      img {
+        border-radius: 50%;
+        margin-right: 15px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .user-info-and-buttons {
+        // border: 1px solid;
+        padding: 0 3%;
+        // margin: 0 5%;
+        // width: 35%;
+        // padding: 1rem;
+
+        .user-name-and-badge {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          // border: 1px solid;
+
+          #user-name {
+            font-size: 1.2rem;
+            padding-right: 1rem;
+            // display: flex;
+            // align-items: center;
+          }
+
+          // Get this ant Badge working so we can remove the styling from ProfileContent.js
+          Badge {
+            background-color: grey;
+            offset: 25, 0;
+          }
+        }
+
+        .posts-and-comments {
+          display: flex;
+          justify-content: space-between;
+
+          .posts-and-comments-font {
+            margin-right: 15px;
+          }
+        }
+
+        #bio-font {
+          // font-size: 22rem;
+        }
+
+        .button-container {
+          display: flex;
+
+          #follow-button {
+            margin-right: 7%;
+          }
+
+          Button {
+            width: 125px;
+          }
+        }
+      }
+    }
+    TabPane {
+      Card {
+        width: 500px;
+      }
+    }
+  }
+}
