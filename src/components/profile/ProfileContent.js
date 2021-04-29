@@ -256,12 +256,15 @@ const ProfileContent = (props) => {
                 </Card>
               </TabPane>
               <TabPane tab="Github" key="Github">
-                {props.currentUser.github_username == null ? (
+                {props.currentUser.github_username == null || props.currentUser.github_username == "" ? (
                   <p>No Github info</p>
                 ) : (
+                <div>
+                  <h3>GitHub Username: {props.currentUser.github_username}</h3>
                   <GitHubCalendar
                     username={props.currentUser.github_username}
                   />
+                </div>
                 )}
               </TabPane>
               {props.user.id === props.match.params.id && (
