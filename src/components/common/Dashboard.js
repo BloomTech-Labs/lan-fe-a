@@ -30,6 +30,7 @@ import Message from '../instantMessaging/Message';
 import Directory from '../directory/Directory';
 import BugTracker from '../bugTracker/BugTracker';
 import PrivateRoomContent from '../rooms/PrivateRoomContent';
+import DiscussionDrawer from '../posts/DiscussionDrawer'
 
 const Dashboard = (props) => {
   const { Content, Sider } = Layout;
@@ -85,6 +86,10 @@ const Dashboard = (props) => {
                   path={`/user/:id`}
                   component={ProfileContent}
                 />
+                <PrivateRoute
+                      path={`/discussion/:discussionID`}
+                      component={DiscussionDrawer}
+                    />
                 <PrivateRoute path="/search" component={SearchResultsContent} />
                 <PrivateRoute
                   exact

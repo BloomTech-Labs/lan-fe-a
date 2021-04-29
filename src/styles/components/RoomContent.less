@@ -1,0 +1,45 @@
+//Room Content Styles
+.room-content {
+  min-height: 100vh;
+
+  Header {
+    padding: 0px 0px;
+    background: none;
+    display: flex;
+    justify-content: flex-start;
+    height: auto;
+  }
+
+  .room-header {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+
+    #room-description {
+      margin-bottom: 0px;
+    }
+
+    .room-context-and-form {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .room-name-and-heart {
+      display: flex;
+      align-items: center;
+      
+      h2 {
+        margin-bottom: 0px;
+        font-size: 35px;
+      }
+
+      .heart-icon {
+        margin-left: 1rem;
+        font-size: 24px;
+        color: #405cee;
+      }
+    }
+  }
+}

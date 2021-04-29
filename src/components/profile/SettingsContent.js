@@ -25,9 +25,9 @@ const SettingsContent = (props) => {
     displayName: props.user.displayName,
     track: props.user.track,
     githubUserName: props.user.gitHubUsername,
-    mentor: props.user.mentor,
-    mentee: props.user.mentee,
     userBio: props.user.userBio,
+    mentorCheck: false,
+    menteeCheck: false,
   };
 
   const [settings, setSettings] = useState(initialSettings);
@@ -36,8 +36,6 @@ const SettingsContent = (props) => {
     displayName: false,
     track: false,
     githubUserName: false,
-    mentor: false,
-    mentee: false,
     userBio: false,
   };
 
@@ -46,6 +44,11 @@ const SettingsContent = (props) => {
   const [github, setGithub] = useState('');
   const [mentor, setMentor] = useState(props.user.mentor);
   const [mentee, setMentee] = useState(props.user.mentee);
+  const [mentorCheck, setMentorCheck] = useState(false)
+  const [menteeCheck, setMenteeCheck] = useState(false)
+
+  console.log(menteeCheck)
+
 
   useEffect(() => {
     setSettings({
@@ -87,11 +90,13 @@ const SettingsContent = (props) => {
 
 
   const onCheckMentee = () => {
+    setMenteeCheck(!menteeCheck)
     setMentee(!mentee);
     props.updateMenteeToTrue(props.user, mentee);
   };
 
   const onCheckMentor = () => {
+    setMentorCheck(!mentorCheck)
     setMentor(!mentor);
     props.updateMentorToTrue(props.user, mentor);
   };
@@ -355,8 +360,8 @@ const SettingsContent = (props) => {
       </Card>
       <Checkbox
         style={{ marginTop: '5px' }}
-        checked={props.user.mentor}
-        value={mentor}
+        checked={mentorCheck}
+        // value={mentor}
         onClick={onCheckMentor}
       >
         Check here if you are interested in becoming a mentor.
@@ -364,8 +369,8 @@ const SettingsContent = (props) => {
       <br />
       <Checkbox
         style={{ marginTop: '5px' }}
-        checked={props.user.mentee}
-        value={mentee}
+        checked={menteeCheck}
+        // value={mentee}
         onClick={onCheckMentee}
       >
         Check here if you are seeking mentorship.
