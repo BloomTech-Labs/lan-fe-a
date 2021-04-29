@@ -44,11 +44,7 @@ const SettingsContent = (props) => {
   const [github, setGithub] = useState('');
   const [mentor, setMentor] = useState(props.user.mentor);
   const [mentee, setMentee] = useState(props.user.mentee);
-  const [mentorCheck, setMentorCheck] = useState(false)
-  const [menteeCheck, setMenteeCheck] = useState(false)
-
-  console.log(menteeCheck)
-
+  
 
   useEffect(() => {
     setSettings({
@@ -90,13 +86,11 @@ const SettingsContent = (props) => {
 
 
   const onCheckMentee = () => {
-    setMenteeCheck(!menteeCheck)
     setMentee(!mentee);
     props.updateMenteeToTrue(props.user, mentee);
   };
 
   const onCheckMentor = () => {
-    setMentorCheck(!mentorCheck)
     setMentor(!mentor);
     props.updateMentorToTrue(props.user, mentor);
   };
@@ -360,7 +354,7 @@ const SettingsContent = (props) => {
       </Card>
       <Checkbox
         style={{ marginTop: '5px' }}
-        checked={mentorCheck}
+        checked={props.user.mentor}
         // value={mentor}
         onClick={onCheckMentor}
       >
@@ -369,7 +363,7 @@ const SettingsContent = (props) => {
       <br />
       <Checkbox
         style={{ marginTop: '5px' }}
-        checked={menteeCheck}
+        checked={props.user.mentee}
         // value={mentee}
         onClick={onCheckMentee}
       >
