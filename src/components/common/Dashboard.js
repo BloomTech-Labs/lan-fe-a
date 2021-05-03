@@ -19,6 +19,7 @@ import Navbar from './Navbar/Navbar';
 import SiderMenu from './SiderMenu';
 import DashboardContent from './DashboardContent';
 import RoomContent from '../rooms/RoomContent';
+import DiscussionDrawer from '../posts/DiscussionDrawer'
 import { DashboardHeaderStyles } from '../../styles/components/DashboardStyles';
 import { CheckIfModOrAdmin } from '../../utils/CheckIfModOrAdmin';
 import FaqContent from './FaqContent';
